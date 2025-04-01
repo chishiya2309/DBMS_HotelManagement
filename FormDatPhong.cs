@@ -39,65 +39,6 @@ namespace QLKS
             this.Close();
         }
 
-        //private void btnSearch_Click(object sender, EventArgs e)
-        //{
-        //    if (txtSearch.Text == string.Empty)
-        //    {
-        //        MessageBox.Show("Không được để trống", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //        return;
-        //    }
-        //    else
-        //    {
-        //        try
-        //        {
-        //            if (SearchCustomer().Rows.Count > 0)
-        //            {
-        //                LoadFullCustomer(SearchCustomer());
-        //            }
-        //            else
-        //            {
-        //                MessageBox.Show("Tìm không ra!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-        //            }
-        //        }
-        //        catch (SqlException ex)
-        //        {
-        //            MessageBox.Show("Lỗi: " + ex, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //        }
-        //    }
-        //}
-
-        //private void LoadFullCustomerType()
-        //{
-        //    string query = @"
-        //    SELECT l.MaLoaiPhong, l.TenLoaiPhong
-        //     FROM LoaiPhong l";
-        //    using (SqlConnection conn = new SqlConnection(connectionString))
-        //    {
-        //        try
-        //        {
-        //            conn.Open();
-        //            using (SqlDataAdapter adapter = new SqlDataAdapter(query, conn))
-        //            {
-        //                DataTable dt = new DataTable();
-        //                adapter.Fill(dt);
-        //                cbRoomType.DataSource = dt;
-        //                cbRoomType.DisplayMember = "TenLoaiPhong";
-        //                cbRoomType.ValueMember = "MaLoaiPhong";
-        //                cbRoomType.SelectedIndex = 0;
-        //            }
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            MessageBox.Show("Lỗi lấy dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //        }
-        //    }
-        //}
-
-        //public DataTable SearchCustomer()
-        //{
-        //    return CustomerDAO.Instance.Search(txtSearch.Text, 2);
-        //}
-
         //public void LoadFullCustomer(DataTable dt)
         //{
         //    txtCustomerName.Text = dt.Rows[0]["fullname"].ToString();
@@ -454,8 +395,7 @@ namespace QLKS
             }
 
             // Regex kiểm tra số điện thoại hợp lệ (bao gồm quốc tế)
-            string phonePattern = @"^(\+?\d{1,4}[\s\-]?)?\(?\d{3}\)?[\s\-]?\d{3}[\s\-]?\d{3}$";
-
+            string phonePattern = @"^(\+?\d{1,4}[\s\-]?)?\(?\d{3,4}\)?[\s\-]?\d{3,4}[\s\-]?\d{3,4}$";
 
             if (!Regex.IsMatch(txtSearchPhone.Text, phonePattern))
             {
@@ -463,26 +403,42 @@ namespace QLKS
                 return;
             }
 
-            // Gọi hàm tìm kiếm bằng số điện thoại từ txtSearchPhone
-            DataTable dt = SearchBookingByPhone(txtSearchPhone.Text);
-            if (dt != null && dt.Rows.Count > 0)
+            try
             {
-                dgvBookRoom.DataSource = dt; // Cập nhật DataGridView với dữ liệu tìm thấy
+                DataTable dt = SearchCustomer();
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    LoadFullCustomer(dt);
+                }
+                else
+                {
+                    MessageBox.Show("Không tìm thấy khách hàng!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
-            else
+            catch (SqlException ex)
             {
-                MessageBox.Show("Không tìm thấy hồ sơ đặt phòng!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Lỗi: " + ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        public DataTable SearchBookingByPhone(string phoneNumber)
+
+        public void LoadFullCustomer(DataTable dt)
+        {
+            txtCustomerName.Text = dt.Rows[0]["Hoten"].ToString();
+            txtAddress.Text = dt.Rows[0]["Diachi"].ToString();
+            txtPhone.Text = dt.Rows[0]["Sodienthoai"].ToString();
+            cbSex.Text = dt.Rows[0]["Gioitinh"].ToString();
+            cbType.Text = dt.Rows[0]["LoaiKhachHang"].ToString();
+            dtpDoB.Text = dt.Rows[0]["Ngaysinh"].ToString();
+        }
+
+
+        public DataTable SearchCustomer()
         {
             string query = @"
-            SELECT h.*, k.HoTen, p.TenPhong
-            FROM HoSoDatPhong h
-            INNER JOIN KhachHang k ON h.MaKhachHang = k.MaKhachHang
-            INNER JOIN Phong p ON h.MaPhong = p.MaPhong
-            WHERE k.Sodienthoai LIKE @phone";
+                SELECT kh.*
+                FROM KhachHang kh
+                WHERE kh.Sodienthoai = @phoneNumber;";
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -491,7 +447,7 @@ namespace QLKS
                     conn.Open();
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
-                        cmd.Parameters.AddWithValue("@phone", "%" + phoneNumber + "%"); // Tìm kiếm gần đúng
+                        cmd.Parameters.Add("@phoneNumber", SqlDbType.NVarChar).Value = txtSearchPhone.Text.Trim();
 
                         using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
                         {
@@ -501,13 +457,15 @@ namespace QLKS
                         }
                     }
                 }
-                catch (Exception ex)
+                catch (SqlException ex)
                 {
-                    MessageBox.Show("Lỗi lấy dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Lỗi truy vấn: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return null;
                 }
             }
         }
+
+
 
         private void txtSearchPhone_KeyDown(object sender, KeyEventArgs e)
         {
@@ -516,6 +474,11 @@ namespace QLKS
                 btnSearch.PerformClick();
                 e.SuppressKeyPress = true; // Ngăn chặn âm thanh "ding" khi nhấn Enter
             }
+        }
+
+        private void btnBook_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
