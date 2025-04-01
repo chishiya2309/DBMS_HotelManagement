@@ -30,6 +30,8 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.guna2GroupBox2 = new Guna.UI2.WinForms.Guna2GroupBox();
+            this.txtDescription = new Guna.UI2.WinForms.Guna2TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.txtID = new System.Windows.Forms.TextBox();
             this.cbType = new System.Windows.Forms.ComboBox();
@@ -58,6 +60,8 @@
             // 
             this.guna2GroupBox2.BackColor = System.Drawing.Color.Transparent;
             this.guna2GroupBox2.BorderColor = System.Drawing.Color.Silver;
+            this.guna2GroupBox2.Controls.Add(this.txtDescription);
+            this.guna2GroupBox2.Controls.Add(this.label2);
             this.guna2GroupBox2.Controls.Add(this.label6);
             this.guna2GroupBox2.Controls.Add(this.txtID);
             this.guna2GroupBox2.Controls.Add(this.cbType);
@@ -73,9 +77,46 @@
             this.guna2GroupBox2.Location = new System.Drawing.Point(18, 52);
             this.guna2GroupBox2.Name = "guna2GroupBox2";
             this.guna2GroupBox2.ShadowDecoration.Parent = this.guna2GroupBox2;
-            this.guna2GroupBox2.Size = new System.Drawing.Size(386, 177);
+            this.guna2GroupBox2.Size = new System.Drawing.Size(386, 254);
             this.guna2GroupBox2.TabIndex = 29;
             this.guna2GroupBox2.Text = "Thông tin dịch vụ";
+            // 
+            // txtDescription
+            // 
+            this.txtDescription.BackColor = System.Drawing.Color.Gainsboro;
+            this.txtDescription.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtDescription.DefaultText = "";
+            this.txtDescription.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtDescription.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtDescription.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtDescription.DisabledState.Parent = this.txtDescription;
+            this.txtDescription.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtDescription.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtDescription.FocusedState.Parent = this.txtDescription;
+            this.txtDescription.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtDescription.HoverState.Parent = this.txtDescription;
+            this.txtDescription.Location = new System.Drawing.Point(9, 179);
+            this.txtDescription.Margin = new System.Windows.Forms.Padding(5);
+            this.txtDescription.Multiline = true;
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.PasswordChar = '\0';
+            this.txtDescription.PlaceholderText = "";
+            this.txtDescription.SelectedText = "";
+            this.txtDescription.ShadowDecoration.Parent = this.txtDescription;
+            this.txtDescription.Size = new System.Drawing.Size(350, 58);
+            this.txtDescription.TabIndex = 43;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.DarkRed;
+            this.label2.Location = new System.Drawing.Point(5, 157);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(86, 17);
+            this.label2.TabIndex = 42;
+            this.label2.Text = "Tên dịch vụ:";
             // 
             // label6
             // 
@@ -173,7 +214,7 @@
             this.btnAdd.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.btnAdd.ForeColor = System.Drawing.Color.DarkRed;
             this.btnAdd.HoverState.Parent = this.btnAdd;
-            this.btnAdd.Location = new System.Drawing.Point(28, 240);
+            this.btnAdd.Location = new System.Drawing.Point(26, 312);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             this.btnAdd.ShadowDecoration.Parent = this.btnAdd;
@@ -191,7 +232,7 @@
             this.btnCancel.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.btnCancel.ForeColor = System.Drawing.Color.DarkRed;
             this.btnCancel.HoverState.Parent = this.btnCancel;
-            this.btnCancel.Location = new System.Drawing.Point(224, 240);
+            this.btnCancel.Location = new System.Drawing.Point(224, 312);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             this.btnCancel.ShadowDecoration.Parent = this.btnCancel;
@@ -205,7 +246,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(418, 285);
+            this.ClientSize = new System.Drawing.Size(418, 353);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.guna2GroupBox2);
@@ -237,5 +278,7 @@
         private System.Windows.Forms.TextBox txtName;
         private Guna.UI2.WinForms.Guna2CircleButton btnAdd;
         private Guna.UI2.WinForms.Guna2CircleButton btnCancel;
+        private System.Windows.Forms.Label label2;
+        private Guna.UI2.WinForms.Guna2TextBox txtDescription;
     }
 }
