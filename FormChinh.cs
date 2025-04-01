@@ -107,6 +107,16 @@ namespace QLKS
             FormDichVuVaThanhToan formDichVuVaThanhToan = new FormDichVuVaThanhToan();
             formDichVuVaThanhToan.Show();
         }
+
+        private void FormChinh_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FormChinh_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
 
