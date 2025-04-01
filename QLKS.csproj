@@ -109,12 +109,6 @@
     <Compile Include="BLL\StatusRoom.cs" />
     <Compile Include="BLL\UsedServiceDetail.cs" />
     <Compile Include="DAL\DataProvider.cs" />
-    <Compile Include="FormBookingTest.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormBookingTest.Designer.cs">
-      <DependentUpon>FormBookingTest.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormDangNhap.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -203,9 +197,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddStaff.resx">
       <DependentUpon>AddStaff.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormBookingTest.resx">
-      <DependentUpon>FormBookingTest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormDangNhap.resx">
       <DependentUpon>FormDangNhap.cs</DependentUpon>

@@ -319,6 +319,9 @@
             // 
             this.cbType.BackColor = System.Drawing.Color.Gainsboro;
             this.cbType.FormattingEnabled = true;
+            this.cbType.Items.AddRange(new object[] {
+            "Vip",
+            "Thường"});
             this.cbType.Location = new System.Drawing.Point(190, 163);
             this.cbType.Name = "cbType";
             this.cbType.Size = new System.Drawing.Size(149, 29);
@@ -648,6 +651,7 @@
             this.btnBook.Size = new System.Drawing.Size(153, 33);
             this.btnBook.TabIndex = 26;
             this.btnBook.Text = "Đặt phòng";
+            this.btnBook.Click += new System.EventHandler(this.btnBook_Click);
             // 
             // panel1
             // 
