@@ -9,6 +9,7 @@ using System.Drawing;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
@@ -23,6 +24,8 @@ namespace QLKS
             InitializeComponent();
             //LoadFullCustomerType();
             LoadFullRoomType();
+            // Thiết lập giá trị mặc định
+            LoadDate();
         }
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
@@ -63,18 +66,31 @@ namespace QLKS
         //    }
         //}
 
-        //public DataTable GetFullCustomerType()
-        //{
-        //    return CustomerTypeDAO.Instance.LoadFullCustomerType();
-        //}
-
         //private void LoadFullCustomerType()
         //{
-        //    cbSex.SelectedIndex = 0;
-        //    DataTable table = GetFullCustomerType();
-        //    cbType.DataSource = table;
-        //    cbType.DisplayMember = "typeName";
-        //    if (table.Rows.Count > 0) cbType.SelectedIndex = 0;
+        //    string query = @"
+        //    SELECT l.MaLoaiPhong, l.TenLoaiPhong
+        //     FROM LoaiPhong l";
+        //    using (SqlConnection conn = new SqlConnection(connectionString))
+        //    {
+        //        try
+        //        {
+        //            conn.Open();
+        //            using (SqlDataAdapter adapter = new SqlDataAdapter(query, conn))
+        //            {
+        //                DataTable dt = new DataTable();
+        //                adapter.Fill(dt);
+        //                cbRoomType.DataSource = dt;
+        //                cbRoomType.DisplayMember = "TenLoaiPhong";
+        //                cbRoomType.ValueMember = "MaLoaiPhong";
+        //                cbRoomType.SelectedIndex = 0;
+        //            }
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            MessageBox.Show("Lỗi lấy dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //        }
+        //    }
         //}
 
         //public DataTable SearchCustomer()
@@ -158,11 +174,29 @@ namespace QLKS
 
         private void LoadFullRoomType()
         {
-           
-            //DataTable table = GetFullRoomType();
-            //cbRoomType.DataSource = table;
-            //cbRoomType.DisplayMember = "typename";
-            //if (table.Rows.Count > 0) cbRoomType.SelectedIndex = 0;
+            string query = @"
+            SELECT l.MaLoaiPhong, l.TenLoaiPhong
+             FROM LoaiPhong l";
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(query, conn))
+                    {
+                        DataTable dt = new DataTable();
+                        adapter.Fill(dt);
+                        cbRoomType.DataSource = dt;
+                        cbRoomType.DisplayMember = "TenLoaiPhong";
+                        cbRoomType.ValueMember = "MaLoaiPhong";
+                        cbRoomType.SelectedIndex = 0;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi lấy dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
         //public DataTable SearchAvailableRoom()
@@ -238,7 +272,7 @@ namespace QLKS
 
         public void LoadDate()
         {
-            
+
             dtpCheckIn.Value = DateTime.Now;
             dtpCheckOut.Value = DateTime.Now.AddDays(1);
         }
@@ -254,13 +288,13 @@ namespace QLKS
 
         private void dtpCheckOut_ValueChanged(object sender, EventArgs e)
         {
-
             if (dtpCheckOut.Value <= DateTime.Now)
                 LoadDate();
             if (dtpCheckOut.Value <= dtpCheckIn.Value)
                 LoadDate();
             txtDays.Text = (dtpCheckOut.Value.Date - dtpCheckIn.Value.Date).Days.ToString();
         }
+
         bool isEditing;
         //private void btnUpdate_Click(object sender, EventArgs e)
         //{
@@ -388,13 +422,13 @@ namespace QLKS
             dtpCheckIn.Enabled = true;
             dtpCheckOut.Enabled = true;
             txtDeposit.Enabled = true;
-            txtSearch.Enabled = true;
+            txtSearchPhone.Enabled = true;
             dgvBookRoom.Enabled = true;
             txtAddress.Text = "";
             txtCustomerName.Text = "";
             txtDeposit.Text = "";
             txtIdBookRoom.Text = "";
-            txtSearch.Text = "";
+            txtSearchPhone.Text = "";
             txtPhone.Text = "";
             dtpCheckIn.Value = DateTime.Now;
             dtpCheckOut.Value = DateTime.Now;
@@ -408,6 +442,80 @@ namespace QLKS
         private void guna2GroupBox1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            // Kiểm tra xem số điện thoại có rỗng không
+            if (string.IsNullOrWhiteSpace(txtSearchPhone.Text))
+            {
+                MessageBox.Show("Vui lòng nhập số điện thoại", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Regex kiểm tra số điện thoại hợp lệ (bao gồm quốc tế)
+            string phonePattern = @"^(\+?\d{1,4}[\s\-]?)?\(?\d{3}\)?[\s\-]?\d{3}[\s\-]?\d{3}$";
+
+
+            if (!Regex.IsMatch(txtSearchPhone.Text, phonePattern))
+            {
+                MessageBox.Show("Số điện thoại không hợp lệ! Vui lòng nhập lại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Gọi hàm tìm kiếm bằng số điện thoại từ txtSearchPhone
+            DataTable dt = SearchBookingByPhone(txtSearchPhone.Text);
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                dgvBookRoom.DataSource = dt; // Cập nhật DataGridView với dữ liệu tìm thấy
+            }
+            else
+            {
+                MessageBox.Show("Không tìm thấy hồ sơ đặt phòng!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        public DataTable SearchBookingByPhone(string phoneNumber)
+        {
+            string query = @"
+            SELECT h.*, k.HoTen, p.TenPhong
+            FROM HoSoDatPhong h
+            INNER JOIN KhachHang k ON h.MaKhachHang = k.MaKhachHang
+            INNER JOIN Phong p ON h.MaPhong = p.MaPhong
+            WHERE k.Sodienthoai LIKE @phone";
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@phone", "%" + phoneNumber + "%"); // Tìm kiếm gần đúng
+
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                        {
+                            DataTable dt = new DataTable();
+                            adapter.Fill(dt);
+                            return dt;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi lấy dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return null;
+                }
+            }
+        }
+
+        private void txtSearchPhone_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnSearch.PerformClick();
+                e.SuppressKeyPress = true; // Ngăn chặn âm thanh "ding" khi nhấn Enter
+            }
         }
     }
 }
