@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DAL;
 using BLL;
+using System.Data.SqlClient;
 
 namespace QLKS
 {
@@ -17,13 +18,6 @@ namespace QLKS
         public FormDangNhap()
         {
             InitializeComponent();
-        }
-
-        public int id;
-        
-        public bool Login()
-        {
-            return AccountDAO.Instance.Login(txtTaiKhoan.Text, txtMatKhau.Text);
         }
 
         private void guna2CirclePictureBox1_Click(object sender, EventArgs e)
@@ -47,33 +41,48 @@ namespace QLKS
 
         private void txtDangNhap_Click(object sender, EventArgs e)
         {
-            if (Login())
+            // Kiểm tra nếu người dùng chưa nhập tài khoản hoặc mật khẩu
+            if (string.IsNullOrWhiteSpace(txtTaiKhoan.Text) || string.IsNullOrWhiteSpace(txtMatKhau.Text))
             {
+                MessageBox.Show("Vui lòng nhập đầy đủ tên đăng nhập và mật khẩu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-                string query = "SELECT idStaff FROM Account WHERE userName = '" + txtTaiKhoan.Text + "'";
-                DataTable data = DataProvider.Instance.ExecuteQuery(query);
-                
-                int id = Convert.ToInt32(data.Rows[0]["idStaff"]);
-                Console.WriteLine("Số dòng trả về: " + id.ToString());
+            string connectionString = "Data Source=(local)\\SQLExpress;Initial Catalog=Hotel2025;Integrated Security=True";
+            string query = "SELECT MaNhanVien FROM TaiKhoan WHERE TenDangNhap = @username AND MatKhau = @password";
 
-                FormChinh form2 = new FormChinh(id);
-                form2.Show();
-                this.Hide();
-            }
-            else
+            using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                MessageBox.Show("Tên tài khoản hoặc mật khẩu không đúng!!!", "Thông báo");
-                this.txtTaiKhoan.Focus();
+                try
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@username", txtTaiKhoan.Text.Trim());
+                        cmd.Parameters.AddWithValue("@password", txtMatKhau.Text.Trim());
+
+                        SqlDataReader reader = cmd.ExecuteReader();
+                        if (reader.Read()) // Nếu tìm thấy tài khoản
+                        {
+                            int maNhanVien = reader.GetInt32(0); // Lấy giá trị cột id
+                            reader.Close(); // Đóng reader trước khi mở form mới
+
+                            FormChinh form2 = new FormChinh(maNhanVien); // Truyền id vào FormChinh
+                            form2.Show();
+                            this.Hide();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Tên tài khoản hoặc mật khẩu không đúng! Vui lòng nhập lại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            txtTaiKhoan.Focus();
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi kết nối đến hệ thống! Vui lòng thử lại sau.\nChi tiết: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-        }
-        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
-        {
-            if (keyData == Keys.Enter)
-            {
-                txtDangNhap_Click(this, new EventArgs());
-                return true;
-            }
-            return base.ProcessCmdKey(ref msg, keyData);
         }
     }
 }

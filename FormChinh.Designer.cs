@@ -345,6 +345,8 @@
             this.Name = "FormChinh";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormChinh";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormChinh_FormClosed);
+            this.Load += new System.EventHandler(this.FormChinh_Load);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.guna2CirclePictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.guna2CirclePictureBox1)).EndInit();
