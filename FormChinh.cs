@@ -12,14 +12,14 @@ namespace QLKS
 {
     public partial class FormChinh : Form
     {
-        private bool isPanelCollapsed = false;
+        //private bool isPanelCollapsed = false;
 
-        private int id;
+        public static int idStaff;
 
         public FormChinh(int id)
         {
             InitializeComponent();
-            this.id = id;
+            idStaff = id;
         }
 
         private void Form2_Load(object sender, EventArgs e)
@@ -56,7 +56,7 @@ namespace QLKS
 
         private void guna2Button3_Click(object sender, EventArgs e)
         {
-            FormThongTin formThongTin = new FormThongTin(id);
+            FormThongTin formThongTin = new FormThongTin(idStaff);
             formThongTin.Show();
         }
 

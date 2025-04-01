@@ -92,6 +92,7 @@
             this.txtMatKhau.Name = "txtMatKhau";
             this.txtMatKhau.Size = new System.Drawing.Size(322, 26);
             this.txtMatKhau.TabIndex = 5;
+            this.txtMatKhau.UseSystemPasswordChar = true;
             // 
             // txtDangNhap
             // 

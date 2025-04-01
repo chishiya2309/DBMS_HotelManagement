@@ -40,29 +40,32 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtUser = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtName = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.guna2CircleButton3 = new Guna.UI2.WinForms.Guna2CircleButton();
+            this.txtPasspre = new System.Windows.Forms.TextBox();
+            this.txtPassnew = new System.Windows.Forms.TextBox();
+            this.txtPasscon = new System.Windows.Forms.TextBox();
+            this.Closebtn = new Guna.UI2.WinForms.Guna2CircleButton();
             this.label9 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.txtIDNum = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.guna2CircleButton4 = new Guna.UI2.WinForms.Guna2CircleButton();
+            this.txtAddress = new System.Windows.Forms.TextBox();
+            this.SaveInfobtn = new Guna.UI2.WinForms.Guna2CircleButton();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.txtPhone = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.guna2DateTimePicker1 = new Guna.UI2.WinForms.Guna2DateTimePicker();
-            this.guna2DateTimePicker2 = new Guna.UI2.WinForms.Guna2DateTimePicker();
+            this.cbSex = new System.Windows.Forms.ComboBox();
+            this.dobDP = new Guna.UI2.WinForms.Guna2DateTimePicker();
+            this.txtStartDay = new System.Windows.Forms.TextBox();
+            this.SavePassbtn = new Guna.UI2.WinForms.Guna2CircleButton();
+            this.txtEmail = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
             this.guna2ShadowForm1 = new Guna.UI2.WinForms.Guna2ShadowForm(this.components);
             this.guna2HtmlToolTip1 = new Guna.UI2.WinForms.Guna2HtmlToolTip();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).BeginInit();
@@ -155,15 +158,15 @@
             this.label4.TabIndex = 6;
             this.label4.Text = "Tên đăng nhập:";
             // 
-            // textBox1
+            // txtUser
             // 
-            this.textBox1.BackColor = System.Drawing.Color.Gainsboro;
-            this.guna2Transition1.SetDecoration(this.textBox1, Guna.UI2.AnimatorNS.DecorationType.None);
-            this.textBox1.ForeColor = System.Drawing.Color.DarkRed;
-            this.textBox1.Location = new System.Drawing.Point(269, 69);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(197, 20);
-            this.textBox1.TabIndex = 7;
+            this.txtUser.BackColor = System.Drawing.Color.Gainsboro;
+            this.guna2Transition1.SetDecoration(this.txtUser, Guna.UI2.AnimatorNS.DecorationType.None);
+            this.txtUser.ForeColor = System.Drawing.Color.DarkRed;
+            this.txtUser.Location = new System.Drawing.Point(269, 69);
+            this.txtUser.Name = "txtUser";
+            this.txtUser.Size = new System.Drawing.Size(197, 20);
+            this.txtUser.TabIndex = 7;
             // 
             // label5
             // 
@@ -178,15 +181,15 @@
             this.label5.TabIndex = 8;
             this.label5.Text = "Tên hiển thị:";
             // 
-            // textBox2
+            // txtName
             // 
-            this.textBox2.BackColor = System.Drawing.Color.Gainsboro;
-            this.guna2Transition1.SetDecoration(this.textBox2, Guna.UI2.AnimatorNS.DecorationType.None);
-            this.textBox2.ForeColor = System.Drawing.Color.DarkRed;
-            this.textBox2.Location = new System.Drawing.Point(269, 127);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(197, 20);
-            this.textBox2.TabIndex = 9;
+            this.txtName.BackColor = System.Drawing.Color.Gainsboro;
+            this.guna2Transition1.SetDecoration(this.txtName, Guna.UI2.AnimatorNS.DecorationType.None);
+            this.txtName.ForeColor = System.Drawing.Color.DarkRed;
+            this.txtName.Location = new System.Drawing.Point(269, 127);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(197, 20);
+            this.txtName.TabIndex = 9;
             // 
             // label6
             // 
@@ -227,54 +230,57 @@
             this.label8.TabIndex = 14;
             this.label8.Text = "Xác nhận mật khẩu mới:";
             // 
-            // textBox3
+            // txtPasspre
             // 
-            this.textBox3.BackColor = System.Drawing.Color.Gainsboro;
-            this.guna2Transition1.SetDecoration(this.textBox3, Guna.UI2.AnimatorNS.DecorationType.None);
-            this.textBox3.ForeColor = System.Drawing.Color.DarkRed;
-            this.textBox3.Location = new System.Drawing.Point(542, 69);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(197, 20);
-            this.textBox3.TabIndex = 15;
+            this.txtPasspre.BackColor = System.Drawing.Color.Gainsboro;
+            this.guna2Transition1.SetDecoration(this.txtPasspre, Guna.UI2.AnimatorNS.DecorationType.None);
+            this.txtPasspre.ForeColor = System.Drawing.Color.DarkRed;
+            this.txtPasspre.Location = new System.Drawing.Point(542, 69);
+            this.txtPasspre.Name = "txtPasspre";
+            this.txtPasspre.Size = new System.Drawing.Size(197, 20);
+            this.txtPasspre.TabIndex = 15;
+            this.txtPasspre.UseSystemPasswordChar = true;
             // 
-            // textBox4
+            // txtPassnew
             // 
-            this.textBox4.BackColor = System.Drawing.Color.Gainsboro;
-            this.guna2Transition1.SetDecoration(this.textBox4, Guna.UI2.AnimatorNS.DecorationType.None);
-            this.textBox4.ForeColor = System.Drawing.Color.DarkRed;
-            this.textBox4.Location = new System.Drawing.Point(542, 127);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(197, 20);
-            this.textBox4.TabIndex = 16;
+            this.txtPassnew.BackColor = System.Drawing.Color.Gainsboro;
+            this.guna2Transition1.SetDecoration(this.txtPassnew, Guna.UI2.AnimatorNS.DecorationType.None);
+            this.txtPassnew.ForeColor = System.Drawing.Color.DarkRed;
+            this.txtPassnew.Location = new System.Drawing.Point(542, 127);
+            this.txtPassnew.Name = "txtPassnew";
+            this.txtPassnew.Size = new System.Drawing.Size(197, 20);
+            this.txtPassnew.TabIndex = 16;
+            this.txtPassnew.UseSystemPasswordChar = true;
             // 
-            // textBox5
+            // txtPasscon
             // 
-            this.textBox5.BackColor = System.Drawing.Color.Gainsboro;
-            this.guna2Transition1.SetDecoration(this.textBox5, Guna.UI2.AnimatorNS.DecorationType.None);
-            this.textBox5.ForeColor = System.Drawing.Color.DarkRed;
-            this.textBox5.Location = new System.Drawing.Point(541, 184);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(197, 20);
-            this.textBox5.TabIndex = 17;
+            this.txtPasscon.BackColor = System.Drawing.Color.Gainsboro;
+            this.guna2Transition1.SetDecoration(this.txtPasscon, Guna.UI2.AnimatorNS.DecorationType.None);
+            this.txtPasscon.ForeColor = System.Drawing.Color.DarkRed;
+            this.txtPasscon.Location = new System.Drawing.Point(541, 184);
+            this.txtPasscon.Name = "txtPasscon";
+            this.txtPasscon.Size = new System.Drawing.Size(197, 20);
+            this.txtPasscon.TabIndex = 17;
+            this.txtPasscon.UseSystemPasswordChar = true;
             // 
-            // guna2CircleButton3
+            // Closebtn
             // 
-            this.guna2CircleButton3.BackColor = System.Drawing.Color.Transparent;
-            this.guna2CircleButton3.CheckedState.Parent = this.guna2CircleButton3;
-            this.guna2CircleButton3.CustomImages.Parent = this.guna2CircleButton3;
-            this.guna2Transition1.SetDecoration(this.guna2CircleButton3, Guna.UI2.AnimatorNS.DecorationType.None);
-            this.guna2CircleButton3.FillColor = System.Drawing.Color.Transparent;
-            this.guna2CircleButton3.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.guna2CircleButton3.ForeColor = System.Drawing.Color.DarkRed;
-            this.guna2CircleButton3.HoverState.Parent = this.guna2CircleButton3;
-            this.guna2CircleButton3.Location = new System.Drawing.Point(647, 418);
-            this.guna2CircleButton3.Name = "guna2CircleButton3";
-            this.guna2CircleButton3.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            this.guna2CircleButton3.ShadowDecoration.Parent = this.guna2CircleButton3;
-            this.guna2CircleButton3.Size = new System.Drawing.Size(153, 33);
-            this.guna2CircleButton3.TabIndex = 19;
-            this.guna2CircleButton3.Text = "Đóng";
-            this.guna2CircleButton3.Click += new System.EventHandler(this.guna2CircleButton3_Click);
+            this.Closebtn.BackColor = System.Drawing.Color.Transparent;
+            this.Closebtn.CheckedState.Parent = this.Closebtn;
+            this.Closebtn.CustomImages.Parent = this.Closebtn;
+            this.guna2Transition1.SetDecoration(this.Closebtn, Guna.UI2.AnimatorNS.DecorationType.None);
+            this.Closebtn.FillColor = System.Drawing.Color.Transparent;
+            this.Closebtn.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.Closebtn.ForeColor = System.Drawing.Color.DarkRed;
+            this.Closebtn.HoverState.Parent = this.Closebtn;
+            this.Closebtn.Location = new System.Drawing.Point(647, 418);
+            this.Closebtn.Name = "Closebtn";
+            this.Closebtn.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            this.Closebtn.ShadowDecoration.Parent = this.Closebtn;
+            this.Closebtn.Size = new System.Drawing.Size(153, 33);
+            this.Closebtn.TabIndex = 19;
+            this.Closebtn.Text = "Đóng";
+            this.Closebtn.Click += new System.EventHandler(this.guna2CircleButton3_Click);
             // 
             // label9
             // 
@@ -289,15 +295,15 @@
             this.label9.TabIndex = 20;
             this.label9.Text = "CCCD/CMND:";
             // 
-            // textBox6
+            // txtIDNum
             // 
-            this.textBox6.BackColor = System.Drawing.Color.Gainsboro;
-            this.guna2Transition1.SetDecoration(this.textBox6, Guna.UI2.AnimatorNS.DecorationType.None);
-            this.textBox6.ForeColor = System.Drawing.Color.DarkRed;
-            this.textBox6.Location = new System.Drawing.Point(26, 284);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(197, 20);
-            this.textBox6.TabIndex = 21;
+            this.txtIDNum.BackColor = System.Drawing.Color.Gainsboro;
+            this.guna2Transition1.SetDecoration(this.txtIDNum, Guna.UI2.AnimatorNS.DecorationType.None);
+            this.txtIDNum.ForeColor = System.Drawing.Color.DarkRed;
+            this.txtIDNum.Location = new System.Drawing.Point(26, 284);
+            this.txtIDNum.Name = "txtIDNum";
+            this.txtIDNum.Size = new System.Drawing.Size(197, 20);
+            this.txtIDNum.TabIndex = 21;
             // 
             // label10
             // 
@@ -312,33 +318,34 @@
             this.label10.TabIndex = 22;
             this.label10.Text = "Địa chỉ:";
             // 
-            // textBox7
+            // txtAddress
             // 
-            this.textBox7.BackColor = System.Drawing.Color.Gainsboro;
-            this.guna2Transition1.SetDecoration(this.textBox7, Guna.UI2.AnimatorNS.DecorationType.None);
-            this.textBox7.ForeColor = System.Drawing.Color.DarkRed;
-            this.textBox7.Location = new System.Drawing.Point(26, 352);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(197, 20);
-            this.textBox7.TabIndex = 23;
+            this.txtAddress.BackColor = System.Drawing.Color.Gainsboro;
+            this.guna2Transition1.SetDecoration(this.txtAddress, Guna.UI2.AnimatorNS.DecorationType.None);
+            this.txtAddress.ForeColor = System.Drawing.Color.DarkRed;
+            this.txtAddress.Location = new System.Drawing.Point(26, 352);
+            this.txtAddress.Name = "txtAddress";
+            this.txtAddress.Size = new System.Drawing.Size(197, 20);
+            this.txtAddress.TabIndex = 23;
             // 
-            // guna2CircleButton4
+            // SaveInfobtn
             // 
-            this.guna2CircleButton4.BackColor = System.Drawing.Color.Transparent;
-            this.guna2CircleButton4.CheckedState.Parent = this.guna2CircleButton4;
-            this.guna2CircleButton4.CustomImages.Parent = this.guna2CircleButton4;
-            this.guna2Transition1.SetDecoration(this.guna2CircleButton4, Guna.UI2.AnimatorNS.DecorationType.None);
-            this.guna2CircleButton4.FillColor = System.Drawing.Color.Transparent;
-            this.guna2CircleButton4.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.guna2CircleButton4.ForeColor = System.Drawing.Color.DarkRed;
-            this.guna2CircleButton4.HoverState.Parent = this.guna2CircleButton4;
-            this.guna2CircleButton4.Location = new System.Drawing.Point(647, 379);
-            this.guna2CircleButton4.Name = "guna2CircleButton4";
-            this.guna2CircleButton4.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            this.guna2CircleButton4.ShadowDecoration.Parent = this.guna2CircleButton4;
-            this.guna2CircleButton4.Size = new System.Drawing.Size(153, 33);
-            this.guna2CircleButton4.TabIndex = 24;
-            this.guna2CircleButton4.Text = "Lưu thông tin";
+            this.SaveInfobtn.BackColor = System.Drawing.Color.Transparent;
+            this.SaveInfobtn.CheckedState.Parent = this.SaveInfobtn;
+            this.SaveInfobtn.CustomImages.Parent = this.SaveInfobtn;
+            this.guna2Transition1.SetDecoration(this.SaveInfobtn, Guna.UI2.AnimatorNS.DecorationType.None);
+            this.SaveInfobtn.FillColor = System.Drawing.Color.Transparent;
+            this.SaveInfobtn.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.SaveInfobtn.ForeColor = System.Drawing.Color.DarkRed;
+            this.SaveInfobtn.HoverState.Parent = this.SaveInfobtn;
+            this.SaveInfobtn.Location = new System.Drawing.Point(647, 379);
+            this.SaveInfobtn.Name = "SaveInfobtn";
+            this.SaveInfobtn.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            this.SaveInfobtn.ShadowDecoration.Parent = this.SaveInfobtn;
+            this.SaveInfobtn.Size = new System.Drawing.Size(153, 33);
+            this.SaveInfobtn.TabIndex = 24;
+            this.SaveInfobtn.Text = "Lưu thông tin";
+            this.SaveInfobtn.Click += new System.EventHandler(this.SaveInfobtn_Click);
             // 
             // label11
             // 
@@ -366,15 +373,15 @@
             this.label12.TabIndex = 26;
             this.label12.Text = "Ngày sinh:";
             // 
-            // textBox8
+            // txtPhone
             // 
-            this.textBox8.BackColor = System.Drawing.Color.Gainsboro;
-            this.guna2Transition1.SetDecoration(this.textBox8, Guna.UI2.AnimatorNS.DecorationType.None);
-            this.textBox8.ForeColor = System.Drawing.Color.DarkRed;
-            this.textBox8.Location = new System.Drawing.Point(269, 284);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(197, 20);
-            this.textBox8.TabIndex = 27;
+            this.txtPhone.BackColor = System.Drawing.Color.Gainsboro;
+            this.guna2Transition1.SetDecoration(this.txtPhone, Guna.UI2.AnimatorNS.DecorationType.None);
+            this.txtPhone.ForeColor = System.Drawing.Color.DarkRed;
+            this.txtPhone.Location = new System.Drawing.Point(269, 284);
+            this.txtPhone.Name = "txtPhone";
+            this.txtPhone.Size = new System.Drawing.Size(197, 20);
+            this.txtPhone.TabIndex = 27;
             // 
             // label13
             // 
@@ -402,47 +409,86 @@
             this.label14.TabIndex = 31;
             this.label14.Text = "Ngày vào làm:";
             // 
-            // comboBox1
+            // cbSex
             // 
-            this.comboBox1.BackColor = System.Drawing.Color.Gainsboro;
-            this.guna2Transition1.SetDecoration(this.comboBox1, Guna.UI2.AnimatorNS.DecorationType.None);
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(542, 283);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(196, 21);
-            this.comboBox1.TabIndex = 33;
+            this.cbSex.BackColor = System.Drawing.Color.Gainsboro;
+            this.guna2Transition1.SetDecoration(this.cbSex, Guna.UI2.AnimatorNS.DecorationType.None);
+            this.cbSex.FormattingEnabled = true;
+            this.cbSex.Items.AddRange(new object[] {
+            "Nam",
+            "Nữ"});
+            this.cbSex.Location = new System.Drawing.Point(542, 283);
+            this.cbSex.Name = "cbSex";
+            this.cbSex.Size = new System.Drawing.Size(196, 21);
+            this.cbSex.TabIndex = 33;
             // 
-            // guna2DateTimePicker1
+            // dobDP
             // 
-            this.guna2DateTimePicker1.CheckedState.Parent = this.guna2DateTimePicker1;
-            this.guna2Transition1.SetDecoration(this.guna2DateTimePicker1, Guna.UI2.AnimatorNS.DecorationType.None);
-            this.guna2DateTimePicker1.FillColor = System.Drawing.Color.Gainsboro;
-            this.guna2DateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Long;
-            this.guna2DateTimePicker1.HoverState.Parent = this.guna2DateTimePicker1;
-            this.guna2DateTimePicker1.Location = new System.Drawing.Point(270, 352);
-            this.guna2DateTimePicker1.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
-            this.guna2DateTimePicker1.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
-            this.guna2DateTimePicker1.Name = "guna2DateTimePicker1";
-            this.guna2DateTimePicker1.ShadowDecoration.Parent = this.guna2DateTimePicker1;
-            this.guna2DateTimePicker1.Size = new System.Drawing.Size(196, 21);
-            this.guna2DateTimePicker1.TabIndex = 34;
-            this.guna2DateTimePicker1.Value = new System.DateTime(2025, 3, 19, 22, 51, 46, 21);
+            this.dobDP.CheckedState.Parent = this.dobDP;
+            this.guna2Transition1.SetDecoration(this.dobDP, Guna.UI2.AnimatorNS.DecorationType.None);
+            this.dobDP.FillColor = System.Drawing.Color.Gainsboro;
+            this.dobDP.Format = System.Windows.Forms.DateTimePickerFormat.Long;
+            this.dobDP.HoverState.Parent = this.dobDP;
+            this.dobDP.Location = new System.Drawing.Point(270, 352);
+            this.dobDP.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
+            this.dobDP.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
+            this.dobDP.Name = "dobDP";
+            this.dobDP.ShadowDecoration.Parent = this.dobDP;
+            this.dobDP.Size = new System.Drawing.Size(196, 21);
+            this.dobDP.TabIndex = 34;
+            this.dobDP.Value = new System.DateTime(2025, 3, 19, 22, 51, 46, 21);
             // 
-            // guna2DateTimePicker2
+            // txtStartDay
             // 
-            this.guna2DateTimePicker2.CheckedState.Parent = this.guna2DateTimePicker2;
-            this.guna2Transition1.SetDecoration(this.guna2DateTimePicker2, Guna.UI2.AnimatorNS.DecorationType.None);
-            this.guna2DateTimePicker2.FillColor = System.Drawing.Color.Gainsboro;
-            this.guna2DateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Long;
-            this.guna2DateTimePicker2.HoverState.Parent = this.guna2DateTimePicker2;
-            this.guna2DateTimePicker2.Location = new System.Drawing.Point(542, 352);
-            this.guna2DateTimePicker2.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
-            this.guna2DateTimePicker2.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
-            this.guna2DateTimePicker2.Name = "guna2DateTimePicker2";
-            this.guna2DateTimePicker2.ShadowDecoration.Parent = this.guna2DateTimePicker2;
-            this.guna2DateTimePicker2.Size = new System.Drawing.Size(196, 21);
-            this.guna2DateTimePicker2.TabIndex = 35;
-            this.guna2DateTimePicker2.Value = new System.DateTime(2025, 3, 19, 22, 51, 46, 21);
+            this.txtStartDay.BackColor = System.Drawing.Color.Gainsboro;
+            this.guna2Transition1.SetDecoration(this.txtStartDay, Guna.UI2.AnimatorNS.DecorationType.None);
+            this.txtStartDay.ForeColor = System.Drawing.Color.DarkRed;
+            this.txtStartDay.Location = new System.Drawing.Point(542, 353);
+            this.txtStartDay.Name = "txtStartDay";
+            this.txtStartDay.Size = new System.Drawing.Size(197, 20);
+            this.txtStartDay.TabIndex = 35;
+            // 
+            // SavePassbtn
+            // 
+            this.SavePassbtn.BackColor = System.Drawing.Color.Transparent;
+            this.SavePassbtn.CheckedState.Parent = this.SavePassbtn;
+            this.SavePassbtn.CustomImages.Parent = this.SavePassbtn;
+            this.guna2Transition1.SetDecoration(this.SavePassbtn, Guna.UI2.AnimatorNS.DecorationType.None);
+            this.SavePassbtn.FillColor = System.Drawing.Color.Transparent;
+            this.SavePassbtn.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.SavePassbtn.ForeColor = System.Drawing.Color.DarkRed;
+            this.SavePassbtn.HoverState.Parent = this.SavePassbtn;
+            this.SavePassbtn.Location = new System.Drawing.Point(563, 210);
+            this.SavePassbtn.Name = "SavePassbtn";
+            this.SavePassbtn.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            this.SavePassbtn.ShadowDecoration.Parent = this.SavePassbtn;
+            this.SavePassbtn.Size = new System.Drawing.Size(153, 33);
+            this.SavePassbtn.TabIndex = 36;
+            this.SavePassbtn.Text = "Thay đổi";
+            this.SavePassbtn.Click += new System.EventHandler(this.SavePassbtn_Click);
+            // 
+            // txtEmail
+            // 
+            this.txtEmail.BackColor = System.Drawing.Color.Gainsboro;
+            this.guna2Transition1.SetDecoration(this.txtEmail, Guna.UI2.AnimatorNS.DecorationType.None);
+            this.txtEmail.ForeColor = System.Drawing.Color.DarkRed;
+            this.txtEmail.Location = new System.Drawing.Point(270, 184);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(197, 20);
+            this.txtEmail.TabIndex = 38;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.BackColor = System.Drawing.Color.Transparent;
+            this.guna2Transition1.SetDecoration(this.label15, Guna.UI2.AnimatorNS.DecorationType.None);
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.ForeColor = System.Drawing.Color.DarkRed;
+            this.label15.Location = new System.Drawing.Point(267, 164);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(46, 17);
+            this.label15.TabIndex = 37;
+            this.label15.Text = "Email:";
             // 
             // guna2HtmlToolTip1
             // 
@@ -455,30 +501,33 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.guna2DateTimePicker2);
-            this.Controls.Add(this.guna2DateTimePicker1);
-            this.Controls.Add(this.comboBox1);
+            this.ClientSize = new System.Drawing.Size(795, 458);
+            this.Controls.Add(this.txtEmail);
+            this.Controls.Add(this.label15);
+            this.Controls.Add(this.SavePassbtn);
+            this.Controls.Add(this.txtStartDay);
+            this.Controls.Add(this.dobDP);
+            this.Controls.Add(this.cbSex);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.label13);
-            this.Controls.Add(this.textBox8);
+            this.Controls.Add(this.txtPhone);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label11);
-            this.Controls.Add(this.guna2CircleButton4);
-            this.Controls.Add(this.textBox7);
+            this.Controls.Add(this.SaveInfobtn);
+            this.Controls.Add(this.txtAddress);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.textBox6);
+            this.Controls.Add(this.txtIDNum);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.guna2CircleButton3);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.Closebtn);
+            this.Controls.Add(this.txtPasscon);
+            this.Controls.Add(this.txtPassnew);
+            this.Controls.Add(this.txtPasspre);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.txtName);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtUser);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -507,29 +556,32 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtUser;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
-        private Guna.UI2.WinForms.Guna2CircleButton guna2CircleButton3;
+        private System.Windows.Forms.TextBox txtPasspre;
+        private System.Windows.Forms.TextBox txtPassnew;
+        private System.Windows.Forms.TextBox txtPasscon;
+        private Guna.UI2.WinForms.Guna2CircleButton Closebtn;
         private Guna.UI2.WinForms.Guna2HtmlToolTip guna2HtmlToolTip1;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox txtIDNum;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox textBox7;
-        private Guna.UI2.WinForms.Guna2CircleButton guna2CircleButton4;
+        private System.Windows.Forms.TextBox txtAddress;
+        private Guna.UI2.WinForms.Guna2CircleButton SaveInfobtn;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox txtPhone;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private Guna.UI2.WinForms.Guna2DateTimePicker guna2DateTimePicker1;
-        private Guna.UI2.WinForms.Guna2DateTimePicker guna2DateTimePicker2;
+        private System.Windows.Forms.ComboBox cbSex;
+        private Guna.UI2.WinForms.Guna2DateTimePicker dobDP;
+        private System.Windows.Forms.TextBox txtStartDay;
+        private Guna.UI2.WinForms.Guna2CircleButton SavePassbtn;
+        private System.Windows.Forms.TextBox txtEmail;
+        private System.Windows.Forms.Label label15;
     }
 }
