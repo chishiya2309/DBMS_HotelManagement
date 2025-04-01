@@ -14,6 +14,7 @@ namespace BLL
         int idServiceType;
         double price;
         string status;
+        string description;
 
         public Service() { }
         public Service(DataRow data)
@@ -23,6 +24,7 @@ namespace BLL
             IdServiceType = (int)data["idServiceType"];
             Price = (double)data["Price"];
             Status = data["status"].ToString();
+            Description = data["mota"].ToString();
         }
         
         public int Id { get => idService; set => idService = value; }
@@ -30,5 +32,6 @@ namespace BLL
         public int IdServiceType { get => idServiceType; set => idServiceType = value; }
         public double Price { get => price; set => price = value; }
         public string Status { get => status; set => status = value; }
+        public string Description { get => description; set => description = value; }
     }
 }

@@ -55,12 +55,14 @@
             this.btnClose = new Guna.UI2.WinForms.Guna2CircleButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dgvService = new Guna.UI2.WinForms.Guna2DataGridView();
-            this.dgvIdservice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvTypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvIdType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtDescription = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.dgvMaDichVu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvTenDichVu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvDonGia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvLoaiDichVu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvTrangThai = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvMota = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.guna2GroupBox1.SuspendLayout();
             this.guna2GroupBox2.SuspendLayout();
             this.guna2GroupBox3.SuspendLayout();
@@ -142,6 +144,8 @@
             // 
             this.guna2GroupBox2.BackColor = System.Drawing.Color.Transparent;
             this.guna2GroupBox2.BorderColor = System.Drawing.Color.Silver;
+            this.guna2GroupBox2.Controls.Add(this.txtDescription);
+            this.guna2GroupBox2.Controls.Add(this.label5);
             this.guna2GroupBox2.Controls.Add(this.cbStatus);
             this.guna2GroupBox2.Controls.Add(this.label4);
             this.guna2GroupBox2.Controls.Add(this.txtName);
@@ -159,7 +163,7 @@
             this.guna2GroupBox2.Location = new System.Drawing.Point(10, 147);
             this.guna2GroupBox2.Name = "guna2GroupBox2";
             this.guna2GroupBox2.ShadowDecoration.Parent = this.guna2GroupBox2;
-            this.guna2GroupBox2.Size = new System.Drawing.Size(210, 315);
+            this.guna2GroupBox2.Size = new System.Drawing.Size(210, 379);
             this.guna2GroupBox2.TabIndex = 38;
             this.guna2GroupBox2.Text = "Thông tin dịch vụ";
             // 
@@ -172,7 +176,7 @@
             "Tạm ngưng"});
             this.cbStatus.Location = new System.Drawing.Point(8, 223);
             this.cbStatus.Name = "cbStatus";
-            this.cbStatus.Size = new System.Drawing.Size(147, 29);
+            this.cbStatus.Size = new System.Drawing.Size(170, 29);
             this.cbStatus.TabIndex = 45;
             // 
             // label4
@@ -193,7 +197,7 @@
             this.txtName.ForeColor = System.Drawing.Color.DarkRed;
             this.txtName.Location = new System.Drawing.Point(8, 113);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(147, 29);
+            this.txtName.Size = new System.Drawing.Size(170, 29);
             this.txtName.TabIndex = 43;
             // 
             // txtId
@@ -202,7 +206,7 @@
             this.txtId.ForeColor = System.Drawing.Color.DarkRed;
             this.txtId.Location = new System.Drawing.Point(8, 61);
             this.txtId.Name = "txtId";
-            this.txtId.Size = new System.Drawing.Size(147, 29);
+            this.txtId.Size = new System.Drawing.Size(170, 29);
             this.txtId.TabIndex = 26;
             // 
             // txtPrice
@@ -211,7 +215,7 @@
             this.txtPrice.ForeColor = System.Drawing.Color.DarkRed;
             this.txtPrice.Location = new System.Drawing.Point(8, 278);
             this.txtPrice.Name = "txtPrice";
-            this.txtPrice.Size = new System.Drawing.Size(147, 29);
+            this.txtPrice.Size = new System.Drawing.Size(170, 29);
             this.txtPrice.TabIndex = 42;
             // 
             // label2
@@ -222,9 +226,9 @@
             this.label2.ForeColor = System.Drawing.Color.DarkRed;
             this.label2.Location = new System.Drawing.Point(5, 258);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(30, 17);
+            this.label2.Size = new System.Drawing.Size(34, 17);
             this.label2.TabIndex = 41;
-            this.label2.Text = "Giá";
+            this.label2.Text = "Giá:";
             // 
             // cbType
             // 
@@ -232,7 +236,7 @@
             this.cbType.FormattingEnabled = true;
             this.cbType.Location = new System.Drawing.Point(8, 167);
             this.cbType.Name = "cbType";
-            this.cbType.Size = new System.Drawing.Size(147, 29);
+            this.cbType.Size = new System.Drawing.Size(170, 29);
             this.cbType.TabIndex = 40;
             // 
             // label13
@@ -243,9 +247,9 @@
             this.label13.ForeColor = System.Drawing.Color.DarkRed;
             this.label13.Location = new System.Drawing.Point(5, 148);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(84, 17);
+            this.label13.Size = new System.Drawing.Size(88, 17);
             this.label13.TabIndex = 37;
-            this.label13.Text = "Loại dịch vụ";
+            this.label13.Text = "Loại dịch vụ:";
             // 
             // label10
             // 
@@ -255,9 +259,9 @@
             this.label10.ForeColor = System.Drawing.Color.DarkRed;
             this.label10.Location = new System.Drawing.Point(4, 91);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(82, 17);
+            this.label10.Size = new System.Drawing.Size(86, 17);
             this.label10.TabIndex = 28;
-            this.label10.Text = "Tên dịch vụ";
+            this.label10.Text = "Tên dịch vụ:";
             // 
             // label9
             // 
@@ -267,9 +271,9 @@
             this.label9.ForeColor = System.Drawing.Color.DarkRed;
             this.label9.Location = new System.Drawing.Point(4, 41);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(76, 17);
+            this.label9.Size = new System.Drawing.Size(80, 17);
             this.label9.TabIndex = 28;
-            this.label9.Text = "Mã dịch vụ";
+            this.label9.Text = "Mã dịch vụ:";
             // 
             // guna2GroupBox3
             // 
@@ -286,7 +290,7 @@
             this.guna2GroupBox3.Location = new System.Drawing.Point(226, 147);
             this.guna2GroupBox3.Name = "guna2GroupBox3";
             this.guna2GroupBox3.ShadowDecoration.Parent = this.guna2GroupBox3;
-            this.guna2GroupBox3.Size = new System.Drawing.Size(125, 315);
+            this.guna2GroupBox3.Size = new System.Drawing.Size(125, 379);
             this.guna2GroupBox3.TabIndex = 39;
             this.guna2GroupBox3.Text = "Chức năng";
             // 
@@ -299,11 +303,11 @@
             this.btnDelete.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.btnDelete.ForeColor = System.Drawing.Color.DarkRed;
             this.btnDelete.HoverState.Parent = this.btnDelete;
-            this.btnDelete.Location = new System.Drawing.Point(-19, 188);
+            this.btnDelete.Location = new System.Drawing.Point(0, 225);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             this.btnDelete.ShadowDecoration.Parent = this.btnDelete;
-            this.btnDelete.Size = new System.Drawing.Size(153, 33);
+            this.btnDelete.Size = new System.Drawing.Size(125, 33);
             this.btnDelete.TabIndex = 28;
             this.btnDelete.Text = "Xoá";
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
@@ -317,11 +321,11 @@
             this.btnUpdate.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.btnUpdate.ForeColor = System.Drawing.Color.DarkRed;
             this.btnUpdate.HoverState.Parent = this.btnUpdate;
-            this.btnUpdate.Location = new System.Drawing.Point(-15, 122);
+            this.btnUpdate.Location = new System.Drawing.Point(0, 148);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             this.btnUpdate.ShadowDecoration.Parent = this.btnUpdate;
-            this.btnUpdate.Size = new System.Drawing.Size(153, 33);
+            this.btnUpdate.Size = new System.Drawing.Size(125, 33);
             this.btnUpdate.TabIndex = 27;
             this.btnUpdate.Text = "Cập nhật";
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
@@ -335,11 +339,11 @@
             this.btnInsert.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.btnInsert.ForeColor = System.Drawing.Color.DarkRed;
             this.btnInsert.HoverState.Parent = this.btnInsert;
-            this.btnInsert.Location = new System.Drawing.Point(-16, 61);
+            this.btnInsert.Location = new System.Drawing.Point(0, 75);
             this.btnInsert.Name = "btnInsert";
             this.btnInsert.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             this.btnInsert.ShadowDecoration.Parent = this.btnInsert;
-            this.btnInsert.Size = new System.Drawing.Size(153, 33);
+            this.btnInsert.Size = new System.Drawing.Size(125, 33);
             this.btnInsert.TabIndex = 26;
             this.btnInsert.Text = "Thêm";
             this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
@@ -353,11 +357,11 @@
             this.btnClose.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.btnClose.ForeColor = System.Drawing.Color.DarkRed;
             this.btnClose.HoverState.Parent = this.btnClose;
-            this.btnClose.Location = new System.Drawing.Point(-17, 252);
+            this.btnClose.Location = new System.Drawing.Point(0, 301);
             this.btnClose.Name = "btnClose";
             this.btnClose.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             this.btnClose.ShadowDecoration.Parent = this.btnClose;
-            this.btnClose.Size = new System.Drawing.Size(153, 33);
+            this.btnClose.Size = new System.Drawing.Size(125, 33);
             this.btnClose.TabIndex = 25;
             this.btnClose.Text = "Đóng";
             this.btnClose.Click += new System.EventHandler(this.guna2CircleButton1_Click);
@@ -367,7 +371,7 @@
             this.panel1.Controls.Add(this.dgvService);
             this.panel1.Location = new System.Drawing.Point(357, 42);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(414, 430);
+            this.panel1.Size = new System.Drawing.Size(495, 484);
             this.panel1.TabIndex = 40;
             // 
             // dgvService
@@ -395,12 +399,12 @@
             this.dgvService.ColumnHeadersHeight = 29;
             this.dgvService.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvService.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dgvIdservice,
-            this.dgvName,
-            this.dgvPrice,
-            this.dgvTypeName,
-            this.dgvIdType,
-            this.dgvStatus});
+            this.dgvMaDichVu,
+            this.dgvTenDichVu,
+            this.dgvDonGia,
+            this.dgvLoaiDichVu,
+            this.dgvTrangThai,
+            this.dgvMota});
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 10.5F);
@@ -419,7 +423,7 @@
             this.dgvService.RowHeadersWidth = 123;
             this.dgvService.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dgvService.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvService.Size = new System.Drawing.Size(414, 430);
+            this.dgvService.Size = new System.Drawing.Size(495, 484);
             this.dgvService.TabIndex = 30;
             this.dgvService.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.LightGrid;
             this.dgvService.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
@@ -445,66 +449,85 @@
             this.dgvService.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.dgvService.SelectionChanged += new System.EventHandler(this.dgvService_SelectionChanged);
             // 
-            // dgvIdservice
+            // txtDescription
             // 
-            this.dgvIdservice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgvIdservice.DataPropertyName = "idService";
-            this.dgvIdservice.FillWeight = 123F;
-            this.dgvIdservice.HeaderText = "Mã";
-            this.dgvIdservice.MinimumWidth = 45;
-            this.dgvIdservice.Name = "dgvIdservice";
-            this.dgvIdservice.ReadOnly = true;
-            this.dgvIdservice.Width = 52;
+            this.txtDescription.BackColor = System.Drawing.Color.Gainsboro;
+            this.txtDescription.ForeColor = System.Drawing.Color.DarkRed;
+            this.txtDescription.Location = new System.Drawing.Point(8, 335);
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.Size = new System.Drawing.Size(170, 29);
+            this.txtDescription.TabIndex = 47;
             // 
-            // dgvName
+            // label5
             // 
-            this.dgvName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.dgvName.DataPropertyName = "nameService";
-            this.dgvName.HeaderText = "Tên dịch vụ";
-            this.dgvName.MinimumWidth = 6;
-            this.dgvName.Name = "dgvName";
-            this.dgvName.ReadOnly = true;
-            this.dgvName.Width = 140;
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.Transparent;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.DarkRed;
+            this.label5.Location = new System.Drawing.Point(5, 315);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(47, 17);
+            this.label5.TabIndex = 46;
+            this.label5.Text = "Mô tả:";
             // 
-            // dgvPrice
+            // dgvMaDichVu
             // 
-            this.dgvPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgvPrice.DataPropertyName = "Price";
-            this.dgvPrice.HeaderText = "Giá";
-            this.dgvPrice.MinimumWidth = 10;
-            this.dgvPrice.Name = "dgvPrice";
-            this.dgvPrice.ReadOnly = true;
-            this.dgvPrice.Width = 52;
+            this.dgvMaDichVu.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgvMaDichVu.DataPropertyName = "MaDichVu";
+            this.dgvMaDichVu.FillWeight = 123F;
+            this.dgvMaDichVu.HeaderText = "Mã";
+            this.dgvMaDichVu.MinimumWidth = 45;
+            this.dgvMaDichVu.Name = "dgvMaDichVu";
+            this.dgvMaDichVu.ReadOnly = true;
+            this.dgvMaDichVu.Width = 52;
             // 
-            // dgvTypeName
+            // dgvTenDichVu
             // 
-            this.dgvTypeName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.dgvTypeName.DataPropertyName = "nameServiceType";
-            this.dgvTypeName.HeaderText = "Loại";
-            this.dgvTypeName.MinimumWidth = 10;
-            this.dgvTypeName.Name = "dgvTypeName";
-            this.dgvTypeName.ReadOnly = true;
-            this.dgvTypeName.Width = 77;
+            this.dgvTenDichVu.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.dgvTenDichVu.DataPropertyName = "TenDichVu";
+            this.dgvTenDichVu.HeaderText = "Tên dịch vụ";
+            this.dgvTenDichVu.MinimumWidth = 6;
+            this.dgvTenDichVu.Name = "dgvTenDichVu";
+            this.dgvTenDichVu.ReadOnly = true;
+            this.dgvTenDichVu.Width = 140;
             // 
-            // dgvIdType
+            // dgvDonGia
             // 
-            this.dgvIdType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgvIdType.DataPropertyName = "IDServiceType";
-            this.dgvIdType.HeaderText = "Mã loại";
-            this.dgvIdType.MinimumWidth = 10;
-            this.dgvIdType.Name = "dgvIdType";
-            this.dgvIdType.ReadOnly = true;
-            this.dgvIdType.Visible = false;
-            this.dgvIdType.Width = 77;
+            this.dgvDonGia.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgvDonGia.DataPropertyName = "DonGia";
+            this.dgvDonGia.HeaderText = "Giá";
+            this.dgvDonGia.MinimumWidth = 10;
+            this.dgvDonGia.Name = "dgvDonGia";
+            this.dgvDonGia.ReadOnly = true;
+            this.dgvDonGia.Width = 52;
             // 
-            // dgvStatus
+            // dgvLoaiDichVu
             // 
-            this.dgvStatus.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgvStatus.DataPropertyName = "status";
-            this.dgvStatus.HeaderText = "Trạng thái";
-            this.dgvStatus.Name = "dgvStatus";
-            this.dgvStatus.ReadOnly = true;
-            this.dgvStatus.Width = 93;
+            this.dgvLoaiDichVu.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.dgvLoaiDichVu.DataPropertyName = "LoaiDichVu";
+            this.dgvLoaiDichVu.HeaderText = "Loại";
+            this.dgvLoaiDichVu.MinimumWidth = 10;
+            this.dgvLoaiDichVu.Name = "dgvLoaiDichVu";
+            this.dgvLoaiDichVu.ReadOnly = true;
+            this.dgvLoaiDichVu.Width = 77;
+            // 
+            // dgvTrangThai
+            // 
+            this.dgvTrangThai.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgvTrangThai.DataPropertyName = "TrangThai";
+            this.dgvTrangThai.HeaderText = "Trạng thái";
+            this.dgvTrangThai.Name = "dgvTrangThai";
+            this.dgvTrangThai.ReadOnly = true;
+            this.dgvTrangThai.Width = 93;
+            // 
+            // dgvMota
+            // 
+            this.dgvMota.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.dgvMota.DataPropertyName = "MoTa";
+            this.dgvMota.HeaderText = "Mô tả";
+            this.dgvMota.Name = "dgvMota";
+            this.dgvMota.ReadOnly = true;
+            this.dgvMota.Width = 300;
             // 
             // FormQuanLyDichVu
             // 
@@ -512,7 +535,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(780, 484);
+            this.ClientSize = new System.Drawing.Size(864, 538);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.guna2GroupBox3);
             this.Controls.Add(this.guna2GroupBox2);
@@ -562,11 +585,13 @@
         private Guna.UI2.WinForms.Guna2CircleButton btnSearch;
         private System.Windows.Forms.ComboBox cbStatus;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvIdservice;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvPrice;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvTypeName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvIdType;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvStatus;
+        private System.Windows.Forms.TextBox txtDescription;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvMaDichVu;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvTenDichVu;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvDonGia;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvLoaiDichVu;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvTrangThai;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvMota;
     }
 }

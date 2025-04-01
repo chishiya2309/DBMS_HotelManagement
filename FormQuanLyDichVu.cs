@@ -31,14 +31,16 @@ namespace QLKS
 
         public DataTable GetFullService()
         {
-            return ServiceDAO.Instance.LoadFullService();
+            string query = "SELECT * FROM DichVu";
+            return DBConnection.Instance.ExecuteQuery(query);
         }
-
 
 
         public DataTable GetFullServiceType()
         {
-            return ServiceTypeDAO.Instance.LoadFullServiceType();
+            //return ServiceTypeDAO.Instance.LoadFullServiceType();
+            string query = "SELECT LoaiDichVu FROM DichVu GROUP BY LoaiDichVu";
+            return DBConnection.Instance.ExecuteQuery(query);
         }
 
         private void LoadFullService(DataTable table)
@@ -53,7 +55,7 @@ namespace QLKS
             cbStatus.SelectedIndex = 0;
             DataTable table = GetFullServiceType();
             cbType.DataSource = table;
-            cbType.DisplayMember = "name";
+            cbType.DisplayMember = "LoaiDichVu";
             if (table.Rows.Count > 0) cbType.SelectedIndex = 0;
         }
 
@@ -64,19 +66,19 @@ namespace QLKS
                 txtId.Text = string.Empty;
                 txtName.Text = string.Empty;
                 txtPrice.Text = string.Empty;
-                
+                txtDescription.Text = string.Empty;
 
             }
             else
             {
                 
-                txtId.Text = row.Cells["dgvIdservice"].Value.ToString();
-                txtName.Text = row.Cells["dgvName"].Value as string;
-                txtPrice.Text = row.Cells["dgvPrice"].Value.ToString();
+                txtId.Text = row.Cells["dgvMaDichVu"].Value.ToString();
+                txtName.Text = row.Cells["dgvTenDichVu"].Value as string;
+                txtPrice.Text = row.Cells["dgvDonGia"].Value.ToString();
                 
-                cbStatus.Text = row.Cells["dgvStatus"].Value as string;
-                cbType.SelectedIndex = (int)row.Cells["dgvIdType"].Value - 1;
-
+                cbStatus.Text = row.Cells["dgvTrangThai"].Value as string;
+                cbType.Text = row.Cells["dgvLoaiDichVu"].Value.ToString();
+                txtDescription.Text = row.Cells["dgvMoTa"].Value.ToString();
 
             }
         }
@@ -119,9 +121,9 @@ namespace QLKS
             return true;
         }
 
-        private void UpdateStaff()
+        private void UpdateService()
         {
-            bool isFill = CheckFillInText(new Control[] { txtName, txtId, txtPrice  });
+            bool isFill = CheckFillInText(new Control[] { txtName, txtId, txtPrice ,cbType });
             if (!isFill)
             {
                 MessageBox.Show("Không được để trống", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -132,23 +134,17 @@ namespace QLKS
                 try
                 {
                     //int idStaff = Convert.ToInt32(dgvService.SelectedRows[0].Cells["dgvIdservice"].Value);
-                    int index = cbType.SelectedIndex;
-                    bool check1 = ServiceDAO.Instance.UpdateService(int.Parse(txtId.Text),txtName.Text, (int)((DataTable)cbType.DataSource).Rows[index]["id"],
-                                    double.Parse(txtPrice.Text),cbStatus.Text);
+                    //int index = cbType.SelectedIndex;
+                    //bool check1 = ServiceDAO.Instance.UpdateService(int.Parse(txtId.Text),txtName.Text, (int)((DataTable)cbType.DataSource).Rows[index]["id"],
+                    //double.Parse(txtPrice.Text),cbStatus.Text);
 
-                    
-                    if (check1 )
-                    {
-                        MessageBox.Show("Cập nhật thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        int index2 = dgvService.SelectedRows[0].Index;
-                        LoadFullService(GetFullService());
-                        dgvService.SelectedRows[0].Selected = false;
-                        dgvService.Rows[index2].Selected = true;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Không thể cập nhật!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                    }
+                    ServiceDAO.Instance.UpdateDichVu(
+                        txtId.Text, txtName.Text, cbType.Text, cbStatus.Text, double.Parse(txtPrice.Text),txtDescription.Text);
+
+                    int index2 = dgvService.SelectedRows[0].Index;
+                    LoadFullService(GetFullService());
+                    dgvService.SelectedRows[0].Selected = false;
+                    dgvService.Rows[index2].Selected = true;
                 }
                 catch (SqlException ex)
                 {
@@ -163,7 +159,7 @@ namespace QLKS
             if (result == DialogResult.OK)
             {
 
-                UpdateStaff();
+                UpdateService();
 
             }
         }
@@ -179,9 +175,9 @@ namespace QLKS
             LoadFullService(GetFullService());
         }
 
-        public bool DeleteService(int id)
+        public void DeleteService(string id)
         {
-            return ServiceDAO.Instance.DeleteService(id);
+            ServiceDAO.Instance.DeleteDichVu(id);
         }
 
 
@@ -193,16 +189,10 @@ namespace QLKS
 
                 try
                 {
-                    int id = Convert.ToInt32(dgvService.CurrentRow.Cells["dgvIdservice"].Value);
-                    if (DeleteService(id))
-                    {
-                        MessageBox.Show("Xoá thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        LoadFullService(GetFullService());
-                    }
-                    else
-                    {
-                        MessageBox.Show("Không thể xoá dịch vụ này!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                    }
+                    string id = dgvService.CurrentRow.Cells["dgvMaDichVu"].Value.ToString();
+                    DeleteService(id);
+                    
+                    LoadFullService(GetFullService());
 
                 }
                 catch (SqlException ex)
