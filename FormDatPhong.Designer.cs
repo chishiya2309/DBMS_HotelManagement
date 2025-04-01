@@ -44,7 +44,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.guna2GroupBox2 = new Guna.UI2.WinForms.Guna2GroupBox();
             this.btnSearch = new Guna.UI2.WinForms.Guna2CircleButton();
-            this.txtSearch = new System.Windows.Forms.TextBox();
+            this.txtSearchPhone = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.guna2GroupBox3 = new Guna.UI2.WinForms.Guna2GroupBox();
             this.cbType = new System.Windows.Forms.ComboBox();
@@ -155,9 +155,9 @@
             this.label5.ForeColor = System.Drawing.Color.DarkRed;
             this.label5.Location = new System.Drawing.Point(191, 89);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(62, 17);
+            this.label5.Size = new System.Drawing.Size(152, 17);
             this.label5.TabIndex = 44;
-            this.label5.Text = "Ngày trả";
+            this.label5.Text = "Ngày checkout dự kiến";
             // 
             // label4
             // 
@@ -166,9 +166,9 @@
             this.label4.ForeColor = System.Drawing.Color.DarkRed;
             this.label4.Location = new System.Drawing.Point(191, 36);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(77, 17);
+            this.label4.Size = new System.Drawing.Size(143, 17);
             this.label4.TabIndex = 43;
-            this.label4.Text = "Ngày nhận";
+            this.label4.Text = "Ngày checkin dự kiến";
             // 
             // txtDays
             // 
@@ -178,6 +178,7 @@
             this.txtDays.Name = "txtDays";
             this.txtDays.Size = new System.Drawing.Size(152, 29);
             this.txtDays.TabIndex = 42;
+            this.txtDays.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // dtpCheckIn
             // 
@@ -232,7 +233,7 @@
             this.guna2GroupBox2.BackColor = System.Drawing.Color.Transparent;
             this.guna2GroupBox2.BorderColor = System.Drawing.Color.Silver;
             this.guna2GroupBox2.Controls.Add(this.btnSearch);
-            this.guna2GroupBox2.Controls.Add(this.txtSearch);
+            this.guna2GroupBox2.Controls.Add(this.txtSearchPhone);
             this.guna2GroupBox2.Controls.Add(this.label6);
             this.guna2GroupBox2.CustomBorderColor = System.Drawing.Color.WhiteSmoke;
             this.guna2GroupBox2.FillColor = System.Drawing.Color.Transparent;
@@ -264,16 +265,17 @@
             this.btnSearch.Size = new System.Drawing.Size(100, 39);
             this.btnSearch.TabIndex = 50;
             this.btnSearch.Text = "Tìm kiếm";
-//            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
-            // txtSearch
+            // txtSearchPhone
             // 
-            this.txtSearch.BackColor = System.Drawing.Color.Gainsboro;
-            this.txtSearch.ForeColor = System.Drawing.Color.DarkRed;
-            this.txtSearch.Location = new System.Drawing.Point(7, 57);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(164, 29);
-            this.txtSearch.TabIndex = 8;
+            this.txtSearchPhone.BackColor = System.Drawing.Color.Gainsboro;
+            this.txtSearchPhone.ForeColor = System.Drawing.Color.DarkRed;
+            this.txtSearchPhone.Location = new System.Drawing.Point(7, 57);
+            this.txtSearchPhone.Name = "txtSearchPhone";
+            this.txtSearchPhone.Size = new System.Drawing.Size(164, 29);
+            this.txtSearchPhone.TabIndex = 8;
+            this.txtSearchPhone.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSearchPhone_KeyDown);
             // 
             // label6
             // 
@@ -593,7 +595,6 @@
             this.btnUpdate.Size = new System.Drawing.Size(153, 33);
             this.btnUpdate.TabIndex = 29;
             this.btnUpdate.Text = "Cập nhật";
-//            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnClose
             // 
@@ -647,7 +648,6 @@
             this.btnBook.Size = new System.Drawing.Size(153, 33);
             this.btnBook.TabIndex = 26;
             this.btnBook.Text = "Đặt phòng";
-//            this.btnBook.Click += new System.EventHandler(this.btnBook_Click);
             // 
             // panel1
             // 
@@ -906,7 +906,6 @@
         private System.Windows.Forms.Label label1;
         private Guna.UI2.WinForms.Guna2GroupBox guna2GroupBox1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox cbRoomType;
         private System.Windows.Forms.Label label2;
         private Guna.UI2.WinForms.Guna2DateTimePicker dtpCheckIn;
         private Guna.UI2.WinForms.Guna2DateTimePicker dtpCheckOut;
@@ -914,7 +913,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtDays;
         private Guna.UI2.WinForms.Guna2GroupBox guna2GroupBox2;
-        private System.Windows.Forms.TextBox txtSearch;
+        private System.Windows.Forms.TextBox txtSearchPhone;
         private System.Windows.Forms.Label label6;
         private Guna.UI2.WinForms.Guna2GroupBox guna2GroupBox3;
         private System.Windows.Forms.ComboBox cbSex;
@@ -959,5 +958,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn TrangThaiDatPhong;
         private System.Windows.Forms.DataGridViewTextBoxColumn SoTheTinDung;
         private System.Windows.Forms.DataGridViewTextBoxColumn GhiChu;
+        public System.Windows.Forms.ComboBox cbRoomType;
     }
 }

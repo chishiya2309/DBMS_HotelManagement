@@ -39,7 +39,7 @@ namespace QLKS
                 Application.Exit();
         }
 
-        private void txtDangNhap_Click(object sender, EventArgs e)
+        private void btnLogin_Click(object sender, EventArgs e)
         {
             // Kiểm tra nếu người dùng chưa nhập tài khoản hoặc mật khẩu
             if (string.IsNullOrWhiteSpace(txtTaiKhoan.Text) || string.IsNullOrWhiteSpace(txtMatKhau.Text))
@@ -82,6 +82,15 @@ namespace QLKS
                 {
                     MessageBox.Show("Lỗi kết nối đến hệ thống! Vui lòng thử lại sau.\nChi tiết: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+            }
+        }
+
+        private void txtMatKhau_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnLogin.PerformClick();
+                e.SuppressKeyPress = true; // Ngăn chặn âm thanh "ding" khi nhấn Enter
             }
         }
     }
