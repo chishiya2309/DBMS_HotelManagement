@@ -18,7 +18,7 @@ namespace BLL
         private double surchange;
         private string surchangeInfo;
         private double totalPrice;
-        private int discount;
+        private double discount;
         private string status;
         public Bill(DataRow data)
         {
@@ -40,7 +40,7 @@ namespace BLL
         public double Surchange { get => surchange; set => surchange = value; }
         public string SurchangeInfo { get => surchangeInfo; set => surchangeInfo = value; }
         public double TotalPrice { get => totalPrice; set => totalPrice = value; }
-        public int Discount { get => discount; set => discount = value; }
+        public double Discount { get => discount; set => discount = value; }
         public string Status { get => status; set => status = value; }
     }
 }
