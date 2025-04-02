@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace QLKS
 {
@@ -48,6 +49,8 @@ namespace QLKS
             // Refresh the DataGridView
             dgvCustomer.Refresh();
         }
+
+        
 
         private void guna2CircleButton5_Click(object sender, EventArgs e)
         {
@@ -90,6 +93,7 @@ namespace QLKS
                         dtpDoB.Value = DateTime.Now; // Giá trị mặc định nếu không hợp lệ
                     }
                     cbType.Text = row.Cells["LoaiKhachHang"].Value?.ToString() ?? "";
+                    cmbTrangThai.Text = row.Cells["TinhTrangDatPhong"].Value?.ToString() ?? "";
                 }
                 catch (Exception ex)
                 {
@@ -98,51 +102,64 @@ namespace QLKS
             }
         }
 
-        //private void UpdateCustomer()
-        //{
-        //    bool isFill = CheckFillInText(new Control[] { txtName, txtPhone,  cbSex });
-        //    if (!isFill)
-        //    {
-        //        MessageBox.Show("Không được để trống", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //        return;
-        //    }
-        //    else
-        //    {
-        //        try
-        //        {
-        //            int idCustomer = Convert.ToInt32(dgvCustomer.SelectedRows[0].Cells["dgvIdcustomer"].Value);
-        //            bool check1 = CustomerDAO.Instance.UpdateCustomer(GetCustomerNow(idCustomer));
+        private void UpdateCustomer()
+        {
+            
+                try
+                {
+                    // Lấy mã khách hàng của khách hàng được chọn
+                    if (dgvCustomer.SelectedRows.Count == 0)
+                    {
+                        MessageBox.Show("Vui lòng chọn khách hàng cần cập nhật", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
 
-                    
-        //            if (check1)
-        //            {
-        //                MessageBox.Show("Cập nhật thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        //                int index = dgvCustomer.SelectedRows[0].Index;
-        //                LoadFullCustomer(GetFullCustomer());
-        //                dgvCustomer.SelectedRows[0].Selected = false;
-        //                dgvCustomer.Rows[index].Selected = true;
-        //            }
-        //            else
-        //            {
-        //                MessageBox.Show("Không thể cập nhật!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-        //            }
-        //        }
-        //        catch (SqlException ex)
-        //        {
-        //            MessageBox.Show("Lỗi: " + ex, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //        }
-        //    }
-        //}
+                    int maKhachHang = Convert.ToInt32(dgvCustomer.SelectedRows[0].Cells["MaKhachHang"].Value);
+
+                    // Cập nhật thông tin khách hàng bằng stored procedure
+                    using (SqlConnection conn = new SqlConnection(connectionString))
+                    {
+                        conn.Open();
+                        using (SqlCommand cmd = new SqlCommand("sp_UpdateCustomerInfo", conn))
+                        {
+                            cmd.CommandType = CommandType.StoredProcedure;
+
+                            cmd.Parameters.AddWithValue("@MaKhachHang", maKhachHang);
+                            cmd.Parameters.AddWithValue("@Hoten", txtTenKhachHang.Text.Trim());
+                            cmd.Parameters.AddWithValue("@Gioitinh", cbSex.Text);
+                            cmd.Parameters.AddWithValue("@email", txtEmail.Text.Trim());
+                            cmd.Parameters.AddWithValue("@Ngaysinh", dtpDoB.Value);
+                            cmd.Parameters.AddWithValue("@CCCD", txtCCCD.Text.Trim());
+                            cmd.Parameters.AddWithValue("@Sodienthoai", txtPhone.Text.Trim());
+                            cmd.Parameters.AddWithValue("@Diachi", txtDiaChi.Text.Trim());
+                            cmd.Parameters.AddWithValue("@LoaiKhachHang", cbType.Text);
+                            cmd.Parameters.AddWithValue("@TinhTrangDatPhong", cmbTrangThai.Text);
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+
+                    // Cập nhật thành công
+                    MessageBox.Show("Cập nhật thông tin khách hàng thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // Tải lại dữ liệu
+                    LoadCusData();
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show("Lỗi cập nhật: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            //DialogResult result = MessageBox.Show("Bạn có muốn cập nhật khách hàng này không?", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
-            //if (result == DialogResult.OK)
-            //{
+            DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn cập nhật thông tin nhân viên này?",
+               "Xác nhận", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
-            //    UpdateCustomer();
-
-            //}
+            if (result == DialogResult.OK)
+            {
+                UpdateCustomer();
+            }
         }
 
         private void btnInsert_Click(object sender, EventArgs e)
@@ -155,30 +172,51 @@ namespace QLKS
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            //DialogResult result = MessageBox.Show("Bạn chắc chắn xoá khách hàng này?", "Xác nhận", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
-            //if (result == DialogResult.OK)
-            //{
+            DialogResult result = MessageBox.Show("Bạn chắc chắn xoá khách hàng này?", "Xác nhận", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (result == DialogResult.OK)
+            {
+                try
+                {
+                    int maKhachHang = Convert.ToInt32(dgvCustomer.CurrentRow.Cells["MaKhachHang"].Value);
+                    if (DeleteCus(maKhachHang))
+                    {
+                        MessageBox.Show($"Xoá khách hàng {maKhachHang} thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        LoadCusData();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Không thể xoá khách hàng này!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    }
 
-            //    try
-            //    {
-            //        int id = Convert.ToInt32(dgvCustomer.CurrentRow.Cells["dgvIdcustomer"].Value);
-            //        if (DeleteCustomer(id))
-            //        {
-            //            MessageBox.Show("Xoá thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //            LoadFullCustomer(GetFullCustomer());
-            //        }
-            //        else
-            //        {
-            //            MessageBox.Show("Không thể xoá khách hàng này!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-            //        }
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show("Lỗi: " + ex, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
 
-            //    }
-            //    catch (SqlException ex)
-            //    {
-            //        MessageBox.Show("Lỗi: " + ex, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    }
+            }
+        }
 
-            //}
+        public bool DeleteCus(int maKhachHang)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand("sp_DeleteCustomer", conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@MaKhachHang", maKhachHang);
+                        cmd.ExecuteNonQuery();
+                        return true;
+                    }
+                }
+                catch (SqlException)
+                {
+                    return false;
+                }
+            }
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
