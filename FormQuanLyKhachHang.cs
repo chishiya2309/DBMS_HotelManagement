@@ -16,12 +16,37 @@ namespace QLKS
 {
     public partial class FormQuanLyKhachHang: Form
     {
+        private string connectionString = "Data Source=(local)\\SQLExpress;Initial Catalog=Hotel2025;Integrated Security=True";
         public FormQuanLyKhachHang()
         {
             InitializeComponent();
-            LoadFullCustomerType();
-            LoadFullCustomer(GetFullCustomer());
-            
+            LoadCusData();
+        }
+
+        private void LoadCusData()
+        {
+            string query = @"SELECT * FROM KhachHang";
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(query, conn))
+                    {
+                        DataTable dt = new DataTable();
+                        adapter.Fill(dt);
+                        dgvCustomer.DataSource = dt; // Gán dữ liệu vào DataGridView
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi lấy dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+            // Refresh the DataGridView
+            dgvCustomer.Refresh();
         }
 
         private void guna2CircleButton5_Click(object sender, EventArgs e)
@@ -39,208 +64,138 @@ namespace QLKS
 
         }
 
-        public DataTable GetFullCustomer()
-        {
-            return CustomerDAO.Instance.LoadFullCustomer();
-        }
-
-
-
-        public DataTable GetFullCustomerType()
-        {
-            return CustomerTypeDAO.Instance.LoadFullCustomerType();
-        }
-
-        private void LoadFullCustomer(DataTable table)
-        {
-            BindingSource source = new BindingSource();
-            source.DataSource = table;
-            dgvCustomer.DataSource = source;
-        }
-
-        private void LoadFullCustomerType()
-        {
-            cbSex.SelectedIndex = 0;
-            DataTable table = GetFullCustomerType();
-            cbType.DataSource = table;
-            cbType.DisplayMember = "typeName";
-            if (table.Rows.Count > 0) cbType.SelectedIndex = 0;
-        }
-
-
-        private void ChangeText(DataGridViewRow row)
-        {
-            if (row.IsNewRow)
-            {
-                txtIDnum.Text = string.Empty;
-                txtName.Text = string.Empty;
-                txtPhone.Text = string.Empty;
-                txtAddress.Text = string.Empty;
-                lbEmail.Text = string.Empty;
-
-            }
-            else
-            {
-
-                txtAddress.Text = row.Cells["dgvAddress"].Value as string;
-                txtEmail.Text = row.Cells["dgvEmail"].Value as string;
-                txtIDnum.Text = row.Cells["dgvIDcard"].Value as string;
-                txtPhone.Text = row.Cells["dgvPhone"].Value as string;
-                txtName.Text = row.Cells["dgvName"].Value as string;
-                if (DateTime.TryParse(row.Cells["dgvDob"].Value?.ToString(), out DateTime dob))
-                {
-                    dtpDoB.Value = dob;
-                }
-                else
-                {
-                    dtpDoB.Value = DateTime.Now; // Gán giá trị mặc định nếu không hợp lệ
-                }
-
-                
-                cbSex.Text = row.Cells["dgvSex"].Value as string;
-                cbType.SelectedIndex = (int)row.Cells["dgvType"].Value - 1;
-
-
-            }
-        }
+        
 
         private void dgvCustomer_SelectionChanged(object sender, EventArgs e)
         {
             if (dgvCustomer.SelectedRows.Count > 0)
             {
-                DataGridViewRow row = dgvCustomer.SelectedRows[0];
-                ChangeText(row);
-            }
-        }
-
-        private Customer GetCustomerNow(int id)
-        {
-            Customer account = new Customer();
-
-            // Xoá các khoảng trắng thừa
-            //Trim(new System.Windows.Forms.TextBox[] { txtName, txtAddress });
-
-
-
-            int index = cbType.SelectedIndex;
-            account.Id = id;
-            account.IdCustomerType = (int)((DataTable)cbType.DataSource).Rows[index]["idCustomerType"];
-            account.Name = txtName.Text;
-            account.IdCard = txtIDnum.Text;
-            account.Sex = cbSex.Text;
-            account.DateOfBirth = dtpDoB.Value;
-            account.PhoneNumber = txtPhone.Text;
-            account.Address = txtAddress.Text;
-            account.Email = txtEmail.Text;
-            return account;
-        }
-
-        public static bool CheckFillInText(Control[] controls)
-        {
-            foreach (var control in controls)
-            {
-                if (control.Text == string.Empty)
-                    return false;
-            }
-            return true;
-        }
-
-        private void UpdateCustomer()
-        {
-            bool isFill = CheckFillInText(new Control[] { txtName, txtPhone,  cbSex });
-            if (!isFill)
-            {
-                MessageBox.Show("Không được để trống", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            else
-            {
                 try
                 {
-                    int idCustomer = Convert.ToInt32(dgvCustomer.SelectedRows[0].Cells["dgvIdcustomer"].Value);
-                    bool check1 = CustomerDAO.Instance.UpdateCustomer(GetCustomerNow(idCustomer));
+                    DataGridViewRow row = dgvCustomer.SelectedRows[0];
 
-                    
-                    if (check1)
+                    // Hiển thị thông tin phòng được chọn trực tiếp lên form
+                    txtTenKhachHang.Text = row.Cells["Hoten"].Value?.ToString() ?? "";
+                    txtDiaChi.Text = row.Cells["Diachi"].Value?.ToString() ?? "";
+                    cbSex.Text = row.Cells["Gioitinh"].Value?.ToString() ?? "";
+                    txtEmail.Text = row.Cells["email"].Value?.ToString() ?? "";
+                    txtCCCD.Text = row.Cells["CCCD"].Value?.ToString() ?? "";
+                    txtPhone.Text = row.Cells["Sodienthoai"].Value?.ToString() ?? "";
+                    if (row.Cells["Ngaysinh"].Value != null && DateTime.TryParse(row.Cells["Ngaysinh"].Value.ToString(), out DateTime ngaySinh))
                     {
-                        MessageBox.Show("Cập nhật thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        int index = dgvCustomer.SelectedRows[0].Index;
-                        LoadFullCustomer(GetFullCustomer());
-                        dgvCustomer.SelectedRows[0].Selected = false;
-                        dgvCustomer.Rows[index].Selected = true;
+                        dtpDoB.Value = ngaySinh;
                     }
                     else
                     {
-                        MessageBox.Show("Không thể cập nhật!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                        dtpDoB.Value = DateTime.Now; // Giá trị mặc định nếu không hợp lệ
                     }
+                    cbType.Text = row.Cells["LoaiKhachHang"].Value?.ToString() ?? "";
                 }
-                catch (SqlException ex)
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Lỗi: " + ex, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Lỗi hiển thị thông tin: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
 
+        //private void UpdateCustomer()
+        //{
+        //    bool isFill = CheckFillInText(new Control[] { txtName, txtPhone,  cbSex });
+        //    if (!isFill)
+        //    {
+        //        MessageBox.Show("Không được để trống", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //        return;
+        //    }
+        //    else
+        //    {
+        //        try
+        //        {
+        //            int idCustomer = Convert.ToInt32(dgvCustomer.SelectedRows[0].Cells["dgvIdcustomer"].Value);
+        //            bool check1 = CustomerDAO.Instance.UpdateCustomer(GetCustomerNow(idCustomer));
+
+                    
+        //            if (check1)
+        //            {
+        //                MessageBox.Show("Cập nhật thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        //                int index = dgvCustomer.SelectedRows[0].Index;
+        //                LoadFullCustomer(GetFullCustomer());
+        //                dgvCustomer.SelectedRows[0].Selected = false;
+        //                dgvCustomer.Rows[index].Selected = true;
+        //            }
+        //            else
+        //            {
+        //                MessageBox.Show("Không thể cập nhật!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+        //            }
+        //        }
+        //        catch (SqlException ex)
+        //        {
+        //            MessageBox.Show("Lỗi: " + ex, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //        }
+        //    }
+        //}
+
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Bạn có muốn cập nhật khách hàng này không?", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
-            if (result == DialogResult.OK)
-            {
+            //DialogResult result = MessageBox.Show("Bạn có muốn cập nhật khách hàng này không?", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+            //if (result == DialogResult.OK)
+            //{
 
-                UpdateCustomer();
+            //    UpdateCustomer();
 
-            }
+            //}
         }
 
         private void btnInsert_Click(object sender, EventArgs e)
         {
             new AddCustomer().ShowDialog();
-            LoadFullCustomer(GetFullCustomer());
+            LoadCusData();
         }
 
-        public bool DeleteCustomer(int id)
-        {
-            return CustomerDAO.Instance.DeleteCustomer(id);
-        }
+       
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Bạn chắc chắn xoá khách hàng này?", "Xác nhận", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
-            if (result == DialogResult.OK)
-            {
+            //DialogResult result = MessageBox.Show("Bạn chắc chắn xoá khách hàng này?", "Xác nhận", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+            //if (result == DialogResult.OK)
+            //{
 
-                try
-                {
-                    int id = Convert.ToInt32(dgvCustomer.CurrentRow.Cells["dgvIdcustomer"].Value);
-                    if (DeleteCustomer(id))
-                    {
-                        MessageBox.Show("Xoá thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        LoadFullCustomer(GetFullCustomer());
-                    }
-                    else
-                    {
-                        MessageBox.Show("Không thể xoá khách hàng này!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                    }
+            //    try
+            //    {
+            //        int id = Convert.ToInt32(dgvCustomer.CurrentRow.Cells["dgvIdcustomer"].Value);
+            //        if (DeleteCustomer(id))
+            //        {
+            //            MessageBox.Show("Xoá thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //            LoadFullCustomer(GetFullCustomer());
+            //        }
+            //        else
+            //        {
+            //            MessageBox.Show("Không thể xoá khách hàng này!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            //        }
 
-                }
-                catch (SqlException ex)
-                {
-                    MessageBox.Show("Lỗi: " + ex, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+            //    }
+            //    catch (SqlException ex)
+            //    {
+            //        MessageBox.Show("Lỗi: " + ex, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    }
 
-            }
+            //}
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            try
-            {
-                LoadFullCustomer(CustomerDAO.Instance.Search(txtSearch.Text, cbSearchType.SelectedIndex));
-            }
-            catch (SqlException ex)
-            {
-                MessageBox.Show("Lỗi xảy ra: " + ex);
-            }
+            //try
+            //{
+            //    LoadFullCustomer(CustomerDAO.Instance.Search(txtSearch.Text, cbSearchType.SelectedIndex));
+            //}
+            //catch (SqlException ex)
+            //{
+            //    MessageBox.Show("Lỗi xảy ra: " + ex);
+            //}
+        }
+
+        private void FormQuanLyKhachHang_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

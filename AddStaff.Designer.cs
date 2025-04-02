@@ -30,6 +30,8 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.guna2GroupBox2 = new Guna.UI2.WinForms.Guna2GroupBox();
+            this.dtpNgayVaoLam = new Guna.UI2.WinForms.Guna2DateTimePicker();
+            this.label7 = new System.Windows.Forms.Label();
             this.txtPass = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtEmail = new System.Windows.Forms.TextBox();
@@ -70,6 +72,8 @@
             // 
             this.guna2GroupBox2.BackColor = System.Drawing.Color.Transparent;
             this.guna2GroupBox2.BorderColor = System.Drawing.Color.Silver;
+            this.guna2GroupBox2.Controls.Add(this.dtpNgayVaoLam);
+            this.guna2GroupBox2.Controls.Add(this.label7);
             this.guna2GroupBox2.Controls.Add(this.txtPass);
             this.guna2GroupBox2.Controls.Add(this.label3);
             this.guna2GroupBox2.Controls.Add(this.txtEmail);
@@ -97,9 +101,37 @@
             this.guna2GroupBox2.Location = new System.Drawing.Point(12, 58);
             this.guna2GroupBox2.Name = "guna2GroupBox2";
             this.guna2GroupBox2.ShadowDecoration.Parent = this.guna2GroupBox2;
-            this.guna2GroupBox2.Size = new System.Drawing.Size(386, 324);
+            this.guna2GroupBox2.Size = new System.Drawing.Size(386, 387);
             this.guna2GroupBox2.TabIndex = 28;
             this.guna2GroupBox2.Text = "Thông tin nhân viên";
+            // 
+            // dtpNgayVaoLam
+            // 
+            this.dtpNgayVaoLam.CheckedState.Parent = this.dtpNgayVaoLam;
+            this.dtpNgayVaoLam.FillColor = System.Drawing.Color.Gainsboro;
+            this.dtpNgayVaoLam.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.dtpNgayVaoLam.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpNgayVaoLam.HoverState.Parent = this.dtpNgayVaoLam;
+            this.dtpNgayVaoLam.Location = new System.Drawing.Point(9, 341);
+            this.dtpNgayVaoLam.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
+            this.dtpNgayVaoLam.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
+            this.dtpNgayVaoLam.Name = "dtpNgayVaoLam";
+            this.dtpNgayVaoLam.ShadowDecoration.Parent = this.dtpNgayVaoLam;
+            this.dtpNgayVaoLam.Size = new System.Drawing.Size(155, 21);
+            this.dtpNgayVaoLam.TabIndex = 10;
+            this.dtpNgayVaoLam.Value = new System.DateTime(2025, 3, 19, 22, 51, 46, 21);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.Transparent;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.DarkRed;
+            this.label7.Location = new System.Drawing.Point(3, 321);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(98, 17);
+            this.label7.TabIndex = 51;
+            this.label7.Text = "Ngày vào làm:";
             // 
             // txtPass
             // 
@@ -108,7 +140,7 @@
             this.txtPass.Location = new System.Drawing.Point(207, 226);
             this.txtPass.Name = "txtPass";
             this.txtPass.Size = new System.Drawing.Size(159, 29);
-            this.txtPass.TabIndex = 50;
+            this.txtPass.TabIndex = 7;
             this.txtPass.UseSystemPasswordChar = true;
             // 
             // label3
@@ -131,7 +163,7 @@
             this.txtEmail.Location = new System.Drawing.Point(6, 280);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(159, 29);
-            this.txtEmail.TabIndex = 48;
+            this.txtEmail.TabIndex = 8;
             // 
             // label5
             // 
@@ -149,10 +181,13 @@
             // 
             this.cbRole.BackColor = System.Drawing.Color.Gainsboro;
             this.cbRole.FormattingEnabled = true;
+            this.cbRole.Items.AddRange(new object[] {
+            "Quản lý",
+            "Lễ tân"});
             this.cbRole.Location = new System.Drawing.Point(207, 280);
             this.cbRole.Name = "cbRole";
             this.cbRole.Size = new System.Drawing.Size(159, 29);
-            this.cbRole.TabIndex = 46;
+            this.cbRole.TabIndex = 9;
             // 
             // label4
             // 
@@ -173,7 +208,7 @@
             this.txtUser.Location = new System.Drawing.Point(206, 174);
             this.txtUser.Name = "txtUser";
             this.txtUser.Size = new System.Drawing.Size(160, 29);
-            this.txtUser.TabIndex = 44;
+            this.txtUser.TabIndex = 5;
             // 
             // label2
             // 
@@ -205,7 +240,7 @@
             this.txtName.Location = new System.Drawing.Point(9, 66);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(154, 29);
-            this.txtName.TabIndex = 39;
+            this.txtName.TabIndex = 0;
             // 
             // cbSex
             // 
@@ -217,7 +252,7 @@
             this.cbSex.Location = new System.Drawing.Point(206, 66);
             this.cbSex.Name = "cbSex";
             this.cbSex.Size = new System.Drawing.Size(154, 29);
-            this.cbSex.TabIndex = 38;
+            this.cbSex.TabIndex = 1;
             // 
             // label13
             // 
@@ -244,7 +279,7 @@
             this.dtpDOB.Name = "dtpDOB";
             this.dtpDOB.ShadowDecoration.Parent = this.dtpDOB;
             this.dtpDOB.Size = new System.Drawing.Size(155, 21);
-            this.dtpDOB.TabIndex = 36;
+            this.dtpDOB.TabIndex = 3;
             this.dtpDOB.Value = new System.DateTime(2025, 3, 19, 22, 51, 46, 21);
             // 
             // label12
@@ -266,7 +301,7 @@
             this.txtPhone.Location = new System.Drawing.Point(8, 225);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(155, 29);
-            this.txtPhone.TabIndex = 28;
+            this.txtPhone.TabIndex = 6;
             // 
             // label11
             // 
@@ -287,7 +322,7 @@
             this.txtAddress.Location = new System.Drawing.Point(8, 173);
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(155, 29);
-            this.txtAddress.TabIndex = 29;
+            this.txtAddress.TabIndex = 4;
             // 
             // label10
             // 
@@ -320,7 +355,7 @@
             this.txtIDNum.Location = new System.Drawing.Point(8, 118);
             this.txtIDNum.Name = "txtIDNum";
             this.txtIDNum.Size = new System.Drawing.Size(155, 29);
-            this.txtIDNum.TabIndex = 8;
+            this.txtIDNum.TabIndex = 2;
             // 
             // btnAdd
             // 
@@ -331,12 +366,12 @@
             this.btnAdd.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.btnAdd.ForeColor = System.Drawing.Color.DarkRed;
             this.btnAdd.HoverState.Parent = this.btnAdd;
-            this.btnAdd.Location = new System.Drawing.Point(12, 391);
+            this.btnAdd.Location = new System.Drawing.Point(12, 451);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             this.btnAdd.ShadowDecoration.Parent = this.btnAdd;
             this.btnAdd.Size = new System.Drawing.Size(153, 33);
-            this.btnAdd.TabIndex = 32;
+            this.btnAdd.TabIndex = 11;
             this.btnAdd.Text = "Thêm";
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
@@ -349,12 +384,12 @@
             this.btnCancel.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.btnCancel.ForeColor = System.Drawing.Color.DarkRed;
             this.btnCancel.HoverState.Parent = this.btnCancel;
-            this.btnCancel.Location = new System.Drawing.Point(217, 391);
+            this.btnCancel.Location = new System.Drawing.Point(217, 451);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             this.btnCancel.ShadowDecoration.Parent = this.btnCancel;
             this.btnCancel.Size = new System.Drawing.Size(153, 33);
-            this.btnCancel.TabIndex = 33;
+            this.btnCancel.TabIndex = 12;
             this.btnCancel.Text = "Thoát";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
@@ -363,7 +398,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(409, 436);
+            this.ClientSize = new System.Drawing.Size(409, 496);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.guna2GroupBox2);
@@ -408,5 +443,7 @@
         private System.Windows.Forms.Label label5;
         private Guna.UI2.WinForms.Guna2CircleButton btnAdd;
         private Guna.UI2.WinForms.Guna2CircleButton btnCancel;
+        private Guna.UI2.WinForms.Guna2DateTimePicker dtpNgayVaoLam;
+        private System.Windows.Forms.Label label7;
     }
 }

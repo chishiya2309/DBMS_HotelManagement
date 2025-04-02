@@ -34,7 +34,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtTaiKhoan = new System.Windows.Forms.TextBox();
             this.txtMatKhau = new System.Windows.Forms.TextBox();
-            this.txtDangNhap = new Guna.UI2.WinForms.Guna2CircleButton();
+            this.btnLogin = new Guna.UI2.WinForms.Guna2CircleButton();
             this.txtThoat = new Guna.UI2.WinForms.Guna2CircleButton();
             this.guna2CirclePictureBox1 = new Guna.UI2.WinForms.Guna2CirclePictureBox();
             this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
@@ -93,23 +93,24 @@
             this.txtMatKhau.Size = new System.Drawing.Size(322, 26);
             this.txtMatKhau.TabIndex = 5;
             this.txtMatKhau.UseSystemPasswordChar = true;
+            this.txtMatKhau.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMatKhau_KeyDown);
             // 
-            // txtDangNhap
+            // btnLogin
             // 
-            this.txtDangNhap.CheckedState.Parent = this.txtDangNhap;
-            this.txtDangNhap.CustomImages.Parent = this.txtDangNhap;
-            this.txtDangNhap.FillColor = System.Drawing.Color.Wheat;
-            this.txtDangNhap.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.txtDangNhap.ForeColor = System.Drawing.Color.Black;
-            this.txtDangNhap.HoverState.Parent = this.txtDangNhap;
-            this.txtDangNhap.Location = new System.Drawing.Point(457, 353);
-            this.txtDangNhap.Name = "txtDangNhap";
-            this.txtDangNhap.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            this.txtDangNhap.ShadowDecoration.Parent = this.txtDangNhap;
-            this.txtDangNhap.Size = new System.Drawing.Size(122, 85);
-            this.txtDangNhap.TabIndex = 6;
-            this.txtDangNhap.Text = "Đăng nhập";
-            this.txtDangNhap.Click += new System.EventHandler(this.txtDangNhap_Click);
+            this.btnLogin.CheckedState.Parent = this.btnLogin;
+            this.btnLogin.CustomImages.Parent = this.btnLogin;
+            this.btnLogin.FillColor = System.Drawing.Color.Wheat;
+            this.btnLogin.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.btnLogin.ForeColor = System.Drawing.Color.Black;
+            this.btnLogin.HoverState.Parent = this.btnLogin;
+            this.btnLogin.Location = new System.Drawing.Point(457, 353);
+            this.btnLogin.Name = "btnLogin";
+            this.btnLogin.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            this.btnLogin.ShadowDecoration.Parent = this.btnLogin;
+            this.btnLogin.Size = new System.Drawing.Size(122, 85);
+            this.btnLogin.TabIndex = 6;
+            this.btnLogin.Text = "Đăng nhập";
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // txtThoat
             // 
@@ -172,7 +173,7 @@
             this.Controls.Add(this.guna2PictureBox1);
             this.Controls.Add(this.guna2CirclePictureBox1);
             this.Controls.Add(this.txtThoat);
-            this.Controls.Add(this.txtDangNhap);
+            this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.txtMatKhau);
             this.Controls.Add(this.txtTaiKhoan);
             this.Controls.Add(this.label3);
@@ -183,6 +184,7 @@
             this.Name = "FormDangNhap";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormDangNhap";
+            this.Load += new System.EventHandler(this.FormDangNhap_Load);
             ((System.ComponentModel.ISupportInitialize)(this.guna2CirclePictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox2)).EndInit();
@@ -197,7 +199,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtTaiKhoan;
         private System.Windows.Forms.TextBox txtMatKhau;
-        private Guna.UI2.WinForms.Guna2CircleButton txtDangNhap;
+        private Guna.UI2.WinForms.Guna2CircleButton btnLogin;
         private Guna.UI2.WinForms.Guna2CircleButton txtThoat;
         private Guna.UI2.WinForms.Guna2CirclePictureBox guna2CirclePictureBox1;
         private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox1;

@@ -36,7 +36,7 @@
             this.cbType = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.txtName = new System.Windows.Forms.TextBox();
+            this.txtHoten = new System.Windows.Forms.TextBox();
             this.cbSex = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
             this.dtpDOB = new Guna.UI2.WinForms.Guna2DateTimePicker();
@@ -47,6 +47,9 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.txtIDNum = new System.Windows.Forms.TextBox();
+            this.cmbTinhTrang = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnHuy = new Guna.UI2.WinForms.Guna2CircleButton();
             this.guna2GroupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,7 +58,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.DarkRed;
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Location = new System.Drawing.Point(20, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(254, 31);
             this.label1.TabIndex = 2;
@@ -65,13 +68,16 @@
             // 
             this.guna2GroupBox2.BackColor = System.Drawing.Color.Transparent;
             this.guna2GroupBox2.BorderColor = System.Drawing.Color.Silver;
+            this.guna2GroupBox2.Controls.Add(this.btnHuy);
+            this.guna2GroupBox2.Controls.Add(this.cmbTinhTrang);
+            this.guna2GroupBox2.Controls.Add(this.label2);
             this.guna2GroupBox2.Controls.Add(this.btnAdd);
             this.guna2GroupBox2.Controls.Add(this.txtEmail);
             this.guna2GroupBox2.Controls.Add(this.label5);
             this.guna2GroupBox2.Controls.Add(this.cbType);
             this.guna2GroupBox2.Controls.Add(this.label4);
             this.guna2GroupBox2.Controls.Add(this.label6);
-            this.guna2GroupBox2.Controls.Add(this.txtName);
+            this.guna2GroupBox2.Controls.Add(this.txtHoten);
             this.guna2GroupBox2.Controls.Add(this.cbSex);
             this.guna2GroupBox2.Controls.Add(this.label13);
             this.guna2GroupBox2.Controls.Add(this.dtpDOB);
@@ -89,7 +95,7 @@
             this.guna2GroupBox2.Location = new System.Drawing.Point(18, 48);
             this.guna2GroupBox2.Name = "guna2GroupBox2";
             this.guna2GroupBox2.ShadowDecoration.Parent = this.guna2GroupBox2;
-            this.guna2GroupBox2.Size = new System.Drawing.Size(557, 229);
+            this.guna2GroupBox2.Size = new System.Drawing.Size(585, 294);
             this.guna2GroupBox2.TabIndex = 29;
             this.guna2GroupBox2.Text = "Thông tin khách hàng";
             this.guna2GroupBox2.Click += new System.EventHandler(this.guna2GroupBox2_Click);
@@ -103,12 +109,12 @@
             this.btnAdd.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.btnAdd.ForeColor = System.Drawing.Color.DarkRed;
             this.btnAdd.HoverState.Parent = this.btnAdd;
-            this.btnAdd.Location = new System.Drawing.Point(386, 176);
+            this.btnAdd.Location = new System.Drawing.Point(298, 241);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             this.btnAdd.ShadowDecoration.Parent = this.btnAdd;
             this.btnAdd.Size = new System.Drawing.Size(153, 33);
-            this.btnAdd.TabIndex = 33;
+            this.btnAdd.TabIndex = 8;
             this.btnAdd.Text = "Thêm";
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
@@ -116,10 +122,10 @@
             // 
             this.txtEmail.BackColor = System.Drawing.Color.Gainsboro;
             this.txtEmail.ForeColor = System.Drawing.Color.DarkRed;
-            this.txtEmail.Location = new System.Drawing.Point(386, 123);
+            this.txtEmail.Location = new System.Drawing.Point(404, 123);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(159, 29);
-            this.txtEmail.TabIndex = 48;
+            this.txtEmail.TabIndex = 5;
             // 
             // label5
             // 
@@ -127,7 +133,7 @@
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.DarkRed;
-            this.label5.Location = new System.Drawing.Point(387, 103);
+            this.label5.Location = new System.Drawing.Point(405, 103);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(46, 17);
             this.label5.TabIndex = 47;
@@ -137,10 +143,13 @@
             // 
             this.cbType.BackColor = System.Drawing.Color.Gainsboro;
             this.cbType.FormattingEnabled = true;
+            this.cbType.Items.AddRange(new object[] {
+            "Vip",
+            "Thường"});
             this.cbType.Location = new System.Drawing.Point(205, 180);
             this.cbType.Name = "cbType";
             this.cbType.Size = new System.Drawing.Size(159, 29);
-            this.cbType.TabIndex = 46;
+            this.cbType.TabIndex = 7;
             // 
             // label4
             // 
@@ -166,14 +175,14 @@
             this.label6.TabIndex = 40;
             this.label6.Text = "Họ tên:";
             // 
-            // txtName
+            // txtHoten
             // 
-            this.txtName.BackColor = System.Drawing.Color.Gainsboro;
-            this.txtName.ForeColor = System.Drawing.Color.DarkRed;
-            this.txtName.Location = new System.Drawing.Point(9, 66);
-            this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(154, 29);
-            this.txtName.TabIndex = 39;
+            this.txtHoten.BackColor = System.Drawing.Color.Gainsboro;
+            this.txtHoten.ForeColor = System.Drawing.Color.DarkRed;
+            this.txtHoten.Location = new System.Drawing.Point(9, 66);
+            this.txtHoten.Name = "txtHoten";
+            this.txtHoten.Size = new System.Drawing.Size(154, 29);
+            this.txtHoten.TabIndex = 0;
             // 
             // cbSex
             // 
@@ -185,7 +194,7 @@
             this.cbSex.Location = new System.Drawing.Point(206, 66);
             this.cbSex.Name = "cbSex";
             this.cbSex.Size = new System.Drawing.Size(154, 29);
-            this.cbSex.TabIndex = 38;
+            this.cbSex.TabIndex = 1;
             // 
             // label13
             // 
@@ -212,7 +221,7 @@
             this.dtpDOB.Name = "dtpDOB";
             this.dtpDOB.ShadowDecoration.Parent = this.dtpDOB;
             this.dtpDOB.Size = new System.Drawing.Size(155, 21);
-            this.dtpDOB.TabIndex = 36;
+            this.dtpDOB.TabIndex = 4;
             this.dtpDOB.Value = new System.DateTime(2025, 3, 19, 22, 51, 46, 21);
             // 
             // label12
@@ -234,7 +243,7 @@
             this.txtPhone.Location = new System.Drawing.Point(9, 180);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(155, 29);
-            this.txtPhone.TabIndex = 28;
+            this.txtPhone.TabIndex = 6;
             // 
             // label11
             // 
@@ -252,10 +261,10 @@
             // 
             this.txtAddress.BackColor = System.Drawing.Color.Gainsboro;
             this.txtAddress.ForeColor = System.Drawing.Color.DarkRed;
-            this.txtAddress.Location = new System.Drawing.Point(390, 66);
+            this.txtAddress.Location = new System.Drawing.Point(404, 66);
             this.txtAddress.Name = "txtAddress";
-            this.txtAddress.Size = new System.Drawing.Size(155, 29);
-            this.txtAddress.TabIndex = 29;
+            this.txtAddress.Size = new System.Drawing.Size(159, 29);
+            this.txtAddress.TabIndex = 2;
             // 
             // label10
             // 
@@ -263,7 +272,7 @@
             this.label10.BackColor = System.Drawing.Color.Transparent;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.DarkRed;
-            this.label10.Location = new System.Drawing.Point(387, 46);
+            this.label10.Location = new System.Drawing.Point(405, 46);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(55, 17);
             this.label10.TabIndex = 28;
@@ -289,14 +298,56 @@
             this.txtIDNum.Location = new System.Drawing.Point(8, 118);
             this.txtIDNum.Name = "txtIDNum";
             this.txtIDNum.Size = new System.Drawing.Size(155, 29);
-            this.txtIDNum.TabIndex = 8;
+            this.txtIDNum.TabIndex = 3;
+            // 
+            // cmbTinhTrang
+            // 
+            this.cmbTinhTrang.BackColor = System.Drawing.Color.Gainsboro;
+            this.cmbTinhTrang.FormattingEnabled = true;
+            this.cmbTinhTrang.Items.AddRange(new object[] {
+            "Chính thức",
+            "Chưa chính thức"});
+            this.cmbTinhTrang.Location = new System.Drawing.Point(404, 180);
+            this.cmbTinhTrang.Name = "cmbTinhTrang";
+            this.cmbTinhTrang.Size = new System.Drawing.Size(158, 29);
+            this.cmbTinhTrang.TabIndex = 48;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.DarkRed;
+            this.label2.Location = new System.Drawing.Point(405, 160);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(145, 17);
+            this.label2.TabIndex = 49;
+            this.label2.Text = "Tình trạng đặt phòng:";
+            // 
+            // btnHuy
+            // 
+            this.btnHuy.BackColor = System.Drawing.Color.Transparent;
+            this.btnHuy.CheckedState.Parent = this.btnHuy;
+            this.btnHuy.CustomImages.Parent = this.btnHuy;
+            this.btnHuy.FillColor = System.Drawing.Color.Transparent;
+            this.btnHuy.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnHuy.ForeColor = System.Drawing.Color.DarkRed;
+            this.btnHuy.HoverState.Parent = this.btnHuy;
+            this.btnHuy.Location = new System.Drawing.Point(103, 241);
+            this.btnHuy.Name = "btnHuy";
+            this.btnHuy.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            this.btnHuy.ShadowDecoration.Parent = this.btnHuy;
+            this.btnHuy.Size = new System.Drawing.Size(153, 33);
+            this.btnHuy.TabIndex = 50;
+            this.btnHuy.Text = "Hủy";
+            this.btnHuy.Click += new System.EventHandler(this.btnHuy_Click);
             // 
             // AddCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(594, 302);
+            this.ClientSize = new System.Drawing.Size(625, 364);
             this.Controls.Add(this.guna2GroupBox2);
             this.Controls.Add(this.label1);
             this.MaximizeBox = false;
@@ -321,7 +372,7 @@
         private System.Windows.Forms.ComboBox cbType;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txtName;
+        private System.Windows.Forms.TextBox txtHoten;
         private System.Windows.Forms.ComboBox cbSex;
         private System.Windows.Forms.Label label13;
         private Guna.UI2.WinForms.Guna2DateTimePicker dtpDOB;
@@ -333,5 +384,8 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtIDNum;
         private Guna.UI2.WinForms.Guna2CircleButton btnAdd;
+        private Guna.UI2.WinForms.Guna2CircleButton btnHuy;
+        public System.Windows.Forms.ComboBox cmbTinhTrang;
+        private System.Windows.Forms.Label label2;
     }
 }
