@@ -71,35 +71,35 @@ namespace QLKS
 
         private void InsertStaff()
         {
-            bool isFill = FormNhanVien.CheckFillInText(new Control[] { txtName, txtAddress, txtEmail, txtIDNum, txtPhone, txtUser, cbSex, txtPass });
-            if (!isFill)
-            {
-                MessageBox.Show("Không được để trống", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            else
-            {
-                try
-                {
-                    //int idStaff = Convert.ToInt32(datagridviewStaff.SelectedRows[0].Cells["colidStaff"].Value);
-                    bool check1 = StaffDAO.Instance.InsertStaff(GetStaffNow());
+            //bool isFill = FormNhanVien.CheckFillInText(new Control[] { txtName, txtAddress, txtEmail, txtIDNum, txtPhone, txtUser, cbSex, txtPass });
+            //if (!isFill)
+            //{
+            //    MessageBox.Show("Không được để trống", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    return;
+            //}
+            //else
+            //{
+            //    try
+            //    {
+            //        //int idStaff = Convert.ToInt32(datagridviewStaff.SelectedRows[0].Cells["colidStaff"].Value);
+            //        bool check1 = StaffDAO.Instance.InsertStaff(GetStaffNow());
 
-                    bool check2 = AccountDAO.Instance.InsertAccount(txtUser.Text, txtPass.Text);
-                    if (check1 && check2)
-                    {
-                        MessageBox.Show("Thêm tk thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //        bool check2 = AccountDAO.Instance.InsertAccount(txtUser.Text, txtPass.Text);
+            //        if (check1 && check2)
+            //        {
+            //            MessageBox.Show("Thêm tk thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         
-                    }
-                    else
-                    {
-                        MessageBox.Show("Không thể Thêm!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                    }
-                }
-                catch (SqlException ex)
-                {
-                    MessageBox.Show("Lỗi: " + ex, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
+            //        }
+            //        else
+            //        {
+            //            MessageBox.Show("Không thể Thêm!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            //        }
+            //    }
+            //    catch (SqlException ex)
+            //    {
+            //        MessageBox.Show("Lỗi: " + ex, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    }
+            //}
         }
 
         private void btnAdd_Click(object sender, EventArgs e)

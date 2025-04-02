@@ -36,36 +36,36 @@ namespace QLKS
 
         private void InsertRoom()
         {
-            bool isFill = FormNhanVien.CheckFillInText(new Control[] { txtName });
-            if (!isFill)
-            {
-                MessageBox.Show("Không được để trống", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            else
-            {
-                try
-                {
-                    //int idStaff = Convert.ToInt32(datagridviewStaff.SelectedRows[0].Cells["colidStaff"].Value);
-                    int index = cbType.SelectedIndex;
-                    bool check1 = RoomDAO.Instance.InsertRoom(txtName.Text, (int)((DataTable)cbType.DataSource).Rows[index]["idRoomType"], 1);
+            //bool isFill = FormNhanVien.CheckFillInText(new Control[] { txtName });
+            //if (!isFill)
+            //{
+            //    MessageBox.Show("Không được để trống", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    return;
+            //}
+            //else
+            //{
+            //    try
+            //    {
+            //        //int idStaff = Convert.ToInt32(datagridviewStaff.SelectedRows[0].Cells["colidStaff"].Value);
+            //        int index = cbType.SelectedIndex;
+            //        bool check1 = RoomDAO.Instance.InsertRoom(txtName.Text, (int)((DataTable)cbType.DataSource).Rows[index]["idRoomType"], 1);
 
 
-                    if (check1)
-                    {
-                        MessageBox.Show("Thêm phòng thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //        if (check1)
+            //        {
+            //            MessageBox.Show("Thêm phòng thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    }
-                    else
-                    {
-                        MessageBox.Show("Không thể Thêm!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                    }
-                }
-                catch (SqlException ex)
-                {
-                    MessageBox.Show("Lỗi: " + ex, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
+            //        }
+            //        else
+            //        {
+            //            MessageBox.Show("Không thể Thêm!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            //        }
+            //    }
+            //    catch (SqlException ex)
+            //    {
+            //        MessageBox.Show("Lỗi: " + ex, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    }
+            //}
         }
 
         private void btnAdd_Click(object sender, EventArgs e)

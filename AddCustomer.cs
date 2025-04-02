@@ -73,47 +73,47 @@ namespace QLKS
             return account;
         }
 
-        private void InsertCustomer()
-        {
-            bool isFill = FormNhanVien.CheckFillInText(new Control[] { txtName, txtPhone, cbSex });
-            if (!isFill)
-            {
-                MessageBox.Show("Không được để trống", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            else
-            {
-                try
-                {
-                    //int idStaff = Convert.ToInt32(datagridviewStaff.SelectedRows[0].Cells["colidStaff"].Value);
-                    bool check1 = CustomerDAO.Instance.InsertCustomer(GetCustomerNow());
+        //private void InsertCustomer()
+        //{
+        //    bool isFill = FormNhanVien.CheckFillInText(new Control[] { txtName, txtPhone, cbSex });
+        //    if (!isFill)
+        //    {
+        //        MessageBox.Show("Không được để trống", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //        return;
+        //    }
+        //    else
+        //    {
+        //        try
+        //        {
+        //            //int idStaff = Convert.ToInt32(datagridviewStaff.SelectedRows[0].Cells["colidStaff"].Value);
+        //            bool check1 = CustomerDAO.Instance.InsertCustomer(GetCustomerNow());
 
                     
-                    if (check1)
-                    {
-                        MessageBox.Show("Thêm khách hàng thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        //            if (check1)
+        //            {
+        //                MessageBox.Show("Thêm khách hàng thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    }
-                    else
-                    {
-                        MessageBox.Show("Không thể Thêm!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                    }
-                }
-                catch (SqlException ex)
-                {
-                    MessageBox.Show("Lỗi: " + ex, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-        }
+        //            }
+        //            else
+        //            {
+        //                MessageBox.Show("Không thể Thêm!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+        //            }
+        //        }
+        //        catch (SqlException ex)
+        //        {
+        //            MessageBox.Show("Lỗi: " + ex, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //        }
+        //    }
+        //}
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Bạn có muốn thêm khách hàng mới không?", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
-            if (result == DialogResult.OK)
-            {
+            //DialogResult result = MessageBox.Show("Bạn có muốn thêm khách hàng mới không?", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+            //if (result == DialogResult.OK)
+            //{
 
-                InsertCustomer();
-            }
+            //    InsertCustomer();
+            //}
         }
     }
 }

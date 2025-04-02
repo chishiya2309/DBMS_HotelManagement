@@ -51,64 +51,64 @@ namespace QLKS
             {
                 
 
-                bool isFill = FormNhanVien.CheckFillInText(new Control[] { txtSearch });
-                if (!isFill || nudCount.Value == 0 || dgvBookRoom.RowCount == 0)
-                {
-                    MessageBox.Show("Không được để trống", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                else
-                {
-                    try
-                    {
-                        //int idService = Convert.ToInt32(datagridviewStaff.SelectedRows[0].Cells["colidStaff"].Value);
+                //bool isFill = FormNhanVien.CheckFillInText(new Control[] { txtSearch });
+                //if (!isFill || nudCount.Value == 0 || dgvBookRoom.RowCount == 0)
+                //{
+                //    MessageBox.Show("Không được để trống", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //    return;
+                //}
+                //else
+                //{
+                //    try
+                //    {
+                //        //int idService = Convert.ToInt32(datagridviewStaff.SelectedRows[0].Cells["colidStaff"].Value);
 
-                        DataRowView selectedRow = cbService.SelectedItem as DataRowView;
-                        int idService = int.Parse(selectedRow["idService"].ToString());
-                        int idBookRoom = Convert.ToInt32(dgvBookRoom.Rows[0].Cells["dgvIdBookRoom"].Value);
+                //        DataRowView selectedRow = cbService.SelectedItem as DataRowView;
+                //        int idService = int.Parse(selectedRow["idService"].ToString());
+                //        int idBookRoom = Convert.ToInt32(dgvBookRoom.Rows[0].Cells["dgvIdBookRoom"].Value);
 
 
 
-                        foreach (DataGridViewRow item in dgvUsedService.Rows)
-                        {
-                            if (Convert.ToInt32(item.Cells["dgvIdUsedService"].Value) == idService)
-                            {
-                                int count1 = int.Parse(item.Cells["dgvCount"].Value.ToString()) + (int)nudCount.Value;
-                                double totalPrice1 = (double)count1 * double.Parse(item.Cells["dgvServicePrice"].Value.ToString());
-                                bool check2 = UsedServiceInfoDAO.Instance.UpdateUsedService(idService, count1, totalPrice1, idBookRoom);
-                                if (check2)
-                                {
-                                    MessageBox.Show("Đặt dịch vụ thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                    LoadFullUsedService(SearchUsedService());
-                                }
-                                else
-                                {
-                                    MessageBox.Show("Không thể đặt dịch vụ!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                                }
-                                return;
-                            }
-                        }
+                //        foreach (DataGridViewRow item in dgvUsedService.Rows)
+                //        {
+                //            if (Convert.ToInt32(item.Cells["dgvIdUsedService"].Value) == idService)
+                //            {
+                //                int count1 = int.Parse(item.Cells["dgvCount"].Value.ToString()) + (int)nudCount.Value;
+                //                double totalPrice1 = (double)count1 * double.Parse(item.Cells["dgvServicePrice"].Value.ToString());
+                //                bool check2 = UsedServiceInfoDAO.Instance.UpdateUsedService(idService, count1, totalPrice1, idBookRoom);
+                //                if (check2)
+                //                {
+                //                    MessageBox.Show("Đặt dịch vụ thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //                    LoadFullUsedService(SearchUsedService());
+                //                }
+                //                else
+                //                {
+                //                    MessageBox.Show("Không thể đặt dịch vụ!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                //                }
+                //                return;
+                //            }
+                //        }
 
-                        double TotalPrice = double.Parse(txtPrice.Text) * (double)nudCount.Value;
+                //        double TotalPrice = double.Parse(txtPrice.Text) * (double)nudCount.Value;
                         
-                        int count = (int)nudCount.Value;
-                        bool check1 = UsedServiceInfoDAO.Instance.InsertUsedService(idService, count, TotalPrice, idBookRoom);
+                //        int count = (int)nudCount.Value;
+                //        bool check1 = UsedServiceInfoDAO.Instance.InsertUsedService(idService, count, TotalPrice, idBookRoom);
 
-                        if (check1)
-                        {
-                            MessageBox.Show("Đặt dịch vụ thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            LoadFullUsedService(SearchUsedService());
-                        }
-                        else
-                        {
-                            MessageBox.Show("Không thể đặt dịch vụ!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                        }
-                    }
-                    catch (SqlException ex)
-                    {
-                        MessageBox.Show("Lỗi: " + ex, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
+                //        if (check1)
+                //        {
+                //            MessageBox.Show("Đặt dịch vụ thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //            LoadFullUsedService(SearchUsedService());
+                //        }
+                //        else
+                //        {
+                //            MessageBox.Show("Không thể đặt dịch vụ!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                //        }
+                //    }
+                //    catch (SqlException ex)
+                //    {
+                //        MessageBox.Show("Lỗi: " + ex, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //    }
+                //}
             }
         }
 
