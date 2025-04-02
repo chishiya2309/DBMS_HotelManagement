@@ -70,11 +70,11 @@ namespace QLKS
 
         private void LoadFullCustomerType()
         {
-            cbSex.SelectedIndex = 0;
-            DataTable table = GetFullCustomerType();
-            cbType.DataSource = table;
-            cbType.DisplayMember = "typeName";
-            if (table.Rows.Count > 0) cbType.SelectedIndex = 0;
+            //cbSex.SelectedIndex = 0;
+            //DataTable table = GetFullCustomerType();
+            //cbType.DataSource = table;
+            //cbType.DisplayMember = "typeName";
+            //if (table.Rows.Count > 0) cbType.SelectedIndex = 0;
         }
 
         public DataTable SearchCustomer()
@@ -84,12 +84,12 @@ namespace QLKS
 
         public void LoadFullCustomer(DataTable dt)
         {
-            txtCustomerName.Text = dt.Rows[0]["fullname"].ToString();
-            txtAddress.Text = dt.Rows[0]["address"].ToString();
-            txtPhone.Text = dt.Rows[0]["phoneNumber"].ToString();
-            cbSex.Text = dt.Rows[0]["sex"].ToString();
-            cbType.Text = dt.Rows[0]["typeName"].ToString();
-            dtpDoB.Text = dt.Rows[0]["dateofBirth"].ToString();
+            //txtCustomerName.Text = dt.Rows[0]["fullname"].ToString();
+            //txtAddress.Text = dt.Rows[0]["address"].ToString();
+            //txtPhone.Text = dt.Rows[0]["phoneNumber"].ToString();
+            //cbSex.Text = dt.Rows[0]["sex"].ToString();
+            //cbType.Text = dt.Rows[0]["typeName"].ToString();
+            //dtpDoB.Text = dt.Rows[0]["dateofBirth"].ToString();
         }
 
         public DataTable GetBookRoom()
@@ -114,16 +114,16 @@ namespace QLKS
 
 
 
-            int index = cbType.SelectedIndex;
-            int idCustomer = int.Parse(SearchCustomer().Rows[0]["idCustomer"].ToString());
+            //int index = cbType.SelectedIndex;
+            //int idCustomer = int.Parse(SearchCustomer().Rows[0]["idCustomer"].ToString());
 
-            account.DateCheckIn = dtpCheckIn.Value;
-            account.DateCheckOut = dtpCheckOut.Value;
-            account.Status = cbStatus.Text;
-            account.Deposit = double.Parse(txtDeposit.Text);
-            account.IdCustomer = idCustomer;
-            account.IdRoom = (int)((DataTable)cbRoom.DataSource).Rows[index]["idRoom"];
-            account.Days = int.Parse(txtDays.Text);
+            //account.DateCheckIn = dtpCheckIn.Value;
+            //account.DateCheckOut = dtpCheckOut.Value;
+            //account.Status = cbStatus.Text;
+            //account.Deposit = double.Parse(txtDeposit.Text);
+            //account.IdCustomer = idCustomer;
+            //account.IdRoom = (int)((DataTable)cbRoom.DataSource).Rows[index]["idRoom"];
+            //account.Days = int.Parse(txtDays.Text);
             return account;
         }
 
@@ -205,9 +205,9 @@ namespace QLKS
             txtPhone.Enabled = false;
             txtCustomerName.Enabled = false;
             txtDays.Enabled = false;
-            cbSex.Enabled = false;
-            cbType.Enabled = false;
-            dtpDoB.Enabled = false;
+            //cbSex.Enabled = false;
+            //cbType.Enabled = false;
+            //dtpDoB.Enabled = false;
             cbRoom.DropDownStyle = ComboBoxStyle.DropDownList;
             cbRoomType.DropDownStyle = ComboBoxStyle.DropDownList;
             cbStatus.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -379,6 +379,11 @@ namespace QLKS
             txtPhone.Text = "";
             dtpCheckIn.Value = DateTime.Now;
             dtpCheckOut.Value = DateTime.Now;
+        }
+
+        private void guna2GroupBox3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
