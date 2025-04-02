@@ -1,4 +1,8 @@
-﻿namespace QLKS
+﻿using System;
+using System.Drawing;
+using System.Windows.Forms;
+
+namespace QLKS
 {
     partial class FormQuanLyPhong
     {
@@ -7,6 +11,8 @@
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
+
+      
         /// <summary>
         /// Clean up any resources being used.
         /// </summary>
@@ -19,6 +25,22 @@
             }
             base.Dispose(disposing);
         }
+
+        /// </summary>
+        /// Handles form resize to adjust controls proportionally
+        /// </summary>
+       
+
+        /// <summary>
+        /// Helper method to resize controls proportionally
+        /// </summary>
+       
+
+        /// <summary>
+        /// Store original positions and sizes when form loads
+        /// </summary>
+      
+       
 
         #region Windows Form Designer generated code
 
@@ -58,14 +80,14 @@
             this.label9 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dgvRoom = new Guna.UI2.WinForms.Guna2DataGridView();
-            this.dgvIdRoom = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvStatusRoom = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvNameType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvLimit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MaLoaiPhong = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TenLoaiPhong = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DonGia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TienNghi = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SucChua = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.KhaNangKeThemGiuong = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MoTa = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HinhAnh = new System.Windows.Forms.DataGridViewImageColumn();
             this.guna2GroupBox2.SuspendLayout();
             this.guna2GroupBox1.SuspendLayout();
             this.guna2GroupBox5.SuspendLayout();
@@ -436,14 +458,14 @@
             this.dgvRoom.ColumnHeadersHeight = 29;
             this.dgvRoom.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvRoom.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dgvIdRoom,
-            this.dgvName,
-            this.dgvStatusRoom,
-            this.dgvType,
-            this.dgvNameType,
-            this.dgvPrice,
-            this.dgvLimit,
-            this.dgvStatus});
+            this.MaLoaiPhong,
+            this.TenLoaiPhong,
+            this.DonGia,
+            this.TienNghi,
+            this.SucChua,
+            this.KhaNangKeThemGiuong,
+            this.MoTa,
+            this.HinhAnh});
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 10.5F);
@@ -486,91 +508,76 @@
             this.dgvRoom.ThemeStyle.RowsStyle.Height = 22;
             this.dgvRoom.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.dgvRoom.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
+            this.dgvRoom.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRoom_CellContentClick);
             this.dgvRoom.SelectionChanged += new System.EventHandler(this.dgvRoom_SelectionChanged);
             // 
-            // dgvIdRoom
+            // MaLoaiPhong
             // 
-            this.dgvIdRoom.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgvIdRoom.DataPropertyName = "idRoom";
-            this.dgvIdRoom.FillWeight = 123F;
-            this.dgvIdRoom.HeaderText = "Mã Phòng";
-            this.dgvIdRoom.MinimumWidth = 45;
-            this.dgvIdRoom.Name = "dgvIdRoom";
-            this.dgvIdRoom.ReadOnly = true;
-            this.dgvIdRoom.Visible = false;
-            this.dgvIdRoom.Width = 96;
+            this.MaLoaiPhong.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.MaLoaiPhong.DataPropertyName = "MaLoaiPhong";
+            this.MaLoaiPhong.FillWeight = 123F;
+            this.MaLoaiPhong.HeaderText = "Mã loại phòng";
+            this.MaLoaiPhong.MinimumWidth = 45;
+            this.MaLoaiPhong.Name = "MaLoaiPhong";
+            this.MaLoaiPhong.ReadOnly = true;
             // 
-            // dgvName
+            // TenLoaiPhong
             // 
-            this.dgvName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.dgvName.DataPropertyName = "roomname";
-            this.dgvName.HeaderText = "Tên phòng";
-            this.dgvName.MinimumWidth = 6;
-            this.dgvName.Name = "dgvName";
-            this.dgvName.ReadOnly = true;
-            this.dgvName.Width = 90;
+            this.TenLoaiPhong.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.TenLoaiPhong.DataPropertyName = "TenLoaiPhong";
+            this.TenLoaiPhong.HeaderText = "Tên loại phòng";
+            this.TenLoaiPhong.MinimumWidth = 6;
+            this.TenLoaiPhong.Name = "TenLoaiPhong";
+            this.TenLoaiPhong.ReadOnly = true;
             // 
-            // dgvStatusRoom
+            // DonGia
             // 
-            this.dgvStatusRoom.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgvStatusRoom.DataPropertyName = "idStatusRoom";
-            this.dgvStatusRoom.HeaderText = "Mã trạng thái";
-            this.dgvStatusRoom.MinimumWidth = 10;
-            this.dgvStatusRoom.Name = "dgvStatusRoom";
-            this.dgvStatusRoom.ReadOnly = true;
-            this.dgvStatusRoom.Visible = false;
-            this.dgvStatusRoom.Width = 116;
+            this.DonGia.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.DonGia.DataPropertyName = "DonGia";
+            this.DonGia.HeaderText = "Đơn giá";
+            this.DonGia.MinimumWidth = 10;
+            this.DonGia.Name = "DonGia";
+            this.DonGia.ReadOnly = true;
             // 
-            // dgvType
+            // TienNghi
             // 
-            this.dgvType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.dgvType.DataPropertyName = "idRoomType";
-            this.dgvType.HeaderText = "Mã Loại Phòng";
-            this.dgvType.MinimumWidth = 10;
-            this.dgvType.Name = "dgvType";
-            this.dgvType.ReadOnly = true;
-            this.dgvType.Visible = false;
-            this.dgvType.Width = 77;
+            this.TienNghi.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.TienNghi.DataPropertyName = "TienNghi";
+            this.TienNghi.HeaderText = "Tiện nghi";
+            this.TienNghi.MinimumWidth = 10;
+            this.TienNghi.Name = "TienNghi";
+            this.TienNghi.ReadOnly = true;
             // 
-            // dgvNameType
+            // SucChua
             // 
-            this.dgvNameType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgvNameType.DataPropertyName = "typename";
-            this.dgvNameType.HeaderText = "Loại phòng";
-            this.dgvNameType.MinimumWidth = 10;
-            this.dgvNameType.Name = "dgvNameType";
-            this.dgvNameType.ReadOnly = true;
-            this.dgvNameType.Width = 101;
+            this.SucChua.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.SucChua.DataPropertyName = "SucChua";
+            this.SucChua.HeaderText = "Sức chứa";
+            this.SucChua.Name = "SucChua";
+            this.SucChua.ReadOnly = true;
             // 
-            // dgvPrice
+            // KhaNangKeThemGiuong
             // 
-            this.dgvPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgvPrice.DataPropertyName = "price";
-            this.dgvPrice.HeaderText = "Giá";
-            this.dgvPrice.MinimumWidth = 10;
-            this.dgvPrice.Name = "dgvPrice";
-            this.dgvPrice.ReadOnly = true;
-            this.dgvPrice.Width = 52;
+            this.KhaNangKeThemGiuong.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.KhaNangKeThemGiuong.DataPropertyName = "KhaNangKeThemGiuong";
+            this.KhaNangKeThemGiuong.HeaderText = "Khả năng kê thêm giường";
+            this.KhaNangKeThemGiuong.MinimumWidth = 10;
+            this.KhaNangKeThemGiuong.Name = "KhaNangKeThemGiuong";
+            this.KhaNangKeThemGiuong.ReadOnly = true;
             // 
-            // dgvLimit
+            // MoTa
             // 
-            this.dgvLimit.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgvLimit.DataPropertyName = "limit";
-            this.dgvLimit.HeaderText = "Sức chứa";
-            this.dgvLimit.MinimumWidth = 10;
-            this.dgvLimit.Name = "dgvLimit";
-            this.dgvLimit.ReadOnly = true;
-            this.dgvLimit.Width = 86;
+            this.MoTa.DataPropertyName = "MoTa";
+            this.MoTa.HeaderText = "Mô tả";
+            this.MoTa.Name = "MoTa";
+            this.MoTa.ReadOnly = true;
             // 
-            // dgvStatus
+            // HinhAnh
             // 
-            this.dgvStatus.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgvStatus.DataPropertyName = "name";
-            this.dgvStatus.HeaderText = "Trạng thái";
-            this.dgvStatus.MinimumWidth = 10;
-            this.dgvStatus.Name = "dgvStatus";
-            this.dgvStatus.ReadOnly = true;
-            this.dgvStatus.Width = 93;
+            this.HinhAnh.DataPropertyName = "HinhAnh";
+            this.HinhAnh.HeaderText = "Hình ảnh";
+            this.HinhAnh.Name = "HinhAnh";
+            this.HinhAnh.ReadOnly = true;
             // 
             // FormQuanLyPhong
             // 
@@ -585,11 +592,10 @@
             this.Controls.Add(this.guna2GroupBox2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(877, 558);
             this.Name = "FormQuanLyPhong";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FormQuanLyPhong";
+            this.Text = "Quản lý loại phòng khách sạn";
             this.Load += new System.EventHandler(this.FormQuanLyPhong_Load);
             this.guna2GroupBox2.ResumeLayout(false);
             this.guna2GroupBox2.PerformLayout();
@@ -598,6 +604,7 @@
             this.guna2GroupBox5.ResumeLayout(false);
             this.guna2GroupBox3.ResumeLayout(false);
             this.guna2GroupBox3.PerformLayout();
+         
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvRoom)).EndInit();
             this.ResumeLayout(false);
@@ -633,13 +640,13 @@
         private Guna.UI2.WinForms.Guna2CircleButton btnSearch;
         private System.Windows.Forms.Panel panel1;
         private Guna.UI2.WinForms.Guna2DataGridView dgvRoom;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvIdRoom;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvStatusRoom;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvType;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvNameType;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvPrice;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvLimit;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvStatus;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MaLoaiPhong;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TenLoaiPhong;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DonGia;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TienNghi;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SucChua;
+        private System.Windows.Forms.DataGridViewTextBoxColumn KhaNangKeThemGiuong;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MoTa;
+        private System.Windows.Forms.DataGridViewImageColumn HinhAnh;
     }
 }
