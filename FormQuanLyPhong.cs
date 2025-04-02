@@ -249,9 +249,9 @@ namespace QLKS
 
         private void btnInsert_Click(object sender, EventArgs e)
         {
-        //    new AddRoom().ShowDialog();
-        //    LoadFullRoomType();
-        //    LoadFullRoom(GetFullRoom());
+            AddRoom ad = new AddRoom();
+            ad.ShowDialog();
+            LoadRoomData();
         }
 
         private void btnSearch_Click(object sender, EventArgs e)

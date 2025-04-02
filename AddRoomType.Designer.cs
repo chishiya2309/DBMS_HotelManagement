@@ -72,7 +72,7 @@
             this.guna2GroupBox3.Location = new System.Drawing.Point(19, 52);
             this.guna2GroupBox3.Name = "guna2GroupBox3";
             this.guna2GroupBox3.ShadowDecoration.Parent = this.guna2GroupBox3;
-            this.guna2GroupBox3.Size = new System.Drawing.Size(206, 295);
+            this.guna2GroupBox3.Size = new System.Drawing.Size(449, 386);
             this.guna2GroupBox3.TabIndex = 59;
             this.guna2GroupBox3.Text = "Thông tin loại phòng";
             // 
@@ -80,7 +80,7 @@
             // 
             this.txtName.BackColor = System.Drawing.Color.Gainsboro;
             this.txtName.ForeColor = System.Drawing.Color.DarkRed;
-            this.txtName.Location = new System.Drawing.Point(16, 126);
+            this.txtName.Location = new System.Drawing.Point(271, 63);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(163, 29);
             this.txtName.TabIndex = 60;
@@ -90,7 +90,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.DarkRed;
-            this.label2.Location = new System.Drawing.Point(13, 106);
+            this.label2.Location = new System.Drawing.Point(268, 43);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(107, 17);
             this.label2.TabIndex = 59;
@@ -179,7 +179,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(251, 395);
+            this.ClientSize = new System.Drawing.Size(570, 490);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.guna2GroupBox3);
             this.Controls.Add(this.label1);

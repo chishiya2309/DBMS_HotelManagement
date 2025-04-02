@@ -58,7 +58,6 @@ namespace QLKS
             DialogResult result = MessageBox.Show("Bạn có muốn thêm loại phòng mới không?", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
             if (result == DialogResult.OK)
             {
-
                 InsertRoomType();
             }
         }
