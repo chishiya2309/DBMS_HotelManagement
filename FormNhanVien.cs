@@ -22,6 +22,7 @@ namespace QLKS
         {
             InitializeComponent();
             LoadData();
+            txtUser.Enabled = false;
         }
 
         private void LoadData()
@@ -113,43 +114,52 @@ namespace QLKS
         //{
         //    return StaffDAO.Instance.DeleteStaff(id);
         //}
-
+        public bool DeleteStaff(int id)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand("sp_XoaNhanVien", conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@MaNhanVien", id);
+                        cmd.ExecuteNonQuery();
+                        return true;
+                    }
+                }
+                catch (SqlException)
+                {
+                    return false;
+                }
+            }
+        }
         // Delete
         private void guna2CircleButton2_Click(object sender, EventArgs e)
         {
-            //DialogResult result = MessageBox.Show("Bạn chắc chắn xoá nhân viên này?", "Xác nhận", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
-            //if (result == DialogResult.OK)
-            //{
-
-            //    try
-            //    {
-            //        int id = Convert.ToInt32(dgvStaff.CurrentRow.Cells["colidStaff"].Value);
-            //        if (DeleteStaff(id))
-            //        {
-            //            MessageBox.Show("Xoá thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //            LoadFullStaff(GetFullStaff());
-            //        }
-            //        else
-            //        {
-            //            MessageBox.Show("Không thể xoá nhân viên này!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-            //        }
-
-            //    }
-            //    catch (SqlException ex)
-            //    {
-            //        MessageBox.Show("Lỗi: " + ex, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    }
-
-            //}
+            DialogResult result = MessageBox.Show("Bạn chắc chắn xoá nhân viên này?", "Xác nhận", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+            if (result == DialogResult.OK)
+            {
+                try
+                {
+                    int id = Convert.ToInt32(dgvStaff.CurrentRow.Cells["MaNhanVien"].Value);
+                    if (DeleteStaff(id))
+                    {
+                        MessageBox.Show("Xoá thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        LoadData();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Không thể xoá nhân viên này!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi: " + ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
-
-        //internal static void Trim(System.Windows.Forms.TextBox[] textboxes)
-        //{
-        //    for (int i = 0; i < textboxes.Length; i++)
-        //    {
-        //        textboxes[i].Text = textboxes[i].Text.Trim();
-        //    }
-        //}
 
         public static bool CheckFillInText(Control[] controls)
         {

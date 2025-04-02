@@ -60,11 +60,6 @@
             this.txtUser = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.dgvStaff = new Guna.UI2.WinForms.Guna2DataGridView();
-            this.Updatebtn = new Guna.UI2.WinForms.Guna2CircleButton();
-            this.guna2CircleButton1 = new Guna.UI2.WinForms.Guna2CircleButton();
-            this.guna2CircleButton2 = new Guna.UI2.WinForms.Guna2CircleButton();
-            this.guna2CircleButton5 = new Guna.UI2.WinForms.Guna2CircleButton();
-            this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             this.MaNhanVien = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Hoten = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Gioitinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -75,6 +70,11 @@
             this.Sodienthoai = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Ngayvaolam = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Vaitro = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Updatebtn = new Guna.UI2.WinForms.Guna2CircleButton();
+            this.guna2CircleButton1 = new Guna.UI2.WinForms.Guna2CircleButton();
+            this.guna2CircleButton2 = new Guna.UI2.WinForms.Guna2CircleButton();
+            this.guna2CircleButton5 = new Guna.UI2.WinForms.Guna2CircleButton();
+            this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2GroupBox1.SuspendLayout();
             this.guna2GroupBox2.SuspendLayout();
             this.guna2GroupBox3.SuspendLayout();
@@ -118,9 +118,9 @@
             this.label3.ForeColor = System.Drawing.Color.DarkRed;
             this.label3.Location = new System.Drawing.Point(3, 37);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(109, 17);
+            this.label3.Size = new System.Drawing.Size(103, 17);
             this.label3.TabIndex = 3;
-            this.label3.Text = "Tên đăng nhập:";
+            this.label3.Text = "Tên nhân viên:";
             // 
             // txtSearch
             // 
@@ -377,6 +377,9 @@
             // 
             this.cbRole.BackColor = System.Drawing.Color.Gainsboro;
             this.cbRole.FormattingEnabled = true;
+            this.cbRole.Items.AddRange(new object[] {
+            "Quản lý",
+            "Lễ tân"});
             this.cbRole.Location = new System.Drawing.Point(7, 103);
             this.cbRole.Name = "cbRole";
             this.cbRole.Size = new System.Drawing.Size(159, 29);
@@ -505,87 +508,6 @@
             this.dgvStaff.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.dgvStaff.SelectionChanged += new System.EventHandler(this.datagridviewStaff_SelectionChanged);
             // 
-            // Updatebtn
-            // 
-            this.Updatebtn.BackColor = System.Drawing.Color.Transparent;
-            this.Updatebtn.CheckedState.Parent = this.Updatebtn;
-            this.Updatebtn.CustomImages.Parent = this.Updatebtn;
-            this.Updatebtn.FillColor = System.Drawing.Color.Transparent;
-            this.Updatebtn.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.Updatebtn.ForeColor = System.Drawing.Color.DarkRed;
-            this.Updatebtn.HoverState.Parent = this.Updatebtn;
-            this.Updatebtn.Location = new System.Drawing.Point(10, 434);
-            this.Updatebtn.Name = "Updatebtn";
-            this.Updatebtn.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            this.Updatebtn.ShadowDecoration.Parent = this.Updatebtn;
-            this.Updatebtn.Size = new System.Drawing.Size(153, 33);
-            this.Updatebtn.TabIndex = 30;
-            this.Updatebtn.Text = "Cập nhật";
-            this.Updatebtn.Click += new System.EventHandler(this.guna2CircleButton3_Click);
-            // 
-            // guna2CircleButton1
-            // 
-            this.guna2CircleButton1.BackColor = System.Drawing.Color.Transparent;
-            this.guna2CircleButton1.CheckedState.Parent = this.guna2CircleButton1;
-            this.guna2CircleButton1.CustomImages.Parent = this.guna2CircleButton1;
-            this.guna2CircleButton1.FillColor = System.Drawing.Color.Transparent;
-            this.guna2CircleButton1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.guna2CircleButton1.ForeColor = System.Drawing.Color.DarkRed;
-            this.guna2CircleButton1.HoverState.Parent = this.guna2CircleButton1;
-            this.guna2CircleButton1.Location = new System.Drawing.Point(237, 434);
-            this.guna2CircleButton1.Name = "guna2CircleButton1";
-            this.guna2CircleButton1.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            this.guna2CircleButton1.ShadowDecoration.Parent = this.guna2CircleButton1;
-            this.guna2CircleButton1.Size = new System.Drawing.Size(153, 33);
-            this.guna2CircleButton1.TabIndex = 31;
-            this.guna2CircleButton1.Text = "Thêm";
-            this.guna2CircleButton1.Click += new System.EventHandler(this.guna2CircleButton1_Click);
-            // 
-            // guna2CircleButton2
-            // 
-            this.guna2CircleButton2.BackColor = System.Drawing.Color.Transparent;
-            this.guna2CircleButton2.CheckedState.Parent = this.guna2CircleButton2;
-            this.guna2CircleButton2.CustomImages.Parent = this.guna2CircleButton2;
-            this.guna2CircleButton2.FillColor = System.Drawing.Color.Transparent;
-            this.guna2CircleButton2.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.guna2CircleButton2.ForeColor = System.Drawing.Color.DarkRed;
-            this.guna2CircleButton2.HoverState.Parent = this.guna2CircleButton2;
-            this.guna2CircleButton2.Location = new System.Drawing.Point(448, 434);
-            this.guna2CircleButton2.Name = "guna2CircleButton2";
-            this.guna2CircleButton2.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            this.guna2CircleButton2.ShadowDecoration.Parent = this.guna2CircleButton2;
-            this.guna2CircleButton2.Size = new System.Drawing.Size(153, 33);
-            this.guna2CircleButton2.TabIndex = 32;
-            this.guna2CircleButton2.Text = "Xoá";
-            this.guna2CircleButton2.Click += new System.EventHandler(this.guna2CircleButton2_Click);
-            // 
-            // guna2CircleButton5
-            // 
-            this.guna2CircleButton5.BackColor = System.Drawing.Color.Transparent;
-            this.guna2CircleButton5.CheckedState.Parent = this.guna2CircleButton5;
-            this.guna2CircleButton5.CustomImages.Parent = this.guna2CircleButton5;
-            this.guna2CircleButton5.FillColor = System.Drawing.Color.Transparent;
-            this.guna2CircleButton5.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.guna2CircleButton5.ForeColor = System.Drawing.Color.DarkRed;
-            this.guna2CircleButton5.HoverState.Parent = this.guna2CircleButton5;
-            this.guna2CircleButton5.Location = new System.Drawing.Point(655, 434);
-            this.guna2CircleButton5.Name = "guna2CircleButton5";
-            this.guna2CircleButton5.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            this.guna2CircleButton5.ShadowDecoration.Parent = this.guna2CircleButton5;
-            this.guna2CircleButton5.Size = new System.Drawing.Size(153, 33);
-            this.guna2CircleButton5.TabIndex = 33;
-            this.guna2CircleButton5.Text = "Đóng";
-            this.guna2CircleButton5.Click += new System.EventHandler(this.guna2CircleButton5_Click);
-            // 
-            // guna2Panel1
-            // 
-            this.guna2Panel1.Controls.Add(this.dgvStaff);
-            this.guna2Panel1.Location = new System.Drawing.Point(389, 50);
-            this.guna2Panel1.Name = "guna2Panel1";
-            this.guna2Panel1.ShadowDecoration.Parent = this.guna2Panel1;
-            this.guna2Panel1.Size = new System.Drawing.Size(427, 366);
-            this.guna2Panel1.TabIndex = 34;
-            // 
             // MaNhanVien
             // 
             this.MaNhanVien.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
@@ -686,6 +608,87 @@
             this.Vaitro.Name = "Vaitro";
             this.Vaitro.ReadOnly = true;
             this.Vaitro.Width = 72;
+            // 
+            // Updatebtn
+            // 
+            this.Updatebtn.BackColor = System.Drawing.Color.Transparent;
+            this.Updatebtn.CheckedState.Parent = this.Updatebtn;
+            this.Updatebtn.CustomImages.Parent = this.Updatebtn;
+            this.Updatebtn.FillColor = System.Drawing.Color.Transparent;
+            this.Updatebtn.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.Updatebtn.ForeColor = System.Drawing.Color.DarkRed;
+            this.Updatebtn.HoverState.Parent = this.Updatebtn;
+            this.Updatebtn.Location = new System.Drawing.Point(10, 434);
+            this.Updatebtn.Name = "Updatebtn";
+            this.Updatebtn.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            this.Updatebtn.ShadowDecoration.Parent = this.Updatebtn;
+            this.Updatebtn.Size = new System.Drawing.Size(153, 33);
+            this.Updatebtn.TabIndex = 30;
+            this.Updatebtn.Text = "Cập nhật";
+            this.Updatebtn.Click += new System.EventHandler(this.guna2CircleButton3_Click);
+            // 
+            // guna2CircleButton1
+            // 
+            this.guna2CircleButton1.BackColor = System.Drawing.Color.Transparent;
+            this.guna2CircleButton1.CheckedState.Parent = this.guna2CircleButton1;
+            this.guna2CircleButton1.CustomImages.Parent = this.guna2CircleButton1;
+            this.guna2CircleButton1.FillColor = System.Drawing.Color.Transparent;
+            this.guna2CircleButton1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.guna2CircleButton1.ForeColor = System.Drawing.Color.DarkRed;
+            this.guna2CircleButton1.HoverState.Parent = this.guna2CircleButton1;
+            this.guna2CircleButton1.Location = new System.Drawing.Point(237, 434);
+            this.guna2CircleButton1.Name = "guna2CircleButton1";
+            this.guna2CircleButton1.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            this.guna2CircleButton1.ShadowDecoration.Parent = this.guna2CircleButton1;
+            this.guna2CircleButton1.Size = new System.Drawing.Size(153, 33);
+            this.guna2CircleButton1.TabIndex = 31;
+            this.guna2CircleButton1.Text = "Thêm";
+            this.guna2CircleButton1.Click += new System.EventHandler(this.guna2CircleButton1_Click);
+            // 
+            // guna2CircleButton2
+            // 
+            this.guna2CircleButton2.BackColor = System.Drawing.Color.Transparent;
+            this.guna2CircleButton2.CheckedState.Parent = this.guna2CircleButton2;
+            this.guna2CircleButton2.CustomImages.Parent = this.guna2CircleButton2;
+            this.guna2CircleButton2.FillColor = System.Drawing.Color.Transparent;
+            this.guna2CircleButton2.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.guna2CircleButton2.ForeColor = System.Drawing.Color.DarkRed;
+            this.guna2CircleButton2.HoverState.Parent = this.guna2CircleButton2;
+            this.guna2CircleButton2.Location = new System.Drawing.Point(448, 434);
+            this.guna2CircleButton2.Name = "guna2CircleButton2";
+            this.guna2CircleButton2.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            this.guna2CircleButton2.ShadowDecoration.Parent = this.guna2CircleButton2;
+            this.guna2CircleButton2.Size = new System.Drawing.Size(153, 33);
+            this.guna2CircleButton2.TabIndex = 32;
+            this.guna2CircleButton2.Text = "Xoá";
+            this.guna2CircleButton2.Click += new System.EventHandler(this.guna2CircleButton2_Click);
+            // 
+            // guna2CircleButton5
+            // 
+            this.guna2CircleButton5.BackColor = System.Drawing.Color.Transparent;
+            this.guna2CircleButton5.CheckedState.Parent = this.guna2CircleButton5;
+            this.guna2CircleButton5.CustomImages.Parent = this.guna2CircleButton5;
+            this.guna2CircleButton5.FillColor = System.Drawing.Color.Transparent;
+            this.guna2CircleButton5.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.guna2CircleButton5.ForeColor = System.Drawing.Color.DarkRed;
+            this.guna2CircleButton5.HoverState.Parent = this.guna2CircleButton5;
+            this.guna2CircleButton5.Location = new System.Drawing.Point(655, 434);
+            this.guna2CircleButton5.Name = "guna2CircleButton5";
+            this.guna2CircleButton5.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            this.guna2CircleButton5.ShadowDecoration.Parent = this.guna2CircleButton5;
+            this.guna2CircleButton5.Size = new System.Drawing.Size(153, 33);
+            this.guna2CircleButton5.TabIndex = 33;
+            this.guna2CircleButton5.Text = "Đóng";
+            this.guna2CircleButton5.Click += new System.EventHandler(this.guna2CircleButton5_Click);
+            // 
+            // guna2Panel1
+            // 
+            this.guna2Panel1.Controls.Add(this.dgvStaff);
+            this.guna2Panel1.Location = new System.Drawing.Point(389, 50);
+            this.guna2Panel1.Name = "guna2Panel1";
+            this.guna2Panel1.ShadowDecoration.Parent = this.guna2Panel1;
+            this.guna2Panel1.Size = new System.Drawing.Size(427, 366);
+            this.guna2Panel1.TabIndex = 34;
             // 
             // FormNhanVien
             // 
