@@ -22,7 +22,7 @@ namespace QLKS
             //LoadFullRoomStatus();
             // LoadFullRoomType();
             ConfigureDataGridView();
-            LoadRoomTypeData();
+            LoadRoomData();
         }
 
         private void guna2CircleButton3_Click(object sender, EventArgs e)
@@ -297,10 +297,10 @@ namespace QLKS
         }
 
         // When binding data to the DataGridView, make sure all properties are included
-        private void LoadRoomTypeData()
+        private void LoadRoomData()
         {
-            string query = @"SELECT * FROM LoaiPhong";
-
+            string query = @"SELECT p.*, lp.TenLoaiPhong, lp.SucChua, lp.DonGia
+                                FROM Phong p INNER JOIN LoaiPhong lp ON p.MaLoaiPhong = lp.MaLoaiPhong";
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 try
