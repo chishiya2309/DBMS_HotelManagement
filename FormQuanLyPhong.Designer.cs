@@ -89,6 +89,7 @@ namespace QLKS
             this.TenLoaiPhong = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SucChua = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DonGia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HinhAnh = new System.Windows.Forms.DataGridViewImageColumn();
             this.guna2GroupBox2.SuspendLayout();
             this.guna2GroupBox1.SuspendLayout();
             this.guna2GroupBox5.SuspendLayout();
@@ -467,7 +468,8 @@ namespace QLKS
             this.TrangThai,
             this.TenLoaiPhong,
             this.SucChua,
-            this.DonGia});
+            this.DonGia,
+            this.HinhAnh});
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 10.5F);
@@ -600,6 +602,16 @@ namespace QLKS
             this.DonGia.ReadOnly = true;
             this.DonGia.Width = 80;
             // 
+            // HinhAnh
+            // 
+            this.HinhAnh.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.HinhAnh.DataPropertyName = "HinhAnh";
+            this.HinhAnh.HeaderText = "Hình ảnh";
+            this.HinhAnh.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.HinhAnh.Name = "HinhAnh";
+            this.HinhAnh.ReadOnly = true;
+            this.HinhAnh.Width = 69;
+            // 
             // FormQuanLyPhong
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -669,5 +681,6 @@ namespace QLKS
         private DataGridViewTextBoxColumn TenLoaiPhong;
         private DataGridViewTextBoxColumn SucChua;
         private DataGridViewTextBoxColumn DonGia;
+        private DataGridViewImageColumn HinhAnh;
     }
 }

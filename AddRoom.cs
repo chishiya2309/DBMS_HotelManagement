@@ -58,7 +58,7 @@ namespace QLKS
                     cmdRoom.Parameters.AddWithValue("@idRoomType", maLoaiPhong);
                     cmdRoom.ExecuteNonQuery();
 
-                    MessageBox.Show("Thêm nhân viên thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Thêm phòng mới thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     ClearForm();
                 }
             }
