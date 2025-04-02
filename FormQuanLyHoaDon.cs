@@ -161,5 +161,10 @@ namespace QLKS
         {
 
         }
+
+        private void txtSearch_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
     }
 }
