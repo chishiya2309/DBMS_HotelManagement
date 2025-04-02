@@ -127,10 +127,10 @@ namespace QLKS
                     {
                         DataTable dt = new DataTable();
                         adapter.Fill(dt);
-                        cbRoomType.DataSource = dt;
-                        cbRoomType.DisplayMember = "TenLoaiPhong";
-                        cbRoomType.ValueMember = "MaLoaiPhong";
-                        cbRoomType.SelectedIndex = 0;
+                        cbRoom.DataSource = dt;
+                        cbRoom.DisplayMember = "TenLoaiPhong";
+                        cbRoom.ValueMember = "MaLoaiPhong";
+                        cbRoom.SelectedIndex = 0;
                     }
                 }
                 catch (Exception ex)
@@ -157,7 +157,7 @@ namespace QLKS
 
         public DataTable SearchCustomer()
         {
-            return CustomerDAO.Instance.Search(txtSearch.Text, 2);
+            return CustomerDAO.Instance.Search(txtSearchPhone.Text, 2);
         }
 
         public void LoadFullCustomer(DataTable dt)
@@ -247,19 +247,11 @@ namespace QLKS
             return RoomTypeDAO.Instance.LoadFullRoomType();
         }
 
-        private void LoadFullRoomType()
-        {
-           
-            DataTable table = GetFullRoomType();
-            cbRoomType.DataSource = table;
-            cbRoomType.DisplayMember = "typename";
-            if (table.Rows.Count > 0) cbRoomType.SelectedIndex = 0;
-        }
 
         public DataTable SearchAvailableRoom()
         {
-            int index = cbRoomType.SelectedIndex;
-            int id = (int)((DataTable)cbRoomType.DataSource).Rows[index]["idRoomType"];
+            int index = cbRoom.SelectedIndex;
+            int id = (int)((DataTable)cbRoom.DataSource).Rows[index]["idRoomType"];
             return RoomDAO.Instance.LoadAllEmptyRoom(id);
         }
 
