@@ -147,8 +147,8 @@ namespace QLKS
 
         private void btnInsert_Click(object sender, EventArgs e)
         {
-            //new AddCustomer().ShowDialog();
-            //LoadFullCustomer(GetFullCustomer());
+            new AddCustomer().ShowDialog();
+            LoadCusData();
         }
 
        
