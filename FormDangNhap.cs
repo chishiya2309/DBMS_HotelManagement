@@ -15,6 +15,7 @@ namespace QLKS
 {
     public partial class FormDangNhap : Form
     {
+        private string connectionString = "Data Source=(local)\\SQLExpress;Initial Catalog=Hotel2025;Integrated Security=True";
         public FormDangNhap()
         {
             InitializeComponent();
@@ -48,7 +49,7 @@ namespace QLKS
                 return;
             }
 
-            string connectionString = "Data Source=(local)\\SQLExpress;Initial Catalog=Hotel2025;Integrated Security=True";
+           
             string query = "SELECT MaNhanVien FROM TaiKhoan WHERE TenDangNhap = @username AND MatKhau = @password";
 
             using (SqlConnection conn = new SqlConnection(connectionString))
@@ -92,6 +93,11 @@ namespace QLKS
                 btnLogin.PerformClick();
                 e.SuppressKeyPress = true; // Ngăn chặn âm thanh "ding" khi nhấn Enter
             }
+        }
+
+        private void FormDangNhap_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
