@@ -177,7 +177,7 @@ namespace QLKS
         //    //Trim(new System.Windows.Forms.TextBox[] { txtName, txtAddress });
 
 
-            
+
         //    int index = cbRole.SelectedIndex;
         //    account.IdStaff = id;
         //    account.IdRole = (int)((DataTable)cbRole.DataSource).Rows[index]["idRole"];
@@ -192,15 +192,15 @@ namespace QLKS
         //    return account;
         //}
 
-        //public static bool CheckFillInText(Control[] controls)
-        //{
-        //    foreach (var control in controls)
-        //    {
-        //        if (control.Text == string.Empty)
-        //            return false;
-        //    }
-        //    return true;
-        //}
+        public static bool CheckFillInText(Control[] controls)
+        {
+            foreach (var control in controls)
+            {
+                if (control.Text == string.Empty)
+                    return false;
+            }
+            return true;
+        }
 
         //private void UpdateStaff()
         //{
@@ -216,7 +216,7 @@ namespace QLKS
         //        {
         //            int idStaff = Convert.ToInt32(dgvStaff.SelectedRows[0].Cells["colidStaff"].Value);
         //            bool check1 = StaffDAO.Instance.UpdateStaff(GetStaffNow(idStaff));
-                    
+
         //            bool check2 = AccountDAO.Instance.UpdateUsername(txtUser.Text, idStaff);
         //            if (check1 && check2)
         //            {
@@ -262,8 +262,10 @@ namespace QLKS
         // Insert
         private void guna2CircleButton1_Click(object sender, EventArgs e)
         {
-            //new AddStaff().ShowDialog();
-            //LoadFullStaff(GetFullStaff());
+            AddStaff addStaff = new AddStaff();
+            addStaff.ShowDialog();
+            // Luôn tải lại dữ liệu khi form AddStaff đóng
+            LoadData();
         }
 
         private void FormNhanVien_Load(object sender, EventArgs e)
