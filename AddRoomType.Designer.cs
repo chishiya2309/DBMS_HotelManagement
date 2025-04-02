@@ -30,6 +30,7 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.guna2GroupBox3 = new Guna.UI2.WinForms.Guna2GroupBox();
+            this.lblImageName = new System.Windows.Forms.Label();
             this.btnChooseImage = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -48,7 +49,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.lblImageName = new System.Windows.Forms.Label();
+            this.btnHuy = new Guna.UI2.WinForms.Guna2CircleButton();
             this.guna2GroupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSucChua)).BeginInit();
@@ -69,6 +70,7 @@
             // 
             this.guna2GroupBox3.BackColor = System.Drawing.Color.Transparent;
             this.guna2GroupBox3.BorderColor = System.Drawing.Color.Silver;
+            this.guna2GroupBox3.Controls.Add(this.btnHuy);
             this.guna2GroupBox3.Controls.Add(this.lblImageName);
             this.guna2GroupBox3.Controls.Add(this.btnChooseImage);
             this.guna2GroupBox3.Controls.Add(this.pictureBox1);
@@ -98,6 +100,17 @@
             this.guna2GroupBox3.TabIndex = 59;
             this.guna2GroupBox3.Text = "Thông tin loại phòng";
             // 
+            // lblImageName
+            // 
+            this.lblImageName.AutoSize = true;
+            this.lblImageName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblImageName.ForeColor = System.Drawing.Color.DarkRed;
+            this.lblImageName.Location = new System.Drawing.Point(232, 269);
+            this.lblImageName.Name = "lblImageName";
+            this.lblImageName.Size = new System.Drawing.Size(65, 17);
+            this.lblImageName.TabIndex = 71;
+            this.lblImageName.Text = "Hình ảnh";
+            // 
             // btnChooseImage
             // 
             this.btnChooseImage.BackColor = System.Drawing.Color.Transparent;
@@ -106,7 +119,7 @@
             this.btnChooseImage.Location = new System.Drawing.Point(235, 389);
             this.btnChooseImage.Name = "btnChooseImage";
             this.btnChooseImage.Size = new System.Drawing.Size(163, 33);
-            this.btnChooseImage.TabIndex = 70;
+            this.btnChooseImage.TabIndex = 8;
             this.btnChooseImage.Text = "Chọn ảnh";
             this.btnChooseImage.UseVisualStyleBackColor = false;
             this.btnChooseImage.Click += new System.EventHandler(this.btnChooseImage_Click);
@@ -129,7 +142,7 @@
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(163, 91);
-            this.textBox2.TabIndex = 68;
+            this.textBox2.TabIndex = 7;
             // 
             // checkBox1
             // 
@@ -137,7 +150,7 @@
             this.checkBox1.Location = new System.Drawing.Point(16, 236);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(227, 25);
-            this.checkBox1.TabIndex = 67;
+            this.checkBox1.TabIndex = 6;
             this.checkBox1.Text = "Khả năng kê thêm giường";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
@@ -166,7 +179,7 @@
             0});
             this.nudSucChua.Name = "nudSucChua";
             this.nudSucChua.Size = new System.Drawing.Size(163, 29);
-            this.nudSucChua.TabIndex = 65;
+            this.nudSucChua.TabIndex = 4;
             this.nudSucChua.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.nudSucChua.Value = new decimal(new int[] {
             1,
@@ -183,12 +196,12 @@
             this.btnAdd.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.btnAdd.ForeColor = System.Drawing.Color.DarkRed;
             this.btnAdd.HoverState.Parent = this.btnAdd;
-            this.btnAdd.Location = new System.Drawing.Point(128, 446);
+            this.btnAdd.Location = new System.Drawing.Point(16, 449);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             this.btnAdd.ShadowDecoration.Parent = this.btnAdd;
             this.btnAdd.Size = new System.Drawing.Size(153, 33);
-            this.btnAdd.TabIndex = 60;
+            this.btnAdd.TabIndex = 9;
             this.btnAdd.Text = "Thêm";
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
@@ -200,7 +213,7 @@
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(163, 91);
-            this.textBox1.TabIndex = 64;
+            this.textBox1.TabIndex = 5;
             // 
             // label4
             // 
@@ -220,7 +233,7 @@
             this.txtDonGia.Location = new System.Drawing.Point(16, 125);
             this.txtDonGia.Name = "txtDonGia";
             this.txtDonGia.Size = new System.Drawing.Size(163, 29);
-            this.txtDonGia.TabIndex = 62;
+            this.txtDonGia.TabIndex = 3;
             // 
             // label3
             // 
@@ -240,7 +253,7 @@
             this.txtTenLoaiPhong.Location = new System.Drawing.Point(235, 63);
             this.txtTenLoaiPhong.Name = "txtTenLoaiPhong";
             this.txtTenLoaiPhong.Size = new System.Drawing.Size(163, 29);
-            this.txtTenLoaiPhong.TabIndex = 60;
+            this.txtTenLoaiPhong.TabIndex = 1;
             // 
             // label2
             // 
@@ -260,7 +273,7 @@
             this.txtMaLoaiPhong.Location = new System.Drawing.Point(16, 63);
             this.txtMaLoaiPhong.Name = "txtMaLoaiPhong";
             this.txtMaLoaiPhong.Size = new System.Drawing.Size(163, 29);
-            this.txtMaLoaiPhong.TabIndex = 58;
+            this.txtMaLoaiPhong.TabIndex = 0;
             // 
             // label6
             // 
@@ -295,20 +308,23 @@
             this.label9.TabIndex = 51;
             this.label9.Text = "Mã loại phòng:";
             // 
-            // openFileDialog1
+            // btnHuy
             // 
-
-            // 
-            // lblImageName
-            // 
-            this.lblImageName.AutoSize = true;
-            this.lblImageName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblImageName.ForeColor = System.Drawing.Color.DarkRed;
-            this.lblImageName.Location = new System.Drawing.Point(232, 269);
-            this.lblImageName.Name = "lblImageName";
-            this.lblImageName.Size = new System.Drawing.Size(65, 17);
-            this.lblImageName.TabIndex = 71;
-            this.lblImageName.Text = "Hình ảnh";
+            this.btnHuy.BackColor = System.Drawing.Color.Transparent;
+            this.btnHuy.CheckedState.Parent = this.btnHuy;
+            this.btnHuy.CustomImages.Parent = this.btnHuy;
+            this.btnHuy.FillColor = System.Drawing.Color.Transparent;
+            this.btnHuy.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnHuy.ForeColor = System.Drawing.Color.DarkRed;
+            this.btnHuy.HoverState.Parent = this.btnHuy;
+            this.btnHuy.Location = new System.Drawing.Point(235, 446);
+            this.btnHuy.Name = "btnHuy";
+            this.btnHuy.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            this.btnHuy.ShadowDecoration.Parent = this.btnHuy;
+            this.btnHuy.Size = new System.Drawing.Size(163, 33);
+            this.btnHuy.TabIndex = 10;
+            this.btnHuy.Text = "Hủy";
+            this.btnHuy.Click += new System.EventHandler(this.btnHuy_Click);
             // 
             // AddRoomType
             // 
@@ -355,5 +371,6 @@
         private System.Windows.Forms.Button btnChooseImage;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lblImageName;
+        private Guna.UI2.WinForms.Guna2CircleButton btnHuy;
     }
 }

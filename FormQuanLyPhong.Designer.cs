@@ -60,8 +60,8 @@ namespace QLKS
             this.cbStatusSearch = new System.Windows.Forms.ComboBox();
             this.label16 = new System.Windows.Forms.Label();
             this.guna2GroupBox1 = new Guna.UI2.WinForms.Guna2GroupBox();
-            this.txtIDroom = new System.Windows.Forms.TextBox();
-            this.txtName = new System.Windows.Forms.TextBox();
+            this.txtMaPhong = new System.Windows.Forms.TextBox();
+            this.txtTenPhong = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.cbStatus = new System.Windows.Forms.ComboBox();
@@ -177,8 +177,8 @@ namespace QLKS
             // 
             this.guna2GroupBox1.BackColor = System.Drawing.Color.Transparent;
             this.guna2GroupBox1.BorderColor = System.Drawing.Color.Silver;
-            this.guna2GroupBox1.Controls.Add(this.txtIDroom);
-            this.guna2GroupBox1.Controls.Add(this.txtName);
+            this.guna2GroupBox1.Controls.Add(this.txtMaPhong);
+            this.guna2GroupBox1.Controls.Add(this.txtTenPhong);
             this.guna2GroupBox1.Controls.Add(this.label5);
             this.guna2GroupBox1.Controls.Add(this.label4);
             this.guna2GroupBox1.Controls.Add(this.cbStatus);
@@ -194,23 +194,23 @@ namespace QLKS
             this.guna2GroupBox1.TabIndex = 33;
             this.guna2GroupBox1.Text = "Thông tin phòng";
             // 
-            // txtIDroom
+            // txtMaPhong
             // 
-            this.txtIDroom.BackColor = System.Drawing.Color.Gainsboro;
-            this.txtIDroom.ForeColor = System.Drawing.Color.DarkRed;
-            this.txtIDroom.Location = new System.Drawing.Point(16, 64);
-            this.txtIDroom.Name = "txtIDroom";
-            this.txtIDroom.Size = new System.Drawing.Size(163, 29);
-            this.txtIDroom.TabIndex = 57;
+            this.txtMaPhong.BackColor = System.Drawing.Color.Gainsboro;
+            this.txtMaPhong.ForeColor = System.Drawing.Color.DarkRed;
+            this.txtMaPhong.Location = new System.Drawing.Point(16, 64);
+            this.txtMaPhong.Name = "txtMaPhong";
+            this.txtMaPhong.Size = new System.Drawing.Size(163, 29);
+            this.txtMaPhong.TabIndex = 57;
             // 
-            // txtName
+            // txtTenPhong
             // 
-            this.txtName.BackColor = System.Drawing.Color.Gainsboro;
-            this.txtName.ForeColor = System.Drawing.Color.DarkRed;
-            this.txtName.Location = new System.Drawing.Point(16, 119);
-            this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(163, 29);
-            this.txtName.TabIndex = 56;
+            this.txtTenPhong.BackColor = System.Drawing.Color.Gainsboro;
+            this.txtTenPhong.ForeColor = System.Drawing.Color.DarkRed;
+            this.txtTenPhong.Location = new System.Drawing.Point(16, 119);
+            this.txtTenPhong.Name = "txtTenPhong";
+            this.txtTenPhong.Size = new System.Drawing.Size(163, 29);
+            this.txtTenPhong.TabIndex = 56;
             // 
             // label5
             // 
@@ -238,6 +238,10 @@ namespace QLKS
             // 
             this.cbStatus.BackColor = System.Drawing.Color.Gainsboro;
             this.cbStatus.FormattingEnabled = true;
+            this.cbStatus.Items.AddRange(new object[] {
+            "Trống",
+            "Đang cho thuê",
+            "Đang sửa"});
             this.cbStatus.Location = new System.Drawing.Point(16, 179);
             this.cbStatus.Name = "cbStatus";
             this.cbStatus.Size = new System.Drawing.Size(163, 29);
@@ -415,6 +419,7 @@ namespace QLKS
             this.cbType.Name = "cbType";
             this.cbType.Size = new System.Drawing.Size(163, 29);
             this.cbType.TabIndex = 54;
+            this.cbType.SelectedIndexChanged += new System.EventHandler(this.cbType_SelectedIndexChanged);
             // 
             // label9
             // 
@@ -520,11 +525,11 @@ namespace QLKS
             this.MaPhong.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.MaPhong.DataPropertyName = "MaPhong";
             this.MaPhong.FillWeight = 123F;
-            this.MaPhong.HeaderText = "Mã loại phòng";
+            this.MaPhong.HeaderText = "Mã phòng";
             this.MaPhong.MinimumWidth = 45;
             this.MaPhong.Name = "MaPhong";
             this.MaPhong.ReadOnly = true;
-            this.MaPhong.Width = 121;
+            this.MaPhong.Width = 96;
             // 
             // TenPhong
             // 
@@ -660,8 +665,8 @@ namespace QLKS
         private Guna.UI2.WinForms.Guna2CircleButton btnClose;
         private Guna.UI2.WinForms.Guna2CircleButton btnUpdate;
         private Guna.UI2.WinForms.Guna2CircleButton btnInsert;
-        private System.Windows.Forms.TextBox txtName;
-        private System.Windows.Forms.TextBox txtIDroom;
+        private System.Windows.Forms.TextBox txtTenPhong;
+        private System.Windows.Forms.TextBox txtMaPhong;
         private Guna.UI2.WinForms.Guna2GroupBox guna2GroupBox3;
         private System.Windows.Forms.TextBox txtPrice;
         private System.Windows.Forms.TextBox txtLimit;
