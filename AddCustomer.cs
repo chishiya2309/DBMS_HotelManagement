@@ -94,7 +94,7 @@ namespace QLKS
                     cmdCus.ExecuteNonQuery();
 
                     MessageBox.Show("Thêm khách hàng mới thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                   
+                    ClearForm();
                 }
             }
             catch (SqlException ex)
@@ -105,6 +105,15 @@ namespace QLKS
             {
                 MessageBox.Show("Lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void ClearForm()
+        {
+            txtHoten.ResetText();
+            txtAddress.ResetText();
+            txtIDNum.ResetText();
+            txtEmail.ResetText();
+            txtPhone.ResetText();
         }
 
         private bool ValidateInputs()

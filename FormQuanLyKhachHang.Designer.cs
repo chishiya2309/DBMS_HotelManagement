@@ -71,6 +71,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.btnSearch = new Guna.UI2.WinForms.Guna2CircleButton();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.cmbTrangThai = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCustomer)).BeginInit();
             this.guna2GroupBox2.SuspendLayout();
             this.guna2GroupBox1.SuspendLayout();
@@ -86,7 +88,7 @@
             this.btnClose.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.btnClose.ForeColor = System.Drawing.Color.DarkRed;
             this.btnClose.HoverState.Parent = this.btnClose;
-            this.btnClose.Location = new System.Drawing.Point(658, 451);
+            this.btnClose.Location = new System.Drawing.Point(672, 479);
             this.btnClose.Name = "btnClose";
             this.btnClose.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             this.btnClose.ShadowDecoration.Parent = this.btnClose;
@@ -104,7 +106,7 @@
             this.btnDelete.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.btnDelete.ForeColor = System.Drawing.Color.DarkRed;
             this.btnDelete.HoverState.Parent = this.btnDelete;
-            this.btnDelete.Location = new System.Drawing.Point(438, 451);
+            this.btnDelete.Location = new System.Drawing.Point(473, 479);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             this.btnDelete.ShadowDecoration.Parent = this.btnDelete;
@@ -122,7 +124,7 @@
             this.btnInsert.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.btnInsert.ForeColor = System.Drawing.Color.DarkRed;
             this.btnInsert.HoverState.Parent = this.btnInsert;
-            this.btnInsert.Location = new System.Drawing.Point(211, 451);
+            this.btnInsert.Location = new System.Drawing.Point(246, 479);
             this.btnInsert.Name = "btnInsert";
             this.btnInsert.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             this.btnInsert.ShadowDecoration.Parent = this.btnInsert;
@@ -140,7 +142,7 @@
             this.btnUpdate.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.btnUpdate.ForeColor = System.Drawing.Color.DarkRed;
             this.btnUpdate.HoverState.Parent = this.btnUpdate;
-            this.btnUpdate.Location = new System.Drawing.Point(0, 451);
+            this.btnUpdate.Location = new System.Drawing.Point(12, 479);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             this.btnUpdate.ShadowDecoration.Parent = this.btnUpdate;
@@ -325,6 +327,8 @@
             // 
             this.guna2GroupBox2.BackColor = System.Drawing.Color.Transparent;
             this.guna2GroupBox2.BorderColor = System.Drawing.Color.Silver;
+            this.guna2GroupBox2.Controls.Add(this.cmbTrangThai);
+            this.guna2GroupBox2.Controls.Add(this.label5);
             this.guna2GroupBox2.Controls.Add(this.txtEmail);
             this.guna2GroupBox2.Controls.Add(this.lbEmail);
             this.guna2GroupBox2.Controls.Add(this.cbType);
@@ -345,10 +349,10 @@
             this.guna2GroupBox2.FillColor = System.Drawing.Color.Transparent;
             this.guna2GroupBox2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.guna2GroupBox2.ForeColor = System.Drawing.Color.DarkRed;
-            this.guna2GroupBox2.Location = new System.Drawing.Point(12, 170);
+            this.guna2GroupBox2.Location = new System.Drawing.Point(12, 159);
             this.guna2GroupBox2.Name = "guna2GroupBox2";
             this.guna2GroupBox2.ShadowDecoration.Parent = this.guna2GroupBox2;
-            this.guna2GroupBox2.Size = new System.Drawing.Size(366, 267);
+            this.guna2GroupBox2.Size = new System.Drawing.Size(366, 308);
             this.guna2GroupBox2.TabIndex = 36;
             this.guna2GroupBox2.Text = "Thông tin khách hàng";
             // 
@@ -627,13 +631,37 @@
             this.panel1.Size = new System.Drawing.Size(445, 385);
             this.panel1.TabIndex = 43;
             // 
+            // cmbTrangThai
+            // 
+            this.cmbTrangThai.BackColor = System.Drawing.Color.Gainsboro;
+            this.cmbTrangThai.FormattingEnabled = true;
+            this.cmbTrangThai.Items.AddRange(new object[] {
+            "Chính thức",
+            "Chưa chính thức"});
+            this.cmbTrangThai.Location = new System.Drawing.Point(197, 268);
+            this.cmbTrangThai.Name = "cmbTrangThai";
+            this.cmbTrangThai.Size = new System.Drawing.Size(150, 29);
+            this.cmbTrangThai.TabIndex = 46;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.Transparent;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.DarkRed;
+            this.label5.Location = new System.Drawing.Point(15, 268);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(145, 17);
+            this.label5.TabIndex = 45;
+            this.label5.Text = "Trạng thái đặt phòng:";
+            // 
             // FormQuanLyKhachHang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(837, 491);
+            this.ClientSize = new System.Drawing.Size(837, 524);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnDelete);
@@ -701,5 +729,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Diachi;
         private System.Windows.Forms.DataGridViewTextBoxColumn LoaiKhachHang;
         private System.Windows.Forms.DataGridViewTextBoxColumn TinhTrangDatPhong;
+        private System.Windows.Forms.ComboBox cmbTrangThai;
+        private System.Windows.Forms.Label label5;
     }
 }
