@@ -86,7 +86,6 @@ namespace QLKS
             this.LoaiGiuong = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.KhuVuc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TrangThai = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MaLoaiPhong = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TenLoaiPhong = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SucChua = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DonGia = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -466,7 +465,6 @@ namespace QLKS
             this.LoaiGiuong,
             this.KhuVuc,
             this.TrangThai,
-            this.MaLoaiPhong,
             this.TenLoaiPhong,
             this.SucChua,
             this.DonGia});
@@ -575,23 +573,14 @@ namespace QLKS
             this.TrangThai.ReadOnly = true;
             this.TrangThai.Width = 93;
             // 
-            // MaLoaiPhong
-            // 
-            this.MaLoaiPhong.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.MaLoaiPhong.DataPropertyName = "MaLoaiPhong";
-            this.MaLoaiPhong.HeaderText = "Mã loại phòng";
-            this.MaLoaiPhong.Name = "MaLoaiPhong";
-            this.MaLoaiPhong.ReadOnly = true;
-            this.MaLoaiPhong.Width = 121;
-            // 
             // TenLoaiPhong
             // 
             this.TenLoaiPhong.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.TenLoaiPhong.DataPropertyName = "TenLoaiPhong";
-            this.TenLoaiPhong.HeaderText = "Tên loại phòng";
+            this.TenLoaiPhong.HeaderText = "Loại phòng";
             this.TenLoaiPhong.Name = "TenLoaiPhong";
             this.TenLoaiPhong.ReadOnly = true;
-            this.TenLoaiPhong.Width = 122;
+            this.TenLoaiPhong.Width = 101;
             // 
             // SucChua
             // 
@@ -677,7 +666,6 @@ namespace QLKS
         private DataGridViewTextBoxColumn LoaiGiuong;
         private DataGridViewTextBoxColumn KhuVuc;
         private DataGridViewTextBoxColumn TrangThai;
-        private DataGridViewTextBoxColumn MaLoaiPhong;
         private DataGridViewTextBoxColumn TenLoaiPhong;
         private DataGridViewTextBoxColumn SucChua;
         private DataGridViewTextBoxColumn DonGia;
