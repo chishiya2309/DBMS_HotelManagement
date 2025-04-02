@@ -299,7 +299,7 @@ namespace QLKS
         // When binding data to the DataGridView, make sure all properties are included
         private void LoadRoomData()
         {
-            string query = @"SELECT p.*, lp.TenLoaiPhong, lp.SucChua, lp.DonGia
+            string query = @"SELECT p.*, lp.TenLoaiPhong, lp.SucChua, lp.DonGia, lp.HinhAnh
                                 FROM Phong p INNER JOIN LoaiPhong lp ON p.MaLoaiPhong = lp.MaLoaiPhong";
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
