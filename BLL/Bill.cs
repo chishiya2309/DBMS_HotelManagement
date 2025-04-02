@@ -18,10 +18,8 @@ namespace BLL
         private double surchange;
         private string surchangeInfo;
         private double totalPrice;
-        private double discount;
+        private int discount;
         private string status;
-        private string paymentmethod;
-
         public Bill(DataRow data)
         {
             Id = (int)data["idBill"];
@@ -42,9 +40,7 @@ namespace BLL
         public double Surchange { get => surchange; set => surchange = value; }
         public string SurchangeInfo { get => surchangeInfo; set => surchangeInfo = value; }
         public double TotalPrice { get => totalPrice; set => totalPrice = value; }
-        public double Discount { get => discount; set => discount = value; }
+        public int Discount { get => discount; set => discount = value; }
         public string Status { get => status; set => status = value; }
-        public string Method { get => paymentmethod; set => paymentmethod = value; }
-
     }
 }

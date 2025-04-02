@@ -230,7 +230,7 @@ namespace QLKS
             {
                 //LoadFullRoomType();
                 //LoadFullRoomStatus();
-                LoadFullRoom(RoomDAO.Instance.Search(cbStatusSearch.Text));
+                //LoadFullRoom(RoomDAO.Instance.Search(cbStatusSearch.Text));
 
             }
             catch (SqlException ex)

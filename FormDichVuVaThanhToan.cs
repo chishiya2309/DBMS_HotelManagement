@@ -1,6 +1,5 @@
 ﻿using BLL;
 using BLL.DAO;
-using DAL;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -52,31 +51,64 @@ namespace QLKS
             {
                 
 
-                bool isFill = FormNhanVien.CheckFillInText(new Control[] { txtSearch });
-                if (!isFill || nudCount.Value == 0 || dgvBookRoom.RowCount == 0)
-                {
-                    MessageBox.Show("Không được để trống", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                else
-                {
-                    try
-                    {
-                        //int idService = Convert.ToInt32(datagridviewStaff.SelectedRows[0].Cells["colidStaff"].Value);
+                //bool isFill = FormNhanVien.CheckFillInText(new Control[] { txtSearch });
+                //if (!isFill || nudCount.Value == 0 || dgvBookRoom.RowCount == 0)
+                //{
+                //    MessageBox.Show("Không được để trống", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //    return;
+                //}
+                //else
+                //{
+                //    try
+                //    {
+                //        //int idService = Convert.ToInt32(datagridviewStaff.SelectedRows[0].Cells["colidStaff"].Value);
 
-                        DataRowView selectedRow = cbService.SelectedItem as DataRowView;
-                        string idService = selectedRow["MaDichVu"].ToString();
-                        int idBookRoom = Convert.ToInt32(dgvBookRoom.Rows[0].Cells["dgvHSDP"].Value);
-                        UsedServiceInfoDAO.Instance.DatDichVu(idService, idBookRoom, (int)nudCount.Value);
-                        LoadFullUsedService(SearchUsedService());
+                //        DataRowView selectedRow = cbService.SelectedItem as DataRowView;
+                //        int idService = int.Parse(selectedRow["idService"].ToString());
+                //        int idBookRoom = Convert.ToInt32(dgvBookRoom.Rows[0].Cells["dgvIdBookRoom"].Value);
 
-                    }
-                    catch (SqlException ex)
-                    {
-                        MessageBox.Show("Lỗi: " + ex, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
 
+
+                //        foreach (DataGridViewRow item in dgvUsedService.Rows)
+                //        {
+                //            if (Convert.ToInt32(item.Cells["dgvIdUsedService"].Value) == idService)
+                //            {
+                //                int count1 = int.Parse(item.Cells["dgvCount"].Value.ToString()) + (int)nudCount.Value;
+                //                double totalPrice1 = (double)count1 * double.Parse(item.Cells["dgvServicePrice"].Value.ToString());
+                //                bool check2 = UsedServiceInfoDAO.Instance.UpdateUsedService(idService, count1, totalPrice1, idBookRoom);
+                //                if (check2)
+                //                {
+                //                    MessageBox.Show("Đặt dịch vụ thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //                    LoadFullUsedService(SearchUsedService());
+                //                }
+                //                else
+                //                {
+                //                    MessageBox.Show("Không thể đặt dịch vụ!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                //                }
+                //                return;
+                //            }
+                //        }
+
+                //        double TotalPrice = double.Parse(txtPrice.Text) * (double)nudCount.Value;
+                        
+                //        int count = (int)nudCount.Value;
+                //        bool check1 = UsedServiceInfoDAO.Instance.InsertUsedService(idService, count, TotalPrice, idBookRoom);
+
+                //        if (check1)
+                //        {
+                //            MessageBox.Show("Đặt dịch vụ thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //            LoadFullUsedService(SearchUsedService());
+                //        }
+                //        else
+                //        {
+                //            MessageBox.Show("Không thể đặt dịch vụ!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                //        }
+                //    }
+                //    catch (SqlException ex)
+                //    {
+                //        MessageBox.Show("Lỗi: " + ex, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //    }
+                //}
             }
         }
 
@@ -117,6 +149,7 @@ namespace QLKS
             {
                 try
                 {
+
                         LoadFullBookRoom(SearchBookRoom()); 
                         if (SearchBookRoom().Rows.Count > 0)
                             LoadFullUsedService(SearchUsedService());
@@ -131,16 +164,17 @@ namespace QLKS
 
         public DataTable GetFullAvailableService()
         {
-            string query = "SELECT MaDichVu,TenDichVu,DonGia FROM DichVu WHERE DichVu.TrangThai = N'Sẵn sàng'";
-            return DBConnection.Instance.ExecuteQuery(query);
+            return ServiceDAO.Instance.LoadFullAvailableService();
         }
 
         public void LoadFullAvailableService()
         {
             DataTable table = GetFullAvailableService();
             cbService.DataSource = table;
-            cbService.DisplayMember = "TenDichVu";
+            cbService.DisplayMember = "nameService";
             if (table.Rows.Count > 0) cbService.SelectedIndex = 0;
+
+
 
         }
 
@@ -151,7 +185,7 @@ namespace QLKS
             DataRowView selectedRow = cbService.SelectedItem as DataRowView;
             if (selectedRow != null)
             {
-                txtPrice.Text = selectedRow["DonGia"].ToString();
+                txtPrice.Text = selectedRow["price"].ToString();
             }
         }
 
@@ -163,12 +197,32 @@ namespace QLKS
 
         public double LoadTotal()
         {
-            if (dgvBookRoom.Rows.Count > 0)
+
+            DataTable dt = new DataTable();
+            if (txtSearch.Text != string.Empty) dt = FindRoomTypeNow();
+            
+            
+            double total = 0;
+
+            if (dt.Rows.Count > 0)
             {
-                int idBookRoom = (int)dgvBookRoom.Rows[0].Cells["dgvHSDP"].Value;
-                return BillDAO.Instance.GetTotalBill(idBookRoom, double.Parse(txtSurchange.Text), double.Parse(txtDiscount.Text));
+                total += double.Parse(dt.Rows[0]["price"].ToString());
+
+                total -= double.Parse(dgvBookRoom.Rows[0].Cells["dgvDeposit"].Value.ToString());
             }
-            return 0;
+            total += double.Parse(txtSurchange.Text);
+            
+
+            foreach(DataGridViewRow row in dgvUsedService.Rows)
+            {
+                total += double.Parse(row.Cells["dgvTotalPrice"].Value.ToString());
+            }
+
+            total -= (total * double.Parse(txtDiscount.Text)) / 100;
+
+            total = (double)Math.Ceiling(total / 1000) * 1000;
+
+            return total;
         }
 
         private void txtDiscount_TextChanged(object sender, EventArgs e)
@@ -186,7 +240,6 @@ namespace QLKS
             if (double.TryParse(txtDiscount.Text, out double value1) && double.Parse(txtDiscount.Text) <= 100 && double.Parse(txtDiscount.Text) >= 0)
             {
                 txtDiscount.Text = value1.ToString();
-                txtTotal.Text = LoadTotal().ToString();
             }
             else
             {
@@ -194,7 +247,7 @@ namespace QLKS
                 txtDiscount.Text = "0";
 
             }
-            
+            txtTotal.Text = LoadTotal().ToString();
         }
 
         private void txtSurchange_MouseClick(object sender, MouseEventArgs e)
@@ -202,7 +255,6 @@ namespace QLKS
             if (double.TryParse(txtSurchange.Text, out double value1) && double.Parse(txtSurchange.Text) >= 0)
             {
                 txtSurchange.Text = value1.ToString();
-                txtTotal.Text = LoadTotal().ToString();
             }
             else
             {
@@ -210,7 +262,7 @@ namespace QLKS
                 txtSurchange.Text = "0";
 
             }
-            
+            txtTotal.Text =  LoadTotal().ToString();
         }
 
         private void txtSurchange_MouseDown(object sender, MouseEventArgs e)
@@ -259,12 +311,10 @@ namespace QLKS
             account.Status = "Chưa thanh toán";
 
             account.TotalPrice = LoadTotal();
-            account.Discount = double.Parse(txtDiscount.Text);
-            account.IdBookRoom = int.Parse(dgvBookRoom.Rows[0].Cells["dgvHSDP"].Value.ToString());
+            account.Discount = int.Parse(txtDiscount.Text);
+            account.IdBookRoom = int.Parse(dgvBookRoom.Rows[0].Cells["dgvIdBookRoom"].Value.ToString());
             account.StaffSetUp = FormChinh.idStaff;
 
-            account.Method = cbPayMethod.Text;
-            
             
             return account;
         }
@@ -272,7 +322,7 @@ namespace QLKS
 
         public void InsertBill()
         {
-            bool isFill = (dgvBookRoom.Rows.Count > 0 && dgvUsedService.Rows.Count > 0 && cbPayMethod.Text != string.Empty);
+            bool isFill = (dgvBookRoom.Rows.Count > 0 && dgvUsedService.Rows.Count > 0);
             if (!isFill)
             {
                 MessageBox.Show("Không được để trống", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -284,9 +334,18 @@ namespace QLKS
                 {
                     //int idStaff = Convert.ToInt32(dgvService.SelectedRows[0].Cells["dgvIdservice"].Value);
                     //int index = cbRoom.SelectedIndex;
-                    Bill b = GetBillNow();
-                    BillDAO.Instance.InsertBill(b.Surchange,b.SurchangeInfo,b.Discount,b.TotalPrice,b.Status,b.Method, b.IdBookRoom,b.StaffSetUp);
-                    
+                    bool check1 = BillDAO.Instance.InsertBill(GetBillNow());
+
+
+                    if (check1)
+                    {
+                        MessageBox.Show("Thanh toán thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        FormDichVuVaThanhToan_Load(null, EventArgs.Empty);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Không thể thanh toán!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    }
                 }
                 catch (SqlException ex)
                 {
@@ -300,33 +359,12 @@ namespace QLKS
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            txtSearch.Text = "0";
-            txtSurchangeInfo.Text = string.Empty;
-            txtDescription.Text = string.Empty;
-            txtDiscount.Text = "0";
-            txtSurchange.Text = "0";
-            LoadFullBookRoom(SearchBookRoom());
-            LoadFullUsedService(SearchUsedService());
 
         }
 
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        // Ghi nhận
-        private void btnEdit_Click(object sender, EventArgs e)
-        {
-            DialogResult result = MessageBox.Show("Xác nhận thông tin chưa?", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
-            if (result == DialogResult.OK)
-            {
-                BookRoomDAO.Instance.ConfirmBookRoomBonus(
-                    (int)dgvBookRoom.Rows[0].Cells["dgvHSDP"].Value,
-                    dtpRealCheckIn.Value, dtpRealCheckOut.Value,
-                    txtDescription.Text
-                );
-            }
         }
     }
 }
