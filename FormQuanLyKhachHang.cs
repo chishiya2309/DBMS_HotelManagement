@@ -183,17 +183,63 @@ namespace QLKS
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            //try
-            //{
-            //    LoadFullCustomer(CustomerDAO.Instance.Search(txtSearch.Text, cbSearchType.SelectedIndex));
-            //}
-            //catch (SqlException ex)
-            //{
-            //    MessageBox.Show("Lỗi xảy ra: " + ex);
-            //}
+            try
+            {
+                string searchString = txtSearch.Text.Trim();
+                int searchMode = cbSearchType.SelectedIndex;
+
+                if (string.IsNullOrEmpty(searchString))
+                {
+                    MessageBox.Show("Vui lòng nhập thông tin tìm kiếm!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand("sp_SearchCustomer", conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@string", searchString);
+                        cmd.Parameters.AddWithValue("@mode", searchMode);
+
+                        try
+                        {
+                            DataTable dt = new DataTable();
+                            using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                            {
+                                adapter.Fill(dt);
+                                dgvCustomer.DataSource = dt;
+                            }
+
+                            if (dt.Rows.Count == 0)
+                            {
+                                MessageBox.Show("Không tìm thấy khách hàng phù hợp!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                            else
+                            {
+                                MessageBox.Show($"Tìm thấy {dt.Rows.Count} khách hàng phù hợp!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                        }
+                        catch (SqlException ex)
+                        {
+                            MessageBox.Show("Lỗi tìm kiếm: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void FormQuanLyKhachHang_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
         {
 
         }
