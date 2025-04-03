@@ -159,7 +159,7 @@ namespace QLKS
         public DataTable SearchCustomer()
         {
 
-            return CustomerDAO.Instance.Search(txtSearch.Text, 2);
+            return CustomerDAO.Instance.Search(txtSearchPhone.Text, 2);
 
         }
 
@@ -214,7 +214,7 @@ namespace QLKS
             if (result == DialogResult.OK)
             {
 
-                bool isFill = FormNhanVien.CheckFillInText(new Control[] { txtCustomerName, txtSearch, cbRoom });
+                bool isFill = FormNhanVien.CheckFillInText(new Control[] { txtCustomerName, txtSearchPhone, cbRoom });
 
                 if (!isFill)
                 {
@@ -252,19 +252,19 @@ namespace QLKS
         }
 
 
-        private void LoadFullRoomType()
-        {
+        //private void LoadFullRoomType()
+        //{
            
-            DataTable table = GetFullRoomType();
-            cbRoomType.DataSource = table;
-            cbRoomType.DisplayMember = "typename";
-            if (table.Rows.Count > 0) cbRoomType.SelectedIndex = 0;
-        }
+        //    DataTable table = GetFullRoomType();
+        //    cbRoom.DataSource = table;
+        //    cbRoom.DisplayMember = "typename";
+        //    if (table.Rows.Count > 0) cbRoom.SelectedIndex = 0;
+        //}
 
         public DataTable SearchAvailableRoom()
         {
-            int index = cbRoomType.SelectedIndex;
-            int id = (int)((DataTable)cbRoomType.DataSource).Rows[index]["idRoomType"];
+            int index = cbRoom.SelectedIndex;
+            int id = (int)((DataTable)cbRoom.DataSource).Rows[index]["idRoomType"];
             return RoomDAO.Instance.LoadAllEmptyRoom(id);
         }
 
@@ -297,7 +297,7 @@ namespace QLKS
             //cbType.Enabled = false;
             //dtpDoB.Enabled = false;
             cbRoom.DropDownStyle = ComboBoxStyle.DropDownList;
-            cbRoomType.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbRoom.DropDownStyle = ComboBoxStyle.DropDownList;
             cbStatus.DropDownStyle = ComboBoxStyle.DropDownList;
             txtIdBookRoom.Enabled = false;
             txtDeposit.Text = "0";
