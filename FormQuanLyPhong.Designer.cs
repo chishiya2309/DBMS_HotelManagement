@@ -161,6 +161,7 @@ namespace QLKS
             this.cbStatusSearch.Name = "cbStatusSearch";
             this.cbStatusSearch.Size = new System.Drawing.Size(163, 29);
             this.cbStatusSearch.TabIndex = 48;
+            this.cbStatusSearch.SelectedIndexChanged += new System.EventHandler(this.cbStatusSearch_SelectedIndexChanged);
             // 
             // label16
             // 

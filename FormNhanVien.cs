@@ -61,59 +61,6 @@ namespace QLKS
             this.Close();
         }
 
-
-        private void ChangeText(DataGridViewRow row)
-        {
-            //if (row.IsNewRow)
-            //{
-            //    txtUser.Text = string.Empty;
-            //    txtName.Text = string.Empty;
-            //    txtIDNum.Text = string.Empty;
-            //    txtPhone.Text = string.Empty;
-            //    txtAddress.Text = string.Empty;
-            //    txtEmail.Text = string.Empty;
-
-            //}
-            //else
-            //{
-            //    int idStaff = Convert.ToInt32(row.Cells["colidStaff"].Value);
-            //    DataTable acc = AccountDAO.Instance.GetAccountById(idStaff);
-                 
-                
-            //    txtUser.Text = acc.Rows[0]["username"].ToString();
-            //    txtAddress.Text = row.Cells["colAddress"].Value as string;
-            //    txtEmail.Text = row.Cells["colEmail"].Value as string;
-            //    txtIDNum.Text = row.Cells["colIDnum"].Value as string;
-            //    txtPhone.Text = row.Cells["colPhone"].Value as string;
-            //    txtName.Text = row.Cells["colName"].Value as string;
-            //    if (DateTime.TryParse(row.Cells["colDoB"].Value?.ToString(), out DateTime dob))
-            //    {
-            //        dtpDOB.Value = dob;
-            //    }
-            //    else
-            //    {
-            //        dtpDOB.Value = DateTime.Now; // Gán giá trị mặc định nếu không hợp lệ
-            //    }
-
-            //    if (DateTime.TryParse(row.Cells["colStart"].Value?.ToString(), out DateTime startDay))
-            //    {
-            //        dtpStartday.Value = startDay;
-            //    }
-            //    else
-            //    {
-            //        dtpStartday.Value = DateTime.Now; // Gán giá trị mặc định nếu không hợp lệ
-            //    }
-            //    cbSex.Text = row.Cells["colSex"].Value as string;
-            //    cbRole.SelectedIndex = (int)row.Cells["colRole"].Value - 1;
-                
-
-            //}
-        }
-
-        //public bool DeleteStaff(int id)
-        //{
-        //    return StaffDAO.Instance.DeleteStaff(id);
-        //}
         public bool DeleteStaff(int id)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))

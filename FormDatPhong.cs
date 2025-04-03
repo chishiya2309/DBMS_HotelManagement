@@ -127,10 +127,10 @@ namespace QLKS
                     {
                         DataTable dt = new DataTable();
                         adapter.Fill(dt);
-                        cbRoomType.DataSource = dt;
-                        cbRoomType.DisplayMember = "TenLoaiPhong";
-                        cbRoomType.ValueMember = "MaLoaiPhong";
-                        cbRoomType.SelectedIndex = 0;
+                        cbRoom.DataSource = dt;
+                        cbRoom.DisplayMember = "TenLoaiPhong";
+                        cbRoom.ValueMember = "MaLoaiPhong";
+                        cbRoom.SelectedIndex = 0;
                     }
                 }
                 catch (Exception ex)
@@ -139,6 +139,7 @@ namespace QLKS
                 }
             }
         }
+
 
 
         public DataTable GetFullCustomerType()
@@ -157,7 +158,9 @@ namespace QLKS
 
         public DataTable SearchCustomer()
         {
+
             return CustomerDAO.Instance.Search(txtSearch.Text, 2);
+
         }
 
         public void LoadFullCustomer(DataTable dt)
@@ -212,6 +215,7 @@ namespace QLKS
             {
 
                 bool isFill = FormNhanVien.CheckFillInText(new Control[] { txtCustomerName, txtSearch, cbRoom });
+
                 if (!isFill)
                 {
                     MessageBox.Show("Không được để trống", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -247,6 +251,7 @@ namespace QLKS
             return RoomTypeDAO.Instance.LoadFullRoomType();
         }
 
+
         private void LoadFullRoomType()
         {
            
@@ -262,6 +267,8 @@ namespace QLKS
             int id = (int)((DataTable)cbRoomType.DataSource).Rows[index]["idRoomType"];
             return RoomDAO.Instance.LoadAllEmptyRoom(id);
         }
+
+
 
 
         private void cbRoom_SelectedIndexChanged(object sender, EventArgs e)
@@ -494,8 +501,10 @@ namespace QLKS
 
         private void guna2GroupBox3_Click(object sender, EventArgs e)
 
+
         {
 
         }
+
     }
 }

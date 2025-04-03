@@ -542,7 +542,6 @@
             this.btnBook.Size = new System.Drawing.Size(153, 33);
             this.btnBook.TabIndex = 26;
             this.btnBook.Text = "Đặt phòng";
-            this.btnBook.Click += new System.EventHandler(this.btnBook_Click);
             // 
             // btnCancel
             // 
