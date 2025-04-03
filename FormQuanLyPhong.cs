@@ -226,17 +226,17 @@ namespace QLKS
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-        //    try
-        //    {
-        //        //LoadFullRoomType();
-        //        //LoadFullRoomStatus();
-        //        LoadFullRoom(RoomDAO.Instance.Search(cbStatusSearch.Text));
-                
-        //    }
-        //    catch (SqlException ex)
-        //    {
-        //        MessageBox.Show("Lỗi xảy ra: " + ex);
-        //    }
+            try
+            {
+                //LoadFullRoomType();
+                //LoadFullRoomStatus();
+                //LoadFullRoom(RoomDAO.Instance.Search(cbStatusSearch.Text));
+
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Lỗi xảy ra: " + ex);
+            }
         }
 
         private void dgvRoom_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -294,6 +294,11 @@ namespace QLKS
         }
 
         private void cbType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbStatusSearch_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
