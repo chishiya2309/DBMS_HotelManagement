@@ -109,9 +109,10 @@ namespace QLKS
         //    }
         //}
 
-        //public DataTable GetFullRoomType() {
-        //    return RoomTypeDAO.Instance.LoadFullRoomType();
-        //}
+        public DataTable GetFullRoomType()
+        {
+            return RoomTypeDAO.Instance.LoadFullRoomType();
+        }
 
         private void LoadFullRoomType()
         {
@@ -158,7 +159,7 @@ namespace QLKS
 
         public DataTable SearchCustomer()
         {
-            return CustomerDAO.Instance.Search(txtSearchPhone.Text, 2);
+            return CustomerDAO.Instance.Search(txtSearch.Text, 2);
         }
 
         public void LoadFullCustomer(DataTable dt)
@@ -212,7 +213,7 @@ namespace QLKS
             if (result == DialogResult.OK)
             {
 
-                bool isFill = FormNhanVien.CheckFillInText(new Control[] { txtCustomerName, txtSearchPhone, cbRoom });
+                bool isFill = FormNhanVien.CheckFillInText(new Control[] { txtCustomerName, txtSearch, cbRoom });
                 if (!isFill)
                 {
                     MessageBox.Show("Không được để trống", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -244,9 +245,7 @@ namespace QLKS
             }
         }
 
-        public DataTable GetFullRoomType() {
-            return RoomTypeDAO.Instance.LoadFullRoomType();
-        }
+       
 
 
 
@@ -475,13 +474,13 @@ namespace QLKS
             dtpCheckIn.Enabled = true;
             dtpCheckOut.Enabled = true;
             txtDeposit.Enabled = true;
-            txtSearchPhone.Enabled = true;
+            txtSearch.Enabled = true;
             dgvBookRoom.Enabled = true;
             txtAddress.Text = "";
             txtCustomerName.Text = "";
             txtDeposit.Text = "";
             txtIdBookRoom.Text = "";
-            txtSearchPhone.Text = "";
+            txtSearch.Text = "";
             txtPhone.Text = "";
             dtpCheckIn.Value = DateTime.Now;
             dtpCheckOut.Value = DateTime.Now;
@@ -500,7 +499,7 @@ namespace QLKS
         private void btnSearch_Click(object sender, EventArgs e)
         {
             // Kiểm tra xem số điện thoại có rỗng không
-            if (string.IsNullOrWhiteSpace(txtSearchPhone.Text))
+            if (string.IsNullOrWhiteSpace(txtSearch.Text))
             {
                 MessageBox.Show("Vui lòng nhập số điện thoại", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -509,7 +508,7 @@ namespace QLKS
             // Regex kiểm tra số điện thoại hợp lệ (bao gồm quốc tế)
             string phonePattern = @"^(\+?\d{1,4}[\s\-]?)?\(?\d{3,4}\)?[\s\-]?\d{3,4}[\s\-]?\d{3,4}$";
 
-            if (!Regex.IsMatch(txtSearchPhone.Text, phonePattern))
+            if (!Regex.IsMatch(txtSearch.Text, phonePattern))
             {
                 MessageBox.Show("Số điện thoại không hợp lệ! Vui lòng nhập lại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -579,7 +578,7 @@ namespace QLKS
 
 
 
-        private void txtSearchPhone_KeyDown(object sender, KeyEventArgs e)
+        private void txtSearch_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {

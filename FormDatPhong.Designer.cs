@@ -44,7 +44,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.guna2GroupBox2 = new Guna.UI2.WinForms.Guna2GroupBox();
             this.btnSearch = new Guna.UI2.WinForms.Guna2CircleButton();
-            this.txtSearchPhone = new System.Windows.Forms.TextBox();
+            this.txtSearch = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.guna2GroupBox3 = new Guna.UI2.WinForms.Guna2GroupBox();
             this.cbType = new System.Windows.Forms.ComboBox();
@@ -233,7 +233,7 @@
             this.guna2GroupBox2.BackColor = System.Drawing.Color.Transparent;
             this.guna2GroupBox2.BorderColor = System.Drawing.Color.Silver;
             this.guna2GroupBox2.Controls.Add(this.btnSearch);
-            this.guna2GroupBox2.Controls.Add(this.txtSearchPhone);
+            this.guna2GroupBox2.Controls.Add(this.txtSearch);
             this.guna2GroupBox2.Controls.Add(this.label6);
             this.guna2GroupBox2.CustomBorderColor = System.Drawing.Color.WhiteSmoke;
             this.guna2GroupBox2.FillColor = System.Drawing.Color.Transparent;
@@ -267,15 +267,15 @@
             this.btnSearch.Text = "Tìm kiếm";
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
-            // txtSearchPhone
+            // txtSearch
             // 
-            this.txtSearchPhone.BackColor = System.Drawing.Color.Gainsboro;
-            this.txtSearchPhone.ForeColor = System.Drawing.Color.DarkRed;
-            this.txtSearchPhone.Location = new System.Drawing.Point(7, 57);
-            this.txtSearchPhone.Name = "txtSearchPhone";
-            this.txtSearchPhone.Size = new System.Drawing.Size(164, 29);
-            this.txtSearchPhone.TabIndex = 8;
-            this.txtSearchPhone.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSearchPhone_KeyDown);
+            this.txtSearch.BackColor = System.Drawing.Color.Gainsboro;
+            this.txtSearch.ForeColor = System.Drawing.Color.DarkRed;
+            this.txtSearch.Location = new System.Drawing.Point(7, 57);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(164, 29);
+            this.txtSearch.TabIndex = 8;
+            this.txtSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSearch_KeyDown);
             // 
             // label6
             // 
@@ -916,7 +916,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtDays;
         private Guna.UI2.WinForms.Guna2GroupBox guna2GroupBox2;
-        private System.Windows.Forms.TextBox txtSearchPhone;
+        private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Label label6;
         private Guna.UI2.WinForms.Guna2GroupBox guna2GroupBox3;
         private System.Windows.Forms.ComboBox cbSex;
