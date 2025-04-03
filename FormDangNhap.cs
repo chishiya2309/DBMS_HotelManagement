@@ -15,6 +15,7 @@ namespace QLKS
 {
     public partial class FormDangNhap : Form
     {
+        string connectionString = "Data Source=(local)\\SQLExpress;Initial Catalog=Hotel2025;Integrated Security=True";
         public FormDangNhap()
         {
             InitializeComponent();
@@ -39,7 +40,7 @@ namespace QLKS
                 Application.Exit();
         }
 
-        private void txtDangNhap_Click(object sender, EventArgs e)
+        private void btnLogin_Click(object sender, EventArgs e)
         {
             // Kiểm tra nếu người dùng chưa nhập tài khoản hoặc mật khẩu
             if (string.IsNullOrWhiteSpace(txtTaiKhoan.Text) || string.IsNullOrWhiteSpace(txtMatKhau.Text))
@@ -48,7 +49,7 @@ namespace QLKS
                 return;
             }
 
-            string connectionString = "Data Source=(local)\\SQLExpress;Initial Catalog=Hotel2025;Integrated Security=True";
+           
             string query = "SELECT MaNhanVien FROM TaiKhoan WHERE TenDangNhap = @username AND MatKhau = @password";
 
             using (SqlConnection conn = new SqlConnection(connectionString))
@@ -83,6 +84,20 @@ namespace QLKS
                     MessageBox.Show("Lỗi kết nối đến hệ thống! Vui lòng thử lại sau.\nChi tiết: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private void txtMatKhau_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnLogin.PerformClick();
+                e.SuppressKeyPress = true; // Ngăn chặn âm thanh "ding" khi nhấn Enter
+            }
+        }
+
+        private void FormDangNhap_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
