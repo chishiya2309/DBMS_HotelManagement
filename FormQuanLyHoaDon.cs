@@ -47,7 +47,7 @@ namespace QLKS
             {
                 txtIdBill.Text = string.Empty;
                 txtRoomName.Text = string.Empty;
-                txtStaffName.Text = string.Empty;
+                txtPayMethod.Text = string.Empty;
                 txtTotal.Text = string.Empty;
                 dtpCreate.Value = DateTime.Now;
             }
@@ -55,7 +55,7 @@ namespace QLKS
             {
 
                 txtIdBill.Text = row.Cells["dgvIdBill"].Value.ToString();
-                txtStaffName.Text = row.Cells["dgvStaffName"].Value as string;
+                txtPayMethod.Text = row.Cells["dgvStaffName"].Value as string;
                 txtTotal.Text = row.Cells["dgvTotal"].Value.ToString();
 
                 cbStatus.Text = row.Cells["dgvStatus"].Value as string;

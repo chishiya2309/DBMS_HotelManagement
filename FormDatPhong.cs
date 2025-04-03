@@ -128,10 +128,10 @@ namespace QLKS
                     {
                         DataTable dt = new DataTable();
                         adapter.Fill(dt);
-                        cbRoom.DataSource = dt;
-                        cbRoom.DisplayMember = "TenLoaiPhong";
-                        cbRoom.ValueMember = "MaLoaiPhong";
-                        cbRoom.SelectedIndex = 0;
+                        cbRoomType.DataSource = dt;
+                        cbRoomType.DisplayMember = "TenLoaiPhong";
+                        cbRoomType.ValueMember = "MaLoaiPhong";
+                        cbRoomType.SelectedIndex = 0;
                     }
                 }
                 catch (Exception ex)
@@ -160,7 +160,7 @@ namespace QLKS
         public DataTable SearchCustomer()
         {
 
-            return CustomerDAO.Instance.Search(txtSearchPhone.Text, 2);
+            return CustomerDAO.Instance.Search(txtSearch.Text, 2);
 
         }
 
@@ -215,7 +215,7 @@ namespace QLKS
             if (result == DialogResult.OK)
             {
 
-                bool isFill = FormNhanVien.CheckFillInText(new Control[] { txtCustomerName, txtSearchPhone, cbRoom });
+                bool isFill = FormNhanVien.CheckFillInText(new Control[] { txtCustomerName, txtSearch, cbRoom });
 
                 if (!isFill)
                 {
@@ -265,7 +265,7 @@ namespace QLKS
         public DataTable SearchAvailableRoom()
         {
             int index = cbRoom.SelectedIndex;
-            int id = (int)((DataTable)cbRoom.DataSource).Rows[index]["idRoomType"];
+            int id = (int)((DataTable)cbRoom.DataSource).Rows[index]["MaLoaiPhong"];
             return RoomDAO.Instance.LoadAllEmptyRoom(id);
         }
 
@@ -592,7 +592,7 @@ namespace QLKS
         {
             if (e.KeyCode == Keys.Enter)
             {
-                btnSearch.PerformClick();
+                btnSearchPhone.PerformClick();
                 e.SuppressKeyPress = true; // Ngăn chặn âm thanh "ding" khi nhấn Enter
             }
         }
