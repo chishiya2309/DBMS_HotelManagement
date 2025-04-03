@@ -42,48 +42,48 @@ namespace QLKS
 
         private void ChangeText(DataGridViewRow row)
         {
-            
-            //if (row.IsNewRow)
-            //{
-            //    txtIdBill.Text = string.Empty;
-            //    txtRoomName.Text = string.Empty;
-            //    txtStaffName.Text = string.Empty;
-            //    txtTotal.Text = string.Empty;
-            //    dtpCreate.Value = DateTime.Now;
-            //}
-            //else
-            //{
 
-            //    txtIdBill.Text = row.Cells["dgvIdBill"].Value.ToString();
-            //    txtStaffName.Text = row.Cells["dgvStaffName"].Value as string;
-            //    txtTotal.Text = row.Cells["dgvTotal"].Value.ToString();
+            if (row.IsNewRow)
+            {
+                txtIdBill.Text = string.Empty;
+                txtRoomName.Text = string.Empty;
+                txtStaffName.Text = string.Empty;
+                txtTotal.Text = string.Empty;
+                dtpCreate.Value = DateTime.Now;
+            }
+            else
+            {
 
-            //    cbStatus.Text = row.Cells["dgvStatus"].Value as string;
-            //    if (DateTime.TryParse(row.Cells["dgvDateCreate"].Value?.ToString(), out DateTime dateCreate))
-            //    {
-            //        dtpCreate.Value = dateCreate;
-            //    }
+                txtIdBill.Text = row.Cells["dgvIdBill"].Value.ToString();
+                txtStaffName.Text = row.Cells["dgvStaffName"].Value as string;
+                txtTotal.Text = row.Cells["dgvTotal"].Value.ToString();
 
-            //    DataTable dt = BillDAO.Instance.FindRoomByBill(int.Parse(txtIdBill.Text));
-            //    txtRoomName.Text = dt.Rows[0]["roomname"].ToString();
+                cbStatus.Text = row.Cells["dgvStatus"].Value as string;
+                if (DateTime.TryParse(row.Cells["dgvDateCreate"].Value?.ToString(), out DateTime dateCreate))
+                {
+                    dtpCreate.Value = dateCreate;
+                }
 
-            //}
+                DataTable dt = BillDAO.Instance.FindRoomByBill(int.Parse(txtIdBill.Text));
+                txtRoomName.Text = dt.Rows[0]["roomname"].ToString();
+
+            }
         }
 
         private void dgvBill_SelectionChanged(object sender, EventArgs e)
         {
-            //if (dgvBill.SelectedRows.Count > 0)
-            //{
-            //    DataGridViewRow row = dgvBill.SelectedRows[0];
-            //    ChangeText(row);
-            //}
+            if (dgvBill.SelectedRows.Count > 0)
+            {
+                DataGridViewRow row = dgvBill.SelectedRows[0];
+                ChangeText(row);
+            }
         }
 
         private void FormQuanLyHoaDon_Load(object sender, EventArgs e)
         {
             txtIdBill.Enabled = false;
             txtRoomName.Enabled = false;
-            txtStaffName.Enabled = false;
+            txtPayMethod.Enabled = false;
             txtTotal.Enabled = false;
             dtpCreate.Enabled = false;
             cbStatus.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -131,7 +131,7 @@ namespace QLKS
                     {
                         txtIdBill.Text = dt.Rows[0]["idBill"].ToString();
                         txtRoomName.Text = dt.Rows[0]["roomname"].ToString();
-                        txtStaffName.Text = dt.Rows[0]["TenNhanVien"].ToString();
+                        txtPayMethod.Text = dt.Rows[0]["TenNhanVien"].ToString();
                         txtTotal.Text = dt.Rows[0]["totalPrice"].ToString();
                         cbStatus.Text = dt.Rows[0]["status"].ToString();
                         dtpCreate.Text = dt.Rows[0]["dateofCreate"].ToString();

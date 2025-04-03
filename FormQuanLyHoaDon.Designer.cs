@@ -44,7 +44,7 @@
             this.label13 = new System.Windows.Forms.Label();
             this.dtpCreate = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.label12 = new System.Windows.Forms.Label();
-            this.txtStaffName = new System.Windows.Forms.TextBox();
+            this.txtPayMethod = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.txtRoomName = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -54,7 +54,6 @@
             this.btnDetail = new Guna.UI2.WinForms.Guna2CircleButton();
             this.btnClose = new Guna.UI2.WinForms.Guna2CircleButton();
             this.dgvBill = new Guna.UI2.WinForms.Guna2DataGridView();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.dgvMaHoaDon = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvTenKhachHang = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvTenNhanVien = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -67,6 +66,7 @@
             this.dgvGiamGia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvMaHoSoDatPhong = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvMaNhanVien = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.guna2GroupBox1.SuspendLayout();
             this.guna2GroupBox2.SuspendLayout();
             this.guna2GroupBox3.SuspendLayout();
@@ -154,7 +154,7 @@
             this.guna2GroupBox2.Controls.Add(this.label13);
             this.guna2GroupBox2.Controls.Add(this.dtpCreate);
             this.guna2GroupBox2.Controls.Add(this.label12);
-            this.guna2GroupBox2.Controls.Add(this.txtStaffName);
+            this.guna2GroupBox2.Controls.Add(this.txtPayMethod);
             this.guna2GroupBox2.Controls.Add(this.label11);
             this.guna2GroupBox2.Controls.Add(this.txtRoomName);
             this.guna2GroupBox2.Controls.Add(this.label10);
@@ -177,7 +177,7 @@
             this.txtTotal.ForeColor = System.Drawing.Color.DarkRed;
             this.txtTotal.Location = new System.Drawing.Point(186, 176);
             this.txtTotal.Name = "txtTotal";
-            this.txtTotal.Size = new System.Drawing.Size(142, 29);
+            this.txtTotal.Size = new System.Drawing.Size(161, 29);
             this.txtTotal.TabIndex = 41;
             // 
             // label2
@@ -201,7 +201,7 @@
             "Đã Thanh Toán"});
             this.cbStatus.Location = new System.Drawing.Point(186, 66);
             this.cbStatus.Name = "cbStatus";
-            this.cbStatus.Size = new System.Drawing.Size(142, 29);
+            this.cbStatus.Size = new System.Drawing.Size(161, 29);
             this.cbStatus.TabIndex = 38;
             this.cbStatus.SelectedIndexChanged += new System.EventHandler(this.cbStatus_SelectedIndexChanged);
             this.cbStatus.SelectionChangeCommitted += new System.EventHandler(this.cbStatus_SelectionChangeCommitted);
@@ -246,14 +246,14 @@
             this.label12.TabIndex = 35;
             this.label12.Text = "Thành tiền:";
             // 
-            // txtStaffName
+            // txtPayMethod
             // 
-            this.txtStaffName.BackColor = System.Drawing.Color.Gainsboro;
-            this.txtStaffName.ForeColor = System.Drawing.Color.DarkRed;
-            this.txtStaffName.Location = new System.Drawing.Point(186, 121);
-            this.txtStaffName.Name = "txtStaffName";
-            this.txtStaffName.Size = new System.Drawing.Size(142, 29);
-            this.txtStaffName.TabIndex = 28;
+            this.txtPayMethod.BackColor = System.Drawing.Color.Gainsboro;
+            this.txtPayMethod.ForeColor = System.Drawing.Color.DarkRed;
+            this.txtPayMethod.Location = new System.Drawing.Point(186, 121);
+            this.txtPayMethod.Name = "txtPayMethod";
+            this.txtPayMethod.Size = new System.Drawing.Size(161, 29);
+            this.txtPayMethod.TabIndex = 28;
             // 
             // label11
             // 
@@ -263,9 +263,9 @@
             this.label11.ForeColor = System.Drawing.Color.DarkRed;
             this.label11.Location = new System.Drawing.Point(183, 101);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(100, 17);
+            this.label11.Size = new System.Drawing.Size(164, 17);
             this.label11.TabIndex = 30;
-            this.label11.Text = "Nhân viên tạo:";
+            this.label11.Text = "Phương thức thanh toán:";
             // 
             // txtRoomName
             // 
@@ -440,14 +440,6 @@
             this.dgvBill.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.dgvBill.SelectionChanged += new System.EventHandler(this.dgvBill_SelectionChanged);
             // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.dgvBill);
-            this.panel1.Location = new System.Drawing.Point(377, 32);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(475, 415);
-            this.panel1.TabIndex = 40;
-            // 
             // dgvMaHoaDon
             // 
             this.dgvMaHoaDon.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
@@ -559,6 +551,14 @@
             this.dgvMaNhanVien.ReadOnly = true;
             this.dgvMaNhanVien.Visible = false;
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.dgvBill);
+            this.panel1.Location = new System.Drawing.Point(377, 32);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(475, 415);
+            this.panel1.TabIndex = 40;
+            // 
             // FormQuanLyHoaDon
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -602,7 +602,7 @@
         private System.Windows.Forms.Label label13;
         private Guna.UI2.WinForms.Guna2DateTimePicker dtpCreate;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox txtStaffName;
+        private System.Windows.Forms.TextBox txtPayMethod;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox txtRoomName;
         private System.Windows.Forms.Label label10;
