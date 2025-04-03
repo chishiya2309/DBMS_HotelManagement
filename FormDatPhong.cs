@@ -158,7 +158,9 @@ namespace QLKS
 
         public DataTable SearchCustomer()
         {
-            return CustomerDAO.Instance.Search(txtSearchPhone.Text, 2);
+
+            return CustomerDAO.Instance.Search(txtSearch.Text, 2);
+
         }
 
         public void LoadFullCustomer(DataTable dt)
@@ -212,7 +214,8 @@ namespace QLKS
             if (result == DialogResult.OK)
             {
 
-                bool isFill = FormNhanVien.CheckFillInText(new Control[] { txtCustomerName, txtSearchPhone, cbRoom });
+                bool isFill = FormNhanVien.CheckFillInText(new Control[] { txtCustomerName, txtSearch, cbRoom });
+
                 if (!isFill)
                 {
                     MessageBox.Show("Không được để trống", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -249,19 +252,23 @@ namespace QLKS
         }
 
 
+        private void LoadFullRoomType()
+        {
+           
+            DataTable table = GetFullRoomType();
+            cbRoomType.DataSource = table;
+            cbRoomType.DisplayMember = "typename";
+            if (table.Rows.Count > 0) cbRoomType.SelectedIndex = 0;
+        }
+
         public DataTable SearchAvailableRoom()
         {
-            int index = cbRoom.SelectedIndex;
-            int id = (int)((DataTable)cbRoom.DataSource).Rows[index]["idRoomType"];
+            int index = cbRoomType.SelectedIndex;
+            int id = (int)((DataTable)cbRoomType.DataSource).Rows[index]["idRoomType"];
             return RoomDAO.Instance.LoadAllEmptyRoom(id);
         }
 
-        //public DataTable SearchAvailableRoom()
-        //{
-        //    //int index = cbRoomType.SelectedIndex;
-        //    //int id = (int)((DataTable)cbRoomType.DataSource).Rows[index]["idRoomType"];
-        //    //return RoomDAO.Instance.LoadAllEmptyRoom(id);
-        //}
+
 
 
         private void cbRoom_SelectedIndexChanged(object sender, EventArgs e)
@@ -286,9 +293,9 @@ namespace QLKS
             txtPhone.Enabled = false;
             txtCustomerName.Enabled = false;
             txtDays.Enabled = false;
-            cbSex.Enabled = false;
-            cbType.Enabled = false;
-            dtpDoB.Enabled = false;
+            //cbSex.Enabled = false;
+            //cbType.Enabled = false;
+            //dtpDoB.Enabled = false;
             cbRoom.DropDownStyle = ComboBoxStyle.DropDownList;
             cbRoomType.DropDownStyle = ComboBoxStyle.DropDownList;
             cbStatus.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -492,105 +499,11 @@ namespace QLKS
             dtpCheckOut.Value = DateTime.Now;
         }
 
-        private void dgvBookRoom_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void guna2GroupBox3_Click(object sender, EventArgs e)
+
+
         {
 
-        }
-
-        private void guna2GroupBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnSearch_Click(object sender, EventArgs e)
-        {
-            // Kiểm tra xem số điện thoại có rỗng không
-            if (string.IsNullOrWhiteSpace(txtSearchPhone.Text))
-            {
-                MessageBox.Show("Vui lòng nhập số điện thoại", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            // Regex kiểm tra số điện thoại hợp lệ (bao gồm quốc tế)
-            string phonePattern = @"^(\+?\d{1,4}[\s\-]?)?\(?\d{3,4}\)?[\s\-]?\d{3,4}[\s\-]?\d{3,4}$";
-
-            if (!Regex.IsMatch(txtSearchPhone.Text, phonePattern))
-            {
-                MessageBox.Show("Số điện thoại không hợp lệ! Vui lòng nhập lại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            try
-            {
-                DataTable dt = SearchCustomer();
-                if (dt != null && dt.Rows.Count > 0)
-                {
-                    LoadFullCustomer(dt);
-                }
-                else
-                {
-                    MessageBox.Show("Không tìm thấy khách hàng!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            catch (SqlException ex)
-            {
-                MessageBox.Show("Lỗi: " + ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-
-        //public void LoadFullCustomer(DataTable dt)
-        //{
-        //    txtCustomerName.Text = dt.Rows[0]["Hoten"].ToString();
-        //    txtAddress.Text = dt.Rows[0]["Diachi"].ToString();
-        //    txtPhone.Text = dt.Rows[0]["Sodienthoai"].ToString();
-        //    cbSex.Text = dt.Rows[0]["Gioitinh"].ToString();
-        //    cbType.Text = dt.Rows[0]["LoaiKhachHang"].ToString();
-        //    dtpDoB.Text = dt.Rows[0]["Ngaysinh"].ToString();
-        //}
-
-
-        //public DataTable SearchCustomer()
-        //{
-        //    string query = @"
-        //        SELECT kh.*
-        //        FROM KhachHang kh
-        //        WHERE kh.Sodienthoai = @phoneNumber;";
-
-        //    using (SqlConnection conn = new SqlConnection(connectionString))
-        //    {
-        //        try
-        //        {
-        //            conn.Open();
-        //            using (SqlCommand cmd = new SqlCommand(query, conn))
-        //            {
-        //                cmd.Parameters.Add("@phoneNumber", SqlDbType.NVarChar).Value = txtSearchPhone.Text.Trim();
-
-        //                using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
-        //                {
-        //                    DataTable dt = new DataTable();
-        //                    adapter.Fill(dt);
-        //                    return dt;
-        //                }
-        //            }
-        //        }
-        //        catch (SqlException ex)
-        //        {
-        //            MessageBox.Show("Lỗi truy vấn: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //            return null;
-        //        }
-        //    }
-        //}
-
-
-
-        private void txtSearchPhone_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                btnSearch.PerformClick();
-                e.SuppressKeyPress = true; // Ngăn chặn âm thanh "ding" khi nhấn Enter
-            }
         }
 
     }
