@@ -37,33 +37,33 @@
             this.btnInsert = new Guna.UI2.WinForms.Guna2CircleButton();
             this.btnUpdate = new Guna.UI2.WinForms.Guna2CircleButton();
             this.dgvCustomer = new Guna.UI2.WinForms.Guna2DataGridView();
-            this.dgvIdcustomer = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvIDcard = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvPhone = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvDob = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvSex = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvTypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MaKhachHang = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Hoten = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Gioitinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.email = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ngaysinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CCCD = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Sodienthoai = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Diachi = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LoaiKhachHang = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TinhTrangDatPhong = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.guna2GroupBox2 = new Guna.UI2.WinForms.Guna2GroupBox();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.lbEmail = new System.Windows.Forms.Label();
             this.cbType = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtIDnum = new System.Windows.Forms.TextBox();
+            this.txtCCCD = new System.Windows.Forms.TextBox();
             this.cbSex = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
             this.dtpDoB = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.label12 = new System.Windows.Forms.Label();
             this.txtPhone = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.txtAddress = new System.Windows.Forms.TextBox();
+            this.txtDiaChi = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.txtName = new System.Windows.Forms.TextBox();
+            this.txtTenKhachHang = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.guna2GroupBox1 = new Guna.UI2.WinForms.Guna2GroupBox();
             this.cbSearchType = new System.Windows.Forms.ComboBox();
@@ -71,6 +71,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.btnSearch = new Guna.UI2.WinForms.Guna2CircleButton();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.cmbTrangThai = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCustomer)).BeginInit();
             this.guna2GroupBox2.SuspendLayout();
             this.guna2GroupBox1.SuspendLayout();
@@ -86,7 +88,7 @@
             this.btnClose.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.btnClose.ForeColor = System.Drawing.Color.DarkRed;
             this.btnClose.HoverState.Parent = this.btnClose;
-            this.btnClose.Location = new System.Drawing.Point(658, 451);
+            this.btnClose.Location = new System.Drawing.Point(672, 479);
             this.btnClose.Name = "btnClose";
             this.btnClose.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             this.btnClose.ShadowDecoration.Parent = this.btnClose;
@@ -104,7 +106,7 @@
             this.btnDelete.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.btnDelete.ForeColor = System.Drawing.Color.DarkRed;
             this.btnDelete.HoverState.Parent = this.btnDelete;
-            this.btnDelete.Location = new System.Drawing.Point(438, 451);
+            this.btnDelete.Location = new System.Drawing.Point(473, 479);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             this.btnDelete.ShadowDecoration.Parent = this.btnDelete;
@@ -122,7 +124,7 @@
             this.btnInsert.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.btnInsert.ForeColor = System.Drawing.Color.DarkRed;
             this.btnInsert.HoverState.Parent = this.btnInsert;
-            this.btnInsert.Location = new System.Drawing.Point(211, 451);
+            this.btnInsert.Location = new System.Drawing.Point(246, 479);
             this.btnInsert.Name = "btnInsert";
             this.btnInsert.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             this.btnInsert.ShadowDecoration.Parent = this.btnInsert;
@@ -140,7 +142,7 @@
             this.btnUpdate.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.btnUpdate.ForeColor = System.Drawing.Color.DarkRed;
             this.btnUpdate.HoverState.Parent = this.btnUpdate;
-            this.btnUpdate.Location = new System.Drawing.Point(0, 451);
+            this.btnUpdate.Location = new System.Drawing.Point(12, 479);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             this.btnUpdate.ShadowDecoration.Parent = this.btnUpdate;
@@ -174,16 +176,16 @@
             this.dgvCustomer.ColumnHeadersHeight = 29;
             this.dgvCustomer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvCustomer.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dgvIdcustomer,
-            this.dgvName,
-            this.dgvIDcard,
-            this.dgvPhone,
-            this.dgvDob,
-            this.dgvSex,
-            this.dgvEmail,
-            this.dgvAddress,
-            this.dgvType,
-            this.dgvTypeName});
+            this.MaKhachHang,
+            this.Hoten,
+            this.Gioitinh,
+            this.email,
+            this.Ngaysinh,
+            this.CCCD,
+            this.Sodienthoai,
+            this.Diachi,
+            this.LoaiKhachHang,
+            this.TinhTrangDatPhong});
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 10.5F);
@@ -227,132 +229,130 @@
             this.dgvCustomer.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.dgvCustomer.SelectionChanged += new System.EventHandler(this.dgvCustomer_SelectionChanged);
             // 
-            // dgvIdcustomer
+            // MaKhachHang
             // 
-            this.dgvIdcustomer.DataPropertyName = "idCustomer";
-            this.dgvIdcustomer.HeaderText = "Mã khách hàng";
-            this.dgvIdcustomer.MinimumWidth = 6;
-            this.dgvIdcustomer.Name = "dgvIdcustomer";
-            this.dgvIdcustomer.ReadOnly = true;
-            this.dgvIdcustomer.Visible = false;
+            this.MaKhachHang.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.MaKhachHang.DataPropertyName = "MaKhachHang";
+            this.MaKhachHang.HeaderText = "Mã khách hàng";
+            this.MaKhachHang.MinimumWidth = 6;
+            this.MaKhachHang.Name = "MaKhachHang";
+            this.MaKhachHang.ReadOnly = true;
+            this.MaKhachHang.Width = 127;
             // 
-            // dgvName
+            // Hoten
             // 
-            this.dgvName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.dgvName.DataPropertyName = "fullname";
-            this.dgvName.HeaderText = "Tên";
-            this.dgvName.MinimumWidth = 50;
-            this.dgvName.Name = "dgvName";
-            this.dgvName.ReadOnly = true;
-            this.dgvName.Width = 123;
+            this.Hoten.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Hoten.DataPropertyName = "Hoten";
+            this.Hoten.HeaderText = "Họ tên";
+            this.Hoten.MinimumWidth = 50;
+            this.Hoten.Name = "Hoten";
+            this.Hoten.ReadOnly = true;
+            this.Hoten.Width = 74;
             // 
-            // dgvIDcard
+            // Gioitinh
             // 
-            this.dgvIDcard.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgvIDcard.DataPropertyName = "CCCD";
-            this.dgvIDcard.HeaderText = "CCCD";
-            this.dgvIDcard.MinimumWidth = 6;
-            this.dgvIDcard.Name = "dgvIDcard";
-            this.dgvIDcard.ReadOnly = true;
-            this.dgvIDcard.Width = 69;
+            this.Gioitinh.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Gioitinh.DataPropertyName = "Gioitinh";
+            this.Gioitinh.HeaderText = "Giới tính";
+            this.Gioitinh.MinimumWidth = 6;
+            this.Gioitinh.Name = "Gioitinh";
+            this.Gioitinh.ReadOnly = true;
+            this.Gioitinh.Width = 84;
             // 
-            // dgvPhone
+            // email
             // 
-            this.dgvPhone.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgvPhone.DataPropertyName = "phoneNumber";
-            this.dgvPhone.HeaderText = "SĐT";
-            this.dgvPhone.MinimumWidth = 6;
-            this.dgvPhone.Name = "dgvPhone";
-            this.dgvPhone.ReadOnly = true;
-            this.dgvPhone.Width = 56;
+            this.email.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.email.DataPropertyName = "email";
+            this.email.HeaderText = "Email";
+            this.email.Name = "email";
+            this.email.ReadOnly = true;
+            this.email.Width = 64;
             // 
-            // dgvDob
+            // Ngaysinh
             // 
-            this.dgvDob.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgvDob.DataPropertyName = "dateofbirth";
-            this.dgvDob.HeaderText = "Ngày sinh";
-            this.dgvDob.MinimumWidth = 6;
-            this.dgvDob.Name = "dgvDob";
-            this.dgvDob.ReadOnly = true;
-            this.dgvDob.Width = 93;
+            this.Ngaysinh.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Ngaysinh.DataPropertyName = "Ngaysinh";
+            this.Ngaysinh.HeaderText = "Ngày sinh";
+            this.Ngaysinh.MinimumWidth = 6;
+            this.Ngaysinh.Name = "Ngaysinh";
+            this.Ngaysinh.ReadOnly = true;
+            this.Ngaysinh.Width = 93;
             // 
-            // dgvSex
+            // CCCD
             // 
-            this.dgvSex.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgvSex.DataPropertyName = "sex";
-            this.dgvSex.HeaderText = "Giới tính";
-            this.dgvSex.Name = "dgvSex";
-            this.dgvSex.ReadOnly = true;
-            this.dgvSex.Visible = false;
-            this.dgvSex.Width = 84;
+            this.CCCD.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.CCCD.DataPropertyName = "CCCD";
+            this.CCCD.HeaderText = "CCCD";
+            this.CCCD.Name = "CCCD";
+            this.CCCD.ReadOnly = true;
+            this.CCCD.Width = 69;
             // 
-            // dgvEmail
+            // Sodienthoai
             // 
-            this.dgvEmail.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgvEmail.DataPropertyName = "email";
-            this.dgvEmail.HeaderText = "Email";
-            this.dgvEmail.Name = "dgvEmail";
-            this.dgvEmail.ReadOnly = true;
-            this.dgvEmail.Visible = false;
-            this.dgvEmail.Width = 64;
+            this.Sodienthoai.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Sodienthoai.DataPropertyName = "Sodienthoai";
+            this.Sodienthoai.HeaderText = "Số điện thoại";
+            this.Sodienthoai.Name = "Sodienthoai";
+            this.Sodienthoai.ReadOnly = true;
+            this.Sodienthoai.Width = 112;
             // 
-            // dgvAddress
+            // Diachi
             // 
-            this.dgvAddress.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgvAddress.DataPropertyName = "address";
-            this.dgvAddress.HeaderText = "Địa chỉ";
-            this.dgvAddress.Name = "dgvAddress";
-            this.dgvAddress.ReadOnly = true;
-            this.dgvAddress.Visible = false;
-            this.dgvAddress.Width = 73;
+            this.Diachi.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Diachi.DataPropertyName = "Diachi";
+            this.Diachi.HeaderText = "Địa chỉ";
+            this.Diachi.Name = "Diachi";
+            this.Diachi.ReadOnly = true;
+            this.Diachi.Width = 73;
             // 
-            // dgvType
+            // LoaiKhachHang
             // 
-            this.dgvType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgvType.DataPropertyName = "idCustomerType";
-            this.dgvType.HeaderText = "Mã Loại";
-            this.dgvType.Name = "dgvType";
-            this.dgvType.ReadOnly = true;
-            this.dgvType.Visible = false;
-            this.dgvType.Width = 81;
+            this.LoaiKhachHang.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.LoaiKhachHang.DataPropertyName = "LoaiKhachHang";
+            this.LoaiKhachHang.HeaderText = "Loại khách hàng";
+            this.LoaiKhachHang.Name = "LoaiKhachHang";
+            this.LoaiKhachHang.ReadOnly = true;
+            this.LoaiKhachHang.Width = 132;
             // 
-            // dgvTypeName
+            // TinhTrangDatPhong
             // 
-            this.dgvTypeName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgvTypeName.DataPropertyName = "typeName";
-            this.dgvTypeName.HeaderText = "Loại";
-            this.dgvTypeName.Name = "dgvTypeName";
-            this.dgvTypeName.ReadOnly = true;
-            this.dgvTypeName.Width = 57;
+            this.TinhTrangDatPhong.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.TinhTrangDatPhong.DataPropertyName = "TinhTrangDatPhong";
+            this.TinhTrangDatPhong.HeaderText = "Tình trạng đặt phòng";
+            this.TinhTrangDatPhong.Name = "TinhTrangDatPhong";
+            this.TinhTrangDatPhong.ReadOnly = true;
+            this.TinhTrangDatPhong.Width = 163;
             // 
             // guna2GroupBox2
             // 
             this.guna2GroupBox2.BackColor = System.Drawing.Color.Transparent;
             this.guna2GroupBox2.BorderColor = System.Drawing.Color.Silver;
+            this.guna2GroupBox2.Controls.Add(this.cmbTrangThai);
+            this.guna2GroupBox2.Controls.Add(this.label5);
             this.guna2GroupBox2.Controls.Add(this.txtEmail);
             this.guna2GroupBox2.Controls.Add(this.lbEmail);
             this.guna2GroupBox2.Controls.Add(this.cbType);
             this.guna2GroupBox2.Controls.Add(this.label4);
             this.guna2GroupBox2.Controls.Add(this.label2);
-            this.guna2GroupBox2.Controls.Add(this.txtIDnum);
+            this.guna2GroupBox2.Controls.Add(this.txtCCCD);
             this.guna2GroupBox2.Controls.Add(this.cbSex);
             this.guna2GroupBox2.Controls.Add(this.label13);
             this.guna2GroupBox2.Controls.Add(this.dtpDoB);
             this.guna2GroupBox2.Controls.Add(this.label12);
             this.guna2GroupBox2.Controls.Add(this.txtPhone);
             this.guna2GroupBox2.Controls.Add(this.label11);
-            this.guna2GroupBox2.Controls.Add(this.txtAddress);
+            this.guna2GroupBox2.Controls.Add(this.txtDiaChi);
             this.guna2GroupBox2.Controls.Add(this.label10);
             this.guna2GroupBox2.Controls.Add(this.label9);
-            this.guna2GroupBox2.Controls.Add(this.txtName);
+            this.guna2GroupBox2.Controls.Add(this.txtTenKhachHang);
             this.guna2GroupBox2.CustomBorderColor = System.Drawing.Color.WhiteSmoke;
             this.guna2GroupBox2.FillColor = System.Drawing.Color.Transparent;
             this.guna2GroupBox2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.guna2GroupBox2.ForeColor = System.Drawing.Color.DarkRed;
-            this.guna2GroupBox2.Location = new System.Drawing.Point(12, 170);
+            this.guna2GroupBox2.Location = new System.Drawing.Point(12, 159);
             this.guna2GroupBox2.Name = "guna2GroupBox2";
             this.guna2GroupBox2.ShadowDecoration.Parent = this.guna2GroupBox2;
-            this.guna2GroupBox2.Size = new System.Drawing.Size(366, 267);
+            this.guna2GroupBox2.Size = new System.Drawing.Size(366, 308);
             this.guna2GroupBox2.TabIndex = 36;
             this.guna2GroupBox2.Text = "Thông tin khách hàng";
             // 
@@ -381,6 +381,9 @@
             // 
             this.cbType.BackColor = System.Drawing.Color.Gainsboro;
             this.cbType.FormattingEnabled = true;
+            this.cbType.Items.AddRange(new object[] {
+            "Vip",
+            "Thường"});
             this.cbType.Location = new System.Drawing.Point(197, 226);
             this.cbType.Name = "cbType";
             this.cbType.Size = new System.Drawing.Size(150, 29);
@@ -410,14 +413,14 @@
             this.label2.TabIndex = 40;
             this.label2.Text = "CCCD/CMND:";
             // 
-            // txtIDnum
+            // txtCCCD
             // 
-            this.txtIDnum.BackColor = System.Drawing.Color.Gainsboro;
-            this.txtIDnum.ForeColor = System.Drawing.Color.DarkRed;
-            this.txtIDnum.Location = new System.Drawing.Point(197, 66);
-            this.txtIDnum.Name = "txtIDnum";
-            this.txtIDnum.Size = new System.Drawing.Size(153, 29);
-            this.txtIDnum.TabIndex = 39;
+            this.txtCCCD.BackColor = System.Drawing.Color.Gainsboro;
+            this.txtCCCD.ForeColor = System.Drawing.Color.DarkRed;
+            this.txtCCCD.Location = new System.Drawing.Point(197, 66);
+            this.txtCCCD.Name = "txtCCCD";
+            this.txtCCCD.Size = new System.Drawing.Size(153, 29);
+            this.txtCCCD.TabIndex = 39;
             // 
             // cbSex
             // 
@@ -493,14 +496,14 @@
             this.label11.Text = "Số điện thoại:";
             this.label11.Click += new System.EventHandler(this.label11_Click);
             // 
-            // txtAddress
+            // txtDiaChi
             // 
-            this.txtAddress.BackColor = System.Drawing.Color.Gainsboro;
-            this.txtAddress.ForeColor = System.Drawing.Color.DarkRed;
-            this.txtAddress.Location = new System.Drawing.Point(7, 121);
-            this.txtAddress.Name = "txtAddress";
-            this.txtAddress.Size = new System.Drawing.Size(152, 29);
-            this.txtAddress.TabIndex = 29;
+            this.txtDiaChi.BackColor = System.Drawing.Color.Gainsboro;
+            this.txtDiaChi.ForeColor = System.Drawing.Color.DarkRed;
+            this.txtDiaChi.Location = new System.Drawing.Point(7, 121);
+            this.txtDiaChi.Name = "txtDiaChi";
+            this.txtDiaChi.Size = new System.Drawing.Size(152, 29);
+            this.txtDiaChi.TabIndex = 29;
             // 
             // label10
             // 
@@ -526,14 +529,14 @@
             this.label9.TabIndex = 28;
             this.label9.Text = "Tên khách hàng";
             // 
-            // txtName
+            // txtTenKhachHang
             // 
-            this.txtName.BackColor = System.Drawing.Color.Gainsboro;
-            this.txtName.ForeColor = System.Drawing.Color.DarkRed;
-            this.txtName.Location = new System.Drawing.Point(7, 66);
-            this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(152, 29);
-            this.txtName.TabIndex = 8;
+            this.txtTenKhachHang.BackColor = System.Drawing.Color.Gainsboro;
+            this.txtTenKhachHang.ForeColor = System.Drawing.Color.DarkRed;
+            this.txtTenKhachHang.Location = new System.Drawing.Point(7, 66);
+            this.txtTenKhachHang.Name = "txtTenKhachHang";
+            this.txtTenKhachHang.Size = new System.Drawing.Size(152, 29);
+            this.txtTenKhachHang.TabIndex = 8;
             // 
             // label1
             // 
@@ -574,19 +577,20 @@
             "ID",
             "Họ tên",
             "Số điện thoại"});
-            this.cbSearchType.Location = new System.Drawing.Point(194, 3);
+            this.cbSearchType.Location = new System.Drawing.Point(132, 3);
             this.cbSearchType.Name = "cbSearchType";
-            this.cbSearchType.Size = new System.Drawing.Size(135, 29);
+            this.cbSearchType.Size = new System.Drawing.Size(174, 29);
             this.cbSearchType.TabIndex = 41;
             // 
             // txtSearch
             // 
             this.txtSearch.BackColor = System.Drawing.Color.Gainsboro;
             this.txtSearch.ForeColor = System.Drawing.Color.DarkRed;
-            this.txtSearch.Location = new System.Drawing.Point(25, 48);
+            this.txtSearch.Location = new System.Drawing.Point(9, 48);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(149, 29);
             this.txtSearch.TabIndex = 8;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // label3
             // 
@@ -610,7 +614,7 @@
             this.btnSearch.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearch.ForeColor = System.Drawing.Color.DarkRed;
             this.btnSearch.HoverState.Parent = this.btnSearch;
-            this.btnSearch.Location = new System.Drawing.Point(209, 48);
+            this.btnSearch.Location = new System.Drawing.Point(193, 48);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             this.btnSearch.ShadowDecoration.Parent = this.btnSearch;
@@ -627,13 +631,37 @@
             this.panel1.Size = new System.Drawing.Size(445, 385);
             this.panel1.TabIndex = 43;
             // 
+            // cmbTrangThai
+            // 
+            this.cmbTrangThai.BackColor = System.Drawing.Color.Gainsboro;
+            this.cmbTrangThai.FormattingEnabled = true;
+            this.cmbTrangThai.Items.AddRange(new object[] {
+            "Chính thức",
+            "Chưa chính thức"});
+            this.cmbTrangThai.Location = new System.Drawing.Point(197, 268);
+            this.cmbTrangThai.Name = "cmbTrangThai";
+            this.cmbTrangThai.Size = new System.Drawing.Size(150, 29);
+            this.cmbTrangThai.TabIndex = 46;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.Transparent;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.DarkRed;
+            this.label5.Location = new System.Drawing.Point(15, 268);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(145, 17);
+            this.label5.TabIndex = 45;
+            this.label5.Text = "Trạng thái đặt phòng:";
+            // 
             // FormQuanLyKhachHang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(837, 491);
+            this.ClientSize = new System.Drawing.Size(837, 524);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnDelete);
@@ -648,6 +676,7 @@
             this.Name = "FormQuanLyKhachHang";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormQuanLyKhachHang";
+            this.Load += new System.EventHandler(this.FormQuanLyKhachHang_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCustomer)).EndInit();
             this.guna2GroupBox2.ResumeLayout(false);
             this.guna2GroupBox2.PerformLayout();
@@ -673,32 +702,34 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox txtPhone;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox txtAddress;
+        private System.Windows.Forms.TextBox txtDiaChi;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox txtName;
+        private System.Windows.Forms.TextBox txtTenKhachHang;
         private System.Windows.Forms.Label label1;
         private Guna.UI2.WinForms.Guna2GroupBox guna2GroupBox1;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Label label3;
         private Guna.UI2.WinForms.Guna2CircleButton btnSearch;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtIDnum;
+        private System.Windows.Forms.TextBox txtCCCD;
         private System.Windows.Forms.ComboBox cbSearchType;
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.Label lbEmail;
         private System.Windows.Forms.ComboBox cbType;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvIdcustomer;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvIDcard;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvPhone;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvDob;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvSex;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvEmail;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvAddress;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvType;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvTypeName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MaKhachHang;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Hoten;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Gioitinh;
+        private System.Windows.Forms.DataGridViewTextBoxColumn email;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Ngaysinh;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CCCD;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Sodienthoai;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Diachi;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LoaiKhachHang;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TinhTrangDatPhong;
+        private System.Windows.Forms.ComboBox cmbTrangThai;
+        private System.Windows.Forms.Label label5;
     }
 }

@@ -11,15 +11,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace QLKS
 {
     public partial class AddCustomer: Form
     {
+        private string connectionString = "Data Source=(local)\\SQLExpress;DataBase=Hotel2025;Integrated Security=True";
         public AddCustomer()
         {
             InitializeComponent();
-            LoadFullCustomerType();
+            cbSex.SelectedIndex = 0;
+            cbType.SelectedIndex = 1;
+            cmbTinhTrang.SelectedIndex = 0;
+            dtpDOB.Value = DateTime.Now.AddYears(-20);
         }
 
         private void label9_Click(object sender, EventArgs e)
@@ -32,78 +37,144 @@ namespace QLKS
 
         }
 
-        public DataTable GetFullCustomerType()
-        {
-            return CustomerTypeDAO.Instance.LoadFullCustomerType();
-        }
-
-        private void LoadFullCustomerType()
-        {
-            cbSex.SelectedIndex = 0;
-            DataTable table = GetFullCustomerType();
-            cbType.DataSource = table;
-            cbType.DisplayMember = "typeName";
-            if (table.Rows.Count > 0) cbType.SelectedIndex = 0;
-        }
-
         private void AddCustomer_Load(object sender, EventArgs e)
         {
-            cbSex.SelectedIndex = 1;
-        }
-
-        private Customer GetCustomerNow()
-        {
-            Customer account = new Customer();
-
-            // Xoá các khoảng trắng thừa
-            //Trim(new System.Windows.Forms.TextBox[] { txtName, txtAddress });
-
-
-
-            int index = cbType.SelectedIndex;
             
-            account.IdCustomerType = (int)((DataTable)cbType.DataSource).Rows[index]["idCustomerType"];
-            account.Name = txtName.Text;
-            account.IdCard = txtIDNum.Text;
-            account.Sex = cbSex.Text;
-            account.DateOfBirth = dtpDOB.Value;
-            account.PhoneNumber = txtPhone.Text;
-            account.Address = txtAddress.Text;
-            account.Email = txtEmail.Text;
-            return account;
         }
+
+
 
         private void InsertCustomer()
         {
-            bool isFill = FormNhanVien.CheckFillInText(new Control[] { txtName, txtPhone, cbSex });
-            if (!isFill)
+            if (!ValidateInputs())
             {
-                MessageBox.Show("Không được để trống", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            else
+
+
+            try
             {
-                try
+                string hoTen = txtHoten.Text.Trim();
+                string gioiTinh = cbSex.Text;
+                string diaChi = txtAddress.Text.Trim();
+                string cccd = txtIDNum.Text.Trim();
+                if (DateTime.TryParse(dtpDOB.Text.Trim(), out DateTime ngaySinh))
                 {
-                    //int idStaff = Convert.ToInt32(datagridviewStaff.SelectedRows[0].Cells["colidStaff"].Value);
-                    bool check1 = CustomerDAO.Instance.InsertCustomer(GetCustomerNow());
+                    // Thành công: ngaySinh đã được gán giá trị hợp lệ
+                }
+                else
+                {
+                    MessageBox.Show("Ngày sinh không hợp lệ!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                string email = txtEmail.Text.Trim();
+                string soDienThoai = txtPhone.Text.Trim();
+                string loaiKhachHang = cbType.Text;
+                string trangThai = cmbTinhTrang.Text;
+
+
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
 
                     
-                    if (check1)
-                    {
-                        MessageBox.Show("Thêm khách hàng thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    SqlCommand cmdCus = new SqlCommand("sp_InsertCustomer", connection);
+                    cmdCus.CommandType = CommandType.StoredProcedure;
 
-                    }
-                    else
-                    {
-                        MessageBox.Show("Không thể Thêm!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                    }
-                }
-                catch (SqlException ex)
-                {
-                    MessageBox.Show("Lỗi: " + ex, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    cmdCus.Parameters.AddWithValue("@Hoten", hoTen);
+                    cmdCus.Parameters.AddWithValue("@Gioitinh", gioiTinh);
+                    cmdCus.Parameters.AddWithValue("@email", email);
+                    cmdCus.Parameters.AddWithValue("@Ngaysinh", ngaySinh);
+                    cmdCus.Parameters.AddWithValue("@CCCD", cccd);
+                    cmdCus.Parameters.AddWithValue("@Sodienthoai", soDienThoai);
+                    cmdCus.Parameters.AddWithValue("@Diachi", diaChi);
+                    cmdCus.Parameters.AddWithValue("@LoaiKhachHang", loaiKhachHang);
+                    cmdCus.Parameters.AddWithValue("@TinhTrangDatPhong", trangThai);
+
+
+                    cmdCus.ExecuteNonQuery();
+
+                    MessageBox.Show("Thêm khách hàng mới thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    ClearForm();
                 }
             }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Lỗi khi thêm khách hàng: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ClearForm()
+        {
+            txtHoten.ResetText();
+            txtAddress.ResetText();
+            txtIDNum.ResetText();
+            txtEmail.ResetText();
+            txtPhone.ResetText();
+        }
+
+        private bool ValidateInputs()
+        {
+            // Kiểm tra họ tên
+            if (string.IsNullOrWhiteSpace(txtHoten.Text))
+            {
+                MessageBox.Show("Vui lòng nhập họ tên khách hàng!", "Lỗi",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtHoten.Focus();
+                return false;
+            }
+
+            // Kiểm tra số điện thoại
+            if (string.IsNullOrWhiteSpace(txtPhone.Text))
+            {
+                MessageBox.Show("Vui lòng nhập số điện thoại!", "Lỗi",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtPhone.Focus();
+                return false;
+            }
+
+            // Kiểm tra định dạng số điện thoại
+            string phonePattern = @"^0\d{9,10}$";
+            if (!System.Text.RegularExpressions.Regex.IsMatch(txtPhone.Text, phonePattern))
+            {
+                MessageBox.Show("Số điện thoại không hợp lệ! Số điện thoại phải bắt đầu bằng số 0 và có 10-11 chữ số.",
+                    "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtPhone.Focus();
+                return false;
+            }
+
+            // Kiểm tra email
+            if (string.IsNullOrWhiteSpace(txtEmail.Text))
+            {
+                MessageBox.Show("Vui lòng nhập địa chỉ email!", "Lỗi",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtEmail.Focus();
+                return false;
+            }
+
+            // Kiểm tra định dạng email
+            string emailPattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
+            if (!System.Text.RegularExpressions.Regex.IsMatch(txtEmail.Text, emailPattern))
+            {
+                MessageBox.Show("Địa chỉ email không hợp lệ!", "Lỗi",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtEmail.Focus();
+                return false;
+            }
+           
+
+            //Kiểm tra địa chỉ
+            if(string.IsNullOrEmpty(txtAddress.Text))
+            {
+                MessageBox.Show("Vui lòng nhập địa chỉ!", "Lỗi",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtEmail.Focus();
+                return false;
+            }
+            return true;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -114,6 +185,12 @@ namespace QLKS
 
                 InsertCustomer();
             }
+        }
+
+        private void btnHuy_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+            this.Close();
         }
     }
 }

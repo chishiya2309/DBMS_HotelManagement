@@ -80,6 +80,7 @@
             this.guna2CirclePictureBox2.Size = new System.Drawing.Size(25, 25);
             this.guna2CirclePictureBox2.TabIndex = 13;
             this.guna2CirclePictureBox2.TabStop = false;
+            this.guna2CirclePictureBox2.Click += new System.EventHandler(this.guna2CirclePictureBox2_Click);
             // 
             // guna2CirclePictureBox1
             // 
@@ -91,6 +92,7 @@
             this.guna2CirclePictureBox1.Size = new System.Drawing.Size(25, 25);
             this.guna2CirclePictureBox1.TabIndex = 12;
             this.guna2CirclePictureBox1.TabStop = false;
+            this.guna2CirclePictureBox1.Click += new System.EventHandler(this.guna2CirclePictureBox1_Click);
             // 
             // guna2CirclePictureBox3
             // 
@@ -102,6 +104,7 @@
             this.guna2CirclePictureBox3.Size = new System.Drawing.Size(25, 25);
             this.guna2CirclePictureBox3.TabIndex = 11;
             this.guna2CirclePictureBox3.TabStop = false;
+            this.guna2CirclePictureBox3.Click += new System.EventHandler(this.guna2CirclePictureBox3_Click);
             // 
             // guna2Button3
             // 
@@ -210,6 +213,7 @@
             this.guna2Button6.Size = new System.Drawing.Size(169, 96);
             this.guna2Button6.TabIndex = 8;
             this.guna2Button6.Text = "Quy định";
+            this.guna2Button6.Click += new System.EventHandler(this.guna2Button6_Click);
             // 
             // label1
             // 
@@ -222,6 +226,7 @@
             this.label1.Size = new System.Drawing.Size(309, 31);
             this.label1.TabIndex = 9;
             this.label1.Text = "QUẢN LÝ KHÁCH SẠN";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // guna2Button7
             // 

@@ -117,6 +117,31 @@ namespace QLKS
         {
             Application.Exit();
         }
+
+        private void guna2CirclePictureBox2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void guna2CirclePictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void guna2CirclePictureBox3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void guna2Button6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 
