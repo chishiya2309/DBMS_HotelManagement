@@ -20,6 +20,8 @@ namespace BLL
         private double totalPrice;
         private double discount;
         private string status;
+        private string paymentmethod;
+
         public Bill(DataRow data)
         {
             Id = (int)data["idBill"];
@@ -42,5 +44,7 @@ namespace BLL
         public double TotalPrice { get => totalPrice; set => totalPrice = value; }
         public double Discount { get => discount; set => discount = value; }
         public string Status { get => status; set => status = value; }
+        public string Method { get => paymentmethod; set => paymentmethod = value; }
+
     }
 }

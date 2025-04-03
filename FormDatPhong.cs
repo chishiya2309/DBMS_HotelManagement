@@ -159,7 +159,9 @@ namespace QLKS
 
         public DataTable SearchCustomer()
         {
+
             return CustomerDAO.Instance.Search(txtSearch.Text, 2);
+
         }
 
         public void LoadFullCustomer(DataTable dt)
@@ -214,6 +216,7 @@ namespace QLKS
             {
 
                 bool isFill = FormNhanVien.CheckFillInText(new Control[] { txtCustomerName, txtSearch, cbRoom });
+
                 if (!isFill)
                 {
                     MessageBox.Show("Không được để trống", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -250,12 +253,22 @@ namespace QLKS
 
 
 
+        private void LoadFullRoomType()
+        {
+           
+            DataTable table = GetFullRoomType();
+            cbRoomType.DataSource = table;
+            cbRoomType.DisplayMember = "typename";
+            if (table.Rows.Count > 0) cbRoomType.SelectedIndex = 0;
+        }
+
         public DataTable SearchAvailableRoom()
         {
             int index = cbRoomType.SelectedIndex;
             int id = (int)((DataTable)cbRoomType.DataSource).Rows[index]["idRoomType"];
             return RoomDAO.Instance.LoadAllEmptyRoom(id);
         }
+
 
 
         private void cbRoom_SelectedIndexChanged(object sender, EventArgs e)
@@ -280,9 +293,9 @@ namespace QLKS
             txtPhone.Enabled = false;
             txtCustomerName.Enabled = false;
             txtDays.Enabled = false;
-            cbSex.Enabled = false;
-            cbType.Enabled = false;
-            dtpDoB.Enabled = false;
+            //cbSex.Enabled = false;
+            //cbType.Enabled = false;
+            //dtpDoB.Enabled = false;
             cbRoom.DropDownStyle = ComboBoxStyle.DropDownList;
             cbRoomType.DropDownStyle = ComboBoxStyle.DropDownList;
             cbStatus.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -486,12 +499,9 @@ namespace QLKS
             dtpCheckOut.Value = DateTime.Now;
         }
 
-        private void dgvBookRoom_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
+        private void guna2GroupBox3_Click(object sender, EventArgs e)
 
-        }
 
-        private void guna2GroupBox1_Click(object sender, EventArgs e)
         {
 
         }
@@ -586,6 +596,7 @@ namespace QLKS
                 e.SuppressKeyPress = true; // Ngăn chặn âm thanh "ding" khi nhấn Enter
             }
         }
+
 
     }
 }
