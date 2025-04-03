@@ -249,19 +249,14 @@ namespace QLKS
         }
 
 
+
+
         public DataTable SearchAvailableRoom()
         {
-            int index = cbRoom.SelectedIndex;
-            int id = (int)((DataTable)cbRoom.DataSource).Rows[index]["idRoomType"];
+            int index = cbRoomType.SelectedIndex;
+            int id = (int)((DataTable)cbRoomType.DataSource).Rows[index]["idRoomType"];
             return RoomDAO.Instance.LoadAllEmptyRoom(id);
         }
-
-        //public DataTable SearchAvailableRoom()
-        //{
-        //    //int index = cbRoomType.SelectedIndex;
-        //    //int id = (int)((DataTable)cbRoomType.DataSource).Rows[index]["idRoomType"];
-        //    //return RoomDAO.Instance.LoadAllEmptyRoom(id);
-        //}
 
 
         private void cbRoom_SelectedIndexChanged(object sender, EventArgs e)
@@ -272,10 +267,10 @@ namespace QLKS
 
         private void cbRoomType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //DataTable table = SearchAvailableRoom();
-            //cbRoom.DataSource = table;
-            //cbRoom.DisplayMember = "roomname";
-            //if (table.Rows.Count > 0) cbRoom.SelectedIndex = 0;
+            DataTable table = SearchAvailableRoom();
+            cbRoom.DataSource = table;
+            cbRoom.DisplayMember = "roomname";
+            if (table.Rows.Count > 0) cbRoom.SelectedIndex = 0;
         }
 
         private void FormDatPhong_Load(object sender, EventArgs e)
