@@ -189,6 +189,12 @@
     <Compile Include="UpdateRoom.Designer.cs">
       <DependentUpon>UpdateRoom.cs</DependentUpon>
     </Compile>
+    <Compile Include="UpdateRoomType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UpdateRoomType.Designer.cs">
+      <DependentUpon>UpdateRoomType.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AddCustomer.resx">
       <DependentUpon>AddCustomer.cs</DependentUpon>
     </EmbeddedResource>
@@ -252,6 +258,9 @@
     </Compile>
     <EmbeddedResource Include="UpdateRoom.resx">
       <DependentUpon>UpdateRoom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpdateRoomType.resx">
+      <DependentUpon>UpdateRoomType.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

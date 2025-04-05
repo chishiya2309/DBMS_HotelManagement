@@ -189,5 +189,17 @@ namespace QLKS
         {
 
         }
+
+        private void btnEditRoomType_Click(object sender, EventArgs e)
+        {
+            using (UpdateRoomType updateRoomType = new UpdateRoomType())
+            {
+                if (updateRoomType.ShowDialog() == DialogResult.OK)
+                {
+                    // Tải lại dữ liệu khi form đóng và có cập nhật thành công
+                    LoadRoomType();
+                }
+            }
+        }
     }
 }
