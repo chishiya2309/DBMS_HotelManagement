@@ -21,5 +21,10 @@ namespace QLKS
         {
             this.Close();
         }
+
+        private void FormThongKe_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
