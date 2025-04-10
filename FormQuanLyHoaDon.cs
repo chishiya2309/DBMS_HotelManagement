@@ -54,18 +54,18 @@ namespace QLKS
             else
             {
 
-                txtIdBill.Text = row.Cells["dgvIdBill"].Value.ToString();
-                txtPayMethod.Text = row.Cells["dgvStaffName"].Value as string;
-                txtTotal.Text = row.Cells["dgvTotal"].Value.ToString();
+                txtIdBill.Text = row.Cells["dgvMaHoaDon"].Value.ToString();
+                txtPayMethod.Text = row.Cells["dgvPhuongThucThanhToan"].Value as string;
+                txtTotal.Text = row.Cells["dgvThanhTien"].Value.ToString();
 
-                cbStatus.Text = row.Cells["dgvStatus"].Value as string;
-                if (DateTime.TryParse(row.Cells["dgvDateCreate"].Value?.ToString(), out DateTime dateCreate))
+                cbStatus.Text = row.Cells["dgvTinhTrangThanhToan"].Value as string;
+                if (DateTime.TryParse(row.Cells["dgvNgayLapHoaDon"].Value?.ToString(), out DateTime dateCreate))
                 {
                     dtpCreate.Value = dateCreate;
                 }
 
-                DataTable dt = BillDAO.Instance.FindRoomByBill(int.Parse(txtIdBill.Text));
-                txtRoomName.Text = dt.Rows[0]["roomname"].ToString();
+                //DataTable dt = BillDAO.Instance.SearchRoomByBill(int.Parse(txtIdBill.Text));
+                txtRoomName.Text = row.Cells["dgvTenPhong"].Value as string;
 
             }
         }
@@ -97,16 +97,9 @@ namespace QLKS
             {
                 try
                 {
-                    bool check = BillDAO.Instance.UpdateStatusBill(int.Parse(txtIdBill.Text), cbStatus.Text);
-                    if (check)
-                    {
-                        MessageBox.Show("Cập nhật thành công");
-
-                        //dgvBill.Rows[index2].Selected = true;
-                        LoadFullBill(GetFullBill());
-                        isMouseDown = false;
-
-                    }
+                    BillDAO.Instance.UpdateStatusBill(int.Parse(txtIdBill.Text), cbStatus.Text);
+                    LoadFullBill(GetFullBill());
+                    isMouseDown = false;
                 }
                 catch (SqlException ex)
                 {
@@ -126,15 +119,15 @@ namespace QLKS
             {
                 try
                 {
-                    DataTable dt = BillDAO.Instance.FindBillbyBookRoom(int.Parse(txtSearch.Text));
+                    DataTable dt = BillDAO.Instance.FindBill(txtSearch.Text);
                     if (dt.Rows.Count > 0)
                     {
-                        txtIdBill.Text = dt.Rows[0]["idBill"].ToString();
-                        txtRoomName.Text = dt.Rows[0]["roomname"].ToString();
-                        txtPayMethod.Text = dt.Rows[0]["TenNhanVien"].ToString();
-                        txtTotal.Text = dt.Rows[0]["totalPrice"].ToString();
-                        cbStatus.Text = dt.Rows[0]["status"].ToString();
-                        dtpCreate.Text = dt.Rows[0]["dateofCreate"].ToString();
+                        txtIdBill.Text = dt.Rows[0]["MaHoaDon"].ToString();
+                        txtRoomName.Text = dt.Rows[0]["TenPhong"].ToString();
+                        txtPayMethod.Text = dt.Rows[0]["PhuongThucThanhToan"].ToString();
+                        txtTotal.Text = dt.Rows[0]["ThanhTien"].ToString();
+                        cbStatus.Text = dt.Rows[0]["TinhTrangThanhToan"].ToString();
+                        dtpCreate.Text = dt.Rows[0]["NgayLapHoaDon"].ToString();
                     }
                     else
                     {

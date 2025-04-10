@@ -18,7 +18,8 @@ namespace BLL.DAO
         {
             
             string query = "select * from Staff where idStaff=" + id.ToString() + "";
-            DataTable dataTable = DataProvider.Instance.ExecuteQuery(query);
+            DataTable dataTable = DBConnection.Instance.ExecuteQuery(query);
+
             Staff s = new Staff(dataTable.Rows[0]);
             return s;
         }
