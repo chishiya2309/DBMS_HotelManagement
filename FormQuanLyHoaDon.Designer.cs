@@ -54,7 +54,9 @@
             this.btnDetail = new Guna.UI2.WinForms.Guna2CircleButton();
             this.btnClose = new Guna.UI2.WinForms.Guna2CircleButton();
             this.dgvBill = new Guna.UI2.WinForms.Guna2DataGridView();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.dgvMaHoaDon = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvTenPhong = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvTenKhachHang = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvTenNhanVien = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvNgayLapHoaDon = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -66,7 +68,6 @@
             this.dgvGiamGia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvMaHoSoDatPhong = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvMaNhanVien = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.guna2GroupBox1.SuspendLayout();
             this.guna2GroupBox2.SuspendLayout();
             this.guna2GroupBox3.SuspendLayout();
@@ -387,6 +388,7 @@
             this.dgvBill.ColumnHeadersHeight = 20;
             this.dgvBill.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dgvMaHoaDon,
+            this.dgvTenPhong,
             this.dgvTenKhachHang,
             this.dgvTenNhanVien,
             this.dgvNgayLapHoaDon,
@@ -441,6 +443,14 @@
             this.dgvBill.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.dgvBill.SelectionChanged += new System.EventHandler(this.dgvBill_SelectionChanged);
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.dgvBill);
+            this.panel1.Location = new System.Drawing.Point(377, 32);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(475, 415);
+            this.panel1.TabIndex = 40;
+            // 
             // dgvMaHoaDon
             // 
             this.dgvMaHoaDon.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
@@ -450,6 +460,16 @@
             this.dgvMaHoaDon.MinimumWidth = 6;
             this.dgvMaHoaDon.Name = "dgvMaHoaDon";
             this.dgvMaHoaDon.ReadOnly = true;
+            // 
+            // dgvTenPhong
+            // 
+            this.dgvTenPhong.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgvTenPhong.DataPropertyName = "TenPhong";
+            this.dgvTenPhong.HeaderText = "Tên phòng";
+            this.dgvTenPhong.Name = "dgvTenPhong";
+            this.dgvTenPhong.ReadOnly = true;
+            this.dgvTenPhong.Visible = false;
+            this.dgvTenPhong.Width = 97;
             // 
             // dgvTenKhachHang
             // 
@@ -552,14 +572,6 @@
             this.dgvMaNhanVien.ReadOnly = true;
             this.dgvMaNhanVien.Visible = false;
             // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.dgvBill);
-            this.panel1.Location = new System.Drawing.Point(377, 32);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(475, 415);
-            this.panel1.TabIndex = 40;
-            // 
             // FormQuanLyHoaDon
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -616,6 +628,7 @@
         private Guna.UI2.WinForms.Guna2CircleButton btnSearch;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvMaHoaDon;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvTenPhong;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvTenKhachHang;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvTenNhanVien;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvNgayLapHoaDon;

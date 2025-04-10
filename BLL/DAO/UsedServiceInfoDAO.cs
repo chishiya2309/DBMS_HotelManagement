@@ -18,8 +18,7 @@ namespace BLL.DAO
 
         public DataTable Search(int idBookRoom)
         {
-            //string query = "sp_SearchUsedServiceInfo @id";
-            //return DataProvider.Instance.ExecuteQuery(query, new object[] { idBookRoom });
+            
             DataTable dt = new DataTable();
 
             using (SqlConnection connection = DBConnection.GetConnection())
