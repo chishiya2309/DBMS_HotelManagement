@@ -181,6 +181,12 @@
     <Compile Include="FormThongTin.Designer.cs">
       <DependentUpon>FormThongTin.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormTimKhachHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTimKhachHang.Designer.cs">
+      <DependentUpon>FormTimKhachHang.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UpdateRoom.cs">
@@ -245,6 +251,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormThongTin.resx">
       <DependentUpon>FormThongTin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTimKhachHang.resx">
+      <DependentUpon>FormTimKhachHang.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
