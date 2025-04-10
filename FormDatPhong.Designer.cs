@@ -37,6 +37,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormDatPhong));
             this.label1 = new System.Windows.Forms.Label();
             this.guna2GroupBox1 = new Guna.UI2.WinForms.Guna2GroupBox();
+            this.cbRoomType = new System.Windows.Forms.ComboBox();
             this.dtpCheckOut = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -90,7 +91,6 @@
             this.dgvDaiDien = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.btnAddMember = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.cbRoomType = new System.Windows.Forms.ComboBox();
             this.guna2GroupBox1.SuspendLayout();
             this.guna2GroupBox2.SuspendLayout();
             this.guna2GroupBox3.SuspendLayout();
@@ -136,6 +136,15 @@
             this.guna2GroupBox1.Size = new System.Drawing.Size(359, 141);
             this.guna2GroupBox1.TabIndex = 27;
             this.guna2GroupBox1.Text = "Đăng kí phòng";
+            // 
+            // cbRoomType
+            // 
+            this.cbRoomType.BackColor = System.Drawing.Color.Gainsboro;
+            this.cbRoomType.FormattingEnabled = true;
+            this.cbRoomType.Location = new System.Drawing.Point(6, 57);
+            this.cbRoomType.Name = "cbRoomType";
+            this.cbRoomType.Size = new System.Drawing.Size(154, 29);
+            this.cbRoomType.TabIndex = 48;
             // 
             // dtpCheckOut
             // 
@@ -845,6 +854,7 @@
             this.guna2DataGridView1.ThemeStyle.RowsStyle.Height = 22;
             this.guna2DataGridView1.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.guna2DataGridView1.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            this.guna2DataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.guna2DataGridView1_CellValueChanged);
             // 
             // dgvMaKH
             // 
@@ -875,6 +885,7 @@
             this.btnAddMember.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.btnAddMember.TabIndex = 54;
             this.btnAddMember.TabStop = false;
+            this.btnAddMember.Click += new System.EventHandler(this.btnAddMember_Click);
             // 
             // pictureBox1
             // 
@@ -885,15 +896,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 55;
             this.pictureBox1.TabStop = false;
-            // 
-            // cbRoomType
-            // 
-            this.cbRoomType.BackColor = System.Drawing.Color.Gainsboro;
-            this.cbRoomType.FormattingEnabled = true;
-            this.cbRoomType.Location = new System.Drawing.Point(6, 57);
-            this.cbRoomType.Name = "cbRoomType";
-            this.cbRoomType.Size = new System.Drawing.Size(154, 29);
-            this.cbRoomType.TabIndex = 48;
             // 
             // FormDatPhong
             // 
