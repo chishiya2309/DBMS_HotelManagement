@@ -30,7 +30,8 @@
         {
             this.txtKhuVuc = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.cmbLoaiPhong = new System.Windows.Forms.ComboBox();
+            this.cmbTrangThai = new System.Windows.Forms.ComboBox();
+            this.nudSoGiuong = new System.Windows.Forms.NumericUpDown();
             this.cmbLoaiGiuong = new System.Windows.Forms.ComboBox();
             this.txtTenPhong = new System.Windows.Forms.TextBox();
             this.lblMaPhong = new System.Windows.Forms.Label();
@@ -39,20 +40,19 @@
             this.lblSoGiuong = new System.Windows.Forms.Label();
             this.lblLoaiGiuong = new System.Windows.Forms.Label();
             this.lblKhuVuc = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.lblTrangThai = new System.Windows.Forms.Label();
+            this.cmbLoaiPhong = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.nudSoGiuong = new System.Windows.Forms.NumericUpDown();
             this.btnEditRoomType = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.cmbTrangThai = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSoGiuong)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudSoGiuong)).BeginInit();
             this.SuspendLayout();
             // 
             // txtKhuVuc
@@ -102,16 +102,45 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(511, 384);
             this.tableLayoutPanel1.TabIndex = 7;
             // 
-            // cmbLoaiPhong
+            // cmbTrangThai
             // 
-            this.cmbLoaiPhong.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmbLoaiPhong.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbLoaiPhong.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbLoaiPhong.FormattingEnabled = true;
-            this.cmbLoaiPhong.Location = new System.Drawing.Point(164, 267);
-            this.cmbLoaiPhong.Name = "cmbLoaiPhong";
-            this.cmbLoaiPhong.Size = new System.Drawing.Size(324, 25);
-            this.cmbLoaiPhong.TabIndex = 5;
+            this.cmbTrangThai.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbTrangThai.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbTrangThai.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbTrangThai.FormattingEnabled = true;
+            this.cmbTrangThai.Items.AddRange(new object[] {
+            "Trống",
+            "Đang cho thuê",
+            "Đang sửa"});
+            this.cmbTrangThai.Location = new System.Drawing.Point(164, 227);
+            this.cmbTrangThai.Name = "cmbTrangThai";
+            this.cmbTrangThai.Size = new System.Drawing.Size(324, 25);
+            this.cmbTrangThai.TabIndex = 13;
+            // 
+            // nudSoGiuong
+            // 
+            this.nudSoGiuong.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.nudSoGiuong.AutoSize = true;
+            this.nudSoGiuong.Location = new System.Drawing.Point(164, 110);
+            this.nudSoGiuong.Maximum = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            this.nudSoGiuong.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nudSoGiuong.Name = "nudSoGiuong";
+            this.nudSoGiuong.Size = new System.Drawing.Size(324, 20);
+            this.nudSoGiuong.TabIndex = 11;
+            this.nudSoGiuong.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nudSoGiuong.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // cmbLoaiGiuong
             // 
@@ -208,6 +237,18 @@
             this.lblKhuVuc.TabIndex = 4;
             this.lblKhuVuc.Text = "Khu vực";
             // 
+            // label2
+            // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.DarkRed;
+            this.label2.Location = new System.Drawing.Point(23, 231);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(66, 17);
+            this.label2.TabIndex = 12;
+            this.label2.Text = "Trạng thái";
+            // 
             // lblTrangThai
             // 
             this.lblTrangThai.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -219,6 +260,17 @@
             this.lblTrangThai.Size = new System.Drawing.Size(74, 17);
             this.lblTrangThai.TabIndex = 10;
             this.lblTrangThai.Text = "Loại phòng";
+            // 
+            // cmbLoaiPhong
+            // 
+            this.cmbLoaiPhong.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbLoaiPhong.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbLoaiPhong.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbLoaiPhong.FormattingEnabled = true;
+            this.cmbLoaiPhong.Location = new System.Drawing.Point(164, 267);
+            this.cmbLoaiPhong.Name = "cmbLoaiPhong";
+            this.cmbLoaiPhong.Size = new System.Drawing.Size(324, 25);
+            this.cmbLoaiPhong.TabIndex = 5;
             // 
             // panel1
             // 
@@ -287,31 +339,6 @@
             this.panel2.Size = new System.Drawing.Size(511, 60);
             this.panel2.TabIndex = 8;
             // 
-            // nudSoGiuong
-            // 
-            this.nudSoGiuong.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.nudSoGiuong.AutoSize = true;
-            this.nudSoGiuong.Location = new System.Drawing.Point(164, 110);
-            this.nudSoGiuong.Maximum = new decimal(new int[] {
-            3,
-            0,
-            0,
-            0});
-            this.nudSoGiuong.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nudSoGiuong.Name = "nudSoGiuong";
-            this.nudSoGiuong.Size = new System.Drawing.Size(324, 20);
-            this.nudSoGiuong.TabIndex = 11;
-            this.nudSoGiuong.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.nudSoGiuong.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
             // btnEditRoomType
             // 
             this.btnEditRoomType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -327,33 +354,7 @@
             this.btnEditRoomType.TabIndex = 9;
             this.btnEditRoomType.Text = "Sửa loại phòng";
             this.btnEditRoomType.UseVisualStyleBackColor = false;
-            // 
-            // label2
-            // 
-            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.DarkRed;
-            this.label2.Location = new System.Drawing.Point(23, 231);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(66, 17);
-            this.label2.TabIndex = 12;
-            this.label2.Text = "Trạng thái";
-            // 
-            // cmbTrangThai
-            // 
-            this.cmbTrangThai.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmbTrangThai.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbTrangThai.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbTrangThai.FormattingEnabled = true;
-            this.cmbTrangThai.Items.AddRange(new object[] {
-            "Trống",
-            "Đang cho thuê",
-            "Đang sửa"});
-            this.cmbTrangThai.Location = new System.Drawing.Point(164, 227);
-            this.cmbTrangThai.Name = "cmbTrangThai";
-            this.cmbTrangThai.Size = new System.Drawing.Size(324, 25);
-            this.cmbTrangThai.TabIndex = 13;
+            this.btnEditRoomType.Click += new System.EventHandler(this.btnEditRoomType_Click);
             // 
             // UpdateRoom
             // 
@@ -372,10 +373,10 @@
             this.Load += new System.EventHandler(this.UpdateRoom_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSoGiuong)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.nudSoGiuong)).EndInit();
             this.ResumeLayout(false);
 
         }
