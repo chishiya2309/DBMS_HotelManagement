@@ -539,7 +539,7 @@
             this.btnBook.Size = new System.Drawing.Size(153, 33);
             this.btnBook.TabIndex = 26;
             this.btnBook.Text = "Đặt phòng";
-            // 
+     
             // btnCancel
             // 
             this.btnCancel.BackColor = System.Drawing.Color.Transparent;
