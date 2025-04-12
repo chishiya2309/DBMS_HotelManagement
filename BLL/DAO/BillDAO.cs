@@ -178,6 +178,32 @@ namespace BLL.DAO
             }
         }
 
+        public DataTable PrintBill(int id)
+        {
+            DataTable dt = new DataTable();
+
+            using (SqlConnection connection = DBConnection.GetConnection())
+            {
+                string query = "SELECT * FROM dbo.fn_PrintBill(@id)";
+                SqlCommand command = new SqlCommand(query, connection);
+
+                command.Parameters.AddWithValue("@id", id);
+
+                try
+                {
+                    SqlDataAdapter da = new SqlDataAdapter(command);
+                    da.Fill(dt);
+                }
+                catch (SqlException ex)
+                {
+                    Console.WriteLine($"Lỗi khi cố in hoá đơn: {ex.Message}");
+                }
+
+            }
+
+            return dt;
+        }
+
         public static BillDAO Instance
         {
             get { if (instance == null) instance = new BillDAO(); return instance; }
