@@ -32,8 +32,6 @@
             this.guna2GroupBox2 = new Guna.UI2.WinForms.Guna2GroupBox();
             this.dtpNgayVaoLam = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.label7 = new System.Windows.Forms.Label();
-            this.txtPass = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.cbRole = new System.Windows.Forms.ComboBox();
@@ -54,7 +52,11 @@
             this.txtIDNum = new System.Windows.Forms.TextBox();
             this.btnAdd = new Guna.UI2.WinForms.Guna2CircleButton();
             this.btnCancel = new Guna.UI2.WinForms.Guna2CircleButton();
+            this.btnChooseImage = new System.Windows.Forms.Button();
+            this.picturebox = new Guna.UI2.WinForms.Guna2CirclePictureBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.guna2GroupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picturebox)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -72,10 +74,11 @@
             // 
             this.guna2GroupBox2.BackColor = System.Drawing.Color.Transparent;
             this.guna2GroupBox2.BorderColor = System.Drawing.Color.Silver;
+            this.guna2GroupBox2.Controls.Add(this.label3);
+            this.guna2GroupBox2.Controls.Add(this.picturebox);
+            this.guna2GroupBox2.Controls.Add(this.btnChooseImage);
             this.guna2GroupBox2.Controls.Add(this.dtpNgayVaoLam);
             this.guna2GroupBox2.Controls.Add(this.label7);
-            this.guna2GroupBox2.Controls.Add(this.txtPass);
-            this.guna2GroupBox2.Controls.Add(this.label3);
             this.guna2GroupBox2.Controls.Add(this.txtEmail);
             this.guna2GroupBox2.Controls.Add(this.label5);
             this.guna2GroupBox2.Controls.Add(this.cbRole);
@@ -101,7 +104,7 @@
             this.guna2GroupBox2.Location = new System.Drawing.Point(12, 58);
             this.guna2GroupBox2.Name = "guna2GroupBox2";
             this.guna2GroupBox2.ShadowDecoration.Parent = this.guna2GroupBox2;
-            this.guna2GroupBox2.Size = new System.Drawing.Size(386, 387);
+            this.guna2GroupBox2.Size = new System.Drawing.Size(583, 329);
             this.guna2GroupBox2.TabIndex = 28;
             this.guna2GroupBox2.Text = "Thông tin nhân viên";
             // 
@@ -112,7 +115,7 @@
             this.dtpNgayVaoLam.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.dtpNgayVaoLam.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpNgayVaoLam.HoverState.Parent = this.dtpNgayVaoLam;
-            this.dtpNgayVaoLam.Location = new System.Drawing.Point(9, 341);
+            this.dtpNgayVaoLam.Location = new System.Drawing.Point(206, 232);
             this.dtpNgayVaoLam.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.dtpNgayVaoLam.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
             this.dtpNgayVaoLam.Name = "dtpNgayVaoLam";
@@ -127,40 +130,17 @@
             this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.DarkRed;
-            this.label7.Location = new System.Drawing.Point(3, 321);
+            this.label7.Location = new System.Drawing.Point(200, 212);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(98, 17);
             this.label7.TabIndex = 51;
             this.label7.Text = "Ngày vào làm:";
             // 
-            // txtPass
-            // 
-            this.txtPass.BackColor = System.Drawing.Color.Gainsboro;
-            this.txtPass.ForeColor = System.Drawing.Color.DarkRed;
-            this.txtPass.Location = new System.Drawing.Point(207, 226);
-            this.txtPass.Name = "txtPass";
-            this.txtPass.Size = new System.Drawing.Size(159, 29);
-            this.txtPass.TabIndex = 7;
-            this.txtPass.UseSystemPasswordChar = true;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.DarkRed;
-            this.label3.Location = new System.Drawing.Point(204, 208);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(70, 17);
-            this.label3.TabIndex = 49;
-            this.label3.Text = "Mật khẩu:";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
-            // 
             // txtEmail
             // 
             this.txtEmail.BackColor = System.Drawing.Color.Gainsboro;
             this.txtEmail.ForeColor = System.Drawing.Color.DarkRed;
-            this.txtEmail.Location = new System.Drawing.Point(6, 280);
+            this.txtEmail.Location = new System.Drawing.Point(9, 280);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(159, 29);
             this.txtEmail.TabIndex = 8;
@@ -171,7 +151,7 @@
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.DarkRed;
-            this.label5.Location = new System.Drawing.Point(3, 262);
+            this.label5.Location = new System.Drawing.Point(6, 262);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(46, 17);
             this.label5.TabIndex = 47;
@@ -184,7 +164,7 @@
             this.cbRole.Items.AddRange(new object[] {
             "Quản lý",
             "Lễ tân"});
-            this.cbRole.Location = new System.Drawing.Point(207, 280);
+            this.cbRole.Location = new System.Drawing.Point(206, 177);
             this.cbRole.Name = "cbRole";
             this.cbRole.Size = new System.Drawing.Size(159, 29);
             this.cbRole.TabIndex = 9;
@@ -195,7 +175,7 @@
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.DarkRed;
-            this.label4.Location = new System.Drawing.Point(204, 262);
+            this.label4.Location = new System.Drawing.Point(203, 159);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(63, 17);
             this.label4.TabIndex = 45;
@@ -205,7 +185,7 @@
             // 
             this.txtUser.BackColor = System.Drawing.Color.Gainsboro;
             this.txtUser.ForeColor = System.Drawing.Color.DarkRed;
-            this.txtUser.Location = new System.Drawing.Point(206, 174);
+            this.txtUser.Location = new System.Drawing.Point(206, 280);
             this.txtUser.Name = "txtUser";
             this.txtUser.Size = new System.Drawing.Size(160, 29);
             this.txtUser.TabIndex = 5;
@@ -215,7 +195,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.DarkRed;
-            this.label2.Location = new System.Drawing.Point(204, 155);
+            this.label2.Location = new System.Drawing.Point(204, 261);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(109, 17);
             this.label2.TabIndex = 43;
@@ -366,7 +346,7 @@
             this.btnAdd.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.btnAdd.ForeColor = System.Drawing.Color.DarkRed;
             this.btnAdd.HoverState.Parent = this.btnAdd;
-            this.btnAdd.Location = new System.Drawing.Point(12, 451);
+            this.btnAdd.Location = new System.Drawing.Point(60, 393);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             this.btnAdd.ShadowDecoration.Parent = this.btnAdd;
@@ -384,7 +364,7 @@
             this.btnCancel.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.btnCancel.ForeColor = System.Drawing.Color.DarkRed;
             this.btnCancel.HoverState.Parent = this.btnCancel;
-            this.btnCancel.Location = new System.Drawing.Point(217, 451);
+            this.btnCancel.Location = new System.Drawing.Point(350, 393);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             this.btnCancel.ShadowDecoration.Parent = this.btnCancel;
@@ -393,12 +373,47 @@
             this.btnCancel.Text = "Thoát";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // btnChooseImage
+            // 
+            this.btnChooseImage.BackColor = System.Drawing.Color.Transparent;
+            this.btnChooseImage.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnChooseImage.ForeColor = System.Drawing.Color.DarkRed;
+            this.btnChooseImage.Location = new System.Drawing.Point(424, 203);
+            this.btnChooseImage.Name = "btnChooseImage";
+            this.btnChooseImage.Size = new System.Drawing.Size(123, 33);
+            this.btnChooseImage.TabIndex = 29;
+            this.btnChooseImage.Text = "Chọn ảnh";
+            this.btnChooseImage.UseVisualStyleBackColor = false;
+            this.btnChooseImage.Click += new System.EventHandler(this.btnChooseImage_Click);
+            // 
+            // picturebox
+            // 
+            this.picturebox.Location = new System.Drawing.Point(424, 66);
+            this.picturebox.Name = "picturebox";
+            this.picturebox.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            this.picturebox.ShadowDecoration.Parent = this.picturebox;
+            this.picturebox.Size = new System.Drawing.Size(123, 131);
+            this.picturebox.TabIndex = 52;
+            this.picturebox.TabStop = false;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.DarkRed;
+            this.label3.Location = new System.Drawing.Point(421, 46);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(81, 17);
+            this.label3.TabIndex = 53;
+            this.label3.Text = "Chân dung:";
+            // 
             // AddStaff
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(409, 496);
+            this.ClientSize = new System.Drawing.Size(609, 431);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.guna2GroupBox2);
@@ -412,6 +427,7 @@
             this.Load += new System.EventHandler(this.AddStaff_Load);
             this.guna2GroupBox2.ResumeLayout(false);
             this.guna2GroupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picturebox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -437,13 +453,14 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtUser;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtPass;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.Label label5;
         private Guna.UI2.WinForms.Guna2CircleButton btnAdd;
         private Guna.UI2.WinForms.Guna2CircleButton btnCancel;
         private Guna.UI2.WinForms.Guna2DateTimePicker dtpNgayVaoLam;
         private System.Windows.Forms.Label label7;
+        private Guna.UI2.WinForms.Guna2CirclePictureBox picturebox;
+        private System.Windows.Forms.Button btnChooseImage;
+        private System.Windows.Forms.Label label3;
     }
 }
