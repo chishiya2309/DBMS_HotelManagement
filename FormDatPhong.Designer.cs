@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle43 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle44 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle45 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle46 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle47 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle48 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.guna2GroupBox1 = new Guna.UI2.WinForms.Guna2GroupBox();
             this.cbRoomType = new Guna.UI2.WinForms.Guna2ComboBox();
@@ -55,7 +55,9 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.txtCustomerName = new Guna.UI2.WinForms.Guna2TextBox();
-            this.guna2GroupBox4 = new Guna.UI2.WinForms.Guna2GroupBox();
+            this.guna2Panel3 = new Guna.UI2.WinForms.Guna2Panel();
+            this.lblBookingTitle = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
             this.txtNotes = new Guna.UI2.WinForms.Guna2TextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.txtCreditCard = new Guna.UI2.WinForms.Guna2TextBox();
@@ -101,7 +103,8 @@
             this.guna2GroupBox1.SuspendLayout();
             this.guna2GroupBox2.SuspendLayout();
             this.guna2GroupBox3.SuspendLayout();
-            this.guna2GroupBox4.SuspendLayout();
+            this.guna2Panel3.SuspendLayout();
+            this.guna2Panel2.SuspendLayout();
             this.guna2GroupBox5.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBookRoom)).BeginInit();
@@ -495,33 +498,57 @@
             this.txtCustomerName.Size = new System.Drawing.Size(200, 36);
             this.txtCustomerName.TabIndex = 8;
             // 
-            // guna2GroupBox4
+            // guna2Panel3
             // 
-            this.guna2GroupBox4.AutoScroll = true;
-            this.guna2GroupBox4.BackColor = System.Drawing.Color.Transparent;
-            this.guna2GroupBox4.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
-            this.guna2GroupBox4.BorderRadius = 8;
-            this.guna2GroupBox4.Controls.Add(this.txtNotes);
-            this.guna2GroupBox4.Controls.Add(this.label18);
-            this.guna2GroupBox4.Controls.Add(this.txtCreditCard);
-            this.guna2GroupBox4.Controls.Add(this.label17);
-            this.guna2GroupBox4.Controls.Add(this.cbRoom);
-            this.guna2GroupBox4.Controls.Add(this.label14);
-            this.guna2GroupBox4.Controls.Add(this.cbStatus);
-            this.guna2GroupBox4.Controls.Add(this.txtIdBookRoom);
-            this.guna2GroupBox4.Controls.Add(this.label8);
-            this.guna2GroupBox4.Controls.Add(this.txtDeposit);
-            this.guna2GroupBox4.Controls.Add(this.label15);
-            this.guna2GroupBox4.Controls.Add(this.label16);
-            this.guna2GroupBox4.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(187)))), ((int)(((byte)(153)))));
-            this.guna2GroupBox4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.guna2GroupBox4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(77)))), ((int)(((byte)(0)))));
-            this.guna2GroupBox4.Location = new System.Drawing.Point(250, 340);
-            this.guna2GroupBox4.Name = "guna2GroupBox4";
-            this.guna2GroupBox4.ShadowDecoration.Parent = this.guna2GroupBox4;
-            this.guna2GroupBox4.Size = new System.Drawing.Size(220, 220);
-            this.guna2GroupBox4.TabIndex = 30;
-            this.guna2GroupBox4.Text = "Hồ sơ đặt phòng";
+            this.guna2Panel3.BackColor = System.Drawing.Color.Transparent;
+            this.guna2Panel3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
+            this.guna2Panel3.BorderRadius = 8;
+            this.guna2Panel3.BorderThickness = 1;
+            this.guna2Panel3.Controls.Add(this.lblBookingTitle);
+            this.guna2Panel3.Controls.Add(this.guna2Panel2);
+            this.guna2Panel3.Location = new System.Drawing.Point(250, 340);
+            this.guna2Panel3.Name = "guna2Panel3";
+            this.guna2Panel3.ShadowDecoration.Parent = this.guna2Panel3;
+            this.guna2Panel3.Size = new System.Drawing.Size(220, 220);
+            this.guna2Panel3.TabIndex = 30;
+            // 
+            // lblBookingTitle
+            // 
+            this.lblBookingTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(187)))), ((int)(((byte)(153)))));
+            this.lblBookingTitle.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblBookingTitle.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.lblBookingTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(77)))), ((int)(((byte)(0)))));
+            this.lblBookingTitle.Location = new System.Drawing.Point(0, 0);
+            this.lblBookingTitle.Name = "lblBookingTitle";
+            this.lblBookingTitle.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.lblBookingTitle.Size = new System.Drawing.Size(220, 23);
+            this.lblBookingTitle.TabIndex = 1;
+            this.lblBookingTitle.Text = "Hồ sơ đặt phòng";
+            this.lblBookingTitle.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblBookingTitle.Click += new System.EventHandler(this.lblBookingTitle_Click);
+            // 
+            // guna2Panel2
+            // 
+            this.guna2Panel2.AutoScroll = true;
+            this.guna2Panel2.Controls.Add(this.txtNotes);
+            this.guna2Panel2.Controls.Add(this.label18);
+            this.guna2Panel2.Controls.Add(this.txtCreditCard);
+            this.guna2Panel2.Controls.Add(this.label17);
+            this.guna2Panel2.Controls.Add(this.cbRoom);
+            this.guna2Panel2.Controls.Add(this.label14);
+            this.guna2Panel2.Controls.Add(this.cbStatus);
+            this.guna2Panel2.Controls.Add(this.txtIdBookRoom);
+            this.guna2Panel2.Controls.Add(this.label8);
+            this.guna2Panel2.Controls.Add(this.txtDeposit);
+            this.guna2Panel2.Controls.Add(this.label15);
+            this.guna2Panel2.Controls.Add(this.label16);
+            this.guna2Panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.guna2Panel2.Location = new System.Drawing.Point(0, 0);
+            this.guna2Panel2.Name = "guna2Panel2";
+            this.guna2Panel2.Padding = new System.Windows.Forms.Padding(5);
+            this.guna2Panel2.ShadowDecoration.Parent = this.guna2Panel2;
+            this.guna2Panel2.Size = new System.Drawing.Size(220, 220);
+            this.guna2Panel2.TabIndex = 0;
             // 
             // txtNotes
             // 
@@ -874,23 +901,23 @@
             this.dgvBookRoom.AllowUserToDeleteRows = false;
             this.dgvBookRoom.AllowUserToResizeColumns = false;
             this.dgvBookRoom.AllowUserToResizeRows = false;
-            dataGridViewCellStyle43.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle43.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(187)))), ((int)(((byte)(153)))));
-            dataGridViewCellStyle43.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(77)))), ((int)(((byte)(0)))));
-            this.dgvBookRoom.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle43;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(187)))), ((int)(((byte)(153)))));
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(77)))), ((int)(((byte)(0)))));
+            this.dgvBookRoom.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             this.dgvBookRoom.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvBookRoom.BackgroundColor = System.Drawing.Color.White;
             this.dgvBookRoom.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvBookRoom.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgvBookRoom.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle44.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle44.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(77)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle44.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle44.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle44.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(77)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle44.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle44.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvBookRoom.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle44;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(77)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(77)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvBookRoom.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.dgvBookRoom.ColumnHeadersHeight = 40;
             this.dgvBookRoom.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvBookRoom.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -907,14 +934,14 @@
             this.TrangThaiDatPhong,
             this.SoTheTinDung,
             this.GhiChu});
-            dataGridViewCellStyle45.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle45.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle45.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle45.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle45.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(187)))), ((int)(((byte)(153)))));
-            dataGridViewCellStyle45.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(77)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle45.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvBookRoom.DefaultCellStyle = dataGridViewCellStyle45;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(187)))), ((int)(((byte)(153)))));
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(77)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvBookRoom.DefaultCellStyle = dataGridViewCellStyle9;
             this.dgvBookRoom.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvBookRoom.EnableHeadersVisualStyles = false;
             this.dgvBookRoom.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(187)))), ((int)(((byte)(153)))));
@@ -950,6 +977,7 @@
             this.dgvBookRoom.ThemeStyle.RowsStyle.Height = 30;
             this.dgvBookRoom.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(187)))), ((int)(((byte)(153)))));
             this.dgvBookRoom.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(77)))), ((int)(((byte)(0)))));
+            this.dgvBookRoom.SelectionChanged += new System.EventHandler(this.dgvBookRoom_SelectionChanged);
             // 
             // guna2Panel1
             // 
@@ -981,34 +1009,34 @@
             // 
             // guna2DataGridView1
             // 
-            dataGridViewCellStyle46.BackColor = System.Drawing.Color.White;
-            this.guna2DataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle46;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.White;
+            this.guna2DataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
             this.guna2DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.guna2DataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.guna2DataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.guna2DataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.guna2DataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle47.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle47.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(77)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle47.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle47.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle47.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle47.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle47.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.guna2DataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle47;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(77)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.guna2DataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
             this.guna2DataGridView1.ColumnHeadersHeight = 40;
             this.guna2DataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dgvMaKH,
             this.dgvTenKhachHang,
             this.dgvDaiDien});
-            dataGridViewCellStyle48.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle48.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle48.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle48.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle48.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(187)))), ((int)(((byte)(153)))));
-            dataGridViewCellStyle48.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(77)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle48.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.guna2DataGridView1.DefaultCellStyle = dataGridViewCellStyle48;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(187)))), ((int)(((byte)(153)))));
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(77)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.guna2DataGridView1.DefaultCellStyle = dataGridViewCellStyle12;
             this.guna2DataGridView1.EnableHeadersVisualStyles = false;
             this.guna2DataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(187)))), ((int)(((byte)(153)))));
             this.guna2DataGridView1.Location = new System.Drawing.Point(10, 40);
@@ -1168,7 +1196,7 @@
             this.ThoiGianCheckinDuKien.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.ThoiGianCheckinDuKien.DataPropertyName = "ThoiGianCheckinDuKien";
             this.ThoiGianCheckinDuKien.FillWeight = 33.7445F;
-            this.ThoiGianCheckinDuKien.HeaderText = "Ngày nhận";
+            this.ThoiGianCheckinDuKien.HeaderText = "Checkin dự kiến";
             this.ThoiGianCheckinDuKien.MinimumWidth = 100;
             this.ThoiGianCheckinDuKien.Name = "ThoiGianCheckinDuKien";
             this.ThoiGianCheckinDuKien.ReadOnly = true;
@@ -1178,7 +1206,7 @@
             this.ThoiGianCheckoutDuKien.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.ThoiGianCheckoutDuKien.DataPropertyName = "ThoiGianCheckoutDuKien";
             this.ThoiGianCheckoutDuKien.FillWeight = 33.7445F;
-            this.ThoiGianCheckoutDuKien.HeaderText = "Ngày trả";
+            this.ThoiGianCheckoutDuKien.HeaderText = "Checkout dự kiến";
             this.ThoiGianCheckoutDuKien.MinimumWidth = 100;
             this.ThoiGianCheckoutDuKien.Name = "ThoiGianCheckoutDuKien";
             this.ThoiGianCheckoutDuKien.ReadOnly = true;
@@ -1226,6 +1254,7 @@
             // dgvMaKH
             // 
             this.dgvMaKH.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dgvMaKH.DataPropertyName = "MaKhachHang";
             this.dgvMaKH.HeaderText = "Mã KH";
             this.dgvMaKH.MinimumWidth = 60;
             this.dgvMaKH.Name = "dgvMaKH";
@@ -1233,6 +1262,7 @@
             // dgvTenKhachHang
             // 
             this.dgvTenKhachHang.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dgvTenKhachHang.DataPropertyName = "Hoten";
             this.dgvTenKhachHang.HeaderText = "Tên Khách Hàng";
             this.dgvTenKhachHang.MinimumWidth = 330;
             this.dgvTenKhachHang.Name = "dgvTenKhachHang";
@@ -1240,6 +1270,7 @@
             // dgvDaiDien
             // 
             this.dgvDaiDien.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dgvDaiDien.DataPropertyName = "LaDaiDien";
             this.dgvDaiDien.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.dgvDaiDien.HeaderText = "Đại diện";
             this.dgvDaiDien.MinimumWidth = 50;
@@ -1255,7 +1286,7 @@
             this.Controls.Add(this.guna2Panel1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.guna2GroupBox5);
-            this.Controls.Add(this.guna2GroupBox4);
+            this.Controls.Add(this.guna2Panel3);
             this.Controls.Add(this.guna2GroupBox3);
             this.Controls.Add(this.guna2GroupBox2);
             this.Controls.Add(this.guna2GroupBox1);
@@ -1272,8 +1303,10 @@
             this.guna2GroupBox2.PerformLayout();
             this.guna2GroupBox3.ResumeLayout(false);
             this.guna2GroupBox3.PerformLayout();
-            this.guna2GroupBox4.ResumeLayout(false);
-            this.guna2GroupBox4.PerformLayout();
+            this.guna2Panel3.ResumeLayout(false);
+            this.guna2Panel3.PerformLayout();
+            this.guna2Panel2.ResumeLayout(false);
+            this.guna2Panel2.PerformLayout();
             this.guna2GroupBox5.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvBookRoom)).EndInit();
@@ -1306,7 +1339,9 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private Guna.UI2.WinForms.Guna2TextBox txtCustomerName;
-        private Guna.UI2.WinForms.Guna2GroupBox guna2GroupBox4;
+        private Guna.UI2.WinForms.Guna2Panel guna2Panel3;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblBookingTitle;
+        private Guna.UI2.WinForms.Guna2Panel guna2Panel2;
         private System.Windows.Forms.Label label8;
         private Guna.UI2.WinForms.Guna2TextBox txtDeposit;
         private System.Windows.Forms.Label label15;
