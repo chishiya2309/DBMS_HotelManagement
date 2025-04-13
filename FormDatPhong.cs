@@ -984,5 +984,132 @@ namespace QLKS
                 guna2DataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = !currentValue;
             }
         }
+
+        private void btnCheckIn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnDeleteMember_Click(object sender, EventArgs e)
+        {
+            // Kiểm tra xem có hàng nào được chọn không
+            if (guna2DataGridView1.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Vui lòng chọn khách hàng cần xóa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Kiểm tra xem có khách hàng đại diện nào được chọn không
+            bool hasRepresentative = false;
+            foreach (DataGridViewRow row in guna2DataGridView1.SelectedRows)
+            {
+                if (row.Cells["dgvDaiDien"].Value != null && (bool)row.Cells["dgvDaiDien"].Value)
+                {
+                    hasRepresentative = true;
+                    break;
+                }
+            }
+
+            if (hasRepresentative)
+            {
+                MessageBox.Show("Không thể xóa khách hàng đại diện!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Xác nhận xóa
+            string message = guna2DataGridView1.SelectedRows.Count == 1
+                ? "Bạn có chắc chắn muốn xóa khách hàng này khỏi danh sách tham gia?"
+                : $"Bạn có chắc chắn muốn xóa {guna2DataGridView1.SelectedRows.Count} khách hàng khỏi danh sách tham gia?";
+
+            DialogResult result = MessageBox.Show(
+                message, "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                // Tạo danh sách các hàng cần xóa (để tránh lỗi khi xóa trực tiếp trong vòng lặp)
+                List<DataGridViewRow> rowsToRemove = new List<DataGridViewRow>();
+                foreach (DataGridViewRow row in guna2DataGridView1.SelectedRows)
+                {
+                    rowsToRemove.Add(row);
+                }
+
+                int successCount = 0;
+                int failCount = 0;
+
+                // Nếu đang chỉnh sửa hồ sơ đặt phòng hiện có
+                if (isEditing && !string.IsNullOrEmpty(txtIdBookRoom.Text))
+                {
+                    int bookingId = Convert.ToInt32(txtIdBookRoom.Text);
+
+                    foreach (DataGridViewRow row in rowsToRemove)
+                    {
+                        int customerId = Convert.ToInt32(row.Cells["dgvMaKH"].Value);
+
+                        // Xóa khách hàng khỏi bảng ThamGia trong cơ sở dữ liệu
+                        if (DeleteParticipant(bookingId, customerId))
+                        {
+                            // Xóa hàng khỏi DataGridView
+                            guna2DataGridView1.Rows.Remove(row);
+                            successCount++;
+                        }
+                        else
+                        {
+                            failCount++;
+                        }
+                    }
+                }
+                else
+                {
+                    // Nếu đang tạo hồ sơ đặt phòng mới, chỉ cần xóa khỏi DataGridView
+                    foreach (DataGridViewRow row in rowsToRemove)
+                    {
+                        guna2DataGridView1.Rows.Remove(row);
+                        successCount++;
+                    }
+                }
+
+                // Hiển thị thông báo kết quả
+                if (failCount == 0)
+                {
+                    MessageBox.Show($"Đã xóa {successCount} khách hàng khỏi danh sách tham gia!",
+                        "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show($"Đã xóa {successCount} khách hàng, {failCount} khách hàng không thể xóa!",
+                        "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+        }
+
+        // Phương thức để xóa khách hàng khỏi bảng ThamGia
+        private bool DeleteParticipant(int bookingId, int customerId)
+        {
+            string query = @"
+                DELETE FROM ThamGia 
+                WHERE MaHoSoDatPhong = @MaHoSoDatPhong AND MaKhachHang = @MaKhachHang";
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@MaHoSoDatPhong", bookingId);
+                        cmd.Parameters.AddWithValue("@MaKhachHang", customerId);
+
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi khi xóa khách hàng tham gia: " + ex.Message,
+                        "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+            }
+        }
     }
 }
