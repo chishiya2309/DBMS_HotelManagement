@@ -82,6 +82,32 @@ namespace BLL.DAO
             return dt;
         }
 
+        public DataTable SearchStaffByCCCD(string cccd)
+        {
+            DataTable dt = new DataTable();
+
+            using (SqlConnection connection = DBConnection.GetConnection())
+            {
+                string query = "SELECT * FROM dbo.fn_SearchStaffByCCCD(@CCCD)";
+                SqlCommand command = new SqlCommand(query, connection);
+
+                command.Parameters.AddWithValue("@CCCD", cccd);
+
+                try
+                {
+                    SqlDataAdapter da = new SqlDataAdapter(command);
+                    da.Fill(dt);
+                }
+                catch (SqlException ex)
+                {
+                    Console.WriteLine($"Lỗi khi truy xuất thông tin nhân viên này: {ex.Message}");
+                }
+
+            }
+
+            return dt;
+        }
+
         public void UpdateStaff(int id, string Hoten, string gioitinh, DateTime ngaysinh, string CCCD, string diachi, string email, string sdt,
             string ngayvaolam, string vaitro, byte[] chandung)
         {
