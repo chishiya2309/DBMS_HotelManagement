@@ -1,10 +1,13 @@
 ﻿using DAL;
+using iTextSharp.text;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace BLL.DAO
 {
@@ -32,13 +35,13 @@ namespace BLL.DAO
             return DataProvider.Instance.ExecuteNonQuery(query, parameter) > 0;
         }
 
-        public bool UpdateStaff(Staff staff)
-        {
-            string query = "EXEC sp_UpdateStaffInfo @idStaff , @fullName , @sex , @dateofBirth , @CCCD , @address , @email , @Phonenumber , @idRole , @Startday";
-            object[] parameter = new object[] {staff.IdStaff ,staff.Fullname, staff.Sex, staff.DoB, staff.IdNumber,
-                staff.Address, staff.Email, staff.Phone, staff.IdRole, staff.StartDay};
-            return DataProvider.Instance.ExecuteNonQuery(query, parameter) > 0;
-        }
+        //public bool UpdateStaff(Staff staff)
+        //{
+        //    string query = "EXEC sp_UpdateStaffInfo @idStaff , @fullName , @sex , @dateofBirth , @CCCD , @address , @email , @Phonenumber , @idRole , @Startday";
+        //    object[] parameter = new object[] {staff.IdStaff ,staff.Fullname, staff.Sex, staff.DoB, staff.IdNumber,
+        //        staff.Address, staff.Email, staff.Phone, staff.IdRole, staff.StartDay};
+        //    return DataProvider.Instance.ExecuteNonQuery(query, parameter) > 0;
+        //}
 
         public bool UpdateInfo(int idStaff, string fullName, string sex, DateTime dateofBirth,  string CCCD,string address, string email, string phonenumber)
         {
@@ -51,6 +54,83 @@ namespace BLL.DAO
         {
             string query = "sp_LoadFullStaff";
             return DataProvider.Instance.ExecuteQuery(query);
+        }
+
+        public DataTable SearchProfileStaffByID(int id)
+        {
+            DataTable dt = new DataTable();
+
+            using (SqlConnection connection = DBConnection.GetConnection())
+            {
+                string query = "SELECT * FROM dbo.fn_SearchProfileStaffByID(@id)";
+                SqlCommand command = new SqlCommand(query, connection);
+
+                command.Parameters.AddWithValue("@id", id);
+
+                try
+                {
+                    SqlDataAdapter da = new SqlDataAdapter(command);
+                    da.Fill(dt);
+                }
+                catch (SqlException ex)
+                {
+                    Console.WriteLine($"Lỗi khi truy xuất thông tin nhân viên này: {ex.Message}");
+                }
+
+            }
+
+            return dt;
+        }
+
+        public void UpdateStaff(int id, string Hoten, string gioitinh, DateTime ngaysinh, string CCCD, string diachi, string email, string sdt,
+            string ngayvaolam, string vaitro, byte[] chandung)
+        {
+            using (SqlConnection conn = DBConnection.GetConnection())
+            {
+                string query = "sp_UpdateStaff";
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@MaNhanVien", id);
+                cmd.Parameters.AddWithValue("@Hoten", Hoten);
+                cmd.Parameters.AddWithValue("@Gioitinh", gioitinh);
+                cmd.Parameters.AddWithValue("@Ngaysinh", ngaysinh);
+                cmd.Parameters.AddWithValue("@CCCD", CCCD);
+                cmd.Parameters.AddWithValue("@Diachi", diachi);
+                cmd.Parameters.AddWithValue("@email", email);
+                cmd.Parameters.AddWithValue("@Sodienthoai", sdt);
+
+                
+                if (DateTime.TryParse(ngayvaolam, out DateTime parsedNgayvaolam))
+                {
+                    cmd.Parameters.AddWithValue("@Ngayvaolam", parsedNgayvaolam);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@Ngayvaolam", DateTime.Now);
+                }
+
+                cmd.Parameters.AddWithValue("@Vaitro", vaitro);
+                cmd.Parameters.AddWithValue("@Chandung", chandung);
+
+                try
+                {
+                    conn.Open();
+                    if (cmd.ExecuteNonQuery() > 0)
+                    {
+                        MessageBox.Show("Cập nhật thông tin cơ bản thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Cập nhật thông tin thất bại");
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    Console.WriteLine("Lỗi khi cập nhật thông tin: " + ex.Message);
+                }
+            }
         }
 
         public bool DeleteStaff(int idStaff)

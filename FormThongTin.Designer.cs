@@ -29,13 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Guna.UI2.AnimatorNS.Animation animation1 = new Guna.UI2.AnimatorNS.Animation();
+            Guna.UI2.AnimatorNS.Animation animation2 = new Guna.UI2.AnimatorNS.Animation();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormThongTin));
             this.guna2AnimateWindow1 = new Guna.UI2.WinForms.Guna2AnimateWindow(this.components);
             this.guna2DragControl1 = new Guna.UI2.WinForms.Guna2DragControl(this.components);
             this.guna2MouseStateHandler1 = new Guna.UI2.WinForms.Guna2MouseStateHandler(this.components);
             this.guna2Transition1 = new Guna.UI2.WinForms.Guna2Transition();
-            this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -66,9 +65,10 @@
             this.SavePassbtn = new Guna.UI2.WinForms.Guna2CircleButton();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
+            this.picturebox = new Guna.UI2.WinForms.Guna2CirclePictureBox();
             this.guna2ShadowForm1 = new Guna.UI2.WinForms.Guna2ShadowForm(this.components);
             this.guna2HtmlToolTip1 = new Guna.UI2.WinForms.Guna2HtmlToolTip();
-            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picturebox)).BeginInit();
             this.SuspendLayout();
             // 
             // guna2DragControl1
@@ -78,34 +78,22 @@
             // guna2Transition1
             // 
             this.guna2Transition1.Cursor = null;
-            animation1.AnimateOnlyDifferences = true;
-            animation1.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.BlindCoeff")));
-            animation1.LeafCoeff = 0F;
-            animation1.MaxTime = 1F;
-            animation1.MinTime = 0F;
-            animation1.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.MosaicCoeff")));
-            animation1.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation1.MosaicShift")));
-            animation1.MosaicSize = 0;
-            animation1.Padding = new System.Windows.Forms.Padding(0);
-            animation1.RotateCoeff = 0F;
-            animation1.RotateLimit = 0F;
-            animation1.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.ScaleCoeff")));
-            animation1.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.SlideCoeff")));
-            animation1.TimeCoeff = 0F;
-            animation1.TransparencyCoeff = 0F;
-            this.guna2Transition1.DefaultAnimation = animation1;
-            // 
-            // guna2PictureBox1
-            // 
-            this.guna2PictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.guna2PictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("guna2PictureBox1.BackgroundImage")));
-            this.guna2Transition1.SetDecoration(this.guna2PictureBox1, Guna.UI2.AnimatorNS.DecorationType.None);
-            this.guna2PictureBox1.Location = new System.Drawing.Point(26, 22);
-            this.guna2PictureBox1.Name = "guna2PictureBox1";
-            this.guna2PictureBox1.ShadowDecoration.Parent = this.guna2PictureBox1;
-            this.guna2PictureBox1.Size = new System.Drawing.Size(180, 182);
-            this.guna2PictureBox1.TabIndex = 0;
-            this.guna2PictureBox1.TabStop = false;
+            animation2.AnimateOnlyDifferences = true;
+            animation2.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.BlindCoeff")));
+            animation2.LeafCoeff = 0F;
+            animation2.MaxTime = 1F;
+            animation2.MinTime = 0F;
+            animation2.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.MosaicCoeff")));
+            animation2.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation2.MosaicShift")));
+            animation2.MosaicSize = 0;
+            animation2.Padding = new System.Windows.Forms.Padding(0);
+            animation2.RotateCoeff = 0F;
+            animation2.RotateLimit = 0F;
+            animation2.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.ScaleCoeff")));
+            animation2.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.SlideCoeff")));
+            animation2.TimeCoeff = 0F;
+            animation2.TransparencyCoeff = 0F;
+            this.guna2Transition1.DefaultAnimation = animation2;
             // 
             // label1
             // 
@@ -113,7 +101,7 @@
             this.guna2Transition1.SetDecoration(this.label1, Guna.UI2.AnimatorNS.DecorationType.None);
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.DarkRed;
-            this.label1.Location = new System.Drawing.Point(47, 207);
+            this.label1.Location = new System.Drawing.Point(21, 210);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(140, 25);
             this.label1.TabIndex = 1;
@@ -490,6 +478,20 @@
             this.label15.TabIndex = 37;
             this.label15.Text = "Email:";
             // 
+            // picturebox
+            // 
+            this.guna2Transition1.SetDecoration(this.picturebox, Guna.UI2.AnimatorNS.DecorationType.None);
+            this.picturebox.Image = global::QLKS.Properties.Resources.clipart4371249;
+            this.picturebox.Location = new System.Drawing.Point(23, 22);
+            this.picturebox.Name = "picturebox";
+            this.picturebox.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            this.picturebox.ShadowDecoration.Parent = this.picturebox;
+            this.picturebox.Size = new System.Drawing.Size(187, 182);
+            this.picturebox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picturebox.TabIndex = 39;
+            this.picturebox.TabStop = false;
+            this.picturebox.DoubleClick += new System.EventHandler(this.picturebox_DoubleClick);
+            // 
             // guna2HtmlToolTip1
             // 
             this.guna2HtmlToolTip1.AllowLinksHandling = true;
@@ -502,6 +504,7 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(795, 458);
+            this.Controls.Add(this.picturebox);
             this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.SavePassbtn);
@@ -532,13 +535,12 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.guna2PictureBox1);
             this.guna2Transition1.SetDecoration(this, Guna.UI2.AnimatorNS.DecorationType.None);
             this.Name = "FormThongTin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormThongTin";
             this.Load += new System.EventHandler(this.FormThongTin_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picturebox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -551,7 +553,6 @@
         private Guna.UI2.WinForms.Guna2MouseStateHandler guna2MouseStateHandler1;
         private Guna.UI2.WinForms.Guna2Transition guna2Transition1;
         private Guna.UI2.WinForms.Guna2ShadowForm guna2ShadowForm1;
-        private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -583,5 +584,6 @@
         private Guna.UI2.WinForms.Guna2CircleButton SavePassbtn;
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.Label label15;
+        private Guna.UI2.WinForms.Guna2CirclePictureBox picturebox;
     }
 }
