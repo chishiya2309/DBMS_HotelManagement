@@ -157,6 +157,7 @@ namespace QLKS
                             cmd.Parameters.AddWithValue("@Sodienthoai", txtPhone.Text.Trim());
                             cmd.Parameters.AddWithValue("@Ngayvaolam", dtpStartday.Value);
                             cmd.Parameters.AddWithValue("@Vaitro", cbRole.Text);
+                            cmd.Parameters.Add("@Chandung", SqlDbType.VarBinary).Value = DBNull.Value;
 
                             cmd.ExecuteNonQuery();
                         }
