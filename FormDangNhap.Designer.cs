@@ -114,6 +114,7 @@
             this.btnLogin.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(64)))), ((int)(((byte)(86)))));
             this.btnLogin.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.btnLogin.ForeColor = System.Drawing.Color.White;
+            this.btnLogin.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(90)))), ((int)(((byte)(115)))));
             this.btnLogin.HoverState.Parent = this.btnLogin;
             this.btnLogin.Location = new System.Drawing.Point(120, 350);
             this.btnLogin.Name = "btnLogin";
@@ -132,6 +133,7 @@
             this.txtThoat.FillColor = System.Drawing.Color.Silver;
             this.txtThoat.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.txtThoat.ForeColor = System.Drawing.Color.White;
+            this.txtThoat.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(168)))), ((int)(((byte)(168)))));
             this.txtThoat.HoverState.Parent = this.txtThoat;
             this.txtThoat.Location = new System.Drawing.Point(280, 350);
             this.txtThoat.Name = "txtThoat";
