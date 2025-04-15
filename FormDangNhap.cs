@@ -106,5 +106,10 @@ namespace QLKS
             frm.Show();
             this.Hide();
         }
+
+        private void FormDangNhap_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

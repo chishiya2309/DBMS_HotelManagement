@@ -35,7 +35,7 @@ namespace QLKS
             dt = StaffDAO.Instance.SearchProfileStaffByID(id);
             
 
-            label1.Text = dt.Rows[0]["Hoten"].ToString();
+            lblUserName.Text = dt.Rows[0]["Hoten"].ToString();
             txtUser.Text = dt.Rows[0]["TenDangNhap"].ToString();
             txtName.Text = dt.Rows[0]["Hoten"].ToString();
             txtIDNum.Text = dt.Rows[0]["CCCD"].ToString();

@@ -29,7 +29,7 @@ namespace QLKS
             
             FormDangNhap formDangNhap = new FormDangNhap();
             formDangNhap.Show();
-            this.Hide();
+            this.Close();
         }
 
         private string maXacNhanDuocTao = "";
