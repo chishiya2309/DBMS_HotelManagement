@@ -166,6 +166,7 @@
             this.cbRoomType.ShadowDecoration.Parent = this.cbRoomType;
             this.cbRoomType.Size = new System.Drawing.Size(214, 36);
             this.cbRoomType.TabIndex = 48;
+            this.cbRoomType.SelectedIndexChanged += new System.EventHandler(this.cbRoomType_SelectedIndexChanged);
             // 
             // dtpCheckOut
             // 
