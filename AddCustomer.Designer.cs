@@ -329,6 +329,7 @@
             // 
             // dtpDOB
             // 
+            this.dtpDOB.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(218)))), ((int)(((byte)(223)))));
             this.dtpDOB.BorderRadius = 10;
             this.dtpDOB.CheckedState.Parent = this.dtpDOB;
             this.dtpDOB.FillColor = System.Drawing.Color.White;

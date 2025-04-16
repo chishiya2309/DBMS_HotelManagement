@@ -85,6 +85,7 @@
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnClose.BorderRadius = 20;
             this.btnClose.CheckedState.Parent = this.btnClose;
+            this.btnClose.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnClose.CustomImages.Parent = this.btnClose;
             this.btnClose.FillColor = System.Drawing.Color.Silver;
             this.btnClose.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
@@ -106,6 +107,7 @@
             this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDelete.BorderRadius = 20;
             this.btnDelete.CheckedState.Parent = this.btnDelete;
+            this.btnDelete.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnDelete.CustomImages.Parent = this.btnDelete;
             this.btnDelete.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(64)))), ((int)(((byte)(86)))));
             this.btnDelete.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
@@ -127,6 +129,7 @@
             this.btnInsert.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnInsert.BorderRadius = 20;
             this.btnInsert.CheckedState.Parent = this.btnInsert;
+            this.btnInsert.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnInsert.CustomImages.Parent = this.btnInsert;
             this.btnInsert.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(64)))), ((int)(((byte)(86)))));
             this.btnInsert.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
@@ -148,6 +151,7 @@
             this.btnUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnUpdate.BorderRadius = 20;
             this.btnUpdate.CheckedState.Parent = this.btnUpdate;
+            this.btnUpdate.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnUpdate.CustomImages.Parent = this.btnUpdate;
             this.btnUpdate.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(64)))), ((int)(((byte)(86)))));
             this.btnUpdate.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
@@ -200,7 +204,7 @@
             this.Diachi,
             this.LoaiKhachHang,
             this.TinhTrangDatPhong});
-            this.dgvCustomer.Cursor = System.Windows.Forms.Cursors.Default;
+            this.dgvCustomer.Cursor = System.Windows.Forms.Cursors.Hand;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 10.5F);
@@ -376,6 +380,7 @@
             this.cmbTrangThai.BackColor = System.Drawing.Color.Transparent;
             this.cmbTrangThai.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.cmbTrangThai.BorderRadius = 10;
+            this.cmbTrangThai.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cmbTrangThai.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.cmbTrangThai.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTrangThai.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
@@ -454,6 +459,7 @@
             this.cbType.BackColor = System.Drawing.Color.Transparent;
             this.cbType.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.cbType.BorderRadius = 10;
+            this.cbType.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cbType.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.cbType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbType.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
@@ -532,6 +538,7 @@
             this.cbSex.BackColor = System.Drawing.Color.Transparent;
             this.cbSex.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.cbSex.BorderRadius = 10;
+            this.cbSex.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cbSex.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.cbSex.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbSex.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
@@ -571,6 +578,7 @@
             this.dtpDoB.BorderRadius = 10;
             this.dtpDoB.BorderThickness = 1;
             this.dtpDoB.CheckedState.Parent = this.dtpDoB;
+            this.dtpDoB.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dtpDoB.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.dtpDoB.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpDoB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(64)))), ((int)(((byte)(86)))));
@@ -755,6 +763,7 @@
             this.cbSearchType.BackColor = System.Drawing.Color.Transparent;
             this.cbSearchType.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.cbSearchType.BorderRadius = 10;
+            this.cbSearchType.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cbSearchType.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.cbSearchType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbSearchType.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
@@ -822,6 +831,7 @@
             this.btnSearch.BorderRadius = 10;
             this.btnSearch.BorderThickness = 1;
             this.btnSearch.CheckedState.Parent = this.btnSearch;
+            this.btnSearch.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSearch.CustomImages.Parent = this.btnSearch;
             this.btnSearch.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(64)))), ((int)(((byte)(86)))));
             this.btnSearch.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
