@@ -11,7 +11,7 @@ namespace DAL
     public class DataProvider
     {
         private static DataProvider instance;
-        private string connectionStr = "Data Source=(local)\\SQLEXPRESS;Initial Catalog=WFHotel;Integrated Security=True";
+        private string connectionStr = "Data Source=(local)\\SQLEXPRESS;Initial Catalog=Hotel2025;Integrated Security=True";
 
        
         public DataTable ExecuteQuery(string query, object[] parameter = null)
