@@ -15,7 +15,7 @@ namespace QLKS
 {
     public partial class FormQuanLyPhong: Form
     {
-        string connectionString = "Data Source=(local)\\SQLExpress;Initial Catalog=Hotel2025;Integrated Security=True";
+        string connectionString = "Data Source=(local);Initial Catalog=Hotel2025;Integrated Security=True";
         public FormQuanLyPhong()
         {
             InitializeComponent();

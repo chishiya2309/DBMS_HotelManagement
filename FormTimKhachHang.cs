@@ -14,7 +14,7 @@ namespace QLKS
 {
     public partial class FormTimKhachHang : Form
     {
-        private string connectionString = "Data Source=(local)\\SQLExpress;Initial Catalog=Hotel2025;Integrated Security=True";
+        private string connectionString = "Data Source=(local);Initial Catalog=Hotel2025;Integrated Security=True";
         private DataTable searchResults;
 
         // Thay đổi từ DataTable sang List<DataRow> để lưu nhiều khách hàng đã chọn

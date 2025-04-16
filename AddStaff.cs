@@ -16,7 +16,7 @@ namespace QLKS
 {
     public partial class AddStaff: Form
     {
-        private string connectionString = "Data Source=(local)\\SQLExpress;Initial Catalog=Hotel2025;Integrated Security=True";
+        private string connectionString = "Data Source=(local);Initial Catalog=Hotel2025;Integrated Security=True";
         public AddStaff()
         {
             InitializeComponent();
