@@ -33,7 +33,7 @@ namespace BLL.DAO
             return DataProvider.Instance.ExecuteNonQuery(query, new object[] { idBookRoom, status, idRoom }) > 0;
         }
 
-        public void ConfirmBookRoomBonus(int MaHoSoDatPhong, DateTime checkin, DateTime checkout, string note)
+        public void ConfirmBookRoomBonus(int MaHoSoDatPhong, string note)
         {
             using (SqlConnection conn = DBConnection.GetConnection())
             {
@@ -44,8 +44,6 @@ namespace BLL.DAO
 
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@MaHoSoDatPhong", MaHoSoDatPhong);
-                cmd.Parameters.AddWithValue("@Checkin", checkin);
-                cmd.Parameters.AddWithValue("@Checkout", checkout);
                 cmd.Parameters.AddWithValue("@Note", note);
 
                 try

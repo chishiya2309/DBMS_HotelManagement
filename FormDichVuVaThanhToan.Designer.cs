@@ -41,14 +41,9 @@
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.guna2GroupBox3 = new Guna.UI2.WinForms.Guna2GroupBox();
-            this.txtDescription = new Guna.UI2.WinForms.Guna2TextBox();
-            this.label14 = new System.Windows.Forms.Label();
+            this.cbPayMethod = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.dtpRealCheckOut = new Guna.UI2.WinForms.Guna2DateTimePicker();
-            this.label13 = new System.Windows.Forms.Label();
             this.txtDiscount = new System.Windows.Forms.TextBox();
-            this.dtpRealCheckIn = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.txtTotal = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -56,6 +51,10 @@
             this.txtSurchangeInfo = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
+            this.txtDescription = new Guna.UI2.WinForms.Guna2TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.dtpRealCheckIn = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.guna2GroupBox1 = new Guna.UI2.WinForms.Guna2GroupBox();
             this.nudCount = new Guna.UI2.WinForms.Guna2NumericUpDown();
             this.btnAddService = new Guna.UI2.WinForms.Guna2CircleButton();
@@ -65,15 +64,28 @@
             this.cbService = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.guna2GroupBox5 = new Guna.UI2.WinForms.Guna2GroupBox();
-            this.btnConfirm = new Guna.UI2.WinForms.Guna2CircleButton();
             this.btnCancel = new Guna.UI2.WinForms.Guna2CircleButton();
             this.btnPay = new Guna.UI2.WinForms.Guna2CircleButton();
             this.btnClose = new Guna.UI2.WinForms.Guna2CircleButton();
+            this.btnConfirm = new Guna.UI2.WinForms.Guna2CircleButton();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dgvBookRoom = new Guna.UI2.WinForms.Guna2DataGridView();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.dgvUsedService = new Guna.UI2.WinForms.Guna2DataGridView();
+            this.dgvMaMauThongTinSuDungDichVu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvTenDichVu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvGiaDichVu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvSoLuong = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvThanhTien = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvMaDichVu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvMaHoSoDatPhong = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvNgaySuDungDichVu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.guna2GroupBox4 = new Guna.UI2.WinForms.Guna2GroupBox();
             this.dgvHSDP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvGhiChu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvCheckInThucTe = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvKhachDaiDien = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvThoiGianDatPhong = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvHoten = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -85,18 +97,6 @@
             this.dgvThoiGianCheckoutDuKien = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvTienDatCoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvTrangThaiDatPhong = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.dgvUsedService = new Guna.UI2.WinForms.Guna2DataGridView();
-            this.dgvMaMauThongTinSuDungDichVu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvTenDichVu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvGiaDichVu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvSoLuong = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvThanhTien = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvMaDichVu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvMaHoSoDatPhong = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvNgaySuDungDichVu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cbPayMethod = new System.Windows.Forms.ComboBox();
-            this.guna2GroupBox4 = new Guna.UI2.WinForms.Guna2GroupBox();
             this.guna2GroupBox2.SuspendLayout();
             this.guna2GroupBox3.SuspendLayout();
             this.guna2GroupBox1.SuspendLayout();
@@ -204,43 +204,17 @@
             this.guna2GroupBox3.TabIndex = 35;
             this.guna2GroupBox3.Text = "Hoá đơn thanh toán";
             // 
-            // txtDescription
+            // cbPayMethod
             // 
-            this.txtDescription.BackColor = System.Drawing.Color.Gainsboro;
-            this.txtDescription.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtDescription.DefaultText = "";
-            this.txtDescription.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtDescription.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtDescription.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtDescription.DisabledState.Parent = this.txtDescription;
-            this.txtDescription.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtDescription.FillColor = System.Drawing.Color.Gainsboro;
-            this.txtDescription.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtDescription.FocusedState.Parent = this.txtDescription;
-            this.txtDescription.ForeColor = System.Drawing.Color.Black;
-            this.txtDescription.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtDescription.HoverState.Parent = this.txtDescription;
-            this.txtDescription.Location = new System.Drawing.Point(8, 120);
-            this.txtDescription.Multiline = true;
-            this.txtDescription.Name = "txtDescription";
-            this.txtDescription.PasswordChar = '\0';
-            this.txtDescription.PlaceholderText = "";
-            this.txtDescription.SelectedText = "";
-            this.txtDescription.ShadowDecoration.Parent = this.txtDescription;
-            this.txtDescription.Size = new System.Drawing.Size(154, 88);
-            this.txtDescription.TabIndex = 60;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.BackColor = System.Drawing.Color.Transparent;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.ForeColor = System.Drawing.Color.DarkRed;
-            this.label14.Location = new System.Drawing.Point(7, 100);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(61, 17);
-            this.label14.TabIndex = 59;
-            this.label14.Text = "Ghi chú:";
+            this.cbPayMethod.BackColor = System.Drawing.Color.Gainsboro;
+            this.cbPayMethod.FormattingEnabled = true;
+            this.cbPayMethod.Items.AddRange(new object[] {
+            "Tiền mặt",
+            "Thẻ tín dụng"});
+            this.cbPayMethod.Location = new System.Drawing.Point(7, 295);
+            this.cbPayMethod.Name = "cbPayMethod";
+            this.cbPayMethod.Size = new System.Drawing.Size(149, 29);
+            this.cbPayMethod.TabIndex = 59;
             // 
             // label12
             // 
@@ -254,45 +228,6 @@
             this.label12.TabIndex = 58;
             this.label12.Text = "Phương thức thanh toán:";
             // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.BackColor = System.Drawing.Color.Transparent;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.Color.DarkRed;
-            this.label11.Location = new System.Drawing.Point(6, 55);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(126, 17);
-            this.label11.TabIndex = 56;
-            this.label11.Text = "CheckOut Thực tế:";
-            // 
-            // dtpRealCheckOut
-            // 
-            this.dtpRealCheckOut.CheckedState.Parent = this.dtpRealCheckOut;
-            this.dtpRealCheckOut.FillColor = System.Drawing.Color.Gainsboro;
-            this.dtpRealCheckOut.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpRealCheckOut.HoverState.Parent = this.dtpRealCheckOut;
-            this.dtpRealCheckOut.Location = new System.Drawing.Point(8, 75);
-            this.dtpRealCheckOut.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
-            this.dtpRealCheckOut.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
-            this.dtpRealCheckOut.Name = "dtpRealCheckOut";
-            this.dtpRealCheckOut.ShadowDecoration.Parent = this.dtpRealCheckOut;
-            this.dtpRealCheckOut.Size = new System.Drawing.Size(149, 21);
-            this.dtpRealCheckOut.TabIndex = 55;
-            this.dtpRealCheckOut.Value = new System.DateTime(2025, 3, 19, 22, 51, 46, 21);
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.BackColor = System.Drawing.Color.Transparent;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.ForeColor = System.Drawing.Color.DarkRed;
-            this.label13.Location = new System.Drawing.Point(6, 7);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(114, 17);
-            this.label13.TabIndex = 54;
-            this.label13.Text = "CheckIn Thực tế:";
-            // 
             // txtDiscount
             // 
             this.txtDiscount.BackColor = System.Drawing.Color.Gainsboro;
@@ -303,21 +238,6 @@
             this.txtDiscount.TabIndex = 29;
             this.txtDiscount.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtDiscount_MouseClick);
             this.txtDiscount.TextChanged += new System.EventHandler(this.txtDiscount_TextChanged);
-            // 
-            // dtpRealCheckIn
-            // 
-            this.dtpRealCheckIn.CheckedState.Parent = this.dtpRealCheckIn;
-            this.dtpRealCheckIn.FillColor = System.Drawing.Color.Gainsboro;
-            this.dtpRealCheckIn.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpRealCheckIn.HoverState.Parent = this.dtpRealCheckIn;
-            this.dtpRealCheckIn.Location = new System.Drawing.Point(8, 27);
-            this.dtpRealCheckIn.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
-            this.dtpRealCheckIn.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
-            this.dtpRealCheckIn.Name = "dtpRealCheckIn";
-            this.dtpRealCheckIn.ShadowDecoration.Parent = this.dtpRealCheckIn;
-            this.dtpRealCheckIn.Size = new System.Drawing.Size(149, 21);
-            this.dtpRealCheckIn.TabIndex = 53;
-            this.dtpRealCheckIn.Value = new System.DateTime(2025, 3, 19, 22, 51, 46, 21);
             // 
             // txtTotal
             // 
@@ -397,6 +317,73 @@
             this.label10.Size = new System.Drawing.Size(61, 17);
             this.label10.TabIndex = 28;
             this.label10.Text = "Phụ thu:";
+            // 
+            // txtDescription
+            // 
+            this.txtDescription.BackColor = System.Drawing.Color.Gainsboro;
+            this.txtDescription.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtDescription.DefaultText = "";
+            this.txtDescription.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtDescription.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtDescription.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtDescription.DisabledState.Parent = this.txtDescription;
+            this.txtDescription.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtDescription.FillColor = System.Drawing.Color.Gainsboro;
+            this.txtDescription.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtDescription.FocusedState.Parent = this.txtDescription;
+            this.txtDescription.ForeColor = System.Drawing.Color.Black;
+            this.txtDescription.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtDescription.HoverState.Parent = this.txtDescription;
+            this.txtDescription.Location = new System.Drawing.Point(8, 76);
+            this.txtDescription.Multiline = true;
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.PasswordChar = '\0';
+            this.txtDescription.PlaceholderText = "";
+            this.txtDescription.SelectedText = "";
+            this.txtDescription.ShadowDecoration.Parent = this.txtDescription;
+            this.txtDescription.Size = new System.Drawing.Size(154, 132);
+            this.txtDescription.TabIndex = 60;
+            this.txtDescription.TextChanged += new System.EventHandler(this.txtDescription_TextChanged);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.BackColor = System.Drawing.Color.Transparent;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.ForeColor = System.Drawing.Color.DarkRed;
+            this.label14.Location = new System.Drawing.Point(7, 56);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(61, 17);
+            this.label14.TabIndex = 59;
+            this.label14.Text = "Ghi chú:";
+            this.label14.Click += new System.EventHandler(this.label14_Click);
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.BackColor = System.Drawing.Color.Transparent;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.ForeColor = System.Drawing.Color.DarkRed;
+            this.label13.Location = new System.Drawing.Point(6, 7);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(114, 17);
+            this.label13.TabIndex = 54;
+            this.label13.Text = "CheckIn Thực tế:";
+            // 
+            // dtpRealCheckIn
+            // 
+            this.dtpRealCheckIn.CheckedState.Parent = this.dtpRealCheckIn;
+            this.dtpRealCheckIn.FillColor = System.Drawing.Color.Gainsboro;
+            this.dtpRealCheckIn.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpRealCheckIn.HoverState.Parent = this.dtpRealCheckIn;
+            this.dtpRealCheckIn.Location = new System.Drawing.Point(8, 27);
+            this.dtpRealCheckIn.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
+            this.dtpRealCheckIn.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
+            this.dtpRealCheckIn.Name = "dtpRealCheckIn";
+            this.dtpRealCheckIn.ShadowDecoration.Parent = this.dtpRealCheckIn;
+            this.dtpRealCheckIn.Size = new System.Drawing.Size(149, 21);
+            this.dtpRealCheckIn.TabIndex = 53;
+            this.dtpRealCheckIn.Value = new System.DateTime(2025, 3, 19, 22, 51, 46, 21);
             // 
             // guna2GroupBox1
             // 
@@ -530,24 +517,6 @@
             this.guna2GroupBox5.TabIndex = 37;
             this.guna2GroupBox5.Text = "Chức năng";
             // 
-            // btnConfirm
-            // 
-            this.btnConfirm.BackColor = System.Drawing.Color.Transparent;
-            this.btnConfirm.CheckedState.Parent = this.btnConfirm;
-            this.btnConfirm.CustomImages.Parent = this.btnConfirm;
-            this.btnConfirm.FillColor = System.Drawing.Color.Transparent;
-            this.btnConfirm.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.btnConfirm.ForeColor = System.Drawing.Color.DarkRed;
-            this.btnConfirm.HoverState.Parent = this.btnConfirm;
-            this.btnConfirm.Location = new System.Drawing.Point(9, 214);
-            this.btnConfirm.Name = "btnConfirm";
-            this.btnConfirm.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            this.btnConfirm.ShadowDecoration.Parent = this.btnConfirm;
-            this.btnConfirm.Size = new System.Drawing.Size(153, 33);
-            this.btnConfirm.TabIndex = 29;
-            this.btnConfirm.Text = "Ghi nhận";
-            this.btnConfirm.Click += new System.EventHandler(this.btnEdit_Click);
-            // 
             // btnCancel
             // 
             this.btnCancel.BackColor = System.Drawing.Color.Transparent;
@@ -601,6 +570,24 @@
             this.btnClose.TabIndex = 26;
             this.btnClose.Text = "Đóng";
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // btnConfirm
+            // 
+            this.btnConfirm.BackColor = System.Drawing.Color.Transparent;
+            this.btnConfirm.CheckedState.Parent = this.btnConfirm;
+            this.btnConfirm.CustomImages.Parent = this.btnConfirm;
+            this.btnConfirm.FillColor = System.Drawing.Color.Transparent;
+            this.btnConfirm.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.btnConfirm.ForeColor = System.Drawing.Color.DarkRed;
+            this.btnConfirm.HoverState.Parent = this.btnConfirm;
+            this.btnConfirm.Location = new System.Drawing.Point(9, 214);
+            this.btnConfirm.Name = "btnConfirm";
+            this.btnConfirm.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            this.btnConfirm.ShadowDecoration.Parent = this.btnConfirm;
+            this.btnConfirm.Size = new System.Drawing.Size(153, 33);
+            this.btnConfirm.TabIndex = 29;
+            this.btnConfirm.Text = "Ghi nhận";
+            this.btnConfirm.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // label7
             // 
@@ -658,6 +645,8 @@
             this.dgvBookRoom.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvBookRoom.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dgvHSDP,
+            this.dgvGhiChu,
+            this.dgvCheckInThucTe,
             this.dgvKhachDaiDien,
             this.dgvThoiGianDatPhong,
             this.dgvHoten,
@@ -711,129 +700,6 @@
             this.dgvBookRoom.ThemeStyle.RowsStyle.Height = 22;
             this.dgvBookRoom.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.dgvBookRoom.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
-            // 
-            // dgvHSDP
-            // 
-            this.dgvHSDP.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgvHSDP.DataPropertyName = "HSDP";
-            this.dgvHSDP.FillWeight = 123F;
-            this.dgvHSDP.HeaderText = "Mã";
-            this.dgvHSDP.MinimumWidth = 45;
-            this.dgvHSDP.Name = "dgvHSDP";
-            this.dgvHSDP.ReadOnly = true;
-            this.dgvHSDP.Visible = false;
-            this.dgvHSDP.Width = 45;
-            // 
-            // dgvKhachDaiDien
-            // 
-            this.dgvKhachDaiDien.DataPropertyName = "KhachDaiDien";
-            this.dgvKhachDaiDien.HeaderText = "Khách đại diện";
-            this.dgvKhachDaiDien.Name = "dgvKhachDaiDien";
-            this.dgvKhachDaiDien.ReadOnly = true;
-            this.dgvKhachDaiDien.Visible = false;
-            // 
-            // dgvThoiGianDatPhong
-            // 
-            this.dgvThoiGianDatPhong.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgvThoiGianDatPhong.DataPropertyName = "ThoiGianDatPhong";
-            this.dgvThoiGianDatPhong.HeaderText = "Ngày đặt phòng";
-            this.dgvThoiGianDatPhong.Name = "dgvThoiGianDatPhong";
-            this.dgvThoiGianDatPhong.ReadOnly = true;
-            this.dgvThoiGianDatPhong.Visible = false;
-            this.dgvThoiGianDatPhong.Width = 107;
-            // 
-            // dgvHoten
-            // 
-            this.dgvHoten.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgvHoten.DataPropertyName = "Hoten";
-            this.dgvHoten.HeaderText = "Tên khách hàng";
-            this.dgvHoten.MinimumWidth = 6;
-            this.dgvHoten.Name = "dgvHoten";
-            this.dgvHoten.ReadOnly = true;
-            this.dgvHoten.Width = 109;
-            // 
-            // dgvKhachThamGia
-            // 
-            this.dgvKhachThamGia.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgvKhachThamGia.DataPropertyName = "KhachThamGia";
-            this.dgvKhachThamGia.HeaderText = "Mã khách hàng";
-            this.dgvKhachThamGia.MinimumWidth = 10;
-            this.dgvKhachThamGia.Name = "dgvKhachThamGia";
-            this.dgvKhachThamGia.ReadOnly = true;
-            this.dgvKhachThamGia.Visible = false;
-            this.dgvKhachThamGia.Width = 105;
-            // 
-            // dgvMaPhong
-            // 
-            this.dgvMaPhong.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgvMaPhong.DataPropertyName = "MaPhong";
-            this.dgvMaPhong.HeaderText = "Mã phòng";
-            this.dgvMaPhong.MinimumWidth = 10;
-            this.dgvMaPhong.Name = "dgvMaPhong";
-            this.dgvMaPhong.ReadOnly = true;
-            this.dgvMaPhong.Visible = false;
-            this.dgvMaPhong.Width = 78;
-            // 
-            // dgvTenPhong
-            // 
-            this.dgvTenPhong.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgvTenPhong.DataPropertyName = "TenPhong";
-            this.dgvTenPhong.HeaderText = "Tên phòng";
-            this.dgvTenPhong.MinimumWidth = 10;
-            this.dgvTenPhong.Name = "dgvTenPhong";
-            this.dgvTenPhong.ReadOnly = true;
-            this.dgvTenPhong.Width = 82;
-            // 
-            // dgvSoDem
-            // 
-            this.dgvSoDem.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgvSoDem.DataPropertyName = "SoDem";
-            this.dgvSoDem.HeaderText = "Số ngày";
-            this.dgvSoDem.MinimumWidth = 10;
-            this.dgvSoDem.Name = "dgvSoDem";
-            this.dgvSoDem.ReadOnly = true;
-            this.dgvSoDem.Visible = false;
-            this.dgvSoDem.Width = 69;
-            // 
-            // dgvThoiGianCheckinDuKien
-            // 
-            this.dgvThoiGianCheckinDuKien.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgvThoiGianCheckinDuKien.DataPropertyName = "ThoiGianCheckinDuKien";
-            this.dgvThoiGianCheckinDuKien.HeaderText = "Ngày nhận";
-            this.dgvThoiGianCheckinDuKien.MinimumWidth = 10;
-            this.dgvThoiGianCheckinDuKien.Name = "dgvThoiGianCheckinDuKien";
-            this.dgvThoiGianCheckinDuKien.ReadOnly = true;
-            this.dgvThoiGianCheckinDuKien.Width = 82;
-            // 
-            // dgvThoiGianCheckoutDuKien
-            // 
-            this.dgvThoiGianCheckoutDuKien.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgvThoiGianCheckoutDuKien.DataPropertyName = "ThoiGianCheckoutDuKien";
-            this.dgvThoiGianCheckoutDuKien.HeaderText = "Ngày trả";
-            this.dgvThoiGianCheckoutDuKien.MinimumWidth = 10;
-            this.dgvThoiGianCheckoutDuKien.Name = "dgvThoiGianCheckoutDuKien";
-            this.dgvThoiGianCheckoutDuKien.ReadOnly = true;
-            this.dgvThoiGianCheckoutDuKien.Width = 70;
-            // 
-            // dgvTienDatCoc
-            // 
-            this.dgvTienDatCoc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgvTienDatCoc.DataPropertyName = "TienDatCoc";
-            this.dgvTienDatCoc.HeaderText = "Tiền cọc";
-            this.dgvTienDatCoc.MinimumWidth = 10;
-            this.dgvTienDatCoc.Name = "dgvTienDatCoc";
-            this.dgvTienDatCoc.ReadOnly = true;
-            this.dgvTienDatCoc.Width = 72;
-            // 
-            // dgvTrangThaiDatPhong
-            // 
-            this.dgvTrangThaiDatPhong.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgvTrangThaiDatPhong.DataPropertyName = "TrangThaiDatPhong";
-            this.dgvTrangThaiDatPhong.HeaderText = "Tình trạng";
-            this.dgvTrangThaiDatPhong.MinimumWidth = 10;
-            this.dgvTrangThaiDatPhong.Name = "dgvTrangThaiDatPhong";
-            this.dgvTrangThaiDatPhong.ReadOnly = true;
-            this.dgvTrangThaiDatPhong.Width = 78;
             // 
             // panel2
             // 
@@ -998,18 +864,6 @@
             this.dgvNgaySuDungDichVu.ReadOnly = true;
             this.dgvNgaySuDungDichVu.Visible = false;
             // 
-            // cbPayMethod
-            // 
-            this.cbPayMethod.BackColor = System.Drawing.Color.Gainsboro;
-            this.cbPayMethod.FormattingEnabled = true;
-            this.cbPayMethod.Items.AddRange(new object[] {
-            "Tiền mặt",
-            "Thẻ tín dụng"});
-            this.cbPayMethod.Location = new System.Drawing.Point(7, 295);
-            this.cbPayMethod.Name = "cbPayMethod";
-            this.cbPayMethod.Size = new System.Drawing.Size(149, 29);
-            this.cbPayMethod.TabIndex = 59;
-            // 
             // guna2GroupBox4
             // 
             this.guna2GroupBox4.BackColor = System.Drawing.Color.Transparent;
@@ -1018,8 +872,6 @@
             this.guna2GroupBox4.Controls.Add(this.dtpRealCheckIn);
             this.guna2GroupBox4.Controls.Add(this.label13);
             this.guna2GroupBox4.Controls.Add(this.txtDescription);
-            this.guna2GroupBox4.Controls.Add(this.dtpRealCheckOut);
-            this.guna2GroupBox4.Controls.Add(this.label11);
             this.guna2GroupBox4.Controls.Add(this.label14);
             this.guna2GroupBox4.CustomBorderColor = System.Drawing.Color.Transparent;
             this.guna2GroupBox4.FillColor = System.Drawing.Color.Transparent;
@@ -1030,6 +882,143 @@
             this.guna2GroupBox4.ShadowDecoration.Parent = this.guna2GroupBox4;
             this.guna2GroupBox4.Size = new System.Drawing.Size(176, 250);
             this.guna2GroupBox4.TabIndex = 52;
+            // 
+            // dgvHSDP
+            // 
+            this.dgvHSDP.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgvHSDP.DataPropertyName = "HSDP";
+            this.dgvHSDP.FillWeight = 123F;
+            this.dgvHSDP.HeaderText = "Mã";
+            this.dgvHSDP.MinimumWidth = 45;
+            this.dgvHSDP.Name = "dgvHSDP";
+            this.dgvHSDP.ReadOnly = true;
+            this.dgvHSDP.Visible = false;
+            this.dgvHSDP.Width = 45;
+            // 
+            // dgvGhiChu
+            // 
+            this.dgvGhiChu.HeaderText = "Ghi chú";
+            this.dgvGhiChu.Name = "dgvGhiChu";
+            this.dgvGhiChu.ReadOnly = true;
+            this.dgvGhiChu.Visible = false;
+            // 
+            // dgvCheckInThucTe
+            // 
+            this.dgvCheckInThucTe.HeaderText = "Ngày nhận thực";
+            this.dgvCheckInThucTe.Name = "dgvCheckInThucTe";
+            this.dgvCheckInThucTe.ReadOnly = true;
+            this.dgvCheckInThucTe.Visible = false;
+            // 
+            // dgvKhachDaiDien
+            // 
+            this.dgvKhachDaiDien.DataPropertyName = "KhachDaiDien";
+            this.dgvKhachDaiDien.HeaderText = "Khách đại diện";
+            this.dgvKhachDaiDien.Name = "dgvKhachDaiDien";
+            this.dgvKhachDaiDien.ReadOnly = true;
+            this.dgvKhachDaiDien.Visible = false;
+            // 
+            // dgvThoiGianDatPhong
+            // 
+            this.dgvThoiGianDatPhong.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgvThoiGianDatPhong.DataPropertyName = "ThoiGianDatPhong";
+            this.dgvThoiGianDatPhong.HeaderText = "Ngày đặt phòng";
+            this.dgvThoiGianDatPhong.Name = "dgvThoiGianDatPhong";
+            this.dgvThoiGianDatPhong.ReadOnly = true;
+            this.dgvThoiGianDatPhong.Visible = false;
+            this.dgvThoiGianDatPhong.Width = 107;
+            // 
+            // dgvHoten
+            // 
+            this.dgvHoten.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgvHoten.DataPropertyName = "Hoten";
+            this.dgvHoten.HeaderText = "Tên khách hàng";
+            this.dgvHoten.MinimumWidth = 6;
+            this.dgvHoten.Name = "dgvHoten";
+            this.dgvHoten.ReadOnly = true;
+            this.dgvHoten.Width = 109;
+            // 
+            // dgvKhachThamGia
+            // 
+            this.dgvKhachThamGia.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgvKhachThamGia.DataPropertyName = "KhachThamGia";
+            this.dgvKhachThamGia.HeaderText = "Mã khách hàng";
+            this.dgvKhachThamGia.MinimumWidth = 10;
+            this.dgvKhachThamGia.Name = "dgvKhachThamGia";
+            this.dgvKhachThamGia.ReadOnly = true;
+            this.dgvKhachThamGia.Visible = false;
+            this.dgvKhachThamGia.Width = 105;
+            // 
+            // dgvMaPhong
+            // 
+            this.dgvMaPhong.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgvMaPhong.DataPropertyName = "MaPhong";
+            this.dgvMaPhong.HeaderText = "Mã phòng";
+            this.dgvMaPhong.MinimumWidth = 10;
+            this.dgvMaPhong.Name = "dgvMaPhong";
+            this.dgvMaPhong.ReadOnly = true;
+            this.dgvMaPhong.Visible = false;
+            this.dgvMaPhong.Width = 78;
+            // 
+            // dgvTenPhong
+            // 
+            this.dgvTenPhong.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgvTenPhong.DataPropertyName = "TenPhong";
+            this.dgvTenPhong.HeaderText = "Tên phòng";
+            this.dgvTenPhong.MinimumWidth = 10;
+            this.dgvTenPhong.Name = "dgvTenPhong";
+            this.dgvTenPhong.ReadOnly = true;
+            this.dgvTenPhong.Width = 82;
+            // 
+            // dgvSoDem
+            // 
+            this.dgvSoDem.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgvSoDem.DataPropertyName = "SoDem";
+            this.dgvSoDem.HeaderText = "Số ngày";
+            this.dgvSoDem.MinimumWidth = 10;
+            this.dgvSoDem.Name = "dgvSoDem";
+            this.dgvSoDem.ReadOnly = true;
+            this.dgvSoDem.Visible = false;
+            this.dgvSoDem.Width = 69;
+            // 
+            // dgvThoiGianCheckinDuKien
+            // 
+            this.dgvThoiGianCheckinDuKien.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgvThoiGianCheckinDuKien.DataPropertyName = "ThoiGianCheckinDuKien";
+            this.dgvThoiGianCheckinDuKien.HeaderText = "Ngày nhận";
+            this.dgvThoiGianCheckinDuKien.MinimumWidth = 10;
+            this.dgvThoiGianCheckinDuKien.Name = "dgvThoiGianCheckinDuKien";
+            this.dgvThoiGianCheckinDuKien.ReadOnly = true;
+            this.dgvThoiGianCheckinDuKien.Width = 82;
+            // 
+            // dgvThoiGianCheckoutDuKien
+            // 
+            this.dgvThoiGianCheckoutDuKien.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgvThoiGianCheckoutDuKien.DataPropertyName = "ThoiGianCheckoutDuKien";
+            this.dgvThoiGianCheckoutDuKien.HeaderText = "Ngày trả";
+            this.dgvThoiGianCheckoutDuKien.MinimumWidth = 10;
+            this.dgvThoiGianCheckoutDuKien.Name = "dgvThoiGianCheckoutDuKien";
+            this.dgvThoiGianCheckoutDuKien.ReadOnly = true;
+            this.dgvThoiGianCheckoutDuKien.Width = 70;
+            // 
+            // dgvTienDatCoc
+            // 
+            this.dgvTienDatCoc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgvTienDatCoc.DataPropertyName = "TienDatCoc";
+            this.dgvTienDatCoc.HeaderText = "Tiền cọc";
+            this.dgvTienDatCoc.MinimumWidth = 10;
+            this.dgvTienDatCoc.Name = "dgvTienDatCoc";
+            this.dgvTienDatCoc.ReadOnly = true;
+            this.dgvTienDatCoc.Width = 72;
+            // 
+            // dgvTrangThaiDatPhong
+            // 
+            this.dgvTrangThaiDatPhong.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgvTrangThaiDatPhong.DataPropertyName = "TrangThaiDatPhong";
+            this.dgvTrangThaiDatPhong.HeaderText = "Tình trạng";
+            this.dgvTrangThaiDatPhong.MinimumWidth = 10;
+            this.dgvTrangThaiDatPhong.Name = "dgvTrangThaiDatPhong";
+            this.dgvTrangThaiDatPhong.ReadOnly = true;
+            this.dgvTrangThaiDatPhong.Width = 78;
             // 
             // FormDichVuVaThanhToan
             // 
@@ -1105,15 +1094,25 @@
         private Guna.UI2.WinForms.Guna2DataGridView dgvUsedService;
         private Guna.UI2.WinForms.Guna2DataGridView dgvBookRoom;
         private Guna.UI2.WinForms.Guna2CircleButton btnCancel;
-        private System.Windows.Forms.Label label11;
-        private Guna.UI2.WinForms.Guna2DateTimePicker dtpRealCheckOut;
         private System.Windows.Forms.Label label13;
         private Guna.UI2.WinForms.Guna2DateTimePicker dtpRealCheckIn;
         private Guna.UI2.WinForms.Guna2CircleButton btnConfirm;
         private System.Windows.Forms.Label label12;
         private Guna.UI2.WinForms.Guna2TextBox txtDescription;
         private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvMaMauThongTinSuDungDichVu;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvTenDichVu;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvGiaDichVu;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvSoLuong;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvThanhTien;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvMaDichVu;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvMaHoSoDatPhong;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvNgaySuDungDichVu;
+        private System.Windows.Forms.ComboBox cbPayMethod;
+        private Guna.UI2.WinForms.Guna2GroupBox guna2GroupBox4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvHSDP;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvGhiChu;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvCheckInThucTe;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvKhachDaiDien;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvThoiGianDatPhong;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvHoten;
@@ -1125,15 +1124,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvThoiGianCheckoutDuKien;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvTienDatCoc;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvTrangThaiDatPhong;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvMaMauThongTinSuDungDichVu;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvTenDichVu;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvGiaDichVu;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvSoLuong;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvThanhTien;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvMaDichVu;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvMaHoSoDatPhong;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvNgaySuDungDichVu;
-        private System.Windows.Forms.ComboBox cbPayMethod;
-        private Guna.UI2.WinForms.Guna2GroupBox guna2GroupBox4;
     }
 }
