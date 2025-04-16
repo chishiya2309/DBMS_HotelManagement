@@ -40,7 +40,7 @@ namespace QLKS
             txtDiscount.Text = "0";
             txtSurchange.Text = "0";
             txtTotal.Enabled = false;
-
+            dtpRealCheckIn.Enabled = false;
 
         }
 
@@ -53,7 +53,7 @@ namespace QLKS
                 
 
                 bool isFill = FormNhanVien.CheckFillInText(new Control[] { txtSearch });
-                if (!isFill || nudCount.Value == 0 || dgvBookRoom.RowCount == 0)
+                if (!isFill || nudCount.Value == 0 || dgvBookRoom.Rows.Count == 0)
                 {
                     MessageBox.Show("Không được để trống", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
@@ -91,6 +91,9 @@ namespace QLKS
             source.DataSource = dt;
             dgvBookRoom.DataSource = source;
             txtTotal.Text = LoadTotal().ToString();
+
+            txtDescription.Text = dt.Rows[0]["GhiChu"].ToString();
+            dtpRealCheckIn.Value = dt.Rows[0]["ThoiGianCheckinThucTe"] == DBNull.Value ? DateTime.Now : (DateTime)dt.Rows[0]["ThoiGianCheckinThucTe"];
         }
 
         public DataTable SearchUsedService()
@@ -120,7 +123,7 @@ namespace QLKS
                         LoadFullBookRoom(SearchBookRoom()); 
                         if (SearchBookRoom().Rows.Count > 0)
                             LoadFullUsedService(SearchUsedService());
-                    txtTotal.Text = LoadTotal().ToString();
+                        txtTotal.Text = LoadTotal().ToString();
                 }
                 catch (SqlException ex)
                 {
@@ -173,16 +176,6 @@ namespace QLKS
 
         private void txtDiscount_TextChanged(object sender, EventArgs e)
         {
-            
-        }
-
-        private void txtSurchange_TextChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void txtDiscount_MouseClick(object sender, MouseEventArgs e)
-        {
             if (double.TryParse(txtDiscount.Text, out double value1) && double.Parse(txtDiscount.Text) <= 100 && double.Parse(txtDiscount.Text) >= 0)
             {
                 txtDiscount.Text = value1.ToString();
@@ -194,11 +187,11 @@ namespace QLKS
                 txtDiscount.Text = "0";
 
             }
-            
         }
 
-        private void txtSurchange_MouseClick(object sender, MouseEventArgs e)
+        private void txtSurchange_TextChanged(object sender, EventArgs e)
         {
+
             if (double.TryParse(txtSurchange.Text, out double value1) && double.Parse(txtSurchange.Text) >= 0)
             {
                 txtSurchange.Text = value1.ToString();
@@ -210,6 +203,16 @@ namespace QLKS
                 txtSurchange.Text = "0";
 
             }
+        }
+
+        private void txtDiscount_MouseClick(object sender, MouseEventArgs e)
+        {
+            
+            
+        }
+
+        private void txtSurchange_MouseClick(object sender, MouseEventArgs e)
+        {
             
         }
 
@@ -272,7 +275,7 @@ namespace QLKS
 
         public void InsertBill()
         {
-            bool isFill = (dgvBookRoom.Rows.Count > 0 && dgvUsedService.Rows.Count > 0 && cbPayMethod.Text != string.Empty);
+            bool isFill = (dgvBookRoom.Rows.Count > 0 && cbPayMethod.Text != string.Empty);
             if (!isFill)
             {
                 MessageBox.Show("Không được để trống", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -321,12 +324,18 @@ namespace QLKS
             DialogResult result = MessageBox.Show("Xác nhận thông tin chưa?", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
             if (result == DialogResult.OK)
             {
-                BookRoomDAO.Instance.ConfirmBookRoomBonus(
-                    (int)dgvBookRoom.Rows[0].Cells["dgvHSDP"].Value,
-                    dtpRealCheckIn.Value, dtpRealCheckOut.Value,
-                    txtDescription.Text
-                );
+                BookRoomDAO.Instance.ConfirmBookRoomBonus((int)dgvBookRoom.Rows[0].Cells["dgvHSDP"].Value,txtDescription.Text);
             }
+        }
+
+        private void label14_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtDescription_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
