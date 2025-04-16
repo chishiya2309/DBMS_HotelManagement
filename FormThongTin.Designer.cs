@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Guna.UI2.AnimatorNS.Animation animation1 = new Guna.UI2.AnimatorNS.Animation();
+            Guna.UI2.AnimatorNS.Animation animation5 = new Guna.UI2.AnimatorNS.Animation();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormThongTin));
             this.guna2AnimateWindow1 = new Guna.UI2.WinForms.Guna2AnimateWindow(this.components);
             this.guna2DragControl1 = new Guna.UI2.WinForms.Guna2DragControl(this.components);
@@ -90,32 +90,32 @@
             // guna2Transition1
             // 
             this.guna2Transition1.Cursor = null;
-            animation1.AnimateOnlyDifferences = true;
-            animation1.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.BlindCoeff")));
-            animation1.LeafCoeff = 0F;
-            animation1.MaxTime = 1F;
-            animation1.MinTime = 0F;
-            animation1.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.MosaicCoeff")));
-            animation1.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation1.MosaicShift")));
-            animation1.MosaicSize = 0;
-            animation1.Padding = new System.Windows.Forms.Padding(0);
-            animation1.RotateCoeff = 0F;
-            animation1.RotateLimit = 0F;
-            animation1.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.ScaleCoeff")));
-            animation1.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.SlideCoeff")));
-            animation1.TimeCoeff = 0F;
-            animation1.TransparencyCoeff = 0F;
-            this.guna2Transition1.DefaultAnimation = animation1;
+            animation5.AnimateOnlyDifferences = true;
+            animation5.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation5.BlindCoeff")));
+            animation5.LeafCoeff = 0F;
+            animation5.MaxTime = 1F;
+            animation5.MinTime = 0F;
+            animation5.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation5.MosaicCoeff")));
+            animation5.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation5.MosaicShift")));
+            animation5.MosaicSize = 0;
+            animation5.Padding = new System.Windows.Forms.Padding(0);
+            animation5.RotateCoeff = 0F;
+            animation5.RotateLimit = 0F;
+            animation5.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation5.ScaleCoeff")));
+            animation5.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation5.SlideCoeff")));
+            animation5.TimeCoeff = 0F;
+            animation5.TransparencyCoeff = 0F;
+            this.guna2Transition1.DefaultAnimation = animation5;
             // 
             // panelProfile
             // 
-            this.panelProfile.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.panelProfile.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(64)))), ((int)(((byte)(86)))));
             this.panelProfile.BorderRadius = 15;
             this.panelProfile.Controls.Add(this.lblUserName);
             this.panelProfile.Controls.Add(this.picturebox);
             this.panelProfile.Controls.Add(this.lblPictureHint);
             this.guna2Transition1.SetDecoration(this.panelProfile, Guna.UI2.AnimatorNS.DecorationType.None);
-            this.panelProfile.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.panelProfile.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(64)))), ((int)(((byte)(86)))));
             this.panelProfile.Location = new System.Drawing.Point(20, 20);
             this.panelProfile.Name = "panelProfile";
             this.panelProfile.ShadowDecoration.Parent = this.panelProfile;
@@ -125,6 +125,7 @@
             // lblUserName
             // 
             this.lblUserName.AutoSize = true;
+            this.lblUserName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(64)))), ((int)(((byte)(86)))));
             this.guna2Transition1.SetDecoration(this.lblUserName, Guna.UI2.AnimatorNS.DecorationType.None);
             this.lblUserName.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUserName.ForeColor = System.Drawing.Color.White;
@@ -154,6 +155,7 @@
             // lblPictureHint
             // 
             this.lblPictureHint.AutoSize = true;
+            this.lblPictureHint.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(64)))), ((int)(((byte)(86)))));
             this.guna2Transition1.SetDecoration(this.lblPictureHint, Guna.UI2.AnimatorNS.DecorationType.None);
             this.lblPictureHint.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPictureHint.ForeColor = System.Drawing.Color.Gold;
@@ -192,7 +194,7 @@
             this.lblAccountInfo.BackColor = System.Drawing.Color.Transparent;
             this.guna2Transition1.SetDecoration(this.lblAccountInfo, Guna.UI2.AnimatorNS.DecorationType.None);
             this.lblAccountInfo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAccountInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblAccountInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(64)))), ((int)(((byte)(86)))));
             this.lblAccountInfo.Location = new System.Drawing.Point(15, 15);
             this.lblAccountInfo.Name = "lblAccountInfo";
             this.lblAccountInfo.Size = new System.Drawing.Size(160, 21);
@@ -205,7 +207,7 @@
             this.lblUsernameField.BackColor = System.Drawing.Color.Transparent;
             this.guna2Transition1.SetDecoration(this.lblUsernameField, Guna.UI2.AnimatorNS.DecorationType.None);
             this.lblUsernameField.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUsernameField.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblUsernameField.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(64)))), ((int)(((byte)(86)))));
             this.lblUsernameField.Location = new System.Drawing.Point(15, 60);
             this.lblUsernameField.Name = "lblUsernameField";
             this.lblUsernameField.Size = new System.Drawing.Size(98, 17);
@@ -215,7 +217,7 @@
             // txtUser
             // 
             this.txtUser.BackColor = System.Drawing.Color.Transparent;
-            this.txtUser.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.txtUser.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(64)))), ((int)(((byte)(86)))));
             this.txtUser.BorderRadius = 5;
             this.txtUser.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.guna2Transition1.SetDecoration(this.txtUser, Guna.UI2.AnimatorNS.DecorationType.None);
@@ -226,11 +228,9 @@
             this.txtUser.DisabledState.Parent = this.txtUser;
             this.txtUser.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.txtUser.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
-            this.txtUser.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.txtUser.FocusedState.Parent = this.txtUser;
             this.txtUser.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.txtUser.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.txtUser.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.txtUser.ForeColor = System.Drawing.Color.Black;
             this.txtUser.HoverState.Parent = this.txtUser;
             this.txtUser.Location = new System.Drawing.Point(15, 85);
             this.txtUser.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -249,7 +249,7 @@
             this.lblDisplayName.BackColor = System.Drawing.Color.Transparent;
             this.guna2Transition1.SetDecoration(this.lblDisplayName, Guna.UI2.AnimatorNS.DecorationType.None);
             this.lblDisplayName.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDisplayName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblDisplayName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(64)))), ((int)(((byte)(86)))));
             this.lblDisplayName.Location = new System.Drawing.Point(15, 135);
             this.lblDisplayName.Name = "lblDisplayName";
             this.lblDisplayName.Size = new System.Drawing.Size(77, 17);
@@ -259,7 +259,7 @@
             // txtName
             // 
             this.txtName.BackColor = System.Drawing.Color.Transparent;
-            this.txtName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.txtName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(64)))), ((int)(((byte)(86)))));
             this.txtName.BorderRadius = 5;
             this.txtName.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.guna2Transition1.SetDecoration(this.txtName, Guna.UI2.AnimatorNS.DecorationType.None);
@@ -270,11 +270,9 @@
             this.txtName.DisabledState.Parent = this.txtName;
             this.txtName.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.txtName.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
-            this.txtName.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.txtName.FocusedState.Parent = this.txtName;
             this.txtName.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.txtName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.txtName.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.txtName.ForeColor = System.Drawing.Color.Black;
             this.txtName.HoverState.Parent = this.txtName;
             this.txtName.Location = new System.Drawing.Point(15, 160);
             this.txtName.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -293,7 +291,7 @@
             this.lblEmail.BackColor = System.Drawing.Color.Transparent;
             this.guna2Transition1.SetDecoration(this.lblEmail, Guna.UI2.AnimatorNS.DecorationType.None);
             this.lblEmail.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEmail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblEmail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(64)))), ((int)(((byte)(86)))));
             this.lblEmail.Location = new System.Drawing.Point(15, 210);
             this.lblEmail.Name = "lblEmail";
             this.lblEmail.Size = new System.Drawing.Size(42, 17);
@@ -303,7 +301,7 @@
             // txtEmail
             // 
             this.txtEmail.BackColor = System.Drawing.Color.Transparent;
-            this.txtEmail.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.txtEmail.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(64)))), ((int)(((byte)(86)))));
             this.txtEmail.BorderRadius = 5;
             this.txtEmail.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.guna2Transition1.SetDecoration(this.txtEmail, Guna.UI2.AnimatorNS.DecorationType.None);
@@ -314,11 +312,9 @@
             this.txtEmail.DisabledState.Parent = this.txtEmail;
             this.txtEmail.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.txtEmail.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
-            this.txtEmail.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.txtEmail.FocusedState.Parent = this.txtEmail;
             this.txtEmail.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.txtEmail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.txtEmail.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.txtEmail.ForeColor = System.Drawing.Color.Black;
             this.txtEmail.HoverState.Parent = this.txtEmail;
             this.txtEmail.Location = new System.Drawing.Point(15, 235);
             this.txtEmail.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -556,7 +552,7 @@
             this.lblPersonalInfo.BackColor = System.Drawing.Color.Transparent;
             this.guna2Transition1.SetDecoration(this.lblPersonalInfo, Guna.UI2.AnimatorNS.DecorationType.None);
             this.lblPersonalInfo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPersonalInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblPersonalInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(64)))), ((int)(((byte)(86)))));
             this.lblPersonalInfo.Location = new System.Drawing.Point(15, 15);
             this.lblPersonalInfo.Name = "lblPersonalInfo";
             this.lblPersonalInfo.Size = new System.Drawing.Size(148, 21);
@@ -569,7 +565,7 @@
             this.lblIDNumber.BackColor = System.Drawing.Color.Transparent;
             this.guna2Transition1.SetDecoration(this.lblIDNumber, Guna.UI2.AnimatorNS.DecorationType.None);
             this.lblIDNumber.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIDNumber.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblIDNumber.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(64)))), ((int)(((byte)(86)))));
             this.lblIDNumber.Location = new System.Drawing.Point(15, 50);
             this.lblIDNumber.Name = "lblIDNumber";
             this.lblIDNumber.Size = new System.Drawing.Size(88, 17);
@@ -579,7 +575,7 @@
             // txtIDNum
             // 
             this.txtIDNum.BackColor = System.Drawing.Color.Transparent;
-            this.txtIDNum.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.txtIDNum.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(64)))), ((int)(((byte)(86)))));
             this.txtIDNum.BorderRadius = 5;
             this.txtIDNum.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.guna2Transition1.SetDecoration(this.txtIDNum, Guna.UI2.AnimatorNS.DecorationType.None);
@@ -593,8 +589,7 @@
             this.txtIDNum.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.txtIDNum.FocusedState.Parent = this.txtIDNum;
             this.txtIDNum.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.txtIDNum.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.txtIDNum.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.txtIDNum.ForeColor = System.Drawing.Color.Black;
             this.txtIDNum.HoverState.Parent = this.txtIDNum;
             this.txtIDNum.Location = new System.Drawing.Point(15, 75);
             this.txtIDNum.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -834,10 +829,10 @@
             this.SaveInfobtn.CheckedState.Parent = this.SaveInfobtn;
             this.SaveInfobtn.CustomImages.Parent = this.SaveInfobtn;
             this.guna2Transition1.SetDecoration(this.SaveInfobtn, Guna.UI2.AnimatorNS.DecorationType.None);
-            this.SaveInfobtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.SaveInfobtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(64)))), ((int)(((byte)(86)))));
             this.SaveInfobtn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.SaveInfobtn.ForeColor = System.Drawing.Color.White;
-            this.SaveInfobtn.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.SaveInfobtn.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(90)))), ((int)(((byte)(115)))));
             this.SaveInfobtn.HoverState.Parent = this.SaveInfobtn;
             this.SaveInfobtn.Location = new System.Drawing.Point(5, 75);
             this.SaveInfobtn.Name = "SaveInfobtn";
