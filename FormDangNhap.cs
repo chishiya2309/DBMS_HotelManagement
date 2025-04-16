@@ -99,5 +99,17 @@ namespace QLKS
         {
 
         }
+
+        private void lbForgotPass_Click(object sender, EventArgs e)
+        {
+            FormQuenMatKhau frm = new FormQuenMatKhau();
+            frm.Show();
+            this.Hide();
+        }
+
+        private void FormDangNhap_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

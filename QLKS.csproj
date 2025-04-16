@@ -33,8 +33,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
+      <HintPath>packages\BouncyCastle.Cryptography.2.4.0\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
+    </Reference>
     <Reference Include="Guna.UI2">
       <HintPath>.\Guna.UI2.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.4, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>packages\iTextSharp.5.5.13.4\lib\net461\itextsharp.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
@@ -109,6 +115,12 @@
     <Compile Include="BLL\StatusRoom.cs" />
     <Compile Include="BLL\UsedServiceDetail.cs" />
     <Compile Include="DAL\DataProvider.cs" />
+    <Compile Include="FormChiTietHoaDon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormChiTietHoaDon.Designer.cs">
+      <DependentUpon>FormChiTietHoaDon.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormDangNhap.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -169,6 +181,12 @@
     <Compile Include="FormQuanLyPhong.Designer.cs">
       <DependentUpon>FormQuanLyPhong.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormQuenMatKhau.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormQuenMatKhau.Designer.cs">
+      <DependentUpon>FormQuenMatKhau.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormThongKe.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -216,6 +234,9 @@
     <EmbeddedResource Include="AddStaff.resx">
       <DependentUpon>AddStaff.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormChiTietHoaDon.resx">
+      <DependentUpon>FormChiTietHoaDon.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormDangNhap.resx">
       <DependentUpon>FormDangNhap.cs</DependentUpon>
     </EmbeddedResource>
@@ -246,6 +267,9 @@
     <EmbeddedResource Include="FormQuanLyPhong.resx">
       <DependentUpon>FormQuanLyPhong.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormQuenMatKhau.resx">
+      <DependentUpon>FormQuenMatKhau.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormThongKe.resx">
       <DependentUpon>FormThongKe.cs</DependentUpon>
     </EmbeddedResource>
@@ -271,6 +295,7 @@
     <EmbeddedResource Include="UpdateRoomType.resx">
       <DependentUpon>UpdateRoomType.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -289,6 +314,39 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\dustbin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\z6468297548958_02e5175ebb6c1e1ba356672ea08f4228.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Blue Minimalist simple real estate &amp; architecture Logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Blue Minimalist simple real estate &amp; architecture Logo1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Blue Minimalist simple real estate &amp; architecture Logo2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\location-icon-png-4231.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\10-2-telephone-png-picture.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noun-mail-650808.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noun-phone-7619869.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noun-web-2853364.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\noun-x-4572560.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clipart4371249.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

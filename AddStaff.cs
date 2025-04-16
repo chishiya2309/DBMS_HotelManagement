@@ -1,6 +1,7 @@
 ﻿using BLL;
 using BLL.DAO;
 using DAL;
+using Guna.UI2.WinForms.Suite;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace QLKS
 {
@@ -39,7 +41,7 @@ namespace QLKS
 
         private void InsertStaff()
         {
-            bool isFill = FormNhanVien.CheckFillInText(new Control[] { txtName, txtAddress, txtEmail, txtIDNum, txtPhone, txtUser, cbSex, txtPass });
+            bool isFill = FormNhanVien.CheckFillInText(new Control[] { txtName, txtAddress, txtEmail, txtIDNum, txtPhone, txtUser, cbSex });
             if (!isFill)
             {
                 MessageBox.Show("Không được để trống", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -58,6 +60,11 @@ namespace QLKS
 
                         try
                         {
+
+                            if (!string.IsNullOrEmpty(imagePath))
+                            {
+                                imageData = File.ReadAllBytes(imagePath);
+                            }
                             // Thêm nhân viên sử dụng stored procedure sp_InsertStaff
                             SqlCommand cmdStaff = new SqlCommand("sp_InsertStaff", connection, transaction);
                             cmdStaff.CommandType = CommandType.StoredProcedure;
@@ -72,6 +79,15 @@ namespace QLKS
                             cmdStaff.Parameters.AddWithValue("@Ngayvaolam", dtpNgayVaoLam.Value);
                             cmdStaff.Parameters.AddWithValue("@Vaitro", cbRole.Text);
 
+                            if (imageData != null)
+                            {
+                                cmdStaff.Parameters.AddWithValue("@Chandung", (object)imageData);
+                            }
+                            else
+                            {
+                                cmdStaff.Parameters.AddWithValue("@Chandung", DBNull.Value);
+                            }
+
                             cmdStaff.ExecuteNonQuery();
 
                             // Lấy MaNhanVien vừa thêm để tạo tài khoản
@@ -84,13 +100,13 @@ namespace QLKS
 
                             cmdAccount.Parameters.AddWithValue("@MaNhanVien", staffId);
                             cmdAccount.Parameters.AddWithValue("@TenDangNhap", txtUser.Text.Trim());
-                            cmdAccount.Parameters.AddWithValue("@MatKhau", txtPass.Text.Trim());
+                            cmdAccount.Parameters.AddWithValue("@MatKhau", "123456");
 
                             cmdAccount.ExecuteNonQuery();
 
                             // Commit transaction nếu cả hai thao tác thành công
                             transaction.Commit();
-                            MessageBox.Show("Thêm nhân viên thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("Thêm nhân viên thành công, Mật khẩu mặc định là 123456", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             ClearForm();
                         }
                         catch (SqlException ex)
@@ -127,7 +143,6 @@ namespace QLKS
             txtIDNum.Clear();
             txtPhone.Clear();
             txtUser.Clear();
-            txtPass.Clear();
             cbSex.SelectedIndex = 0;
             cbRole.SelectedIndex = 0;
             dtpNgayVaoLam.Value = DateTime.Now;
@@ -138,6 +153,25 @@ namespace QLKS
         {
             this.DialogResult = DialogResult.OK; // Đặt DialogResult.OK để form cha biết cần refresh dữ liệu
             this.Close();
+        }
+
+        private string imagePath;
+        private byte[] imageData;
+        private void btnChooseImage_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.gif;*.bmp";
+                openFileDialog.Title = "Chọn hình ảnh";
+                openFileDialog.Multiselect = false;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    imagePath = openFileDialog.FileName;
+                    picturebox.Image = Image.FromFile(imagePath);
+                    picturebox.SizeMode = PictureBoxSizeMode.Zoom;
+                }
+            }
         }
     }
 }

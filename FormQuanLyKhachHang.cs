@@ -120,7 +120,7 @@ namespace QLKS
                     using (SqlConnection conn = new SqlConnection(connectionString))
                     {
                         conn.Open();
-                        using (SqlCommand cmd = new SqlCommand("sp_UpdateCustomerInfo", conn))
+                        using (SqlCommand cmd = new SqlCommand("sp_UpdateCustomer", conn))
                         {
                             cmd.CommandType = CommandType.StoredProcedure;
 

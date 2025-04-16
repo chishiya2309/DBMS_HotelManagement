@@ -154,7 +154,7 @@ namespace QLKS
 
         private void btnDetail_Click(object sender, EventArgs e)
         {
-
+            new FormChiTietHoaDon(int.Parse(txtIdBill.Text)).ShowDialog();
         }
 
         private void txtSearch_KeyDown(object sender, KeyEventArgs e)
