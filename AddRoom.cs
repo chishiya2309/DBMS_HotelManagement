@@ -14,7 +14,7 @@ namespace QLKS
 {
     public partial class AddRoom: Form
     {
-        private string connectionString = "Data Source=(local);Database=Hotel2025;Integrated Security=True";
+        private string connectionString = "Data Source=(local)\\SQLExpress;Database=Hotel2025;Integrated Security=True";
         public AddRoom()
         {
             InitializeComponent();

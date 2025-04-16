@@ -15,7 +15,7 @@ namespace QLKS
 {
     public partial class AddRoomType: Form
     {
-        private string connectionString = "Data Source=(local);Database=Hotel2025;Integrated Security=True";
+        private string connectionString = "Data Source=(local)\\SQLExpress;Database=Hotel2025;Integrated Security=True";
         private string imagePath;
         private byte[] imageData;
         public AddRoomType()

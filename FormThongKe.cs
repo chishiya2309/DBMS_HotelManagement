@@ -10,12 +10,13 @@ using System.Linq;
 using System.Runtime.InteropServices.ComTypes;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace QLKS
 {
     public partial class FormThongKe : Form
     {
-        string connectionString = "Data Source=(local);Initial Catalog=Hotel2025;Integrated Security=True";
+        string connectionString = "Data Source=(local)\\SQLExpress;Initial Catalog=Hotel2025;Integrated Security=True";
 
         public FormThongKe()
         {
@@ -29,6 +30,12 @@ namespace QLKS
 
         private void FormThongKe_Load(object sender, EventArgs e)
         {
+            txtTongSoKhach.BorderStyle = BorderStyle.None;
+            txtSoPhongDaDat.BorderStyle = BorderStyle.None;
+            txtSoDichVuDaDung.BorderStyle = BorderStyle.None;
+            txtTongThuNhap.BorderStyle = BorderStyle.None;
+            txtTiLe.BorderStyle = BorderStyle.None;
+
             dateStart.Value = DateTime.Today.AddDays(-1);
             dateEnd.Value = DateTime.Today;
             TongThuNhap(dateStart.Value, dateEnd.Value);
@@ -129,7 +136,11 @@ namespace QLKS
 
         private bool DoanhThuNgay(DateTime startDate, DateTime endDate)
         {
-            bool hasData = false; // Initialize to false
+            bool hasData = false;
+            var dataPoints = new List<Tuple<string, decimal>>();
+
+            string designerSeriesName = "Series1"; // Tên series đã thiết kế
+
             try
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
@@ -137,8 +148,6 @@ namespace QLKS
                     using (SqlCommand command = new SqlCommand("sp_DoanhThuNgay", connection))
                     {
                         command.CommandType = CommandType.StoredProcedure;
-
-                        // Add parameters for the stored procedure
                         command.Parameters.Add(new SqlParameter("@StartDate", SqlDbType.DateTime) { Value = startDate });
                         command.Parameters.Add(new SqlParameter("@EndDate", SqlDbType.DateTime) { Value = endDate });
 
@@ -146,42 +155,73 @@ namespace QLKS
 
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            var series = new System.Windows.Forms.DataVisualization.Charting.Series("Doanh Thu Ngày")
-                            {
-                                ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column
-                            };
-
                             while (reader.Read())
                             {
                                 hasData = true;
                                 DateTime date = reader.GetDateTime(0);
                                 decimal revenue = reader.GetDecimal(1);
-                                series.Points.AddXY(date.ToString("dd/MM/yyyy"), revenue);
+                                dataPoints.Add(Tuple.Create(date.ToString("dd/MM/yyyy"), revenue));
                             }
-
-                            chartDoanhThu.Invoke((MethodInvoker)(() =>
-                            {
-                                chartDoanhThu.Series.Clear();
-                                if (hasData)
-                                {
-                                    chartDoanhThu.Series.Add(series);
-                                }
-                            }));
                         }
                     }
                 }
+
+                chartDoanhThu.Invoke((MethodInvoker)(() =>
+                {
+                    Series targetSeries = null;
+
+                    // Cố gắng tìm Series đã được thiết kế sẵn bằng tên của nó
+                    if (chartDoanhThu.Series.IndexOf(designerSeriesName) >= 0)
+                    {
+                        // Lấy tham chiếu đến Series đã có từ Designer
+                        targetSeries = chartDoanhThu.Series[designerSeriesName];
+
+                        // Xóa các điểm dữ liệu cũ, MỌI THIẾT KẾ SẼ ĐƯỢC GIỮ NGUYÊN
+                        targetSeries.Points.Clear();
+
+                        // Thêm các điểm dữ liệu mới vào Series này
+                        if (hasData)
+                        {
+                            foreach (var point in dataPoints)
+                            {
+                                targetSeries.Points.AddXY(point.Item1, point.Item2);
+                            }
+                        }
+                        // Nếu không có dữ liệu (hasData = false), series sẽ trống, giữ nguyên thiết kế.
+                    }
+                    else
+                    { 
+                        MessageBox.Show("Lỗi Cấu Hình Biểu Đồ","Thông báo",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+                }));
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Lỗi khi tạo biểu đồ doanh thu ngày: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Lỗi khi cập nhật biểu đồ doanh thu ngày: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
-
             return hasData;
         }
+        
 
         private bool top3(DateTime startDate, DateTime endDate)
         {
             bool hasData = false;
+            var dataPoints = new List<Tuple<string, decimal>>();
+
+            string designerSeriesName = "Series1"; // Tên series đã thiết kế
+
+            List<Color> customSliceColors = new List<Color>
+            {
+                Color.FromArgb(54, 162, 235),  // Xanh dương
+                Color.FromArgb(255, 206, 86), // Vàng
+                Color.FromArgb(75, 192, 192),  // Xanh mòng két (Teal)
+                Color.FromArgb(255, 99, 132),  // Hồng/Đỏ
+                Color.FromArgb(153, 102, 255), // Tím
+                Color.FromArgb(255, 159, 64)  // Cam
+            };
+
             try
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
@@ -196,28 +236,58 @@ namespace QLKS
 
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            var series = new System.Windows.Forms.DataVisualization.Charting.Series("Doanh Thu Loại Phòng")
-                            {
-                                ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie
-                            };
 
                             while (reader.Read())
                             {
                                 hasData = true; // Data exists
                                 string roomType = reader.GetString(0);
                                 decimal revenue = reader.GetDecimal(1);
-                                series.Points.AddXY(roomType, revenue);
+                                dataPoints.Add(Tuple.Create(roomType, revenue));
                             }
 
-                            chartLoaiPhong.Invoke((MethodInvoker)(() =>
+                            
+                        }
+
+                        chartLoaiPhong.Invoke((MethodInvoker)(() =>
+                        {
+                            Series targetSeries = null;
+
+                            // Cố gắng tìm Series đã được thiết kế sẵn bằng tên của nó
+                            if (chartLoaiPhong.Series.IndexOf(designerSeriesName) >= 0)
                             {
-                                chartLoaiPhong.Series.Clear();
+                                // Lấy tham chiếu đến Series đã có từ Designer
+                                targetSeries = chartLoaiPhong.Series[designerSeriesName];
+
+                                // Xóa các điểm dữ liệu cũ, MỌI THIẾT KẾ SẼ ĐƯỢC GIỮ NGUYÊN
+                                targetSeries.Points.Clear();
+
+                                // Thêm các điểm dữ liệu mới vào Series này
                                 if (hasData)
                                 {
-                                    chartLoaiPhong.Series.Add(series);
+                                    int colorIndex = 0;
+                                    foreach (var point in dataPoints)
+                                    {
+                                        string roomType = point.Item1;
+                                        decimal revenueValue = point.Item2;
+                                        int pointIndex = targetSeries.Points.AddXY(roomType, revenueValue);
+
+                                        DataPoint addedPoint = targetSeries.Points[pointIndex];
+
+                                        addedPoint.Color = customSliceColors[colorIndex];
+                                        
+                                        addedPoint.Label = roomType;
+
+                                        colorIndex++;
+                                    }
                                 }
-                            }));
-                        }
+                                // Nếu không có dữ liệu (hasData = false), series sẽ trống, giữ nguyên thiết kế.
+                            }
+                            else
+                            {
+                                MessageBox.Show("Lỗi Cấu Hình Biểu Đồ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+
+                        }));
                     }
                 }
             }
@@ -292,8 +362,8 @@ namespace QLKS
 
         private void btn1nam_Click(object sender, EventArgs e)
         {
-            DateTime today = DateTime.Today;
-            DateTime oneYearAgo = today.AddDays(-365);
+            DateTime today = DateTime.Today.AddDays(1);
+            DateTime oneYearAgo = today.AddDays(-366);
 
             dateStart.ValueChanged -= DateTimePicker_ValueChanged;
             dateEnd.ValueChanged -= DateTimePicker_ValueChanged;

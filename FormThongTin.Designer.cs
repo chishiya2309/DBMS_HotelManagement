@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Guna.UI2.AnimatorNS.Animation animation5 = new Guna.UI2.AnimatorNS.Animation();
+            Guna.UI2.AnimatorNS.Animation animation12 = new Guna.UI2.AnimatorNS.Animation();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormThongTin));
             this.guna2AnimateWindow1 = new Guna.UI2.WinForms.Guna2AnimateWindow(this.components);
             this.guna2DragControl1 = new Guna.UI2.WinForms.Guna2DragControl(this.components);
@@ -75,12 +75,14 @@
             this.Closebtn = new Guna.UI2.WinForms.Guna2Button();
             this.guna2ShadowForm1 = new Guna.UI2.WinForms.Guna2ShadowForm(this.components);
             this.guna2HtmlToolTip1 = new Guna.UI2.WinForms.Guna2HtmlToolTip();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.panelProfile.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picturebox)).BeginInit();
             this.panelAccount.SuspendLayout();
             this.panelSecurity.SuspendLayout();
             this.panelPersonal.SuspendLayout();
             this.panelButtons.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // guna2DragControl1
@@ -90,28 +92,28 @@
             // guna2Transition1
             // 
             this.guna2Transition1.Cursor = null;
-            animation5.AnimateOnlyDifferences = true;
-            animation5.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation5.BlindCoeff")));
-            animation5.LeafCoeff = 0F;
-            animation5.MaxTime = 1F;
-            animation5.MinTime = 0F;
-            animation5.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation5.MosaicCoeff")));
-            animation5.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation5.MosaicShift")));
-            animation5.MosaicSize = 0;
-            animation5.Padding = new System.Windows.Forms.Padding(0);
-            animation5.RotateCoeff = 0F;
-            animation5.RotateLimit = 0F;
-            animation5.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation5.ScaleCoeff")));
-            animation5.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation5.SlideCoeff")));
-            animation5.TimeCoeff = 0F;
-            animation5.TransparencyCoeff = 0F;
-            this.guna2Transition1.DefaultAnimation = animation5;
+            animation12.AnimateOnlyDifferences = true;
+            animation12.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation12.BlindCoeff")));
+            animation12.LeafCoeff = 0F;
+            animation12.MaxTime = 1F;
+            animation12.MinTime = 0F;
+            animation12.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation12.MosaicCoeff")));
+            animation12.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation12.MosaicShift")));
+            animation12.MosaicSize = 0;
+            animation12.Padding = new System.Windows.Forms.Padding(0);
+            animation12.RotateCoeff = 0F;
+            animation12.RotateLimit = 0F;
+            animation12.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation12.ScaleCoeff")));
+            animation12.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation12.SlideCoeff")));
+            animation12.TimeCoeff = 0F;
+            animation12.TransparencyCoeff = 0F;
+            this.guna2Transition1.DefaultAnimation = animation12;
             // 
             // panelProfile
             // 
             this.panelProfile.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(64)))), ((int)(((byte)(86)))));
             this.panelProfile.BorderRadius = 15;
-            this.panelProfile.Controls.Add(this.lblUserName);
+            this.panelProfile.Controls.Add(this.panel1);
             this.panelProfile.Controls.Add(this.picturebox);
             this.panelProfile.Controls.Add(this.lblPictureHint);
             this.guna2Transition1.SetDecoration(this.panelProfile, Guna.UI2.AnimatorNS.DecorationType.None);
@@ -124,16 +126,18 @@
             // 
             // lblUserName
             // 
+            this.lblUserName.AllowDrop = true;
             this.lblUserName.AutoSize = true;
             this.lblUserName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(64)))), ((int)(((byte)(86)))));
             this.guna2Transition1.SetDecoration(this.lblUserName, Guna.UI2.AnimatorNS.DecorationType.None);
             this.lblUserName.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUserName.ForeColor = System.Drawing.Color.White;
-            this.lblUserName.Location = new System.Drawing.Point(40, 210);
+            this.lblUserName.Location = new System.Drawing.Point(17, 0);
+            this.lblUserName.MaximumSize = new System.Drawing.Size(170, 50);
             this.lblUserName.Name = "lblUserName";
             this.lblUserName.Size = new System.Drawing.Size(140, 25);
             this.lblUserName.TabIndex = 1;
-            this.lblUserName.Text = "Nguyễn Văn A";
+            this.lblUserName.Text = "Nguyễn Văn A\r\n";
             this.lblUserName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // picturebox
@@ -867,6 +871,18 @@
             this.guna2HtmlToolTip1.AllowLinksHandling = true;
             this.guna2HtmlToolTip1.MaximumSize = new System.Drawing.Size(0, 0);
             // 
+            // panel1
+            // 
+            this.panel1.AllowDrop = true;
+            this.panel1.AutoScroll = true;
+            this.panel1.AutoSize = true;
+            this.panel1.Controls.Add(this.lblUserName);
+            this.guna2Transition1.SetDecoration(this.panel1, Guna.UI2.AnimatorNS.DecorationType.None);
+            this.panel1.Location = new System.Drawing.Point(19, 180);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(179, 62);
+            this.panel1.TabIndex = 40;
+            // 
             // FormThongTin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -896,6 +912,8 @@
             this.panelPersonal.ResumeLayout(false);
             this.panelPersonal.PerformLayout();
             this.panelButtons.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -951,5 +969,6 @@
         private Guna.UI2.WinForms.Guna2Panel panelButtons;
         private Guna.UI2.WinForms.Guna2Button SaveInfobtn;
         private Guna.UI2.WinForms.Guna2Button Closebtn;
+        private System.Windows.Forms.Panel panel1;
     }
 }
