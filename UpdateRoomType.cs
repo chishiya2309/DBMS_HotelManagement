@@ -14,7 +14,7 @@ namespace QLKS
 {
     public partial class UpdateRoomType: Form
     {
-        private static readonly string connectionString = "Data Source=(local)\\SQLEXPRESS;Initial Catalog=Hotel2025;Integrated Security=True";
+        private static readonly string connectionString = "Data Source=(local)\\SQLExpress;Initial Catalog=Hotel2025;Integrated Security=True";
         private byte[] _currentImageBytes = null;
         private string _currentImagePath = null;
         public UpdateRoomType()

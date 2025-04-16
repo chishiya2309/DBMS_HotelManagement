@@ -10,6 +10,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -33,7 +34,6 @@ namespace QLKS
         {
 
             dt = StaffDAO.Instance.SearchProfileStaffByID(id);
-            
 
             lblUserName.Text = dt.Rows[0]["Hoten"].ToString();
             txtUser.Text = dt.Rows[0]["TenDangNhap"].ToString();
@@ -74,7 +74,9 @@ namespace QLKS
 
             txtUser.Enabled = false;
             txtStartDay.Enabled = false;
+
             
+
         }
 
         public void UpdateInfo(int id, string Hoten, string gioitinh, DateTime ngaysinh, string CCCD, string diachi, string email, string sdt,
