@@ -29,13 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Guna.UI2.AnimatorNS.Animation animation12 = new Guna.UI2.AnimatorNS.Animation();
+            Guna.UI2.AnimatorNS.Animation animation9 = new Guna.UI2.AnimatorNS.Animation();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormThongTin));
             this.guna2AnimateWindow1 = new Guna.UI2.WinForms.Guna2AnimateWindow(this.components);
             this.guna2DragControl1 = new Guna.UI2.WinForms.Guna2DragControl(this.components);
             this.guna2MouseStateHandler1 = new Guna.UI2.WinForms.Guna2MouseStateHandler(this.components);
             this.guna2Transition1 = new Guna.UI2.WinForms.Guna2Transition();
             this.panelProfile = new Guna.UI2.WinForms.Guna2Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.lblUserName = new System.Windows.Forms.Label();
             this.picturebox = new Guna.UI2.WinForms.Guna2CirclePictureBox();
             this.lblPictureHint = new System.Windows.Forms.Label();
@@ -75,14 +76,13 @@
             this.Closebtn = new Guna.UI2.WinForms.Guna2Button();
             this.guna2ShadowForm1 = new Guna.UI2.WinForms.Guna2ShadowForm(this.components);
             this.guna2HtmlToolTip1 = new Guna.UI2.WinForms.Guna2HtmlToolTip();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.panelProfile.SuspendLayout();
+            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picturebox)).BeginInit();
             this.panelAccount.SuspendLayout();
             this.panelSecurity.SuspendLayout();
             this.panelPersonal.SuspendLayout();
             this.panelButtons.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // guna2DragControl1
@@ -92,22 +92,22 @@
             // guna2Transition1
             // 
             this.guna2Transition1.Cursor = null;
-            animation12.AnimateOnlyDifferences = true;
-            animation12.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation12.BlindCoeff")));
-            animation12.LeafCoeff = 0F;
-            animation12.MaxTime = 1F;
-            animation12.MinTime = 0F;
-            animation12.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation12.MosaicCoeff")));
-            animation12.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation12.MosaicShift")));
-            animation12.MosaicSize = 0;
-            animation12.Padding = new System.Windows.Forms.Padding(0);
-            animation12.RotateCoeff = 0F;
-            animation12.RotateLimit = 0F;
-            animation12.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation12.ScaleCoeff")));
-            animation12.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation12.SlideCoeff")));
-            animation12.TimeCoeff = 0F;
-            animation12.TransparencyCoeff = 0F;
-            this.guna2Transition1.DefaultAnimation = animation12;
+            animation9.AnimateOnlyDifferences = true;
+            animation9.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation9.BlindCoeff")));
+            animation9.LeafCoeff = 0F;
+            animation9.MaxTime = 1F;
+            animation9.MinTime = 0F;
+            animation9.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation9.MosaicCoeff")));
+            animation9.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation9.MosaicShift")));
+            animation9.MosaicSize = 0;
+            animation9.Padding = new System.Windows.Forms.Padding(0);
+            animation9.RotateCoeff = 0F;
+            animation9.RotateLimit = 0F;
+            animation9.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation9.ScaleCoeff")));
+            animation9.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation9.SlideCoeff")));
+            animation9.TimeCoeff = 0F;
+            animation9.TransparencyCoeff = 0F;
+            this.guna2Transition1.DefaultAnimation = animation9;
             // 
             // panelProfile
             // 
@@ -123,6 +123,18 @@
             this.panelProfile.ShadowDecoration.Parent = this.panelProfile;
             this.panelProfile.Size = new System.Drawing.Size(220, 280);
             this.panelProfile.TabIndex = 40;
+            // 
+            // panel1
+            // 
+            this.panel1.AllowDrop = true;
+            this.panel1.AutoScroll = true;
+            this.panel1.AutoSize = true;
+            this.panel1.Controls.Add(this.lblUserName);
+            this.guna2Transition1.SetDecoration(this.panel1, Guna.UI2.AnimatorNS.DecorationType.None);
+            this.panel1.Location = new System.Drawing.Point(19, 180);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(179, 62);
+            this.panel1.TabIndex = 40;
             // 
             // lblUserName
             // 
@@ -590,7 +602,6 @@
             this.txtIDNum.DisabledState.Parent = this.txtIDNum;
             this.txtIDNum.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.txtIDNum.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
-            this.txtIDNum.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.txtIDNum.FocusedState.Parent = this.txtIDNum;
             this.txtIDNum.Font = new System.Drawing.Font("Segoe UI", 9.75F);
             this.txtIDNum.ForeColor = System.Drawing.Color.Black;
@@ -612,7 +623,7 @@
             this.lblAddress.BackColor = System.Drawing.Color.Transparent;
             this.guna2Transition1.SetDecoration(this.lblAddress, Guna.UI2.AnimatorNS.DecorationType.None);
             this.lblAddress.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAddress.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblAddress.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(64)))), ((int)(((byte)(86)))));
             this.lblAddress.Location = new System.Drawing.Point(15, 130);
             this.lblAddress.Name = "lblAddress";
             this.lblAddress.Size = new System.Drawing.Size(50, 17);
@@ -622,7 +633,7 @@
             // txtAddress
             // 
             this.txtAddress.BackColor = System.Drawing.Color.Transparent;
-            this.txtAddress.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.txtAddress.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(64)))), ((int)(((byte)(86)))));
             this.txtAddress.BorderRadius = 5;
             this.txtAddress.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.guna2Transition1.SetDecoration(this.txtAddress, Guna.UI2.AnimatorNS.DecorationType.None);
@@ -633,11 +644,9 @@
             this.txtAddress.DisabledState.Parent = this.txtAddress;
             this.txtAddress.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.txtAddress.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
-            this.txtAddress.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.txtAddress.FocusedState.Parent = this.txtAddress;
             this.txtAddress.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.txtAddress.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.txtAddress.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.txtAddress.ForeColor = System.Drawing.Color.Black;
             this.txtAddress.HoverState.Parent = this.txtAddress;
             this.txtAddress.Location = new System.Drawing.Point(15, 155);
             this.txtAddress.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -656,7 +665,7 @@
             this.lblPhone.BackColor = System.Drawing.Color.Transparent;
             this.guna2Transition1.SetDecoration(this.lblPhone, Guna.UI2.AnimatorNS.DecorationType.None);
             this.lblPhone.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPhone.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblPhone.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(64)))), ((int)(((byte)(86)))));
             this.lblPhone.Location = new System.Drawing.Point(240, 50);
             this.lblPhone.Name = "lblPhone";
             this.lblPhone.Size = new System.Drawing.Size(88, 17);
@@ -666,7 +675,7 @@
             // txtPhone
             // 
             this.txtPhone.BackColor = System.Drawing.Color.Transparent;
-            this.txtPhone.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.txtPhone.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(64)))), ((int)(((byte)(86)))));
             this.txtPhone.BorderRadius = 5;
             this.txtPhone.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.guna2Transition1.SetDecoration(this.txtPhone, Guna.UI2.AnimatorNS.DecorationType.None);
@@ -677,11 +686,9 @@
             this.txtPhone.DisabledState.Parent = this.txtPhone;
             this.txtPhone.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.txtPhone.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
-            this.txtPhone.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.txtPhone.FocusedState.Parent = this.txtPhone;
             this.txtPhone.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.txtPhone.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.txtPhone.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.txtPhone.ForeColor = System.Drawing.Color.Black;
             this.txtPhone.HoverState.Parent = this.txtPhone;
             this.txtPhone.Location = new System.Drawing.Point(240, 75);
             this.txtPhone.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -700,7 +707,7 @@
             this.lblGender.BackColor = System.Drawing.Color.Transparent;
             this.guna2Transition1.SetDecoration(this.lblGender, Guna.UI2.AnimatorNS.DecorationType.None);
             this.lblGender.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGender.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblGender.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(64)))), ((int)(((byte)(86)))));
             this.lblGender.Location = new System.Drawing.Point(465, 50);
             this.lblGender.Name = "lblGender";
             this.lblGender.Size = new System.Drawing.Size(59, 17);
@@ -710,18 +717,17 @@
             // cbSex
             // 
             this.cbSex.BackColor = System.Drawing.Color.Transparent;
-            this.cbSex.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.cbSex.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(64)))), ((int)(((byte)(86)))));
             this.cbSex.BorderRadius = 5;
+            this.cbSex.Cursor = System.Windows.Forms.Cursors.Hand;
             this.guna2Transition1.SetDecoration(this.cbSex, Guna.UI2.AnimatorNS.DecorationType.None);
             this.cbSex.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.cbSex.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbSex.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
-            this.cbSex.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.cbSex.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.cbSex.FocusedColor = System.Drawing.Color.Empty;
             this.cbSex.FocusedState.Parent = this.cbSex;
             this.cbSex.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.cbSex.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.cbSex.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.cbSex.ForeColor = System.Drawing.Color.Black;
             this.cbSex.HoverState.Parent = this.cbSex;
             this.cbSex.ItemHeight = 30;
             this.cbSex.Items.AddRange(new object[] {
@@ -740,7 +746,7 @@
             this.lblDOB.BackColor = System.Drawing.Color.Transparent;
             this.guna2Transition1.SetDecoration(this.lblDOB, Guna.UI2.AnimatorNS.DecorationType.None);
             this.lblDOB.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDOB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblDOB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(64)))), ((int)(((byte)(86)))));
             this.lblDOB.Location = new System.Drawing.Point(240, 130);
             this.lblDOB.Name = "lblDOB";
             this.lblDOB.Size = new System.Drawing.Size(69, 17);
@@ -750,16 +756,16 @@
             // dobDP
             // 
             this.dobDP.BackColor = System.Drawing.Color.Transparent;
-            this.dobDP.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.dobDP.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(64)))), ((int)(((byte)(86)))));
             this.dobDP.BorderRadius = 5;
             this.dobDP.BorderThickness = 1;
             this.dobDP.CheckedState.Parent = this.dobDP;
+            this.dobDP.Cursor = System.Windows.Forms.Cursors.Hand;
             this.guna2Transition1.SetDecoration(this.dobDP, Guna.UI2.AnimatorNS.DecorationType.None);
             this.dobDP.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.dobDP.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.dobDP.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.dobDP.ForeColor = System.Drawing.Color.Black;
             this.dobDP.Format = System.Windows.Forms.DateTimePickerFormat.Long;
-            this.dobDP.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.dobDP.HoverState.Parent = this.dobDP;
             this.dobDP.Location = new System.Drawing.Point(240, 155);
             this.dobDP.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
@@ -776,7 +782,7 @@
             this.lblStartDate.BackColor = System.Drawing.Color.Transparent;
             this.guna2Transition1.SetDecoration(this.lblStartDate, Guna.UI2.AnimatorNS.DecorationType.None);
             this.lblStartDate.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStartDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblStartDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(64)))), ((int)(((byte)(86)))));
             this.lblStartDate.Location = new System.Drawing.Point(465, 130);
             this.lblStartDate.Name = "lblStartDate";
             this.lblStartDate.Size = new System.Drawing.Size(92, 17);
@@ -786,7 +792,7 @@
             // txtStartDay
             // 
             this.txtStartDay.BackColor = System.Drawing.Color.Transparent;
-            this.txtStartDay.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.txtStartDay.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(64)))), ((int)(((byte)(86)))));
             this.txtStartDay.BorderRadius = 5;
             this.txtStartDay.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.guna2Transition1.SetDecoration(this.txtStartDay, Guna.UI2.AnimatorNS.DecorationType.None);
@@ -797,10 +803,9 @@
             this.txtStartDay.DisabledState.Parent = this.txtStartDay;
             this.txtStartDay.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.txtStartDay.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
-            this.txtStartDay.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.txtStartDay.FocusedState.Parent = this.txtStartDay;
             this.txtStartDay.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.txtStartDay.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.txtStartDay.ForeColor = System.Drawing.Color.Black;
             this.txtStartDay.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.txtStartDay.HoverState.Parent = this.txtStartDay;
             this.txtStartDay.Location = new System.Drawing.Point(465, 155);
@@ -831,6 +836,7 @@
             this.SaveInfobtn.BackColor = System.Drawing.Color.Transparent;
             this.SaveInfobtn.BorderRadius = 20;
             this.SaveInfobtn.CheckedState.Parent = this.SaveInfobtn;
+            this.SaveInfobtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.SaveInfobtn.CustomImages.Parent = this.SaveInfobtn;
             this.guna2Transition1.SetDecoration(this.SaveInfobtn, Guna.UI2.AnimatorNS.DecorationType.None);
             this.SaveInfobtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(64)))), ((int)(((byte)(86)))));
@@ -851,6 +857,7 @@
             this.Closebtn.BackColor = System.Drawing.Color.Transparent;
             this.Closebtn.BorderRadius = 20;
             this.Closebtn.CheckedState.Parent = this.Closebtn;
+            this.Closebtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Closebtn.CustomImages.Parent = this.Closebtn;
             this.guna2Transition1.SetDecoration(this.Closebtn, Guna.UI2.AnimatorNS.DecorationType.None);
             this.Closebtn.FillColor = System.Drawing.Color.Gray;
@@ -870,18 +877,6 @@
             // 
             this.guna2HtmlToolTip1.AllowLinksHandling = true;
             this.guna2HtmlToolTip1.MaximumSize = new System.Drawing.Size(0, 0);
-            // 
-            // panel1
-            // 
-            this.panel1.AllowDrop = true;
-            this.panel1.AutoScroll = true;
-            this.panel1.AutoSize = true;
-            this.panel1.Controls.Add(this.lblUserName);
-            this.guna2Transition1.SetDecoration(this.panel1, Guna.UI2.AnimatorNS.DecorationType.None);
-            this.panel1.Location = new System.Drawing.Point(19, 180);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(179, 62);
-            this.panel1.TabIndex = 40;
             // 
             // FormThongTin
             // 
@@ -904,6 +899,8 @@
             this.Load += new System.EventHandler(this.FormThongTin_Load);
             this.panelProfile.ResumeLayout(false);
             this.panelProfile.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picturebox)).EndInit();
             this.panelAccount.ResumeLayout(false);
             this.panelAccount.PerformLayout();
@@ -912,8 +909,6 @@
             this.panelPersonal.ResumeLayout(false);
             this.panelPersonal.PerformLayout();
             this.panelButtons.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }

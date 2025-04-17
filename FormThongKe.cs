@@ -45,7 +45,6 @@ namespace QLKS
             TongKhach(dateStart.Value, dateEnd.Value);
             TongPhongDat(dateStart.Value, dateEnd.Value);
             TongDichVu(dateStart.Value, dateEnd.Value);
-            
         }
 
         private void DateTimePicker_ValueChanged(object sender, EventArgs e)
@@ -61,7 +60,6 @@ namespace QLKS
                 return;
             }
 
-             
         }
 
         private async void GenerateCharts()

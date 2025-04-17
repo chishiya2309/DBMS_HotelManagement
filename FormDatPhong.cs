@@ -903,16 +903,6 @@ namespace QLKS
             }
         }
 
-        public static bool CheckFillInText(Control[] controls)
-        {
-            foreach (var control in controls)
-            {
-                if (control.Text == string.Empty)
-                    return false;
-            }
-            return true;
-        }
-
         private void UpdateBookRoom()
         {
             // Kiểm tra các trường bắt buộc
@@ -1020,8 +1010,6 @@ namespace QLKS
                         // 3. Thêm lại các thành viên tham gia mới
                         foreach (int maKH in danhSachThanhVien)
                         {
-                            bool laDaiDien = (maKH.ToString() == maKhachHang);
-
                             using (SqlCommand cmdInsert = new SqlCommand(
                                 "INSERT INTO ThamGia (MaHoSoDatPhong, MaKhachHang) VALUES (@MaHoSoDatPhong, @MaKhachHang)",
                                 conn, transaction))
@@ -1087,14 +1075,7 @@ namespace QLKS
             txtSearch.Text = "";
             txtPhone.Text = "";
             dtpCheckIn.Value = DateTime.Now;
-            dtpCheckOut.Value = DateTime.Now;
-        }
-
-        private void guna2GroupBox3_Click(object sender, EventArgs e)
-
-
-        {
-
+            dtpCheckOut.Value = DateTime.Now.AddDays(1);
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -1549,11 +1530,6 @@ namespace QLKS
             }
         }
 
-        private void lblBookingTitle_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnDeleteMember_Click(object sender, EventArgs e)
         {
             // Kiểm tra xem có hàng nào được chọn không
@@ -1636,36 +1612,6 @@ namespace QLKS
                 {
                     MessageBox.Show("Lỗi truy vấn: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return null;
-                }
-            }
-        }
-
-        // Phương thức để xóa khách hàng khỏi bảng ThamGia
-        private bool DeleteParticipant(int bookingId, int customerId)
-        {
-            string query = @"
-                DELETE FROM ThamGia 
-                WHERE MaHoSoDatPhong = @MaHoSoDatPhong AND MaKhachHang = @MaKhachHang";
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                try
-                {
-                    conn.Open();
-                    using (SqlCommand cmd = new SqlCommand(query, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@MaHoSoDatPhong", bookingId);
-                        cmd.Parameters.AddWithValue("@MaKhachHang", customerId);
-
-                        int rowsAffected = cmd.ExecuteNonQuery();
-                        return rowsAffected > 0;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Lỗi khi xóa khách hàng tham gia: " + ex.Message,
-                        "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
                 }
             }
         }
