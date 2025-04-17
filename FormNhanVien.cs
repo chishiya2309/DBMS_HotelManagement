@@ -17,7 +17,7 @@ namespace QLKS
 {
     public partial class FormNhanVien: Form
     {
-        private string connectionString = "Data Source=(local)\\SQLExpress;Initial Catalog=Hotel2025;Integrated Security=True";
+        private string connectionString = "Data Source=(local)\\SQLEXPRESS;Initial Catalog=Hotel2025;Integrated Security=True";
         public FormNhanVien()
         {
             InitializeComponent();

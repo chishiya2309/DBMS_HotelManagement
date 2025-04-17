@@ -91,9 +91,11 @@ namespace QLKS
             source.DataSource = dt;
             dgvBookRoom.DataSource = source;
             txtTotal.Text = LoadTotal().ToString();
-
-            txtDescription.Text = dt.Rows[0]["GhiChu"].ToString();
-            dtpRealCheckIn.Value = dt.Rows[0]["ThoiGianCheckinThucTe"] == DBNull.Value ? DateTime.Now : (DateTime)dt.Rows[0]["ThoiGianCheckinThucTe"];
+            if (dt.Rows.Count > 0)
+            {
+                txtDescription.Text = dt.Rows[0]["GhiChu"] == DBNull.Value ? "" : dt.Rows[0]["GhiChu"].ToString();
+                dtpRealCheckIn.Value = dt.Rows[0]["ThoiGianCheckinThucTe"] == DBNull.Value ? DateTime.Now : (DateTime)dt.Rows[0]["ThoiGianCheckinThucTe"];
+            }
         }
 
         public DataTable SearchUsedService()

@@ -897,6 +897,7 @@
             // 
             // dgvGhiChu
             // 
+            this.dgvGhiChu.DataPropertyName = "GhiChu";
             this.dgvGhiChu.HeaderText = "Ghi chú";
             this.dgvGhiChu.Name = "dgvGhiChu";
             this.dgvGhiChu.ReadOnly = true;
@@ -904,6 +905,7 @@
             // 
             // dgvCheckInThucTe
             // 
+            this.dgvCheckInThucTe.DataPropertyName = "ThoiGianCheckinThucTe";
             this.dgvCheckInThucTe.HeaderText = "Ngày nhận thực";
             this.dgvCheckInThucTe.Name = "dgvCheckInThucTe";
             this.dgvCheckInThucTe.ReadOnly = true;

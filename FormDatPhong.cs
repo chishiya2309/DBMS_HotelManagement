@@ -1010,8 +1010,6 @@ namespace QLKS
                         // 3. Thêm lại các thành viên tham gia mới
                         foreach (int maKH in danhSachThanhVien)
                         {
-                            bool laDaiDien = (maKH.ToString() == maKhachHang);
-
                             using (SqlCommand cmdInsert = new SqlCommand(
                                 "INSERT INTO ThamGia (MaHoSoDatPhong, MaKhachHang) VALUES (@MaHoSoDatPhong, @MaKhachHang)",
                                 conn, transaction))
