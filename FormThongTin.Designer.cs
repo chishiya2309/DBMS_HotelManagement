@@ -30,13 +30,13 @@
         {
             this.components = new System.ComponentModel.Container();
             Guna.UI2.AnimatorNS.Animation animation1 = new Guna.UI2.AnimatorNS.Animation();
-
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormThongTin));
             this.guna2AnimateWindow1 = new Guna.UI2.WinForms.Guna2AnimateWindow(this.components);
             this.guna2DragControl1 = new Guna.UI2.WinForms.Guna2DragControl(this.components);
             this.guna2MouseStateHandler1 = new Guna.UI2.WinForms.Guna2MouseStateHandler(this.components);
             this.guna2Transition1 = new Guna.UI2.WinForms.Guna2Transition();
             this.panelProfile = new Guna.UI2.WinForms.Guna2Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.lblUserName = new System.Windows.Forms.Label();
             this.picturebox = new Guna.UI2.WinForms.Guna2CirclePictureBox();
             this.lblPictureHint = new System.Windows.Forms.Label();
@@ -76,14 +76,13 @@
             this.Closebtn = new Guna.UI2.WinForms.Guna2Button();
             this.guna2ShadowForm1 = new Guna.UI2.WinForms.Guna2ShadowForm(this.components);
             this.guna2HtmlToolTip1 = new Guna.UI2.WinForms.Guna2HtmlToolTip();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.panelProfile.SuspendLayout();
+            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picturebox)).BeginInit();
             this.panelAccount.SuspendLayout();
             this.panelSecurity.SuspendLayout();
             this.panelPersonal.SuspendLayout();
             this.panelButtons.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // guna2DragControl1
@@ -124,6 +123,18 @@
             this.panelProfile.ShadowDecoration.Parent = this.panelProfile;
             this.panelProfile.Size = new System.Drawing.Size(220, 280);
             this.panelProfile.TabIndex = 40;
+            // 
+            // panel1
+            // 
+            this.panel1.AllowDrop = true;
+            this.panel1.AutoScroll = true;
+            this.panel1.AutoSize = true;
+            this.panel1.Controls.Add(this.lblUserName);
+            this.guna2Transition1.SetDecoration(this.panel1, Guna.UI2.AnimatorNS.DecorationType.None);
+            this.panel1.Location = new System.Drawing.Point(19, 180);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(179, 62);
+            this.panel1.TabIndex = 40;
             // 
             // lblUserName
             // 
@@ -874,18 +885,6 @@
             this.guna2HtmlToolTip1.AllowLinksHandling = true;
             this.guna2HtmlToolTip1.MaximumSize = new System.Drawing.Size(0, 0);
             // 
-            // panel1
-            // 
-            this.panel1.AllowDrop = true;
-            this.panel1.AutoScroll = true;
-            this.panel1.AutoSize = true;
-            this.panel1.Controls.Add(this.lblUserName);
-            this.guna2Transition1.SetDecoration(this.panel1, Guna.UI2.AnimatorNS.DecorationType.None);
-            this.panel1.Location = new System.Drawing.Point(19, 180);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(179, 62);
-            this.panel1.TabIndex = 40;
-            // 
             // FormThongTin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -907,6 +906,8 @@
             this.Load += new System.EventHandler(this.FormThongTin_Load);
             this.panelProfile.ResumeLayout(false);
             this.panelProfile.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picturebox)).EndInit();
             this.panelAccount.ResumeLayout(false);
             this.panelAccount.PerformLayout();
@@ -915,8 +916,6 @@
             this.panelPersonal.ResumeLayout(false);
             this.panelPersonal.PerformLayout();
             this.panelButtons.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
