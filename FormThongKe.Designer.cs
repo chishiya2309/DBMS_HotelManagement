@@ -242,6 +242,7 @@
             this.chartLoaiPhong.TabIndex = 58;
             this.chartLoaiPhong.Text = "chart2";
             title2.Alignment = System.Drawing.ContentAlignment.TopLeft;
+            title2.Font = new System.Drawing.Font("Segoe UI", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             title2.ForeColor = System.Drawing.Color.White;
             title2.Name = "DoanhThu";
             title2.Text = "Doanh Thu 3 loại phòng cao nhất";
@@ -464,6 +465,7 @@
             this.guna2DataGridView1.Location = new System.Drawing.Point(276, 365);
             this.guna2DataGridView1.Name = "guna2DataGridView1";
             this.guna2DataGridView1.RowHeadersVisible = false;
+            this.guna2DataGridView1.RowHeadersWidth = 82;
             this.guna2DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.guna2DataGridView1.Size = new System.Drawing.Size(472, 290);
             this.guna2DataGridView1.TabIndex = 65;
@@ -494,6 +496,7 @@
             // Column1
             // 
             this.Column1.HeaderText = "Mã lọai phòng";
+            this.Column1.MinimumWidth = 10;
             this.Column1.Name = "Column1";
             this.Column1.Visible = false;
             // 
@@ -502,24 +505,28 @@
             this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.Column2.FillWeight = 152.2843F;
             this.Column2.HeaderText = "Tên loại phòng";
+            this.Column2.MinimumWidth = 10;
             this.Column2.Name = "Column2";
             this.Column2.Width = 200;
             // 
             // Column3
             // 
             this.Column3.HeaderText = "Tổng số phòng hoạt động";
+            this.Column3.MinimumWidth = 10;
             this.Column3.Name = "Column3";
             this.Column3.Visible = false;
             // 
             // Column4
             // 
             this.Column4.HeaderText = "Số phòng đã đăng kí";
+            this.Column4.MinimumWidth = 10;
             this.Column4.Name = "Column4";
             this.Column4.Visible = false;
             // 
             // Column5
             // 
             this.Column5.HeaderText = "Số phòng có thể bán";
+            this.Column5.MinimumWidth = 10;
             this.Column5.Name = "Column5";
             // 
             // Column6
@@ -527,6 +534,7 @@
             this.Column6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Column6.FillWeight = 47.71573F;
             this.Column6.HeaderText = "Trạng thái";
+            this.Column6.MinimumWidth = 10;
             this.Column6.Name = "Column6";
             // 
             // FormThongKe
@@ -535,7 +543,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(28)))), ((int)(((byte)(63)))));
-            this.ClientSize = new System.Drawing.Size(1255, 701);
+            this.ClientSize = new System.Drawing.Size(1248, 701);
             this.Controls.Add(this.guna2DataGridView1);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.panel3);

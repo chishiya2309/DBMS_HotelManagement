@@ -45,7 +45,7 @@ namespace QLKS
             TongKhach(dateStart.Value, dateEnd.Value);
             TongPhongDat(dateStart.Value, dateEnd.Value);
             TongDichVu(dateStart.Value, dateEnd.Value);
-            UpdateDataGridView(dateStart.Value, dateEnd.Value);
+            
         }
 
         private void DateTimePicker_ValueChanged(object sender, EventArgs e)
@@ -61,7 +61,7 @@ namespace QLKS
                 return;
             }
 
-            UpdateDataGridView(startDate, endDate);
+             
         }
 
         private async void GenerateCharts()
@@ -126,11 +126,13 @@ namespace QLKS
                 txtSoDichVuDaDung.Text = totalServicesUsed.ToString();
             }));
 
-            // Hiển thị thông báo nếu không có dữ liệu
-            if (!hasDataRevenue && !hasDataRoomType)
-            {
-                MessageBox.Show("Không có dữ liệu trong khoảng thời gian được chọn.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            //// Hiển thị thông báo nếu không có dữ liệu
+            //if (!hasDataRevenue && !hasDataRoomType)
+            //{
+            //    MessageBox.Show("Không có dữ liệu trong khoảng thời gian được chọn.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //}
+
+            UpdateDataGridView(startDate, endDate);
         }
 
 
@@ -155,7 +157,7 @@ namespace QLKS
 
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            while (reader.Read())
+                            while (reader.HasRows && reader.Read())
                             {
                                 hasData = true;
                                 DateTime date = reader.GetDateTime(0);
@@ -170,6 +172,8 @@ namespace QLKS
                 {
                     Series targetSeries = null;
 
+                    var YAxis = chartDoanhThu.ChartAreas[0].AxisY;
+
                     // Cố gắng tìm Series đã được thiết kế sẵn bằng tên của nó
                     if (chartDoanhThu.Series.IndexOf(designerSeriesName) >= 0)
                     {
@@ -179,15 +183,32 @@ namespace QLKS
                         // Xóa các điểm dữ liệu cũ, MỌI THIẾT KẾ SẼ ĐƯỢC GIỮ NGUYÊN
                         targetSeries.Points.Clear();
 
+
+                        int pointIndex = targetSeries.Points.AddXY(DateTime.Now.AddYears(-2).ToString("dd/MM/yyyy"), 0);
+                        DataPoint beforePoint = targetSeries.Points[pointIndex];
+                        beforePoint.AxisLabel = " ";
+
                         // Thêm các điểm dữ liệu mới vào Series này
                         if (hasData)
                         {
+                            YAxis.Minimum = double.NaN;
+                            YAxis.Maximum = double.NaN;
                             foreach (var point in dataPoints)
                             {
                                 targetSeries.Points.AddXY(point.Item1, point.Item2);
                             }
+
                         }
-                        // Nếu không có dữ liệu (hasData = false), series sẽ trống, giữ nguyên thiết kế.
+                        else
+                        {
+                            YAxis.Minimum = 0;
+                            YAxis.Maximum = 100000;
+                        }
+
+                            int pointIndex2 = targetSeries.Points.AddXY(DateTime.Now.AddYears(2).ToString("dd/MM/yyyy"), 0);
+                        DataPoint afterPoint = targetSeries.Points[pointIndex2];
+                        afterPoint.AxisLabel = " ";
+
                     }
                     else
                     { 
@@ -315,29 +336,29 @@ namespace QLKS
         {
             DateTime yesterday = DateTime.Now.AddDays(-1);
 
-            dateStart.ValueChanged -= DateTimePicker_ValueChanged;
+            //dateStart.ValueChanged -= DateTimePicker_ValueChanged;
             dateEnd.ValueChanged -= DateTimePicker_ValueChanged;
 
             dateStart.Value = yesterday;
-            dateEnd.Value = yesterday;
+            dateEnd.Value = DateTime.Now.AddDays(1);
 
-            dateStart.ValueChanged += DateTimePicker_ValueChanged;
+            //dateStart.ValueChanged += DateTimePicker_ValueChanged;
             dateEnd.ValueChanged += DateTimePicker_ValueChanged;
 
             GenerateCharts();
         }
         private void btn7ngay_Click(object sender, EventArgs e)
         {
-            DateTime today = DateTime.Today;
-            DateTime sevenDaysAgo = today.AddDays(-7);
+            DateTime today = DateTime.Today.AddDays(1);
+            DateTime sevenDaysAgo = today.AddDays(-8);
 
-            dateStart.ValueChanged -= DateTimePicker_ValueChanged;
+            //dateStart.ValueChanged -= DateTimePicker_ValueChanged;
             dateEnd.ValueChanged -= DateTimePicker_ValueChanged;
 
             dateStart.Value = sevenDaysAgo;
             dateEnd.Value = today;
 
-            dateStart.ValueChanged += DateTimePicker_ValueChanged;
+            //dateStart.ValueChanged += DateTimePicker_ValueChanged;
             dateEnd.ValueChanged += DateTimePicker_ValueChanged;
 
             GenerateCharts();
@@ -345,8 +366,8 @@ namespace QLKS
 
         private void btn30ngay_Click(object sender, EventArgs e)
         {
-            DateTime today = DateTime.Today;
-            DateTime thirtyDaysAgo = today.AddDays(-30);
+            DateTime today = DateTime.Today.AddDays(1);
+            DateTime thirtyDaysAgo = today.AddDays(-31);
 
             dateStart.ValueChanged -= DateTimePicker_ValueChanged;
             dateEnd.ValueChanged -= DateTimePicker_ValueChanged;
@@ -588,15 +609,7 @@ namespace QLKS
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    string query = @"
-                        SELECT 
-                            MaLoaiPhong, 
-                            TenLoaiPhong, 
-                            TongSoPhongHoatDong, 
-                            SoPhongDaDatTrongKy, 
-                            SoPhongTrongDuKien, 
-                            TrangThaiDuDoan
-                        FROM dbo.ufn_DuDoanTinhTrangPhong(@NgayBatDau, @NgayKetThuc)";
+                    string query = @"SELECT * FROM dbo.fn_DuDoanTinhTrangPhong(@NgayBatDau, @NgayKetThuc)";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
