@@ -87,6 +87,7 @@ namespace QLKS
 
         public void LoadFullBookRoom(DataTable dt)
         {
+            
             BindingSource source = new BindingSource();
             source.DataSource = dt;
             dgvBookRoom.DataSource = source;
