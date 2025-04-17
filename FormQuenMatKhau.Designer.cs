@@ -217,7 +217,7 @@
             this.btnClose.CheckedState.Parent = this.btnClose;
             this.btnClose.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnClose.CustomImages.Parent = this.btnClose;
-            this.btnClose.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(64)))), ((int)(((byte)(86)))));
+            this.btnClose.FillColor = System.Drawing.Color.Green;
             this.btnClose.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnClose.ForeColor = System.Drawing.Color.White;
             this.btnClose.HoverState.FillColor = System.Drawing.Color.Red;

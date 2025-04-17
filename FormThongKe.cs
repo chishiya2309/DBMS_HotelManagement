@@ -45,7 +45,6 @@ namespace QLKS
             TongKhach(dateStart.Value, dateEnd.Value);
             TongPhongDat(dateStart.Value, dateEnd.Value);
             TongDichVu(dateStart.Value, dateEnd.Value);
-            UpdateDataGridView(dateStart.Value, dateEnd.Value);
         }
 
         private void DateTimePicker_ValueChanged(object sender, EventArgs e)
@@ -60,8 +59,6 @@ namespace QLKS
                 MessageBox.Show("Thời gian bắt đầu không được lớn hơn thời gian kết thúc.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-
-            UpdateDataGridView(startDate, endDate);
         }
 
         private async void GenerateCharts()
