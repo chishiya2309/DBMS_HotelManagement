@@ -30,7 +30,7 @@ namespace QLKS
         {
             string query = @"SELECT * FROM NhanVien";
 
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlConnection conn = DBConnection.GetConnection())
             {
                 try
                 {
@@ -141,7 +141,7 @@ namespace QLKS
                     int idStaff = Convert.ToInt32(dgvStaff.SelectedRows[0].Cells["MaNhanVien"].Value);
 
                     // Cập nhật thông tin nhân viên bằng stored procedure
-                    using (SqlConnection conn = new SqlConnection(connectionString))
+                    using (SqlConnection conn = DBConnection.GetConnection())
                     {
                         conn.Open();
                         using (SqlCommand cmd = new SqlCommand("sp_UpdateStaff", conn))
