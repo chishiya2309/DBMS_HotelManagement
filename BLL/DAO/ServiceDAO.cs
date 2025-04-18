@@ -13,26 +13,6 @@ namespace BLL.DAO
     public class ServiceDAO
     {
         private static ServiceDAO instance;
-        public List<Service> GetServices(int idServiceType)
-        {
-            List<Service> services = new List<Service>();
-            string query = "sp_LoadServiceByServiceType @idServiceType";
-            DataTable dataTable = DataProvider.Instance.ExecuteQuery(query, new object[] { idServiceType });
-            foreach (DataRow item in dataTable.Rows)
-            {
-                Service service = new Service(item);
-                services.Add(service);
-            }
-            return services;
-        }
-        //public bool InsertService(int id,  string name, int idtype, double price)
-        //{
-        //    string query = "sp_InsertService @id , @name , @idServiceType , @price";
-        //    return DataProvider.Instance.ExecuteNonQuery(query, new object[]
-        //    {
-        //        id, name, idtype, price
-        //    }) > 0;
-        //}
         public void InsertDichVu(string maDichVu, string tenDichVu, string loaiDichVu, string trangThai, double donGia, string moTa)
         {
             using (SqlConnection conn = DBConnection.GetConnection())
@@ -114,12 +94,6 @@ namespace BLL.DAO
         }
 
 
-        //public bool DeleteService(int idService)
-        //{
-        //    string query = "sp_DeteleService @id";
-        //    return DataProvider.Instance.ExecuteNonQuery(query, new object[] { idService }) > 0;
-        //}
-
         public void DeleteDichVu(string MaDichVu)
         {
             using (SqlConnection conn = DBConnection.GetConnection())
@@ -164,12 +138,6 @@ namespace BLL.DAO
             string query = "sp_LoadFullAvailableService";
             return DataProvider.Instance.ExecuteQuery(query);
         }
-
-        //public DataTable Search(string name)
-        //{
-        //    string query = "sp_SearchService @string ";
-        //    return DataProvider.Instance.ExecuteQuery(query, new object[] { name });
-        //}
 
         public DataTable Search(string name)
         {

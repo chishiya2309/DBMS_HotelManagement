@@ -913,7 +913,6 @@
         private Guna.UI2.WinForms.Guna2Button btnDelete;
         private Guna.UI2.WinForms.Guna2Button btnInsert;
         private Guna.UI2.WinForms.Guna2Button btnUpdate;
-        private Guna.UI2.WinForms.Guna2DataGridView dgvCustomer;
         private Guna.UI2.WinForms.Guna2GroupBox guna2GroupBox2;
         private Guna.UI2.WinForms.Guna2ComboBox cbSex;
         private System.Windows.Forms.Label label13;
@@ -951,5 +950,6 @@
         private Guna.UI2.WinForms.Guna2ComboBox cmbTrangThai;
         private System.Windows.Forms.Label label5;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
+        public Guna.UI2.WinForms.Guna2DataGridView dgvCustomer;
     }
 }

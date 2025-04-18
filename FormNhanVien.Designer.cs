@@ -731,7 +731,6 @@
         private System.Windows.Forms.Label label1;
         private Guna.UI2.WinForms.Guna2CircleButton btnSeach;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtSearch;
         private Guna.UI2.WinForms.Guna2GroupBox guna2GroupBox1;
         private Guna.UI2.WinForms.Guna2GroupBox guna2GroupBox2;
         private System.Windows.Forms.TextBox txtIDNum;
@@ -750,7 +749,6 @@
         private System.Windows.Forms.ComboBox cbRole;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private Guna.UI2.WinForms.Guna2DataGridView dgvStaff;
         private Guna.UI2.WinForms.Guna2CircleButton Updatebtn;
         private Guna.UI2.WinForms.Guna2CircleButton guna2CircleButton1;
         private Guna.UI2.WinForms.Guna2CircleButton guna2CircleButton2;
@@ -771,5 +769,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Sodienthoai;
         private System.Windows.Forms.DataGridViewTextBoxColumn Ngayvaolam;
         private System.Windows.Forms.DataGridViewTextBoxColumn Vaitro;
+        public System.Windows.Forms.TextBox txtSearch;
+        public Guna.UI2.WinForms.Guna2DataGridView dgvStaff;
     }
 }

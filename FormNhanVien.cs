@@ -268,29 +268,7 @@ namespace QLKS
 
         private void btnSeach_Click(object sender, EventArgs e)
         {
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    conn.Open();
-                    using (SqlCommand cmd = new SqlCommand("sp_SearchStaffByName", conn))
-                    {
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@Hoten", txtSearch.Text.Trim());
-
-                        DataTable dt = new DataTable();
-                        using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
-                        {
-                            adapter.Fill(dt);
-                            dgvStaff.DataSource = dt;
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi tìm kiếm: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            dgvStaff.DataSource =  StaffDAO.Instance.SearchStaffByName(txtSearch.Text);
         }
 
         private void txtSearch_KeyDown(object sender, KeyEventArgs e)

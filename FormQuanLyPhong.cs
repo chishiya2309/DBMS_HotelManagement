@@ -10,6 +10,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DAL;
+using System.Xml.Linq;
 
 namespace QLKS
 {
@@ -22,8 +24,9 @@ namespace QLKS
             //LoadFullRoomStatus();
             // LoadFullRoomType();
             ConfigureDataGridView();
-            LoadRoomData();
             LoadRoomType();
+            LoadRoomData();
+            
         }
 
         private void guna2CircleButton3_Click(object sender, EventArgs e)
@@ -88,8 +91,9 @@ namespace QLKS
 
         private void LoadRoomType()
         {
-            string query = @"SELECT MaLoaiPhong, TenLoaiPhong FROM LoaiPhong";
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            string query = @"SELECT p.*, lp.TenLoaiPhong, lp.SucChua, lp.DonGia, lp.HinhAnh
+                             FROM Phong p INNER JOIN LoaiPhong lp ON p.MaLoaiPhong = lp.MaLoaiPhong";
+            using (SqlConnection conn = DBConnection.GetConnection())
             {
                 try
                 {
@@ -101,6 +105,7 @@ namespace QLKS
                         cbType.DisplayMember = "TenLoaiPhong";
                         cbType.ValueMember = "MaLoaiPhong";
                         cbType.DataSource = dt; // Gán dữ liệu vào DataGridView
+                       
                     }
                 }
                 catch (Exception ex)
@@ -117,14 +122,26 @@ namespace QLKS
                 try
                 {
                     DataGridViewRow row = dgvRoom.SelectedRows[0];
+                    if (row.IsNewRow)
+                    {
+                        txtMaPhong.Text = string.Empty;
+                        txtLimit.Text = string.Empty;
+                        txtTenPhong.Text = string.Empty;
+                        txtPrice.Text = string.Empty;
 
-                    // Hiển thị thông tin phòng được chọn trực tiếp lên form
-                    txtMaPhong.Text = row.Cells["MaPhong"].Value?.ToString() ?? "";
-                    txtTenPhong.Text = row.Cells["TenPhong"].Value?.ToString() ?? "";
-                    cbStatus.Text = row.Cells["TrangThai"].Value?.ToString() ?? "";
-                    cbType.Text = row.Cells["TenLoaiPhong"].Value?.ToString() ?? "";
-                    txtLimit.Text = row.Cells["SucChua"].Value?.ToString() ?? "";
-                    txtPrice.Text = row.Cells["DonGia"].Value?.ToString() ?? "";
+
+                    }
+                    else
+                    {
+                        // Hiển thị thông tin phòng được chọn trực tiếp lên form
+                        txtMaPhong.Text = row.Cells["MaPhong"].Value?.ToString() ?? "";
+                        txtTenPhong.Text = row.Cells["TenPhong"].Value?.ToString() ?? "";
+                        cbStatus.Text = row.Cells["TrangThai"].Value?.ToString() ?? "";
+                        cbType.Text = row.Cells["TenLoaiPhong"].Value?.ToString() ?? "";
+                       
+                        txtLimit.Text = row.Cells["SucChua"].Value?.ToString() ?? "";
+                        txtPrice.Text = row.Cells["DonGia"].Value?.ToString() ?? "";
+                    }   
                 }
                 catch (Exception ex)
                 {
@@ -224,13 +241,16 @@ namespace QLKS
             LoadRoomData();
         }
 
+
         private void btnSearch_Click(object sender, EventArgs e)
         {
             try
             {
                 //LoadFullRoomType();
                 //LoadFullRoomStatus();
-                //LoadFullRoom(RoomDAO.Instance.Search(cbStatusSearch.Text));
+                //LoadRoomType();
+
+                dgvRoom.DataSource = RoomDAO.Instance.SearchRoom(cbStatusSearch.Text);
 
             }
             catch (SqlException ex)
@@ -271,7 +291,7 @@ namespace QLKS
         {
             string query = @"SELECT p.*, lp.TenLoaiPhong, lp.SucChua, lp.DonGia, lp.HinhAnh
                                 FROM Phong p INNER JOIN LoaiPhong lp ON p.MaLoaiPhong = lp.MaLoaiPhong";
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlConnection conn = DBConnection.GetConnection())
             {
                 try
                 {

@@ -42,15 +42,12 @@ namespace QLKS
             
         }
 
-
-
         private void InsertCustomer()
         {
             if (!ValidateInputs())
             {
                 return;
             }
-
 
             try
             {
@@ -71,39 +68,12 @@ namespace QLKS
                 string loaiKhachHang = cbType.Text;
                 string trangThai = cmbTinhTrang.Text;
 
-
-                using (SqlConnection connection = new SqlConnection(connectionString))
-                {
-                    connection.Open();
-
-                    
-                    SqlCommand cmdCus = new SqlCommand("sp_InsertCustomer", connection);
-                    cmdCus.CommandType = CommandType.StoredProcedure;
-
-                    cmdCus.Parameters.AddWithValue("@Hoten", hoTen);
-                    cmdCus.Parameters.AddWithValue("@Gioitinh", gioiTinh);
-                    cmdCus.Parameters.AddWithValue("@email", email);
-                    cmdCus.Parameters.AddWithValue("@Ngaysinh", ngaySinh);
-                    cmdCus.Parameters.AddWithValue("@CCCD", cccd);
-                    cmdCus.Parameters.AddWithValue("@Sodienthoai", soDienThoai);
-                    cmdCus.Parameters.AddWithValue("@Diachi", diaChi);
-                    cmdCus.Parameters.AddWithValue("@LoaiKhachHang", loaiKhachHang);
-                    cmdCus.Parameters.AddWithValue("@TinhTrangDatPhong", trangThai);
-
-
-                    cmdCus.ExecuteNonQuery();
-
-                    MessageBox.Show("Thêm khách hàng mới thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    ClearForm();
-                }
+                CustomerDAO.Instance.InsertCustomer(hoTen, gioiTinh, ngaySinh, cccd, diaChi, soDienThoai, email, loaiKhachHang, trangThai);
+                ClearForm();
             }
             catch (SqlException ex)
             {
                 MessageBox.Show("Lỗi khi thêm khách hàng: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -140,7 +110,7 @@ namespace QLKS
             string phonePattern = @"^0\d{9,10}$";
             if (!System.Text.RegularExpressions.Regex.IsMatch(txtPhone.Text, phonePattern))
             {
-                MessageBox.Show("Số điện thoại không hợp lệ! Số điện thoại phải bắt đầu bằng số 0 và có 10-11 chữ số.",
+                MessageBox.Show("Số điện thoại không hợp lệ! Số điện thoại phải bắt đầu bằng số 0 và có tối đa 10 chữ số.",
                     "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtPhone.Focus();
                 return false;

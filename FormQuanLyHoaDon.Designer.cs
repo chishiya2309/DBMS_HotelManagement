@@ -36,6 +36,19 @@
             this.panelContent = new System.Windows.Forms.Panel();
             this.panelRight = new System.Windows.Forms.Panel();
             this.dgvBill = new Guna.UI2.WinForms.Guna2DataGridView();
+            this.dgvMaHoaDon = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvTenPhong = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvTenKhachHang = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvTenNhanVien = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvNgayLapHoaDon = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvTinhTrangThanhToan = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvThanhTien = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvPhuThu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvPhuongThucThanhToan = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvNoiDungPhuThu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvGiamGia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvMaHoSoDatPhong = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvMaNhanVien = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panelLeft = new System.Windows.Forms.Panel();
             this.guna2GroupBox3 = new Guna.UI2.WinForms.Guna2GroupBox();
             this.btnDetail = new Guna.UI2.WinForms.Guna2Button();
@@ -57,19 +70,6 @@
             this.btnSearch = new Guna.UI2.WinForms.Guna2Button();
             this.txtSearch = new Guna.UI2.WinForms.Guna2TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.dgvMaHoaDon = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvTenPhong = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvTenKhachHang = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvTenNhanVien = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvNgayLapHoaDon = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvTinhTrangThanhToan = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvThanhTien = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvPhuThu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvPhuongThucThanhToan = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvNoiDungPhuThu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvGiamGia = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvMaHoSoDatPhong = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvMaNhanVien = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panelHeader.SuspendLayout();
             this.panelContent.SuspendLayout();
             this.panelRight.SuspendLayout();
@@ -203,6 +203,127 @@
             this.dgvBill.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(90)))), ((int)(((byte)(115)))));
             this.dgvBill.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.White;
             this.dgvBill.SelectionChanged += new System.EventHandler(this.dgvBill_SelectionChanged);
+            // 
+            // dgvMaHoaDon
+            // 
+            this.dgvMaHoaDon.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.dgvMaHoaDon.DataPropertyName = "MaHoaDon";
+            this.dgvMaHoaDon.FillWeight = 7.211308F;
+            this.dgvMaHoaDon.HeaderText = "Mã hoá đơn";
+            this.dgvMaHoaDon.MinimumWidth = 6;
+            this.dgvMaHoaDon.Name = "dgvMaHoaDon";
+            this.dgvMaHoaDon.ReadOnly = true;
+            this.dgvMaHoaDon.Width = 120;
+            // 
+            // dgvTenPhong
+            // 
+            this.dgvTenPhong.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgvTenPhong.DataPropertyName = "TenPhong";
+            this.dgvTenPhong.HeaderText = "Tên phòng";
+            this.dgvTenPhong.Name = "dgvTenPhong";
+            this.dgvTenPhong.ReadOnly = true;
+            this.dgvTenPhong.Width = 97;
+            // 
+            // dgvTenKhachHang
+            // 
+            this.dgvTenKhachHang.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgvTenKhachHang.DataPropertyName = "TenKhachHang";
+            this.dgvTenKhachHang.FillWeight = 152.5464F;
+            this.dgvTenKhachHang.HeaderText = "Khách hàng";
+            this.dgvTenKhachHang.MinimumWidth = 6;
+            this.dgvTenKhachHang.Name = "dgvTenKhachHang";
+            this.dgvTenKhachHang.ReadOnly = true;
+            this.dgvTenKhachHang.Width = 104;
+            // 
+            // dgvTenNhanVien
+            // 
+            this.dgvTenNhanVien.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgvTenNhanVien.DataPropertyName = "TenNhanVien";
+            this.dgvTenNhanVien.FillWeight = 374.6193F;
+            this.dgvTenNhanVien.HeaderText = "Nhân viên";
+            this.dgvTenNhanVien.Name = "dgvTenNhanVien";
+            this.dgvTenNhanVien.ReadOnly = true;
+            this.dgvTenNhanVien.Width = 94;
+            // 
+            // dgvNgayLapHoaDon
+            // 
+            this.dgvNgayLapHoaDon.DataPropertyName = "NgayLapHoaDon";
+            this.dgvNgayLapHoaDon.FillWeight = 21.8743F;
+            this.dgvNgayLapHoaDon.HeaderText = "Ngày tạo";
+            this.dgvNgayLapHoaDon.MinimumWidth = 6;
+            this.dgvNgayLapHoaDon.Name = "dgvNgayLapHoaDon";
+            this.dgvNgayLapHoaDon.ReadOnly = true;
+            this.dgvNgayLapHoaDon.Visible = false;
+            // 
+            // dgvTinhTrangThanhToan
+            // 
+            this.dgvTinhTrangThanhToan.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgvTinhTrangThanhToan.DataPropertyName = "TinhTrangThanhToan";
+            this.dgvTinhTrangThanhToan.FillWeight = 21.8743F;
+            this.dgvTinhTrangThanhToan.HeaderText = "Trạng thái";
+            this.dgvTinhTrangThanhToan.MinimumWidth = 6;
+            this.dgvTinhTrangThanhToan.Name = "dgvTinhTrangThanhToan";
+            this.dgvTinhTrangThanhToan.ReadOnly = true;
+            this.dgvTinhTrangThanhToan.Width = 93;
+            // 
+            // dgvThanhTien
+            // 
+            this.dgvThanhTien.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgvThanhTien.DataPropertyName = "ThanhTien";
+            this.dgvThanhTien.FillWeight = 21.8743F;
+            this.dgvThanhTien.HeaderText = "Thành tiền";
+            this.dgvThanhTien.MinimumWidth = 6;
+            this.dgvThanhTien.Name = "dgvThanhTien";
+            this.dgvThanhTien.ReadOnly = true;
+            this.dgvThanhTien.Width = 97;
+            // 
+            // dgvPhuThu
+            // 
+            this.dgvPhuThu.DataPropertyName = "PhuThu";
+            this.dgvPhuThu.HeaderText = "Phụ thu";
+            this.dgvPhuThu.Name = "dgvPhuThu";
+            this.dgvPhuThu.ReadOnly = true;
+            this.dgvPhuThu.Visible = false;
+            // 
+            // dgvPhuongThucThanhToan
+            // 
+            this.dgvPhuongThucThanhToan.DataPropertyName = "PhuongThucThanhToan";
+            this.dgvPhuongThucThanhToan.HeaderText = "Phương thức thanh toán";
+            this.dgvPhuongThucThanhToan.Name = "dgvPhuongThucThanhToan";
+            this.dgvPhuongThucThanhToan.ReadOnly = true;
+            this.dgvPhuongThucThanhToan.Visible = false;
+            // 
+            // dgvNoiDungPhuThu
+            // 
+            this.dgvNoiDungPhuThu.DataPropertyName = "NoiDungPhuThu";
+            this.dgvNoiDungPhuThu.HeaderText = "Nội dung phụ thu";
+            this.dgvNoiDungPhuThu.Name = "dgvNoiDungPhuThu";
+            this.dgvNoiDungPhuThu.ReadOnly = true;
+            this.dgvNoiDungPhuThu.Visible = false;
+            // 
+            // dgvGiamGia
+            // 
+            this.dgvGiamGia.DataPropertyName = "GiamGia";
+            this.dgvGiamGia.HeaderText = "giảm giá";
+            this.dgvGiamGia.Name = "dgvGiamGia";
+            this.dgvGiamGia.ReadOnly = true;
+            this.dgvGiamGia.Visible = false;
+            // 
+            // dgvMaHoSoDatPhong
+            // 
+            this.dgvMaHoSoDatPhong.DataPropertyName = "MaHoSoDatPhong";
+            this.dgvMaHoSoDatPhong.HeaderText = "Mã đặt phòng";
+            this.dgvMaHoSoDatPhong.Name = "dgvMaHoSoDatPhong";
+            this.dgvMaHoSoDatPhong.ReadOnly = true;
+            this.dgvMaHoSoDatPhong.Visible = false;
+            // 
+            // dgvMaNhanVien
+            // 
+            this.dgvMaNhanVien.DataPropertyName = "MaNhanVien";
+            this.dgvMaNhanVien.HeaderText = "Mã nhân viên";
+            this.dgvMaNhanVien.Name = "dgvMaNhanVien";
+            this.dgvMaNhanVien.ReadOnly = true;
+            this.dgvMaNhanVien.Visible = false;
             // 
             // panelLeft
             // 
@@ -630,130 +751,9 @@
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label3.Location = new System.Drawing.Point(10, 50);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(100, 19);
+            this.label3.Size = new System.Drawing.Size(126, 19);
             this.label3.TabIndex = 3;
-            this.label3.Text = "Mã đặt phòng:";
-            // 
-            // dgvMaHoaDon
-            // 
-            this.dgvMaHoaDon.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.dgvMaHoaDon.DataPropertyName = "MaHoaDon";
-            this.dgvMaHoaDon.FillWeight = 7.211308F;
-            this.dgvMaHoaDon.HeaderText = "Mã hoá đơn";
-            this.dgvMaHoaDon.MinimumWidth = 6;
-            this.dgvMaHoaDon.Name = "dgvMaHoaDon";
-            this.dgvMaHoaDon.ReadOnly = true;
-            this.dgvMaHoaDon.Width = 120;
-            // 
-            // dgvTenPhong
-            // 
-            this.dgvTenPhong.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgvTenPhong.DataPropertyName = "TenPhong";
-            this.dgvTenPhong.HeaderText = "Tên phòng";
-            this.dgvTenPhong.Name = "dgvTenPhong";
-            this.dgvTenPhong.ReadOnly = true;
-            this.dgvTenPhong.Width = 97;
-            // 
-            // dgvTenKhachHang
-            // 
-            this.dgvTenKhachHang.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgvTenKhachHang.DataPropertyName = "TenKhachHang";
-            this.dgvTenKhachHang.FillWeight = 152.5464F;
-            this.dgvTenKhachHang.HeaderText = "Khách hàng";
-            this.dgvTenKhachHang.MinimumWidth = 6;
-            this.dgvTenKhachHang.Name = "dgvTenKhachHang";
-            this.dgvTenKhachHang.ReadOnly = true;
-            this.dgvTenKhachHang.Width = 104;
-            // 
-            // dgvTenNhanVien
-            // 
-            this.dgvTenNhanVien.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgvTenNhanVien.DataPropertyName = "TenNhanVien";
-            this.dgvTenNhanVien.FillWeight = 374.6193F;
-            this.dgvTenNhanVien.HeaderText = "Nhân viên";
-            this.dgvTenNhanVien.Name = "dgvTenNhanVien";
-            this.dgvTenNhanVien.ReadOnly = true;
-            this.dgvTenNhanVien.Width = 94;
-            // 
-            // dgvNgayLapHoaDon
-            // 
-            this.dgvNgayLapHoaDon.DataPropertyName = "NgayLapHoaDon";
-            this.dgvNgayLapHoaDon.FillWeight = 21.8743F;
-            this.dgvNgayLapHoaDon.HeaderText = "Ngày tạo";
-            this.dgvNgayLapHoaDon.MinimumWidth = 6;
-            this.dgvNgayLapHoaDon.Name = "dgvNgayLapHoaDon";
-            this.dgvNgayLapHoaDon.ReadOnly = true;
-            this.dgvNgayLapHoaDon.Visible = false;
-            // 
-            // dgvTinhTrangThanhToan
-            // 
-            this.dgvTinhTrangThanhToan.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgvTinhTrangThanhToan.DataPropertyName = "TinhTrangThanhToan";
-            this.dgvTinhTrangThanhToan.FillWeight = 21.8743F;
-            this.dgvTinhTrangThanhToan.HeaderText = "Trạng thái";
-            this.dgvTinhTrangThanhToan.MinimumWidth = 6;
-            this.dgvTinhTrangThanhToan.Name = "dgvTinhTrangThanhToan";
-            this.dgvTinhTrangThanhToan.ReadOnly = true;
-            this.dgvTinhTrangThanhToan.Width = 93;
-            // 
-            // dgvThanhTien
-            // 
-            this.dgvThanhTien.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgvThanhTien.DataPropertyName = "ThanhTien";
-            this.dgvThanhTien.FillWeight = 21.8743F;
-            this.dgvThanhTien.HeaderText = "Thành tiền";
-            this.dgvThanhTien.MinimumWidth = 6;
-            this.dgvThanhTien.Name = "dgvThanhTien";
-            this.dgvThanhTien.ReadOnly = true;
-            this.dgvThanhTien.Width = 97;
-            // 
-            // dgvPhuThu
-            // 
-            this.dgvPhuThu.DataPropertyName = "PhuThu";
-            this.dgvPhuThu.HeaderText = "Phụ thu";
-            this.dgvPhuThu.Name = "dgvPhuThu";
-            this.dgvPhuThu.ReadOnly = true;
-            this.dgvPhuThu.Visible = false;
-            // 
-            // dgvPhuongThucThanhToan
-            // 
-            this.dgvPhuongThucThanhToan.DataPropertyName = "PhuongThucThanhToan";
-            this.dgvPhuongThucThanhToan.HeaderText = "Phương thức thanh toán";
-            this.dgvPhuongThucThanhToan.Name = "dgvPhuongThucThanhToan";
-            this.dgvPhuongThucThanhToan.ReadOnly = true;
-            this.dgvPhuongThucThanhToan.Visible = false;
-            // 
-            // dgvNoiDungPhuThu
-            // 
-            this.dgvNoiDungPhuThu.DataPropertyName = "NoiDungPhuThu";
-            this.dgvNoiDungPhuThu.HeaderText = "Nội dung phụ thu";
-            this.dgvNoiDungPhuThu.Name = "dgvNoiDungPhuThu";
-            this.dgvNoiDungPhuThu.ReadOnly = true;
-            this.dgvNoiDungPhuThu.Visible = false;
-            // 
-            // dgvGiamGia
-            // 
-            this.dgvGiamGia.DataPropertyName = "GiamGia";
-            this.dgvGiamGia.HeaderText = "giảm giá";
-            this.dgvGiamGia.Name = "dgvGiamGia";
-            this.dgvGiamGia.ReadOnly = true;
-            this.dgvGiamGia.Visible = false;
-            // 
-            // dgvMaHoSoDatPhong
-            // 
-            this.dgvMaHoSoDatPhong.DataPropertyName = "MaHoSoDatPhong";
-            this.dgvMaHoSoDatPhong.HeaderText = "Mã đặt phòng";
-            this.dgvMaHoSoDatPhong.Name = "dgvMaHoSoDatPhong";
-            this.dgvMaHoSoDatPhong.ReadOnly = true;
-            this.dgvMaHoSoDatPhong.Visible = false;
-            // 
-            // dgvMaNhanVien
-            // 
-            this.dgvMaNhanVien.DataPropertyName = "MaNhanVien";
-            this.dgvMaNhanVien.HeaderText = "Mã nhân viên";
-            this.dgvMaNhanVien.Name = "dgvMaNhanVien";
-            this.dgvMaNhanVien.ReadOnly = true;
-            this.dgvMaNhanVien.Visible = false;
+            this.label3.Text = "Thông tin hoá đơn:";
             // 
             // FormQuanLyHoaDon
             // 

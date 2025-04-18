@@ -8,6 +8,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Management.Instrumentation;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -104,7 +105,6 @@ namespace QLKS
 
         private void UpdateCustomer()
         {
-            
                 try
                 {
                     // Lấy mã khách hàng của khách hàng được chọn
@@ -115,34 +115,11 @@ namespace QLKS
                     }
 
                     int maKhachHang = Convert.ToInt32(dgvCustomer.SelectedRows[0].Cells["MaKhachHang"].Value);
+                    CustomerDAO.Instance.UpdateCustomer(maKhachHang, txtTenKhachHang.Text.Trim(), cbSex.Text, dtpDoB.Value, txtCCCD.Text.Trim(), txtDiaChi.Text.Trim(),
+                        txtPhone.Text.Trim(), txtEmail.Text.Trim(), cbType.Text, cmbTrangThai.Text);
 
-                    // Cập nhật thông tin khách hàng bằng stored procedure
-                    using (SqlConnection conn = new SqlConnection(connectionString))
-                    {
-                        conn.Open();
-                        using (SqlCommand cmd = new SqlCommand("sp_UpdateCustomer", conn))
-                        {
-                            cmd.CommandType = CommandType.StoredProcedure;
-
-                            cmd.Parameters.AddWithValue("@MaKhachHang", maKhachHang);
-                            cmd.Parameters.AddWithValue("@Hoten", txtTenKhachHang.Text.Trim());
-                            cmd.Parameters.AddWithValue("@Gioitinh", cbSex.Text);
-                            cmd.Parameters.AddWithValue("@email", txtEmail.Text.Trim());
-                            cmd.Parameters.AddWithValue("@Ngaysinh", dtpDoB.Value);
-                            cmd.Parameters.AddWithValue("@CCCD", txtCCCD.Text.Trim());
-                            cmd.Parameters.AddWithValue("@Sodienthoai", txtPhone.Text.Trim());
-                            cmd.Parameters.AddWithValue("@Diachi", txtDiaChi.Text.Trim());
-                            cmd.Parameters.AddWithValue("@LoaiKhachHang", cbType.Text);
-                            cmd.Parameters.AddWithValue("@TinhTrangDatPhong", cmbTrangThai.Text);
-                            cmd.ExecuteNonQuery();
-                        }
-                    }
-
-                    // Cập nhật thành công
-                    MessageBox.Show("Cập nhật thông tin khách hàng thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    // Tải lại dữ liệu
-                    LoadCusData();
+                // Tải lại dữ liệu
+                LoadCusData();
                 }
                 catch (SqlException ex)
                 {
@@ -153,7 +130,7 @@ namespace QLKS
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn cập nhật thông tin nhân viên này?",
+            DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn cập nhật thông tin khách hàng này?",
                "Xác nhận", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
             if (result == DialogResult.OK)
@@ -221,60 +198,22 @@ namespace QLKS
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            try
+            string searchString = txtSearch.Text.Trim();
+            int searchMode = cbSearchType.SelectedIndex;
+
+            if (string.IsNullOrEmpty(searchString))
             {
-                string searchString = txtSearch.Text.Trim();
-                int searchMode = cbSearchType.SelectedIndex;
-
-                if (string.IsNullOrEmpty(searchString))
-                {
-                    MessageBox.Show("Vui lòng nhập thông tin tìm kiếm!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    conn.Open();
-                    using (SqlCommand cmd = new SqlCommand("sp_SearchCustomer", conn))
-                    {
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@string", searchString);
-                        cmd.Parameters.AddWithValue("@mode", searchMode);
-
-                        try
-                        {
-                            DataTable dt = new DataTable();
-                            using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
-                            {
-                                adapter.Fill(dt);
-                                dgvCustomer.DataSource = dt;
-                            }
-
-                            if (dt.Rows.Count == 0)
-                            {
-                                MessageBox.Show("Không tìm thấy khách hàng phù hợp!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            }
-                            else
-                            {
-                                MessageBox.Show($"Tìm thấy {dt.Rows.Count} khách hàng phù hợp!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            }
-                        }
-                        catch (SqlException ex)
-                        {
-                            MessageBox.Show("Lỗi tìm kiếm: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
-                }
+                MessageBox.Show("Vui lòng nhập thông tin tìm kiếm!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            dgvCustomer.DataSource = CustomerDAO.Instance.Search(searchString, searchMode);
         }
+
+        
 
         private void FormQuanLyKhachHang_Load(object sender, EventArgs e)
         {
-
+            cbSearchType.SelectedIndex = 0; // Đặt giá trị mặc định cho ComboBox
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)

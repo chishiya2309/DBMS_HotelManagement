@@ -2,9 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace BLL.DAO
 {
@@ -31,11 +33,30 @@ namespace BLL.DAO
             string query = "sp_UpdateRoom  @id , @name , @idType , @idStatus";
             return DataProvider.Instance.ExecuteNonQuery(query, new object[] { roomNow.Id, roomNow.Name, roomNow.IdRoomType, roomNow.IdStatusRoom }) > 0;
         }
-        public DataTable Search(string status)
+        public DataTable SearchRoom(string Hoten)
         {
-            string query = "sp_SearchRoom @status";
-            return DataProvider.Instance.ExecuteQuery(query, new object[] { status});
+            DataTable dt = new DataTable();
+
+            using (SqlConnection connection = DBConnection.GetConnection())
+            {
+                string query = "SELECT * FROM dbo.fn_SearchRoom(@string)";
+                SqlCommand command = new SqlCommand(query, connection);
+
+                command.Parameters.AddWithValue("@string", Hoten);
+
+                try
+                {
+                    SqlDataAdapter da = new SqlDataAdapter(command);
+                    da.Fill(dt);
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show($"Lỗi khi truy xuất thông tin phòng này: {ex.Message}");
+                }
+            }
+            return dt;
         }
+
 
         public DataTable LoadAllEmptyRoom(int id)
         {

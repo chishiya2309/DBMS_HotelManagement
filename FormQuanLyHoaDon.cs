@@ -128,6 +128,19 @@ namespace QLKS
                         txtTotal.Text = dt.Rows[0]["ThanhTien"].ToString();
                         cbStatus.Text = dt.Rows[0]["TinhTrangThanhToan"].ToString();
                         dtpCreate.Text = dt.Rows[0]["NgayLapHoaDon"].ToString();
+
+                        // Select the row in dgvBill with the corresponding MaHoaDon
+                        foreach (DataGridViewRow row in dgvBill.Rows)
+                        {
+                            if (row.Cells["dgvMaHoaDon"].Value != null &&
+                                row.Cells["dgvMaHoaDon"].Value.ToString() == txtIdBill.Text)
+                            {
+                                dgvBill.ClearSelection(); // Clear any previous selection
+                                row.Selected = true;
+                                
+                                break;
+                            }
+                        }
                     }
                     else
                     {

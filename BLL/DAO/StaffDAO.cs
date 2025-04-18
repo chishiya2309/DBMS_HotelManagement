@@ -1,5 +1,6 @@
 ﻿using DAL;
 using iTextSharp.text;
+using QLKS;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -167,8 +168,32 @@ namespace BLL.DAO
 
         public DataTable Search(string FullName)
         {
-            string query = "sp_SearchStaff @FullName";
+            string query = "SELECT * FROM dbo.fn_SearchStaff(@FullName)";
             return DataProvider.Instance.ExecuteQuery(query, new object[] { FullName});
+        }
+
+        public DataTable SearchStaffByName(string Hoten)
+        {
+            DataTable dt = new DataTable();
+
+            using (SqlConnection connection = DBConnection.GetConnection())
+            {
+                string query = "SELECT * FROM dbo.fn_SearchStaffByName(@Hoten)";
+                SqlCommand command = new SqlCommand(query, connection);
+
+                command.Parameters.AddWithValue("@Hoten", Hoten);
+
+                try
+                {
+                    SqlDataAdapter da = new SqlDataAdapter(command);
+                    da.Fill(dt);
+                }
+                catch (SqlException ex)
+                {
+                    Console.WriteLine($"Lỗi khi truy xuất thông tin nhân viên này: {ex.Message}");
+                }
+            }
+            return dt;
         }
 
         public static StaffDAO Instance
