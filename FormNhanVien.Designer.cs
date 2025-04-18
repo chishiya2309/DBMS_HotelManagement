@@ -891,6 +891,7 @@
         private System.Windows.Forms.Label label5;
         private Guna.UI2.WinForms.Guna2ComboBox cbRole;
         private Guna.UI2.WinForms.Guna2TextBox txtEmail;
+
         private System.Windows.Forms.Label label6;
         private Guna.UI2.WinForms.Guna2TextBox txtName;
         private System.Windows.Forms.Label label7;
@@ -911,5 +912,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Sodienthoai;
         private System.Windows.Forms.DataGridViewTextBoxColumn Ngayvaolam;
         private System.Windows.Forms.DataGridViewTextBoxColumn Vaitro;
+        public System.Windows.Forms.TextBox txtSearch;
+        public Guna.UI2.WinForms.Guna2DataGridView dgvStaff;
     }
 }

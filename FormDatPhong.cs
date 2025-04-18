@@ -1586,34 +1586,7 @@ namespace QLKS
 
         public DataTable SearchCustomer()
         {
-            string query = @"
-                SELECT kh.*
-                FROM KhachHang kh
-                WHERE kh.SoDienThoai = @phoneNumber";
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                try
-                {
-                    conn.Open();
-                    using (SqlCommand cmd = new SqlCommand(query, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@phoneNumber", txtSearch.Text.Trim());
-
-                        using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
-                        {
-                            DataTable dt = new DataTable();
-                            adapter.Fill(dt);
-                            return dt;
-                        }
-                    }
-                }
-                catch (SqlException ex)
-                {
-                    MessageBox.Show("Lỗi truy vấn: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return null;
-                }
-            }
+            return CustomerDAO.Instance.Search(txtSearch.Text.Trim(),2);
         }
 
         private void LoadCustomerInfo(DataTable customerData)
