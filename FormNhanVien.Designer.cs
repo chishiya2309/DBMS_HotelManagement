@@ -912,7 +912,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Sodienthoai;
         private System.Windows.Forms.DataGridViewTextBoxColumn Ngayvaolam;
         private System.Windows.Forms.DataGridViewTextBoxColumn Vaitro;
-        public System.Windows.Forms.TextBox txtSearch;
-        public Guna.UI2.WinForms.Guna2DataGridView dgvStaff;
     }
 }
