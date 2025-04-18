@@ -42,7 +42,6 @@
             this.btnNhanVien = new Guna.UI2.WinForms.Guna2Button();
             this.btnQuanLyPhong = new Guna.UI2.WinForms.Guna2Button();
             this.btnDatPhong = new Guna.UI2.WinForms.Guna2Button();
-            this.btnQuyDinh = new Guna.UI2.WinForms.Guna2Button();
             this.btnKhachHang = new Guna.UI2.WinForms.Guna2Button();
             this.btnThanhToan = new Guna.UI2.WinForms.Guna2Button();
             this.panelSidebar.SuspendLayout();
@@ -173,7 +172,6 @@
             this.panelContent.Controls.Add(this.btnNhanVien);
             this.panelContent.Controls.Add(this.btnQuanLyPhong);
             this.panelContent.Controls.Add(this.btnDatPhong);
-            this.panelContent.Controls.Add(this.btnQuyDinh);
             this.panelContent.Controls.Add(this.btnKhachHang);
             this.panelContent.Controls.Add(this.btnThanhToan);
             this.panelContent.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -257,10 +255,10 @@
             this.btnNhanVien.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(90)))), ((int)(((byte)(115)))));
             this.btnNhanVien.HoverState.Parent = this.btnNhanVien;
             this.btnNhanVien.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnNhanVien.Location = new System.Drawing.Point(440, 180);
+            this.btnNhanVien.Location = new System.Drawing.Point(350, 340);
             this.btnNhanVien.Name = "btnNhanVien";
             this.btnNhanVien.ShadowDecoration.Parent = this.btnNhanVien;
-            this.btnNhanVien.Size = new System.Drawing.Size(80, 140);
+            this.btnNhanVien.Size = new System.Drawing.Size(170, 180);
             this.btnNhanVien.TabIndex = 13;
             this.btnNhanVien.Text = "Quản lý nhân viên";
             this.btnNhanVien.TextOffset = new System.Drawing.Point(0, 10);
@@ -281,7 +279,7 @@
             this.btnQuanLyPhong.Location = new System.Drawing.Point(350, 180);
             this.btnQuanLyPhong.Name = "btnQuanLyPhong";
             this.btnQuanLyPhong.ShadowDecoration.Parent = this.btnQuanLyPhong;
-            this.btnQuanLyPhong.Size = new System.Drawing.Size(80, 140);
+            this.btnQuanLyPhong.Size = new System.Drawing.Size(170, 140);
             this.btnQuanLyPhong.TabIndex = 12;
             this.btnQuanLyPhong.Text = "Quản lý phòng";
             this.btnQuanLyPhong.TextOffset = new System.Drawing.Point(0, 10);
@@ -307,26 +305,6 @@
             this.btnDatPhong.Text = "Đặt phòng";
             this.btnDatPhong.Click += new System.EventHandler(this.guna2Button7_Click);
             // 
-            // btnQuyDinh
-            // 
-            this.btnQuyDinh.BorderRadius = 10;
-            this.btnQuyDinh.CheckedState.Parent = this.btnQuyDinh;
-            this.btnQuyDinh.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnQuyDinh.CustomImages.Parent = this.btnQuyDinh;
-            this.btnQuyDinh.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(64)))), ((int)(((byte)(86)))));
-            this.btnQuyDinh.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.btnQuyDinh.ForeColor = System.Drawing.Color.White;
-            this.btnQuyDinh.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(90)))), ((int)(((byte)(115)))));
-            this.btnQuyDinh.HoverState.Parent = this.btnQuyDinh;
-            this.btnQuyDinh.ImageSize = new System.Drawing.Size(40, 40);
-            this.btnQuyDinh.Location = new System.Drawing.Point(530, 340);
-            this.btnQuyDinh.Name = "btnQuyDinh";
-            this.btnQuyDinh.ShadowDecoration.Parent = this.btnQuyDinh;
-            this.btnQuyDinh.Size = new System.Drawing.Size(230, 180);
-            this.btnQuyDinh.TabIndex = 8;
-            this.btnQuyDinh.Text = "Quy định";
-            this.btnQuyDinh.Click += new System.EventHandler(this.guna2Button6_Click);
-            // 
             // btnKhachHang
             // 
             this.btnKhachHang.BorderRadius = 10;
@@ -339,10 +317,10 @@
             this.btnKhachHang.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(90)))), ((int)(((byte)(115)))));
             this.btnKhachHang.HoverState.Parent = this.btnKhachHang;
             this.btnKhachHang.ImageSize = new System.Drawing.Size(40, 40);
-            this.btnKhachHang.Location = new System.Drawing.Point(275, 340);
+            this.btnKhachHang.Location = new System.Drawing.Point(530, 340);
             this.btnKhachHang.Name = "btnKhachHang";
             this.btnKhachHang.ShadowDecoration.Parent = this.btnKhachHang;
-            this.btnKhachHang.Size = new System.Drawing.Size(245, 180);
+            this.btnKhachHang.Size = new System.Drawing.Size(227, 180);
             this.btnKhachHang.TabIndex = 7;
             this.btnKhachHang.Text = "Quản lý khách hàng";
             this.btnKhachHang.Click += new System.EventHandler(this.guna2Button5_Click);
@@ -362,7 +340,7 @@
             this.btnThanhToan.Location = new System.Drawing.Point(20, 340);
             this.btnThanhToan.Name = "btnThanhToan";
             this.btnThanhToan.ShadowDecoration.Parent = this.btnThanhToan;
-            this.btnThanhToan.Size = new System.Drawing.Size(245, 180);
+            this.btnThanhToan.Size = new System.Drawing.Size(320, 180);
             this.btnThanhToan.TabIndex = 6;
             this.btnThanhToan.Text = "Dịch vụ và thanh toán";
             this.btnThanhToan.Click += new System.EventHandler(this.guna2Button4_Click);
@@ -401,7 +379,6 @@
         private Guna.UI2.WinForms.Guna2Button btnGioiThieu;
         private Guna.UI2.WinForms.Guna2Button btnThanhToan;
         private Guna.UI2.WinForms.Guna2Button btnKhachHang;
-        private Guna.UI2.WinForms.Guna2Button btnQuyDinh;
         private System.Windows.Forms.Label label1;
         private Guna.UI2.WinForms.Guna2Button btnDatPhong;
         private Guna.UI2.WinForms.Guna2Button btnQuanLyPhong;
