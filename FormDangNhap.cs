@@ -50,7 +50,8 @@ namespace QLKS
             }
 
            
-            string query = "SELECT MaNhanVien FROM TaiKhoan WHERE TenDangNhap = @username AND MatKhau = @password";
+            //string query = "SELECT MaNhanVien FROM TaiKhoan WHERE TenDangNhap = @username AND MatKhau = @password";
+            string query = "SELECT * FROM dbo.DangNhap(@username, @password)";
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -62,21 +63,35 @@ namespace QLKS
                         cmd.Parameters.AddWithValue("@username", txtTaiKhoan.Text.Trim());
                         cmd.Parameters.AddWithValue("@password", txtMatKhau.Text.Trim());
 
-                        SqlDataReader reader = cmd.ExecuteReader();
-                        if (reader.Read()) // Nếu tìm thấy tài khoản
+                        SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                        DataTable dt = new DataTable();
+                        adapter.Fill(dt);
+                        if (dt.Rows.Count > 0 && dt.Rows[0][0] != DBNull.Value) // Nếu tìm thấy tài khoản
                         {
-                            int maNhanVien = reader.GetInt32(0); // Lấy giá trị cột id
-                            reader.Close(); // Đóng reader trước khi mở form mới
+                            string connStr = dt.Rows[0][0].ToString();
+                            DBConnection.ConnectionString = connStr;
 
+                            int maNhanVien = int.Parse(dt.Rows[0][1].ToString());
                             FormChinh form2 = new FormChinh(maNhanVien); // Truyền id vào FormChinh
                             form2.Show();
                             this.Hide();
+                            conn.Close();
                         }
                         else
                         {
                             MessageBox.Show("Tên tài khoản hoặc mật khẩu không đúng! Vui lòng nhập lại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             txtTaiKhoan.Focus();
                         }
+                        //SqlDataReader reader = cmd.ExecuteReader();
+                        //if (reader.Read()) // Nếu tìm thấy tài khoản
+                        //{
+                        //    int maNhanVien = reader.GetInt32(0); // Lấy giá trị cột id
+                        //    reader.Close(); // Đóng reader trước khi mở form mới
+
+                            //    FormChinh form2 = new FormChinh(maNhanVien); // Truyền id vào FormChinh
+                            //    form2.Show();
+                            //    this.Hide();
+                            //}
                     }
                 }
                 catch (Exception ex)

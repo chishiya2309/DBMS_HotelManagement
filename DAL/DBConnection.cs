@@ -13,7 +13,7 @@ namespace DAL
     public class DBConnection
     {
 
-        private static readonly string connectionString = "Data Source=(local)\\SQLExpress;Initial Catalog=Hotel2025;Integrated Security=True";
+        private  static string connectionString = "Data Source=(local)\\SQLExpress;Initial Catalog=Hotel2025;Integrated Security=True";
         public static SqlConnection GetConnection()
         {
             return new SqlConnection(connectionString);
@@ -45,6 +45,11 @@ namespace DAL
         {
             get { if (instance == null) instance = new DBConnection(); return instance; }
             private set => instance = value;
+        }
+        public static string ConnectionString
+        {
+            get { return connectionString; }
+            set { connectionString = value; }
         }
     }
 
