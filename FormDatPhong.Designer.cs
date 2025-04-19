@@ -837,7 +837,7 @@
             this.btnClose.Size = new System.Drawing.Size(153, 33);
             this.btnClose.TabIndex = 27;
             this.btnClose.Text = "Đóng";
-            this.btnClose.Click += new System.EventHandler(this.guna2CircleButton3_Click);
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // btnBook
             // 
