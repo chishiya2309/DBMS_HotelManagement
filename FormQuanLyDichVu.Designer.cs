@@ -28,14 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelHeader = new System.Windows.Forms.Panel();
             this.lblTitle = new System.Windows.Forms.Label();
             this.panelContent = new System.Windows.Forms.Panel();
             this.panelRight = new System.Windows.Forms.Panel();
             this.dgvService = new Guna.UI2.WinForms.Guna2DataGridView();
+            this.dgvMaDichVu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvTenDichVu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvDonGia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvLoaiDichVu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvTrangThai = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvMota = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panelLeft = new System.Windows.Forms.Panel();
             this.grpFunctions = new Guna.UI2.WinForms.Guna2GroupBox();
             this.btnDelete = new Guna.UI2.WinForms.Guna2Button();
@@ -59,12 +65,6 @@
             this.btnSearch = new Guna.UI2.WinForms.Guna2Button();
             this.txtSearch = new Guna.UI2.WinForms.Guna2TextBox();
             this.lblSearch = new System.Windows.Forms.Label();
-            this.dgvMaDichVu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvTenDichVu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvDonGia = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvLoaiDichVu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvTrangThai = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvMota = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panelHeader.SuspendLayout();
             this.panelContent.SuspendLayout();
             this.panelRight.SuspendLayout();
@@ -125,21 +125,21 @@
             this.dgvService.AllowUserToDeleteRows = false;
             this.dgvService.AllowUserToResizeColumns = false;
             this.dgvService.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            this.dgvService.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
+            this.dgvService.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             this.dgvService.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvService.BackgroundColor = System.Drawing.Color.White;
             this.dgvService.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvService.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgvService.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(64)))), ((int)(((byte)(86)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvService.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(64)))), ((int)(((byte)(86)))));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvService.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.dgvService.ColumnHeadersHeight = 30;
             this.dgvService.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dgvMaDichVu,
@@ -149,14 +149,14 @@
             this.dgvTrangThai,
             this.dgvMota});
             this.dgvService.Cursor = System.Windows.Forms.Cursors.Hand;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(90)))), ((int)(((byte)(115)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvService.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(90)))), ((int)(((byte)(115)))));
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvService.DefaultCellStyle = dataGridViewCellStyle9;
             this.dgvService.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvService.EnableHeadersVisualStyles = false;
             this.dgvService.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(90)))), ((int)(((byte)(115)))));
@@ -191,6 +191,65 @@
             this.dgvService.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(90)))), ((int)(((byte)(115)))));
             this.dgvService.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.White;
             this.dgvService.SelectionChanged += new System.EventHandler(this.dgvService_SelectionChanged);
+            // 
+            // dgvMaDichVu
+            // 
+            this.dgvMaDichVu.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgvMaDichVu.DataPropertyName = "MaDichVu";
+            this.dgvMaDichVu.FillWeight = 123F;
+            this.dgvMaDichVu.HeaderText = "Mã";
+            this.dgvMaDichVu.MinimumWidth = 45;
+            this.dgvMaDichVu.Name = "dgvMaDichVu";
+            this.dgvMaDichVu.ReadOnly = true;
+            this.dgvMaDichVu.Width = 52;
+            // 
+            // dgvTenDichVu
+            // 
+            this.dgvTenDichVu.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgvTenDichVu.DataPropertyName = "TenDichVu";
+            this.dgvTenDichVu.HeaderText = "Tên dịch vụ";
+            this.dgvTenDichVu.MinimumWidth = 6;
+            this.dgvTenDichVu.Name = "dgvTenDichVu";
+            this.dgvTenDichVu.ReadOnly = true;
+            this.dgvTenDichVu.Width = 101;
+            // 
+            // dgvDonGia
+            // 
+            this.dgvDonGia.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgvDonGia.DataPropertyName = "DonGia";
+            this.dgvDonGia.HeaderText = "Giá";
+            this.dgvDonGia.MinimumWidth = 10;
+            this.dgvDonGia.Name = "dgvDonGia";
+            this.dgvDonGia.ReadOnly = true;
+            this.dgvDonGia.Width = 52;
+            // 
+            // dgvLoaiDichVu
+            // 
+            this.dgvLoaiDichVu.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgvLoaiDichVu.DataPropertyName = "LoaiDichVu";
+            this.dgvLoaiDichVu.HeaderText = "Loại";
+            this.dgvLoaiDichVu.MinimumWidth = 10;
+            this.dgvLoaiDichVu.Name = "dgvLoaiDichVu";
+            this.dgvLoaiDichVu.ReadOnly = true;
+            this.dgvLoaiDichVu.Width = 57;
+            // 
+            // dgvTrangThai
+            // 
+            this.dgvTrangThai.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgvTrangThai.DataPropertyName = "TrangThai";
+            this.dgvTrangThai.HeaderText = "Trạng thái";
+            this.dgvTrangThai.Name = "dgvTrangThai";
+            this.dgvTrangThai.ReadOnly = true;
+            this.dgvTrangThai.Width = 93;
+            // 
+            // dgvMota
+            // 
+            this.dgvMota.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgvMota.DataPropertyName = "MoTa";
+            this.dgvMota.HeaderText = "Mô tả";
+            this.dgvMota.Name = "dgvMota";
+            this.dgvMota.ReadOnly = true;
+            this.dgvMota.Width = 69;
             // 
             // panelLeft
             // 
@@ -233,10 +292,9 @@
             this.btnDelete.CheckedState.Parent = this.btnDelete;
             this.btnDelete.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnDelete.CustomImages.Parent = this.btnDelete;
-            this.btnDelete.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(64)))), ((int)(((byte)(86)))));
+            this.btnDelete.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(53)))), ((int)(((byte)(69)))));
             this.btnDelete.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
             this.btnDelete.ForeColor = System.Drawing.Color.White;
-            this.btnDelete.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(90)))), ((int)(((byte)(115)))));
             this.btnDelete.HoverState.ForeColor = System.Drawing.Color.White;
             this.btnDelete.HoverState.Parent = this.btnDelete;
             this.btnDelete.Location = new System.Drawing.Point(265, 50);
@@ -302,10 +360,9 @@
             this.btnClose.CheckedState.Parent = this.btnClose;
             this.btnClose.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnClose.CustomImages.Parent = this.btnClose;
-            this.btnClose.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(64)))), ((int)(((byte)(86)))));
+            this.btnClose.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(108)))), ((int)(((byte)(117)))), ((int)(((byte)(125)))));
             this.btnClose.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
             this.btnClose.ForeColor = System.Drawing.Color.White;
-            this.btnClose.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(90)))), ((int)(((byte)(115)))));
             this.btnClose.HoverState.ForeColor = System.Drawing.Color.White;
             this.btnClose.HoverState.Parent = this.btnClose;
             this.btnClose.Location = new System.Drawing.Point(390, 50);
@@ -621,7 +678,7 @@
             this.btnSearch.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(90)))), ((int)(((byte)(115)))));
             this.btnSearch.HoverState.ForeColor = System.Drawing.Color.White;
             this.btnSearch.HoverState.Parent = this.btnSearch;
-            this.btnSearch.Location = new System.Drawing.Point(180, 70);
+            this.btnSearch.Location = new System.Drawing.Point(331, 70);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.ShadowDecoration.Parent = this.btnSearch;
             this.btnSearch.Size = new System.Drawing.Size(160, 40);
@@ -656,7 +713,7 @@
             this.txtSearch.PlaceholderText = "Nhập tên dịch vụ";
             this.txtSearch.SelectedText = "";
             this.txtSearch.ShadowDecoration.Parent = this.txtSearch;
-            this.txtSearch.Size = new System.Drawing.Size(160, 40);
+            this.txtSearch.Size = new System.Drawing.Size(287, 40);
             this.txtSearch.TabIndex = 8;
             // 
             // lblSearch
@@ -669,65 +726,6 @@
             this.lblSearch.Size = new System.Drawing.Size(81, 19);
             this.lblSearch.TabIndex = 3;
             this.lblSearch.Text = "Tên dịch vụ:";
-            // 
-            // dgvMaDichVu
-            // 
-            this.dgvMaDichVu.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgvMaDichVu.DataPropertyName = "MaDichVu";
-            this.dgvMaDichVu.FillWeight = 123F;
-            this.dgvMaDichVu.HeaderText = "Mã";
-            this.dgvMaDichVu.MinimumWidth = 45;
-            this.dgvMaDichVu.Name = "dgvMaDichVu";
-            this.dgvMaDichVu.ReadOnly = true;
-            this.dgvMaDichVu.Width = 52;
-            // 
-            // dgvTenDichVu
-            // 
-            this.dgvTenDichVu.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgvTenDichVu.DataPropertyName = "TenDichVu";
-            this.dgvTenDichVu.HeaderText = "Tên dịch vụ";
-            this.dgvTenDichVu.MinimumWidth = 6;
-            this.dgvTenDichVu.Name = "dgvTenDichVu";
-            this.dgvTenDichVu.ReadOnly = true;
-            this.dgvTenDichVu.Width = 101;
-            // 
-            // dgvDonGia
-            // 
-            this.dgvDonGia.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgvDonGia.DataPropertyName = "DonGia";
-            this.dgvDonGia.HeaderText = "Giá";
-            this.dgvDonGia.MinimumWidth = 10;
-            this.dgvDonGia.Name = "dgvDonGia";
-            this.dgvDonGia.ReadOnly = true;
-            this.dgvDonGia.Width = 52;
-            // 
-            // dgvLoaiDichVu
-            // 
-            this.dgvLoaiDichVu.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgvLoaiDichVu.DataPropertyName = "LoaiDichVu";
-            this.dgvLoaiDichVu.HeaderText = "Loại";
-            this.dgvLoaiDichVu.MinimumWidth = 10;
-            this.dgvLoaiDichVu.Name = "dgvLoaiDichVu";
-            this.dgvLoaiDichVu.ReadOnly = true;
-            this.dgvLoaiDichVu.Width = 57;
-            // 
-            // dgvTrangThai
-            // 
-            this.dgvTrangThai.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgvTrangThai.DataPropertyName = "TrangThai";
-            this.dgvTrangThai.HeaderText = "Trạng thái";
-            this.dgvTrangThai.Name = "dgvTrangThai";
-            this.dgvTrangThai.ReadOnly = true;
-            this.dgvTrangThai.Width = 93;
-            // 
-            // dgvMota
-            // 
-            this.dgvMota.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgvMota.DataPropertyName = "MoTa";
-            this.dgvMota.HeaderText = "Mô tả";
-            this.dgvMota.Name = "dgvMota";
-            this.dgvMota.ReadOnly = true;
-            this.dgvMota.Width = 69;
             // 
             // FormQuanLyDichVu
             // 
