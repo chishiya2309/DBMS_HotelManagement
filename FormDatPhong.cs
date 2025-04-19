@@ -63,78 +63,78 @@ namespace QLKS
             this.Close();
         }
 
-        private BookingRecord GetBookRoomNow()
-        {
-            BookingRecord bookingRecord = new BookingRecord();
-            // Kiểm tra và lấy thông tin khách hàng
-            if (string.IsNullOrEmpty(txtCustomerName.Text))
-            {
-                throw new Exception("Vui lòng nhập thông tin khách hàng!");
-            }
+        //private BookingRecord GetBookRoomNow()
+        //{
+        //    BookingRecord bookingRecord = new BookingRecord();
+        //    // Kiểm tra và lấy thông tin khách hàng
+        //    if (string.IsNullOrEmpty(txtCustomerName.Text))
+        //    {
+        //        throw new Exception("Vui lòng nhập thông tin khách hàng!");
+        //    }
 
-            // Lấy mã khách hàng từ kết quả tìm kiếm
-            int idCustomer;
-            try
-            {
-                DataTable customerData = SearchCustomer();
-                if (customerData != null && customerData.Rows.Count > 0)
-                {
-                    idCustomer = Convert.ToInt32(customerData.Rows[0]["MaKhachHang"]);
-                }
-                else
-                {
-                    throw new Exception("Không tìm thấy thông tin khách hàng!");
-                }
-            }
-            catch
-            {
-                throw new Exception("Lỗi khi lấy thông tin khách hàng. Vui lòng kiểm tra lại!");
-            }
+        //    // Lấy mã khách hàng từ kết quả tìm kiếm
+        //    int idCustomer;
+        //    try
+        //    {
+        //        DataTable customerData = SearchCustomer();
+        //        if (customerData != null && customerData.Rows.Count > 0)
+        //        {
+        //            idCustomer = Convert.ToInt32(customerData.Rows[0]["MaKhachHang"]);
+        //        }
+        //        else
+        //        {
+        //            throw new Exception("Không tìm thấy thông tin khách hàng!");
+        //        }
+        //    }
+        //    catch
+        //    {
+        //        throw new Exception("Lỗi khi lấy thông tin khách hàng. Vui lòng kiểm tra lại!");
+        //    }
 
-            // Lấy mã phòng
-            int idRoom;
-            try
-            {
-                int roomIndex = cbRoom.SelectedIndex;
-                if (roomIndex < 0)
-                {
-                    throw new Exception("Vui lòng chọn phòng!");
-                }
+        //    // Lấy mã phòng
+        //    int idRoom;
+        //    try
+        //    {
+        //        int roomIndex = cbRoom.SelectedIndex;
+        //        if (roomIndex < 0)
+        //        {
+        //            throw new Exception("Vui lòng chọn phòng!");
+        //        }
 
-                DataTable roomData = (DataTable)cbRoom.DataSource;
-                idRoom = Convert.ToInt32(roomData.Rows[roomIndex]["MaPhong"]);
-            }
-            catch
-            {
-                throw new Exception("Lỗi khi lấy thông tin phòng. Vui lòng kiểm tra lại!");
-            }
+        //        DataTable roomData = (DataTable)cbRoom.DataSource;
+        //        idRoom = Convert.ToInt32(roomData.Rows[roomIndex]["MaPhong"]);
+        //    }
+        //    catch
+        //    {
+        //        throw new Exception("Lỗi khi lấy thông tin phòng. Vui lòng kiểm tra lại!");
+        //    }
 
-            // Lấy số đêm
-            int nights;
-            if (!int.TryParse(txtDays.Text, out nights) || nights <= 0)
-            {
-                throw new Exception("Số đêm phải là số nguyên dương!");
-            }
+        //    // Lấy số đêm
+        //    int nights;
+        //    if (!int.TryParse(txtDays.Text, out nights) || nights <= 0)
+        //    {
+        //        throw new Exception("Số đêm phải là số nguyên dương!");
+        //    }
 
-            // Lấy tiền đặt cọc
-            double deposit;
-            if (!double.TryParse(txtDeposit.Text, out deposit) || deposit < 0)
-            {
-                throw new Exception("Tiền đặt cọc không hợp lệ!");
-            }
+        //    // Lấy tiền đặt cọc
+        //    double deposit;
+        //    if (!double.TryParse(txtDeposit.Text, out deposit) || deposit < 0)
+        //    {
+        //        throw new Exception("Tiền đặt cọc không hợp lệ!");
+        //    }
 
-            // Thiết lập các giá trị cho booking record
-            bookingRecord.IdCustomer = idCustomer;
-            bookingRecord.IdRoom = idRoom;
-            bookingRecord.DateCheckIn = dtpCheckIn.Value;
-            bookingRecord.DateCheckOut = dtpCheckOut.Value;
-            bookingRecord.Status = cbStatus.Text;
-            bookingRecord.Deposit = deposit;
-            bookingRecord.Days = nights;
-            // Các thông tin bổ sung có thể được thêm vào đây
+        //    // Thiết lập các giá trị cho booking record
+        //    bookingRecord.MaKhachHang = idCustomer;
+        //    bookingRecord. = idRoom;
+        //    bookingRecord.DateCheckIn = dtpCheckIn.Value;
+        //    bookingRecord.DateCheckOut = dtpCheckOut.Value;
+        //    bookingRecord.Status = cbStatus.Text;
+        //    bookingRecord.Deposit = deposit;
+        //    bookingRecord.Days = nights;
+        //    // Các thông tin bổ sung có thể được thêm vào đây
 
-            return bookingRecord;
-        }
+        //    return bookingRecord;
+        //}
         public DataTable GetFullRoomType()
         {
             return RoomTypeDAO.Instance.LoadFullRoomType();
@@ -735,33 +735,14 @@ namespace QLKS
 
         private void LoadData()
         {
-            string query = @"
-                SELECT h.MaHoSoDatPhong, h.ThoiGianDatPhong, k.HoTen, h.MaKhachHang,
-                       h.MaPhong, p.TenPhong, h.SoDem, h.ThoiGianCheckinDuKien, 
-                       h.ThoiGianCheckoutDuKien, h.TienDatCoc, h.TrangThaiDatPhong,
-                       h.SoTheTinDung, h.GhiChu, p.MaLoaiPhong
-                FROM HoSoDatPhong h
-                INNER JOIN KhachHang k ON h.MaKhachHang = k.MaKhachHang
-                INNER JOIN Phong p ON h.MaPhong = p.MaPhong
-                ORDER BY h.ThoiGianDatPhong DESC";
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            try
             {
-                try
-                {
-                    conn.Open();
-                    using (SqlCommand cmd = new SqlCommand(query, conn))
-                    {
-                        SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                        DataTable dt = new DataTable();
-                        adapter.Fill(dt);
-                        dgvBookRoom.DataSource = dt;
-                    }
-                }
-                catch (SqlException ex)
-                {
-                    MessageBox.Show("Lỗi truy vấn: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                DataTable dt = BookRoomDAO.Instance.GetBookRoomList();
+                dgvBookRoom.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi truy vấn: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             // Sau khi tải dữ liệu xong, tự động chọn dòng đầu tiên
@@ -1586,7 +1567,7 @@ namespace QLKS
 
         public DataTable SearchCustomer()
         {
-            return CustomerDAO.Instance.Search(txtSearch.Text.Trim(),2);
+            return CustomerDAO.Instance.Search(txtSearch.Text.Trim(), 2);
         }
 
         private void LoadCustomerInfo(DataTable customerData)
