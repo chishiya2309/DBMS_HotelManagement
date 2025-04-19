@@ -63,7 +63,7 @@ namespace QLKS
         private void guna2Button10_Click(object sender, EventArgs e)
         {
             FormNhanVien formNhanVien = new FormNhanVien();
-            formNhanVien.Show();
+            if (!formNhanVien.IsDisposed) formNhanVien.Show();
         }
 
         private void guna2Button7_Click(object sender, EventArgs e)

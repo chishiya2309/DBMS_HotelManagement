@@ -68,19 +68,38 @@ namespace DAL
             return DataProvider.Instance.ExecuteNonQuery(query, new object[] { username, id }) > 0;
         }
 
-        public bool InsertAccount(Account account)
+        public void InsertAccount(int id, string user, string pass)
         {
-            string query = "EXEC sp_InsertAccount @username , @pass";
-            object[] parameter = new object[] {account.UserName, account.Pass};
-            return DataProvider.Instance.ExecuteNonQuery(query, parameter) > 0;
+            using (SqlConnection conn = DBConnection.GetConnection())
+            {
+                string query = "EXEC sp_TaoTaiKhoan @username, @password, @employee_id";
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+
+                //cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@username", user);
+                cmd.Parameters.AddWithValue("@password", pass);
+                cmd.Parameters.AddWithValue("@employee_id", id);
+                try
+                {
+                    conn.Open();
+                    if (cmd.ExecuteNonQuery() > 0)
+                    {
+                        MessageBox.Show("Thêm nhân viên thành công, Mật khẩu mặc định là 123456", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Thêm tài khoản thất bại. Hãy kiểm tra lại thông tin ", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show("Lỗi khi thêm tài khoản: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
-        public bool InsertAccount(string username, string password)
-        {
-            string query = "EXEC sp_InsertAccount @username , @pass";
-            object[] parameter = new object[] { username, password };
-            return DataProvider.Instance.ExecuteNonQuery(query, parameter) > 0;
-        }
 
         public DataTable GetAccountById(int id)
         {
