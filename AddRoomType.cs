@@ -45,10 +45,10 @@ namespace QLKS
                         cmd.Parameters.AddWithValue("@MaLoaiPhong", txtMaLoaiPhong.Text);
                         cmd.Parameters.AddWithValue("@TenLoaiPhong", txtTenLoaiPhong.Text);
                         cmd.Parameters.AddWithValue("@DonGia", decimal.Parse(txtDonGia.Text));
-                        cmd.Parameters.AddWithValue("@TienNghi", textBox1.Text);
+                        cmd.Parameters.AddWithValue("@TienNghi", txtTienNghi.Text);
                         cmd.Parameters.AddWithValue("@SucChua", (int)nudSucChua.Value);
-                        cmd.Parameters.AddWithValue("@KhaNangKeThemGiuong", checkBox1.Checked);
-                        cmd.Parameters.AddWithValue("@MoTa", textBox2.Text);
+                        cmd.Parameters.AddWithValue("@KhaNangKeThemGiuong", chkThemGiuong.Checked);
+                        cmd.Parameters.AddWithValue("@MoTa", txtMoTa.Text);
 
                         if (imageData != null)
                         {
