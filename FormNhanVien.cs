@@ -26,6 +26,7 @@ namespace QLKS
             txtUser.Enabled = false;
         }
 
+
         private void LoadData()
         {
             string query = @"SELECT * FROM NhanVien";
@@ -42,10 +43,20 @@ namespace QLKS
                         dgvStaff.DataSource = dt; // Gán dữ liệu vào DataGridView
                     }
                 }
-                catch (Exception ex)
+                catch (SqlException ex)
                 {
-                    MessageBox.Show("Lỗi lấy dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if (ex.Number == 229)
+                    {
+                        MessageBox.Show("Bạn không có quyền truy cập vào chức năng này", "Lỗi xác thực", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Lỗi lấy dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    this.Close();
                 }
+                
+
             }
 
             // Refresh the DataGridView
@@ -109,11 +120,11 @@ namespace QLKS
             }
         }
 
-        public static bool CheckFillInText(Control[] controls)
+        public static bool CheckFillInText(string[] strings)
         {
-            foreach (var control in controls)
+            foreach (string control in strings)
             {
-                if (control.Text == string.Empty)
+                if (control == string.Empty)
                     return false;
             }
             return true;
@@ -121,10 +132,11 @@ namespace QLKS
 
         private void UpdateStaff()
         {
-            bool isFill = CheckFillInText(new Control[] { txtName, txtAddress, txtEmail, txtIDNum, txtPhone, txtUser, cbSex });
+            bool isFill = CheckFillInText(new string[] { this.txtName.Text, this.txtAddress.Text, 
+                this.txtEmail.Text, this.txtIDNum.Text, this.txtPhone.Text, this.cbSex.Text });
             if (!isFill)
             {
-                MessageBox.Show("Không được để trống", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Không được để trống" , "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             else
@@ -140,32 +152,8 @@ namespace QLKS
 
                     int idStaff = Convert.ToInt32(dgvStaff.SelectedRows[0].Cells["MaNhanVien"].Value);
 
-                    // Cập nhật thông tin nhân viên bằng stored procedure
-                    using (SqlConnection conn = DBConnection.GetConnection())
-                    {
-                        conn.Open();
-                        using (SqlCommand cmd = new SqlCommand("sp_UpdateStaff", conn))
-                        {
-                            cmd.CommandType = CommandType.StoredProcedure;
-
-                            cmd.Parameters.AddWithValue("@MaNhanVien", idStaff);
-                            cmd.Parameters.AddWithValue("@Hoten", txtName.Text.Trim());
-                            cmd.Parameters.AddWithValue("@Gioitinh", cbSex.Text);
-                            cmd.Parameters.AddWithValue("@Ngaysinh", dtpDOB.Value);
-                            cmd.Parameters.AddWithValue("@CCCD", txtIDNum.Text.Trim());
-                            cmd.Parameters.AddWithValue("@Diachi", txtAddress.Text.Trim());
-                            cmd.Parameters.AddWithValue("@email", txtEmail.Text.Trim());
-                            cmd.Parameters.AddWithValue("@Sodienthoai", txtPhone.Text.Trim());
-                            cmd.Parameters.AddWithValue("@Ngayvaolam", dtpStartday.Value);
-                            cmd.Parameters.AddWithValue("@Vaitro", cbRole.Text);
-                            cmd.Parameters.Add("@Chandung", SqlDbType.VarBinary).Value = DBNull.Value;
-
-                            cmd.ExecuteNonQuery();
-                        }
-                    }
-
-                    // Cập nhật thành công
-                    MessageBox.Show("Cập nhật thông tin nhân viên thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    StaffDAO.Instance.UpdateStaff(idStaff, txtName.Text.Trim(), cbSex.Text, dtpDOB.Value, txtIDNum.Text.Trim(), txtAddress.Text.Trim(),
+                        txtEmail.Text.Trim(), txtPhone.Text.Trim(), dtpStartday.Value, cbRole.Text, null);
 
                     // Tải lại dữ liệu
                     LoadData();

@@ -28,29 +28,48 @@ namespace BLL.DAO
             return s;
         }
 
-        public bool InsertStaff(Staff staff)
+        public void InsertStaff(string Hoten, string gioitinh, DateTime ngaysinh, string CCCD, string diachi, string email, string sdt,
+                 DateTime ngayvaolam, string vaitro, byte[] chandung)
         {
-            string query = "EXEC sp_InsertStaff @fullName , @sex , @dateofBirth , @CCCD , @address , @email , @Phonenumber , @idRole , @Startday";
-            object[] parameter = new object[] {staff.Fullname, staff.Sex, staff.DoB, staff.IdNumber, 
-                staff.Address, staff.Email, staff.Phone, staff.IdRole, staff.StartDay};
-            return DataProvider.Instance.ExecuteNonQuery(query, parameter) > 0;
+            using (SqlConnection conn = DBConnection.GetConnection())
+            {
+                string query = "sp_InsertStaff";
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Hoten", Hoten);
+                cmd.Parameters.AddWithValue("@Gioitinh", gioitinh);
+                cmd.Parameters.AddWithValue("@Ngaysinh", ngaysinh);
+                cmd.Parameters.AddWithValue("@CCCD", CCCD);
+                cmd.Parameters.AddWithValue("@Diachi", diachi);
+                cmd.Parameters.AddWithValue("@email", email);
+                cmd.Parameters.AddWithValue("@Sodienthoai", sdt);
+                cmd.Parameters.AddWithValue("@Ngayvaolam", ngayvaolam);
+
+
+                cmd.Parameters.AddWithValue("@Vaitro", vaitro);
+                cmd.Parameters.AddWithValue("@Chandung", chandung);
+
+                try
+                {
+                    conn.Open();
+                    if (cmd.ExecuteNonQuery() > 0)
+                    {
+                        //Thêm nhân viên thành công. Tiến hành thêm tài khoản tương ứng
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Thêm nhân viên thất bại. Hãy kiểm tra lại thông tin ", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show("Lỗi khi thêm nhân viên: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
-
-        //public bool UpdateStaff(Staff staff)
-        //{
-        //    string query = "EXEC sp_UpdateStaffInfo @idStaff , @fullName , @sex , @dateofBirth , @CCCD , @address , @email , @Phonenumber , @idRole , @Startday";
-        //    object[] parameter = new object[] {staff.IdStaff ,staff.Fullname, staff.Sex, staff.DoB, staff.IdNumber,
-        //        staff.Address, staff.Email, staff.Phone, staff.IdRole, staff.StartDay};
-        //    return DataProvider.Instance.ExecuteNonQuery(query, parameter) > 0;
-        //}
-
-        public bool UpdateInfo(int idStaff, string fullName, string sex, DateTime dateofBirth,  string CCCD,string address, string email, string phonenumber)
-        {
-            string query = "EXEC sp_UpdateInfo @idStaff , @fullName , @sex , @dateofBirth , @CCCD , @address , @email , @Phonenumber";
-            object[] parameter = new object[] {idStaff , fullName, sex, dateofBirth, address, CCCD, email, phonenumber};
-            return DataProvider.Instance.ExecuteNonQuery(query, parameter) > 0;
-        }
-
         public DataTable LoadFullStaff()
         {
             string query = "sp_LoadFullStaff";
@@ -110,7 +129,7 @@ namespace BLL.DAO
         }
 
         public void UpdateStaff(int id, string Hoten, string gioitinh, DateTime ngaysinh, string CCCD, string diachi, string email, string sdt,
-            string ngayvaolam, string vaitro, byte[] chandung)
+            DateTime ngayvaolam, string vaitro, byte[] chandung)
         {
             using (SqlConnection conn = DBConnection.GetConnection())
             {
@@ -127,16 +146,8 @@ namespace BLL.DAO
                 cmd.Parameters.AddWithValue("@Diachi", diachi);
                 cmd.Parameters.AddWithValue("@email", email);
                 cmd.Parameters.AddWithValue("@Sodienthoai", sdt);
+                cmd.Parameters.AddWithValue("@Ngayvaolam", ngayvaolam);
 
-                
-                if (DateTime.TryParse(ngayvaolam, out DateTime parsedNgayvaolam))
-                {
-                    cmd.Parameters.AddWithValue("@Ngayvaolam", parsedNgayvaolam);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@Ngayvaolam", DateTime.Now);
-                }
 
                 cmd.Parameters.AddWithValue("@Vaitro", vaitro);
                 cmd.Parameters.AddWithValue("@Chandung", chandung);
