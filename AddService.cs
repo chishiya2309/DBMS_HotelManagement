@@ -44,32 +44,25 @@ namespace QLKS
 
         private void InsertService()
         {
-            //bool isFill = FormNhanVien.CheckFillInText(new Control[] { txtName, txtID, txtPrice , cbType});
-            //if (!isFill)
-            //{
-            //    MessageBox.Show("Không được để trống", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    return;
-            //}
-            //else
-            //{
-            //    try
-            //    {
-            //        //int idStaff = Convert.ToInt32(datagridviewStaff.SelectedRows[0].Cells["colidStaff"].Value);
-            //        //int index = cbType.SelectedIndex;
-            //        //bool check1 = ServiceDAO.Instance.InsertService(int.Parse(txtID.Text), txtName.Text, (int)((DataTable)cbType.DataSource).Rows[index]["id"],
-            //        //                double.Parse(txtPrice.Text));
+            bool isFill = FormNhanVien.CheckFillInText(new string[] { txtName.Text, txtID.Text, txtPrice.Text, cbType.Text });
+            if (!isFill)
+            {
+                MessageBox.Show("Không được để trống", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else
+            {
+                try
+                {
+                    ServiceDAO.Instance.InsertDichVu(
+                        txtID.Text, txtName.Text, cbType.Text, "Sẵn sàng", double.Parse(txtPrice.Text), txtDescription.Text);
 
-            //        ServiceDAO.Instance.InsertDichVu(
-            //            txtID.Text, txtName.Text, cbType.Text, "Sẵn sàng", double.Parse(txtPrice.Text), txtDescription.Text);
-
-
-                    
-            //    }
-            //    catch (SqlException ex)
-            //    {
-            //        MessageBox.Show("Lỗi: " + ex, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    }
-            //}
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show("Lỗi: " + ex, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
         private void btnAdd_Click(object sender, EventArgs e)

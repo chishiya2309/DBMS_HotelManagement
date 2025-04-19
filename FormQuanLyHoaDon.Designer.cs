@@ -499,6 +499,7 @@
             this.cbStatus.TabIndex = 38;
             this.cbStatus.SelectedIndexChanged += new System.EventHandler(this.cbStatus_SelectedIndexChanged);
             this.cbStatus.SelectionChangeCommitted += new System.EventHandler(this.cbStatus_SelectionChangeCommitted);
+            this.cbStatus.MouseDown += new System.Windows.Forms.MouseEventHandler(this.cbStatus_MouseDown);
             // 
             // label13
             // 

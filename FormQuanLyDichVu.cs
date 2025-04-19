@@ -111,11 +111,11 @@ namespace QLKS
         //    return account;
         //}
 
-        public static bool CheckFillInText(Control[] controls)
+        public static bool CheckFillInText(string[] controls)
         {
-            foreach (var control in controls)
+            foreach (string control in controls)
             {
-                if (control.Text == string.Empty)
+                if (control == string.Empty)
                     return false;
             }
             return true;
@@ -123,7 +123,7 @@ namespace QLKS
 
         private void UpdateService()
         {
-            bool isFill = CheckFillInText(new Control[] { txtName, txtId, txtPrice ,cbType });
+            bool isFill = CheckFillInText(new string[] { txtName.Text, txtId.Text, txtPrice.Text ,cbType.Text });
             if (!isFill)
             {
                 MessageBox.Show("Không được để trống", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
