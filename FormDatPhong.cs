@@ -25,7 +25,6 @@ namespace QLKS
         {
             InitializeComponent();
             LoadData();
-            //LoadFullCustomerType();
             LoadFullRoomType();
             LoadAvailableRooms();
             cbRoom.SelectedIndex = 0;
@@ -52,12 +51,7 @@ namespace QLKS
             }
         }
 
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void guna2CircleButton3_Click(object sender, EventArgs e)
+        private void btnClose_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
             this.Close();
@@ -78,48 +72,6 @@ namespace QLKS
             {
                 MessageBox.Show("Lỗi lấy dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-
-
-        public DataTable GetFullCustomerType()
-        {
-            return CustomerTypeDAO.Instance.LoadFullCustomerType();
-        }
-
-        private void LoadFullCustomerType()
-        {
-            //cbSex.SelectedIndex = 0;
-            //DataTable table = GetFullCustomerType();
-            //cbType.DataSource = table;
-            //cbType.DisplayMember = "typeName";
-            //if (table.Rows.Count > 0) cbType.SelectedIndex = 0;
-        }
-
-        public void LoadFullCustomer(DataTable data)
-        {
-            try
-            {
-                DataTable dt = SearchCustomer();
-                LoadCustomerInfo(dt);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi: " + ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        public DataTable GetBookRoom()
-        {
-            return BookRoomDAO.Instance.LoadBookRoom();
-        }
-
-        private void LoadBookRoom(DataTable dt)
-        {
-
-            BindingSource source = new BindingSource();
-            source.DataSource = dt;
-            dgvBookRoom.DataSource = source;
         }
 
         private void btnBook_Click(object sender, EventArgs e)
@@ -295,125 +247,6 @@ namespace QLKS
             }
         }
 
-        private int GetLastBookingId()
-        {
-            string query = "SELECT MAX(MaHoSoDatPhong) FROM HoSoDatPhong";
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                try
-                {
-                    conn.Open();
-                    using (SqlCommand cmd = new SqlCommand(query, conn))
-                    {
-                        object result = cmd.ExecuteScalar();
-                        return result != DBNull.Value ? Convert.ToInt32(result) : 0;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Lỗi khi lấy ID đặt phòng: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return 0;
-                }
-            }
-        }
-
-        private bool SaveParticipants(int maHoSoDatPhong)
-        {
-            // Nếu không có khách hàng tham gia, không cần xử lý
-            if (guna2DataGridView1.Rows.Count == 0)
-            {
-                return true;
-            }
-
-
-            string query = @"
-                INSERT INTO ThamGia (MaKhachHang, MaHoSoDatPhong)
-                VALUES (@MaKhachHang, @MaHoSoDatPhong)";
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                try
-                {
-                    conn.Open();
-                    using (SqlTransaction transaction = conn.BeginTransaction())
-                    {
-                        try
-                        {
-                            using (SqlCommand cmd = new SqlCommand(query, conn, transaction))
-                            {
-                                cmd.Parameters.Add("@MaKhachHang", SqlDbType.Int);
-                                cmd.Parameters.Add("@MaHoSoDatPhong", SqlDbType.Int);
-
-                                // Thêm từng khách hàng tham gia vào bảng ThamGia
-                                foreach (DataGridViewRow row in guna2DataGridView1.Rows)
-                                {
-                                    if (row.Cells["dgvMaKH"].Value != null)
-                                    {
-                                        cmd.Parameters["@MaKhachHang"].Value = Convert.ToInt32(row.Cells["dgvMaKH"].Value);
-                                        cmd.Parameters["@MaHoSoDatPhong"].Value = maHoSoDatPhong;
-                                        cmd.ExecuteNonQuery();
-                                    }
-                                }
-
-                                transaction.Commit();
-                                return true;
-                            }
-                        }
-                        catch (Exception ex)
-                        {
-                            transaction.Rollback();
-                            MessageBox.Show("Lỗi khi lưu thông tin khách hàng tham gia: " + ex.Message,
-                                "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            return false;
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Lỗi kết nối: " + ex.Message,
-                        "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
-                }
-            }
-        }
-
-        private void ClearForm()
-        {
-            // Xóa thông tin khách hàng
-            txtCustomerName.Text = string.Empty;
-            txtAddress.Text = string.Empty;
-            txtPhone.Text = string.Empty;
-            txtSearch.Text = string.Empty;
-
-            // Xóa thông tin đặt phòng
-            txtIdBookRoom.Text = string.Empty;
-            txtDeposit.Text = "0";
-            txtDays.Text = "1";
-
-            // Reset date pickers
-            dtpCheckIn.Value = DateTime.Now;
-            dtpCheckOut.Value = DateTime.Now.AddDays(1);
-
-            // Reset combobox
-            cbStatus.SelectedIndex = 0; // "Chờ xác nhận"
-
-            // Reset room selection if needed
-            if (cbRoomType.Items.Count > 0)
-            {
-                cbRoomType.SelectedIndex = 0;
-            }
-
-            // Làm mới danh sách phòng có sẵn
-            if (cbRoomType.SelectedIndex >= 0)
-            {
-                LoadAvailableRooms();
-            }
-
-            // Xóa danh sách khách hàng tham gia
-            guna2DataGridView1.Rows.Clear();
-        }
-
         private void LoadAvailableRooms()
         {
             if (cbRoomType.SelectedIndex < 0)
@@ -539,8 +372,6 @@ namespace QLKS
                 }
             }
         }
-
-
 
         private void cbRoomType_SelectedIndexChanged(object sender, EventArgs e)
         {
