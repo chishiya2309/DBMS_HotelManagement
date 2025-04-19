@@ -63,107 +63,20 @@ namespace QLKS
             this.Close();
         }
 
-        //private BookingRecord GetBookRoomNow()
-        //{
-        //    BookingRecord bookingRecord = new BookingRecord();
-        //    // Kiểm tra và lấy thông tin khách hàng
-        //    if (string.IsNullOrEmpty(txtCustomerName.Text))
-        //    {
-        //        throw new Exception("Vui lòng nhập thông tin khách hàng!");
-        //    }
-
-        //    // Lấy mã khách hàng từ kết quả tìm kiếm
-        //    int idCustomer;
-        //    try
-        //    {
-        //        DataTable customerData = SearchCustomer();
-        //        if (customerData != null && customerData.Rows.Count > 0)
-        //        {
-        //            idCustomer = Convert.ToInt32(customerData.Rows[0]["MaKhachHang"]);
-        //        }
-        //        else
-        //        {
-        //            throw new Exception("Không tìm thấy thông tin khách hàng!");
-        //        }
-        //    }
-        //    catch
-        //    {
-        //        throw new Exception("Lỗi khi lấy thông tin khách hàng. Vui lòng kiểm tra lại!");
-        //    }
-
-        //    // Lấy mã phòng
-        //    int idRoom;
-        //    try
-        //    {
-        //        int roomIndex = cbRoom.SelectedIndex;
-        //        if (roomIndex < 0)
-        //        {
-        //            throw new Exception("Vui lòng chọn phòng!");
-        //        }
-
-        //        DataTable roomData = (DataTable)cbRoom.DataSource;
-        //        idRoom = Convert.ToInt32(roomData.Rows[roomIndex]["MaPhong"]);
-        //    }
-        //    catch
-        //    {
-        //        throw new Exception("Lỗi khi lấy thông tin phòng. Vui lòng kiểm tra lại!");
-        //    }
-
-        //    // Lấy số đêm
-        //    int nights;
-        //    if (!int.TryParse(txtDays.Text, out nights) || nights <= 0)
-        //    {
-        //        throw new Exception("Số đêm phải là số nguyên dương!");
-        //    }
-
-        //    // Lấy tiền đặt cọc
-        //    double deposit;
-        //    if (!double.TryParse(txtDeposit.Text, out deposit) || deposit < 0)
-        //    {
-        //        throw new Exception("Tiền đặt cọc không hợp lệ!");
-        //    }
-
-        //    // Thiết lập các giá trị cho booking record
-        //    bookingRecord.MaKhachHang = idCustomer;
-        //    bookingRecord. = idRoom;
-        //    bookingRecord.DateCheckIn = dtpCheckIn.Value;
-        //    bookingRecord.DateCheckOut = dtpCheckOut.Value;
-        //    bookingRecord.Status = cbStatus.Text;
-        //    bookingRecord.Deposit = deposit;
-        //    bookingRecord.Days = nights;
-        //    // Các thông tin bổ sung có thể được thêm vào đây
-
-        //    return bookingRecord;
-        //}
-        public DataTable GetFullRoomType()
-        {
-            return RoomTypeDAO.Instance.LoadFullRoomType();
-        }
-
         private void LoadFullRoomType()
         {
-            string query = @"
-            SELECT l.MaLoaiPhong, l.TenLoaiPhong
-             FROM LoaiPhong l";
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            try
             {
-                try
-                {
-                    conn.Open();
-                    using (SqlDataAdapter adapter = new SqlDataAdapter(query, conn))
-                    {
-                        DataTable dt = new DataTable();
-                        adapter.Fill(dt);
-                        cbRoomType.DataSource = dt;
-                        cbRoomType.DisplayMember = "TenLoaiPhong";
-                        cbRoomType.ValueMember = "MaLoaiPhong";
-                        cbRoomType.SelectedIndex = 0;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Lỗi lấy dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                DataTable dt = RoomTypeDAO.Instance.LoadFullRoomType();
+                cbRoomType.DataSource = dt;
+                cbRoomType.DisplayMember = "TenLoaiPhong";
+                cbRoomType.ValueMember = "MaLoaiPhong";
+                if (dt.Rows.Count > 0)
+                    cbRoomType.SelectedIndex = 0;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi lấy dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
