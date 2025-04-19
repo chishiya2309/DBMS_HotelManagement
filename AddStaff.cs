@@ -13,12 +13,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using QLKS.Properties;
 
 namespace QLKS
 {
     public partial class AddStaff: Form
     {
-        private string connectionString = "Data Source=(local)\\SQLExpress;Initial Catalog=Hotel2025;Integrated Security=True";
+        
         public AddStaff()
         {
             InitializeComponent();
@@ -41,7 +42,8 @@ namespace QLKS
 
         private void InsertStaff()
         {
-            bool isFill = FormNhanVien.CheckFillInText(new Control[] { txtName, txtAddress, txtEmail, txtIDNum, txtPhone, txtUser, cbSex });
+            bool isFill = FormNhanVien.CheckFillInText(new string[] { txtName.Text, txtAddress.Text, txtEmail.Text,
+                txtIDNum.Text, txtPhone.Text, txtUser.Text, cbSex.Text });
             if (!isFill)
             {
                 MessageBox.Show("Không được để trống", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -51,12 +53,12 @@ namespace QLKS
             {
                 try
                 {
-                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    using (SqlConnection connection = DBConnection.GetConnection())
                     {
                         connection.Open();
 
                         // Bắt đầu transaction
-                        SqlTransaction transaction = connection.BeginTransaction();
+                        //SqlTransaction transaction = connection.BeginTransaction();
 
                         try
                         {
@@ -65,54 +67,30 @@ namespace QLKS
                             {
                                 imageData = File.ReadAllBytes(imagePath);
                             }
-                            // Thêm nhân viên sử dụng stored procedure sp_InsertStaff
-                            SqlCommand cmdStaff = new SqlCommand("sp_InsertStaff", connection, transaction);
-                            cmdStaff.CommandType = CommandType.StoredProcedure;
-
-                            cmdStaff.Parameters.AddWithValue("@Hoten", txtName.Text.Trim());
-                            cmdStaff.Parameters.AddWithValue("@Gioitinh", cbSex.Text);
-                            cmdStaff.Parameters.AddWithValue("@Ngaysinh", dtpDOB.Value);
-                            cmdStaff.Parameters.AddWithValue("@CCCD", txtIDNum.Text.Trim());
-                            cmdStaff.Parameters.AddWithValue("@Diachi", txtAddress.Text.Trim());
-                            cmdStaff.Parameters.AddWithValue("@email", txtEmail.Text.Trim());
-                            cmdStaff.Parameters.AddWithValue("@Sodienthoai", txtPhone.Text.Trim());
-                            cmdStaff.Parameters.AddWithValue("@Ngayvaolam", dtpNgayVaoLam.Value);
-                            cmdStaff.Parameters.AddWithValue("@Vaitro", cbRole.Text);
-
-                            if (imageData != null)
+                            if (imageData == null)
                             {
-                                cmdStaff.Parameters.AddWithValue("@Chandung", (object)imageData);
-                            }
-                            else
-                            {
-                                cmdStaff.Parameters.AddWithValue("@Chandung", DBNull.Value);
+                                using (MemoryStream ms = new MemoryStream())
+                                {
+                                    Resources.clipart4371249.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                                    imageData = ms.ToArray();
+                                }
                             }
 
-                            cmdStaff.ExecuteNonQuery();
 
-                            // Lấy MaNhanVien vừa thêm để tạo tài khoản
-                            SqlCommand getStaffIdCmd = new SqlCommand("SELECT IDENT_CURRENT('NhanVien')", connection, transaction);
-                            int staffId = Convert.ToInt32(getStaffIdCmd.ExecuteScalar());
+                            // Thêm nhân viên và lấy MaNhanVien vừa thêm
+                            StaffDAO.Instance.InsertStaff(txtName.Text.Trim(), cbSex.Text, dtpDOB.Value, txtIDNum.Text.Trim(),
+                                    txtAddress.Text.Trim(), txtEmail.Text.Trim(), txtPhone.Text.Trim(), dtpNgayVaoLam.Value, cbRole.Text, imageData);
 
-                            // Thêm tài khoản sử dụng stored procedure sp_InsertAccount
-                            SqlCommand cmdAccount = new SqlCommand("sp_InsertAccount", connection, transaction);
-                            cmdAccount.CommandType = CommandType.StoredProcedure;
+                            FormNhanVien formNhanVien = new FormNhanVien();
+                            int staffId = int.Parse(formNhanVien.dgvStaff.Rows[formNhanVien.dgvStaff.Rows.Count - 1].Cells[0].Value.ToString());
 
-                            cmdAccount.Parameters.AddWithValue("@MaNhanVien", staffId);
-                            cmdAccount.Parameters.AddWithValue("@TenDangNhap", txtUser.Text.Trim());
-                            cmdAccount.Parameters.AddWithValue("@MatKhau", "123456");
+                            InsertAccount(staffId, txtUser.Text.Trim(), "123456");
 
-                            cmdAccount.ExecuteNonQuery();
-
-                            // Commit transaction nếu cả hai thao tác thành công
-                            transaction.Commit();
-                            MessageBox.Show("Thêm nhân viên thành công, Mật khẩu mặc định là 123456", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            
                             ClearForm();
                         }
                         catch (SqlException ex)
                         {
-                            // Rollback transaction nếu có lỗi
-                            transaction.Rollback();
                             MessageBox.Show("Lỗi khi thêm nhân viên: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
@@ -122,6 +100,11 @@ namespace QLKS
                     MessageBox.Show("Lỗi kết nối: " + ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        public void InsertAccount(int id, string user, string pass)
+        {
+            AccountDAO.Instance.InsertAccount(id, user, pass);
         }
 
         private void btnAdd_Click(object sender, EventArgs e)

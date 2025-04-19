@@ -80,8 +80,9 @@ namespace QLKS
         }
 
         public void UpdateInfo(int id, string Hoten, string gioitinh, DateTime ngaysinh, string CCCD, string diachi, string email, string sdt,
-            string ngayvaolam, string vaitro, byte[] chandung)
+            DateTime ngayvaolam, string vaitro, byte[] chandung)
         {
+
             StaffDAO.Instance.UpdateStaff(id, Hoten, gioitinh, ngaysinh, CCCD, diachi, email, sdt, ngayvaolam, vaitro, chandung);
         }
 
@@ -114,10 +115,14 @@ namespace QLKS
                     temp.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
                     _currentImageBytes = ms.ToArray();
 
-                    
+                    DateTime startday = DateTime.Now;
+                    if (DateTime.TryParse(txtStartDay.Text, out DateTime parsedNgayvaolam))
+                    {
+                        startday = parsedNgayvaolam;
+                    }
 
                     UpdateInfo(idStaff, txtName.Text, cbSex.Text, dobDP.Value, txtIDNum.Text, txtAddress.Text,txtEmail.Text, txtPhone.Text,
-                        txtStartDay.Text, dt.Rows[0]["Vaitro"].ToString(), _currentImageBytes);
+                        startday, dt.Rows[0]["Vaitro"].ToString(), _currentImageBytes);
                     
                     txtPasspre.Text = String.Empty;
                     LoadProfile(idStaff);

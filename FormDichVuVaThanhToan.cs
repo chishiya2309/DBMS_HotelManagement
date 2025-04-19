@@ -52,7 +52,7 @@ namespace QLKS
             {
                 
 
-                bool isFill = FormNhanVien.CheckFillInText(new Control[] { txtSearch });
+                bool isFill = FormNhanVien.CheckFillInText(new string[] { txtSearch.Text });
                 if (!isFill || nudCount.Value == 0 || dgvBookRoom.Rows.Count == 0)
                 {
                     MessageBox.Show("Không được để trống", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
