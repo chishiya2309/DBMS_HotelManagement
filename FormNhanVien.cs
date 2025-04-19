@@ -27,7 +27,7 @@ namespace QLKS
         }
 
 
-        private void LoadData()
+        public void LoadData()
         {
             string query = @"SELECT * FROM NhanVien";
 
@@ -80,7 +80,7 @@ namespace QLKS
                 try
                 {
                     conn.Open();
-                    using (SqlCommand cmd = new SqlCommand("sp_XoaNhanVien", conn))
+                    using (SqlCommand cmd = new SqlCommand("sp_DeleteStaff", conn))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@MaNhanVien", id);
