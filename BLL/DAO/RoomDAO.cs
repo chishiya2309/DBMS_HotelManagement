@@ -15,15 +15,34 @@ namespace BLL.DAO
         private static RoomDAO instance;
         #region Method
 
-        internal bool InsertRoom(Room roomNow)
+        public bool InsertRoom(string tenPhong, int soGiuong, string loaiGiuong, int khuVuc, string trangThai, string maLoaiPhong)
         {
-            return InsertRoom(roomNow.Name, roomNow.IdRoomType, roomNow.IdStatusRoom);
+            using (SqlConnection connection = DBConnection.GetConnection())
+            {
+                try
+                {
+                    connection.Open();
+                    SqlCommand cmdRoom = new SqlCommand("sp_InsertRoom", connection);
+                    cmdRoom.CommandType = CommandType.StoredProcedure;
+
+                    cmdRoom.Parameters.AddWithValue("@name", tenPhong);
+                    cmdRoom.Parameters.AddWithValue("@Beds", soGiuong);
+                    cmdRoom.Parameters.AddWithValue("@BedType", loaiGiuong);
+                    cmdRoom.Parameters.AddWithValue("@Floor", khuVuc);
+                    cmdRoom.Parameters.AddWithValue("@Status", trangThai);
+                    cmdRoom.Parameters.AddWithValue("@idRoomType", maLoaiPhong);
+
+                    int rows = cmdRoom.ExecuteNonQuery();
+                    return rows > 0;
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show("Lỗi khi thêm phòng: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+            }
         }
-        public bool InsertRoom(string roomName, int idRoomType, int idStatusRoom)
-        {
-            string query = "sp_InsertRoom @nameRoom , @idType , @idStatus";
-            return DataProvider.Instance.ExecuteNonQuery(query, new object[] { roomName, idRoomType, idStatusRoom }) > 0;
-        }
+
         public bool UpdateRoom(int idRoom, string name, int beds, string bedType, int floor, string status, string idRoomType)
         {
             using (SqlConnection connection = DBConnection.GetConnection())
@@ -89,8 +108,9 @@ namespace BLL.DAO
                         return true;
                     }
                 }
-                catch (SqlException)
+                catch (SqlException ex)
                 {
+                    MessageBox.Show("Lỗi khi xóa phòng: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
             }
@@ -158,6 +178,29 @@ namespace BLL.DAO
                 catch (SqlException ex)
                 {
                     Console.WriteLine($"Lỗi khi lấy danh sách phòng: {ex.Message}");
+                }
+            }
+            return dt;
+        }
+
+        public DataTable LoadRoomWithType()
+        {
+            DataTable dt = new DataTable();
+            using (SqlConnection conn = DBConnection.GetConnection())
+            {
+                try
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand("sp_LoadRoomWithType", conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        SqlDataReader reader = cmd.ExecuteReader();
+                        dt.Load(reader);
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show($"Lỗi khi lấy danh sách phòng kèm loại phòng: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             return dt;

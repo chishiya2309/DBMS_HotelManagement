@@ -1,4 +1,5 @@
 ﻿using BLL.DAO;
+using DAL;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,7 +16,6 @@ namespace QLKS
 {
     public partial class AddRoomType: Form
     {
-        private string connectionString = "Data Source=(local)\\SQLExpress;Database=Hotel2025;Integrated Security=True";
         private string imagePath;
         private byte[] imageData;
         public AddRoomType()
@@ -34,7 +34,7 @@ namespace QLKS
                 }
 
                 // Kết nối database và thêm dữ liệu thông qua stored procedure
-                using (SqlConnection conn = new SqlConnection(connectionString))
+                using (SqlConnection conn = DBConnection.GetConnection())
                 {
                     conn.Open();
                     using (SqlCommand cmd = new SqlCommand("sp_InsertRoomType", conn))
@@ -78,8 +78,6 @@ namespace QLKS
             }
         }
        
-        
-
         private void btnAdd_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Bạn có muốn thêm loại phòng mới không?", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);

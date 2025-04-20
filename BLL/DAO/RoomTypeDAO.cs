@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace BLL.DAO
 {
@@ -15,22 +16,25 @@ namespace BLL.DAO
 
         public DataTable LoadFullRoomType()
         {
-            return DataProvider.Instance.ExecuteQuery("sp_LoadFullRoomType");
-        }
-
-        public bool InsertRoomType(RoomType roomType)
-        {
-            string query = "sp_InsertRoomType @MaLoaiPhong, @TenLoaiPhong, @DonGia, @TienNghi, @SucChua, @KhaNangKeThemGiuong, @MoTa, @HinhAnh";
-            return DataProvider.Instance.ExecuteNonQuery(query, new object[] {
-                roomType.MaLoaiPhong,
-                roomType.TenLoaiPhong,
-                roomType.DonGia,
-                roomType.TienNghi,
-                roomType.SucChua,
-                roomType.KhaNangKeThemGiuong,
-                (object)roomType.MoTa ?? DBNull.Value,
-                (object)roomType.HinhAnh ?? DBNull.Value
-            }) > 0;
+            DataTable dt = new DataTable();
+            using (SqlConnection conn = DBConnection.GetConnection())
+            {
+                try
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand("sp_LoadFullRoomType", conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        SqlDataReader reader = cmd.ExecuteReader();
+                        dt.Load(reader);
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show($"Lỗi khi hiển thị đầy đủ các loại phòng đang có: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            return dt;
         }
 
         public RoomType GetRoomTypeById(string maLoaiPhong)

@@ -20,8 +20,6 @@ namespace QLKS
         public FormQuanLyPhong()
         {
             InitializeComponent();
-            //LoadFullRoomStatus();
-            // LoadFullRoomType();
             ConfigureDataGridView();
             LoadRoomType();
             LoadRoomData();
@@ -63,24 +61,7 @@ namespace QLKS
 
         public bool DeleteRoom(int id)
         {
-            using (SqlConnection conn = new SqlConnection(DBConnection.ConnectionString))
-            {
-                try
-                {
-                    conn.Open();
-                    using (SqlCommand cmd = new SqlCommand("sp_DeleteRoom", conn))
-                    {
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@idRoom", id);
-                        cmd.ExecuteNonQuery();
-                        return true;
-                    }
-                }
-                catch (SqlException)
-                {
-                    return false;
-                }
-            }
+            return RoomDAO.Instance.DeleteRoom(id);
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -203,8 +184,6 @@ namespace QLKS
             // Ensure all columns from your data source are displayed
             dgvRoom.AutoGenerateColumns = true; // If you want to automatically generate columns from data source
 
-           
-
             // Make sure all columns are visible
             foreach (DataGridViewColumn col in dgvRoom.Columns)
             {
@@ -215,27 +194,15 @@ namespace QLKS
         // When binding data to the DataGridView, make sure all properties are included
         private void LoadRoomData()
         {
-            string query = @"SELECT p.*, lp.TenLoaiPhong, lp.SucChua, lp.DonGia, lp.HinhAnh
-                                FROM Phong p INNER JOIN LoaiPhong lp ON p.MaLoaiPhong = lp.MaLoaiPhong";
-            using (SqlConnection conn = DBConnection.GetConnection())
+            try
             {
-                try
-                {
-                    conn.Open();
-                    using (SqlDataAdapter adapter = new SqlDataAdapter(query, conn))
-                    {
-                        DataTable dt = new DataTable();
-                        adapter.Fill(dt);
-                        dgvRoom.DataSource = dt; // Gán dữ liệu vào DataGridView
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Lỗi lấy dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                DataTable dt = RoomDAO.Instance.LoadRoomWithType();
+                dgvRoom.DataSource = dt;
             }
-
-            // Refresh the DataGridView
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi lấy dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             dgvRoom.Refresh();
         }
 

@@ -1,4 +1,5 @@
 ﻿using BLL.DAO;
+using DAL;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,7 +15,6 @@ namespace QLKS
 {
     public partial class AddRoom: Form
     {
-        private string connectionString = "Data Source=(local)\\SQLExpress;Database=Hotel2025;Integrated Security=True";
         public AddRoom()
         {
             InitializeComponent();
@@ -32,43 +32,19 @@ namespace QLKS
                 return;
             }
 
+            string tenPhong = txtName.Text.Trim();
+            int soGiuong = Convert.ToInt32(nudSoGiuong.Value);
+            string loaiGiuong = cmbLoaiGiuong.Text;
+            int khuVuc = Convert.ToInt32(txtKhuVuc.Text);
+            string trangThai = cmbTrangThai.Text;
+            string maLoaiPhong = (string)cmbLoaiPhong.SelectedValue;
 
-            try
+            bool result = RoomDAO.Instance.InsertRoom(tenPhong, soGiuong, loaiGiuong, khuVuc, trangThai, maLoaiPhong);
+
+            if (result)
             {
-                string tenPhong = txtName.Text.Trim();
-                int soGiuong = Convert.ToInt32(nudSoGiuong.Value);
-                string loaiGiuong = cmbLoaiGiuong.Text;
-                int khuVuc = Convert.ToInt32(txtKhuVuc.Text);
-                string trangThai = cmbTrangThai.Text;
-                string maLoaiPhong = (string)cmbLoaiPhong.SelectedValue;
-
-                using (SqlConnection connection = new SqlConnection(connectionString))
-                {
-                    connection.Open();
-
-                    // Thêm phòng sử dụng stored procedure sp_InsertRoom
-                    SqlCommand cmdRoom = new SqlCommand("sp_InsertRoom", connection);
-                    cmdRoom.CommandType = CommandType.StoredProcedure;
-
-                    cmdRoom.Parameters.AddWithValue("@name", tenPhong);
-                    cmdRoom.Parameters.AddWithValue("@Beds", soGiuong);
-                    cmdRoom.Parameters.AddWithValue("@BedType", loaiGiuong);
-                    cmdRoom.Parameters.AddWithValue("@Floor", khuVuc);
-                    cmdRoom.Parameters.AddWithValue("@Status", trangThai);
-                    cmdRoom.Parameters.AddWithValue("@idRoomType", maLoaiPhong);
-                    cmdRoom.ExecuteNonQuery();
-
-                    MessageBox.Show("Thêm phòng mới thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    ClearForm();
-                }
-            }
-            catch (SqlException ex)
-            {
-                MessageBox.Show("Lỗi khi thêm phòng: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Thêm phòng mới thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ClearForm();
             }
         }
 
@@ -123,25 +99,16 @@ namespace QLKS
 
         private void LoadRoomType()
         {
-            string query = "SELECT MaLoaiPhong, TenLoaiPhong FROM LoaiPhong";
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            try
             {
-                try
-                {
-                    conn.Open();
-                    using (SqlDataAdapter adapter = new SqlDataAdapter(query, conn))
-                    {
-                        DataTable dt = new DataTable();
-                        adapter.Fill(dt);
-                        cmbLoaiPhong.DataSource = dt; // Gán dữ liệu vào DataGridView
-                        cmbLoaiPhong.DisplayMember = "TenLoaiPhong";
-                        cmbLoaiPhong.ValueMember = "MaLoaiPhong";
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Lỗi lấy dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                DataTable dt = RoomTypeDAO.Instance.LoadFullRoomType();
+                cmbLoaiPhong.DataSource = dt;
+                cmbLoaiPhong.DisplayMember = "TenLoaiPhong";
+                cmbLoaiPhong.ValueMember = "MaLoaiPhong";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi lấy dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
