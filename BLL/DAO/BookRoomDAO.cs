@@ -16,26 +16,6 @@ namespace BLL.DAO
 
         private static BookRoomDAO instance;
 
-        public bool UpdateBookRoom(BookingRecord bk)
-        {
-            string query = "sp_UpdateBookRoom @MaHoSoDatPhong, @TienDatCoc, @TrangThaiDatPhong, @ThoiGianCheckinDuKien, @ThoiGianCheckoutDuKien, @SoDem, @MaPhong, @MaKhachHang, @SoTheTinDung, @GhiChu, @ThoiGianDatPhong, @ThoiGianCheckinThucTe, @ThoiGianCheckoutThucTe";
-            return DataProvider.Instance.ExecuteNonQuery(query, new object[] {
-                bk.MaHoSoDatPhong,
-                bk.TienDatCoc,
-                bk.TrangThaiDatPhong,
-                bk.ThoiGianCheckinDuKien,
-                bk.ThoiGianCheckoutDuKien,
-                bk.SoDem,
-                bk.MaPhong,
-                bk.MaKhachHang,
-                bk.SoTheTinDung,
-                (object)bk.GhiChu ?? DBNull.Value,
-                bk.ThoiGianDatPhong,
-                (object)bk.ThoiGianCheckinThucTe ?? DBNull.Value,
-                (object)bk.ThoiGianCheckoutThucTe ?? DBNull.Value
-            }) > 0;
-        }
-
         public void ConfirmBookRoomBonus(int MaHoSoDatPhong, string note)
         {
             using (SqlConnection conn = DBConnection.GetConnection())
@@ -105,25 +85,8 @@ namespace BLL.DAO
 
         public bool CheckInBooking(int maHoSoDatPhong, DateTime thoiGianCheckinThucTe)
         {
-            using (SqlConnection conn = DBConnection.GetConnection())
-            {
-                string query = "sp_CheckInBooking";
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@MaHoSoDatPhong", maHoSoDatPhong);
-                cmd.Parameters.AddWithValue("@ThoiGianCheckinThucTe", thoiGianCheckinThucTe);
-                try
-                {
-                    conn.Open();
-                    return cmd.ExecuteNonQuery() > 0;
-                }
-                catch (SqlException ex)
-                {
-                    MessageBox.Show("Lỗi khi thực hiện check-in: " + ex.Message,
-                        "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
-                }
-            }
+            string query = "sp_CheckInBooking @MaHoSoDatPhong, @ThoiGianCheckinThucTe";
+            return DataProvider.Instance.ExecuteNonQuery(query, new object[] { maHoSoDatPhong, thoiGianCheckinThucTe }) > 0;
         }
 
         public static BookRoomDAO Instance
