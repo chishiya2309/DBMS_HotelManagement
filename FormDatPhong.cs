@@ -908,50 +908,19 @@ namespace QLKS
 
             if (result == DialogResult.Yes)
             {
-                // Thực hiện check-in
-                using (SqlConnection conn = new SqlConnection(connectionString))
+                // Gọi DAO thực hiện check-in
+                bool success = BookRoomDAO.Instance.CheckInBooking(maHoSoDatPhong, DateTime.Now);
+                if (success)
                 {
-                    try
-                    {
-                        conn.Open();
-
-                        // Cập nhật trạng thái và thởi gian check-in thực tế
-                        string query = @"
-                            UPDATE HoSoDatPhong 
-                            SET TrangThaiDatPhong = N'Đã xác nhận', 
-                                ThoiGianCheckinThucTe = @ThoiGianCheckinThucTe
-                            WHERE MaHoSoDatPhong = @MaHoSoDatPhong";
-
-                        using (SqlCommand cmd = new SqlCommand(query, conn))
-                        {
-                            cmd.Parameters.AddWithValue("@MaHoSoDatPhong", maHoSoDatPhong);
-                            cmd.Parameters.AddWithValue("@ThoiGianCheckinThucTe", DateTime.Now);
-
-                            int rowsAffected = cmd.ExecuteNonQuery();
-
-                            if (rowsAffected > 0)
-                            {
-                                MessageBox.Show("Check-in thành công!\nThời gian check-in: " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"),
-                                    "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                                // Cập nhật trạng thái hiển thị
-                                cbStatus.Text = "Đã xác nhận";
-
-                                // Tải lại dữ liệu
-                                LoadData();
-                            }
-                            else
-                            {
-                                MessageBox.Show("Không thể check-in. Vui lòng kiểm tra lại thông tin!",
-                                    "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Lỗi khi thực hiện check-in: " + ex.Message,
-                            "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    MessageBox.Show("Check-in thành công!\nThời gian check-in: " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"),
+                        "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    cbStatus.Text = "Đã xác nhận";
+                    LoadData();
+                }
+                else
+                {
+                    MessageBox.Show("Không thể check-in. Vui lòng kiểm tra lại thông tin!",
+                        "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

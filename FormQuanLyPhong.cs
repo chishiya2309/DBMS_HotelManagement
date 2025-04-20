@@ -17,7 +17,6 @@ namespace QLKS
 {
     public partial class FormQuanLyPhong: Form
     {
-        string connectionString = "Data Source=(local)\\SQLExpress;Initial Catalog=Hotel2025;Integrated Security=True";
         public FormQuanLyPhong()
         {
             InitializeComponent();
@@ -64,7 +63,7 @@ namespace QLKS
 
         public bool DeleteRoom(int id)
         {
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlConnection conn = new SqlConnection(DBConnection.ConnectionString))
             {
                 try
                 {
@@ -160,42 +159,6 @@ namespace QLKS
             return true;
         }
 
-        //private Room GetRoomNow()
-        //{
-        //    Room account = new Room();
-
-        //    // Xoá các khoảng trắng thừa
-        //    //Trim(new System.Windows.Forms.TextBox[] { txtName, txtAddress });
-
-        //    int index1 = cbType.SelectedIndex;
-        //    int index2 = cbStatus.SelectedIndex;
-        //    account.Id = int.Parse(txtIDroom.Text);
-        //    account.IdRoomType = (int)((DataTable)cbType.DataSource).Rows[index1]["idRoomType"];
-        //    account.IdStatusRoom = (int)((DataTable)cbStatus.DataSource).Rows[index2]["id"];
-        //    account.Name = txtName.Text;
-
-        //    return account;
-        //}
-
-        //private RoomType GetRoomTypeNow()
-        //{
-        //    RoomType account = new RoomType();
-
-        //    // Xoá các khoảng trắng thừa
-        //    //Trim(new System.Windows.Forms.TextBox[] { txtName, txtAddress });
-
-        //    int index = cbType.SelectedIndex;
-
-        //    account.Id = (int)((DataTable)cbType.DataSource).Rows[index]["idRoomType"];
-        //    account.Name = ((DataTable)cbType.DataSource).Rows[index]["typename"].ToString();
-        //    account.Limit = int.Parse(txtLimit.Text);
-        //    account.Price = double.Parse(txtPrice.Text);
-
-        //    return account;
-        //}
-
-        
-
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             if (dgvRoom.SelectedRows.Count > 0)
@@ -225,15 +188,6 @@ namespace QLKS
             }
         }
 
-
-
-        //private void FormQuanLyPhong_Load(object sender, EventArgs e)
-        //{
-        //    txtIDroom.Enabled = false;
-        //    cbStatus.DropDownStyle = ComboBoxStyle.DropDownList;
-        //    cbType.DropDownStyle = ComboBoxStyle.DropDownList;
-        //}
-
         private void btnInsert_Click(object sender, EventArgs e)
         {
             AddRoom ad = new AddRoom();
@@ -241,15 +195,10 @@ namespace QLKS
             LoadRoomData();
         }
 
-
         private void btnSearch_Click(object sender, EventArgs e)
         {
             try
             {
-                //LoadFullRoomType();
-                //LoadFullRoomStatus();
-                //LoadRoomType();
-
                 dgvRoom.DataSource = RoomDAO.Instance.SearchRoom(cbStatusSearch.Text);
 
             }
