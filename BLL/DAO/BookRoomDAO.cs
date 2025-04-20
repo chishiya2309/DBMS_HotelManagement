@@ -49,14 +49,15 @@ namespace BLL.DAO
             DataTable dt = new DataTable();
             using (SqlConnection connection = DBConnection.GetConnection())
             {
+                connection.Open();
                 string query = "sp_SearchBookRoom";
                 SqlCommand command = new SqlCommand(query, connection);
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.AddWithValue("@MaHoSoDatPhong", maHoSoDatPhong);
                 try
                 {
-                    SqlDataAdapter da = new SqlDataAdapter(command);
-                    da.Fill(dt);
+                    SqlDataReader reader = command.ExecuteReader();
+                    dt.Load(reader);
                 }
                 catch (SqlException ex)
                 {
@@ -68,25 +69,92 @@ namespace BLL.DAO
 
         public DataTable FindRoomTypeByBookRoom(int maHoSoDatPhong)
         {
-            string query = "sp_FindRoomTypeByBookRoom @MaHoSoDatPhong";
-            return DataProvider.Instance.ExecuteQuery(query, new object[] { maHoSoDatPhong });
+            DataTable dt = new DataTable();
+            using (SqlConnection connection = DBConnection.GetConnection())
+            {
+                connection.Open();
+                string query = "sp_FindRoomTypeByBookRoom";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@MaHoSoDatPhong", maHoSoDatPhong);
+                try
+                {
+                    SqlDataReader reader = command.ExecuteReader();
+                    dt.Load(reader);
+                }
+                catch (SqlException ex)
+                {
+                    Console.WriteLine($"Lỗi khi tìm kiếm loại phòng: {ex.Message}");
+                }
+            }
+            return dt;
         }
 
         public DataTable GetBookRoomList()
         {
-            return DataProvider.Instance.ExecuteQuery("sp_GetBookRoomList");
+            DataTable dt = new DataTable();
+            using (SqlConnection connection = DBConnection.GetConnection())
+            {
+                connection.Open();
+                string query = "sp_GetBookRoomList";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.CommandType = CommandType.StoredProcedure;
+                try
+                {
+                    SqlDataReader reader = command.ExecuteReader();
+                    dt.Load(reader);
+                }
+                catch (SqlException ex)
+                {
+                    Console.WriteLine($"Lỗi khi lấy danh sách hồ sơ đặt phòng: {ex.Message}");
+                }
+            }
+            return dt;
         }
 
         public DataTable GetParticipantsByBookingId(int maHoSoDatPhong)
         {
-            string query = "sp_GetParticipantsByBookingId @MaHoSoDatPhong";
-            return DataProvider.Instance.ExecuteQuery(query, new object[] { maHoSoDatPhong });
+            DataTable dt = new DataTable();
+            using (SqlConnection connection = DBConnection.GetConnection())
+            {
+                connection.Open();
+                string query = "sp_GetParticipantsByBookingId";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@MaHoSoDatPhong", maHoSoDatPhong);
+                try
+                {
+                    SqlDataReader reader = command.ExecuteReader();
+                    dt.Load(reader);
+                }
+                catch (SqlException ex)
+                {
+                    Console.WriteLine($"Lỗi khi lấy danh sách người tham gia: {ex.Message}");
+                }
+            }
+            return dt;
         }
 
         public bool CheckInBooking(int maHoSoDatPhong, DateTime thoiGianCheckinThucTe)
         {
-            string query = "sp_CheckInBooking @MaHoSoDatPhong, @ThoiGianCheckinThucTe";
-            return DataProvider.Instance.ExecuteNonQuery(query, new object[] { maHoSoDatPhong, thoiGianCheckinThucTe }) > 0;
+            using (SqlConnection connection = DBConnection.GetConnection())
+            {
+                connection.Open();
+                string query = "sp_CheckInBooking";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@MaHoSoDatPhong", maHoSoDatPhong);
+                command.Parameters.AddWithValue("@ThoiGianCheckinThucTe", thoiGianCheckinThucTe);
+                try
+                {
+                    return command.ExecuteNonQuery() > 0;
+                }
+                catch (SqlException ex)
+                {
+                    Console.WriteLine($"Lỗi khi check-in: {ex.Message}");
+                    return false;
+                }
+            }
         }
 
         public static BookRoomDAO Instance
