@@ -60,17 +60,29 @@ namespace QLKS
                 }
                 catch (SqlException ex)
                 {
-                    MessageBox.Show("Lỗi: " + ex, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if (ex.Number == 229)
+                    {
+                        MessageBox.Show("Bạn không có quyền truy cập vào chức năng này", "Lỗi xác thực", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Lỗi lấy dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    this.Close();
                 }
             }
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            if (UserSession.Role == "Lễ tân")
+            {
+                MessageBox.Show("Lễ tân không có quyền thêm dịch vụ mới!", "Phân quyền", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             DialogResult result = MessageBox.Show("Bạn có muốn thêm dịch vụ mới không?", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
             if (result == DialogResult.OK)
             {
-
                 InsertService();
             }
         }

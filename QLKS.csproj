@@ -219,6 +219,7 @@
     <Compile Include="UpdateRoomType.Designer.cs">
       <DependentUpon>UpdateRoomType.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserSession.cs" />
     <EmbeddedResource Include="AddCustomer.resx">
       <DependentUpon>AddCustomer.cs</DependentUpon>
     </EmbeddedResource>

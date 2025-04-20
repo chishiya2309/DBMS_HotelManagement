@@ -62,6 +62,11 @@ namespace QLKS
 
         private void guna2Button10_Click(object sender, EventArgs e)
         {
+            if (UserSession.Role == "Lễ tân")
+            {
+                MessageBox.Show("Lễ tân không có quyền quản lý nhân viên!", "Phân quyền", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             FormNhanVien formNhanVien = new FormNhanVien();
             if (!formNhanVien.IsDisposed) formNhanVien.Show();
         }

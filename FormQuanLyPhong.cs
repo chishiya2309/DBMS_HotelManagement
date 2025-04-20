@@ -148,6 +148,11 @@ namespace QLKS
 
         private void btnInsert_Click(object sender, EventArgs e)
         {
+            if (UserSession.Role == "Lễ tân")
+            {
+                MessageBox.Show("Lễ tân không có quyền thêm phòng mới!", "Phân quyền", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             AddRoom ad = new AddRoom();
             ad.ShowDialog();
             LoadRoomData();

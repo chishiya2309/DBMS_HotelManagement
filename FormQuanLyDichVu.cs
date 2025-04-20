@@ -171,6 +171,11 @@ namespace QLKS
 
         private void btnInsert_Click(object sender, EventArgs e)
         {
+            if (UserSession.Role == "Lễ tân")
+            {
+                MessageBox.Show("Lễ tân không có quyền thêm dịch vụ!", "Phân quyền", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             new AddService().ShowDialog();
             LoadFullService(GetFullService());
         }
@@ -183,6 +188,11 @@ namespace QLKS
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            if (UserSession.Role == "Lễ tân")
+            {
+                MessageBox.Show("Lễ tân không có quyền xóa dịch vụ!", "Phân quyền", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             DialogResult result = MessageBox.Show("Bạn chắc chắn xoá dịch vụ này?", "Xác nhận", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
             if (result == DialogResult.OK)
             {

@@ -42,13 +42,13 @@ namespace QLKS
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            // Kiểm tra nếu người dùng chưa nhập tài khoản hoặc mật khẩu
             if (string.IsNullOrWhiteSpace(txtTaiKhoan.Text) || string.IsNullOrWhiteSpace(txtMatKhau.Text))
             {
                 MessageBox.Show("Vui lòng nhập đầy đủ tên đăng nhập và mật khẩu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
+            // SỬA LẠI DÒNG NÀY
             string query = "SELECT * FROM dbo.DangNhap(@username, @password)";
 
             using (SqlConnection conn = new SqlConnection(connectionString))
@@ -64,13 +64,13 @@ namespace QLKS
                         SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                         DataTable dt = new DataTable();
                         adapter.Fill(dt);
-                        if (dt.Rows.Count > 0 && dt.Rows[0][0] != DBNull.Value) // Nếu tìm thấy tài khoản
+                        if (dt.Rows.Count > 0 && dt.Rows[0][0] != DBNull.Value)
                         {
-                            string connStr = dt.Rows[0][0].ToString();
-                            DBConnection.ConnectionString = connStr;
+                            DBConnection.ConnectionString = dt.Rows[0]["ConnectionString"].ToString();
+                            UserSession.Id = int.Parse(dt.Rows[0]["MaNhanVien"].ToString());
+                            UserSession.Role = dt.Rows[0]["VaiTro"].ToString();
 
-                            int maNhanVien = int.Parse(dt.Rows[0][1].ToString());
-                            FormChinh form2 = new FormChinh(maNhanVien); // Truyền id vào FormChinh
+                            FormChinh form2 = new FormChinh(UserSession.Id);
                             form2.Show();
                             this.Hide();
                             conn.Close();
