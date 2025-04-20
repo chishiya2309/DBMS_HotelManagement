@@ -15,17 +15,19 @@ namespace BLL.DAO
     {
         private static BillDAO instance;
 
-        public double GetTotalBill(int maHoaDon, double phuthu, double giamgia)
+        public DataTable GetTotalBill(int maDatPhong, double phuthu, double giamgia)
         {
-            double totalBill = 0;
+            
+
+            DataTable dt = new DataTable();
 
             using (SqlConnection connection = DBConnection.GetConnection())
             {
-                string query = "SELECT dbo.fn_TotalBill(@MaHoaDon, @PhuThu, @GiamGia)";
+                string query = "SELECT * FROM dbo.fn_TotalBill(@MaDatPhong, @PhuThu, @GiamGia)";
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@MaHoaDon", maHoaDon);
+                    command.Parameters.AddWithValue("@MaDatPhong", maDatPhong);
                     command.Parameters.AddWithValue("@PhuThu", phuthu);
                     command.Parameters.AddWithValue("@GiamGia", giamgia);
 
@@ -33,12 +35,10 @@ namespace BLL.DAO
                     {
                         connection.Open();
 
-                        object result = command.ExecuteScalar();
-
-                        if (result != null && result != DBNull.Value)
-                        {
-                            totalBill = Convert.ToDouble(result);
-                        }
+                        SqlDataAdapter da = new SqlDataAdapter(command);
+                        da.Fill(dt);
+                        
+                       
                     }
                     catch (SqlException ex)
                     {
@@ -47,10 +47,8 @@ namespace BLL.DAO
                 }
             }
 
-            totalBill = (double)Math.Ceiling(totalBill / 1000) * 1000; // làm tròn phần nghìn
-
-            if (totalBill > 0) return totalBill;
-            else return 0;
+            return dt;
+            
         }
 
         public DataTable LoadBill()

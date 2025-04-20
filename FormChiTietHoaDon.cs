@@ -75,15 +75,15 @@ namespace QLKS
             int idBookRoom = int.Parse(dt.Rows[0]["MaHoSoDatPhong"].ToString());
             LoadFullUsedService(SearchUsedService(idBookRoom));
 
+            DataTable dt2 = BillDAO.Instance.GetTotalBill(idBookRoom, double.Parse(dt.Rows[0]["GiamGia"].ToString()), double.Parse(dt.Rows[0]["GiamGia"].ToString()));
+
             lbSurchange.Text = dt.Rows[0]["PhuThu"].ToString() + " VND";
             lbDiscount.Text = dt.Rows[0]["GiamGia"].ToString() + " %";
-            double TongtienPhong = double.Parse(dt.Rows[0]["TienPhong"].ToString()) * double.Parse(dt.Rows[0]["SoDem"].ToString()) + double.Parse(dt.Rows[0]["PhuThu"].ToString()) - (double.Parse(dt.Rows[0]["PhuThu"].ToString()));
+
+            double TongtienPhong = double.Parse(dt2.Rows[0]["TienThuePhong"].ToString());
             lbTotalPriceRoom.Text = TongtienPhong.ToString() + " VND";
-            double TongtienDichVu = 0;
-            foreach (DataGridViewRow row in dgvUsedService.Rows)
-            {
-                TongtienDichVu += double.Parse(row.Cells["dgvThanhTien"].Value.ToString()) * double.Parse(row.Cells["dgvSoLuong"].Value.ToString());
-            }
+            double TongtienDichVu = double.Parse(dt.Rows[0]["TienDichVu"].ToString());
+            
             lbServicePrice.Text = TongtienDichVu.ToString() + " VND";
             lbTotal.Text = dt.Rows[0]["ThanhTien"].ToString() + " VND";
 

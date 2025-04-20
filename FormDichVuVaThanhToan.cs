@@ -169,12 +169,22 @@ namespace QLKS
 
         public double LoadTotal()
         {
+            double totalBill = 0;
             if (dgvBookRoom.Rows.Count > 0)
             {
                 int idBookRoom = (int)dgvBookRoom.Rows[0].Cells["dgvHSDP"].Value;
-                return BillDAO.Instance.GetTotalBill(idBookRoom, double.Parse(txtSurchange.Text), double.Parse(txtDiscount.Text));
+                DataTable dt = BillDAO.Instance.GetTotalBill(idBookRoom, double.Parse(txtSurchange.Text), double.Parse(txtDiscount.Text));
+                object result = dt.Rows[0][2]; // Lấy giá trị từ cột đầu tiên của dòng đầu tiên
+
+                if (result != null && result != DBNull.Value)
+                {
+                    totalBill = Convert.ToDouble(result);
+                }
             }
-            return 0;
+            totalBill = (double)Math.Ceiling(totalBill / 1000) * 1000; // làm tròn phần nghìn
+
+            if (totalBill > 0) return totalBill;
+            else return 0;
         }
 
         private void txtDiscount_TextChanged(object sender, EventArgs e)
