@@ -250,122 +250,81 @@ namespace QLKS
             {
                 return;
             }
-
             string maLoaiPhong = cbRoomType.SelectedValue.ToString();
-            string query;
             string tenPhongHienTai = cbRoom.Text;
-
+            DataTable dt;
             // Nếu đang xem thông tin đặt phòng hiện có (btnBook không được kích hoạt)
             if (!btnBook.Enabled && !string.IsNullOrEmpty(txtIdBookRoom.Text))
             {
-                // Lấy tất cả phòng thuộc loại phòng đã chọn, bao gồm cả phòng đã đặt
-                query = @"
-                    SELECT p.MaPhong, p.TenPhong, p.MaLoaiPhong, lp.TenLoaiPhong, p.TrangThai
-                    FROM Phong p
-                    INNER JOIN LoaiPhong lp ON p.MaLoaiPhong = lp.MaLoaiPhong
-                    WHERE p.MaLoaiPhong = @maLoaiPhong";
+                dt = RoomDAO.Instance.GetAllRoomsByType(maLoaiPhong);
             }
             else
             {
-                // Chỉ lấy các phòng trống thuộc loại phòng đã chọn
-                query = @"
-                    SELECT p.MaPhong, p.TenPhong, p.MaLoaiPhong, lp.TenLoaiPhong, p.TrangThai
-                    FROM Phong p
-                    INNER JOIN LoaiPhong lp ON p.MaLoaiPhong = lp.MaLoaiPhong
-                    WHERE p.TrangThai = N'Trống' AND p.MaLoaiPhong = @maLoaiPhong";
+                dt = RoomDAO.Instance.GetAvailableRoomsByType(maLoaiPhong);
             }
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            // Lưu lại tên phòng hiện tại
+            string currentRoom = tenPhongHienTai;
+            cbRoom.DataSource = dt;
+            cbRoom.DisplayMember = "TenPhong";
+            cbRoom.ValueMember = "MaPhong";
+            cbRoom.Enabled = dt.Rows.Count > 0;
+            // Chỉ hiển thị thông báo khi không phải đang khởi tạo form
+            if (dt.Rows.Count == 0 && !isInitializing)
             {
-                try
+                MessageBox.Show("Không có phòng trống thuộc loại phòng này! Vui lòng chọn loại phòng khác.",
+                    "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            // Nếu đang xem thông tin đặt phòng, cố gắng chọn lại phòng hiện tại
+            else if (!btnBook.Enabled && !string.IsNullOrEmpty(currentRoom))
+            {
+                // Tìm và chọn phòng hiện tại trong danh sách
+                for (int i = 0; i < cbRoom.Items.Count; i++)
                 {
-                    conn.Open();
-                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    DataRowView drv = (DataRowView)cbRoom.Items[i];
+                    if (drv["TenPhong"].ToString() == currentRoom)
                     {
-                        cmd.Parameters.AddWithValue("@maLoaiPhong", maLoaiPhong);
-
-                        using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                        cbRoom.SelectedIndex = i;
+                        break;
+                    }
+                }
+                // Nếu không tìm thấy phòng hiện tại trong danh sách, nhưng đang xem thông tin đặt phòng
+                // thì vẫn hiển thị tên phòng hiện tại (có thể phòng đã được đặt)
+                if (cbRoom.SelectedIndex < 0 || cbRoom.Text != currentRoom)
+                {
+                    using (SqlConnection conn = new SqlConnection(connectionString))
+                    {
+                        conn.Open();
+                        //Đoạn truy vấn lấy lại phòng hiện tại (nếu không có trong danh sách) vẫn dùng truy vấn SQL trực tiếp vì đây là trường hợp đặc biệt
+                        //nó chỉ phục vụ cho một trường hợp rất cụ thể (lấy lại đúng 1 phòng theo tên/mã, không quan tâm trạng thái), nên thường được giữ lại ở code giao diện cho linh động, hoặc tái sử dụng ít.
+                        //đảm bảo giao diện luôn hiển thị đúng phòng đang thao tác, kể cả khi phòng đó không còn trong danh sách phòng trống hoặc danh sách phòng của loại phòng hiện tại.
+                        using (SqlCommand cmdGetRoom = new SqlCommand(
+                            "SELECT p.MaPhong, p.TenPhong, p.MaLoaiPhong, lp.TenLoaiPhong, p.TrangThai " +
+                            "FROM Phong p " +
+                            "INNER JOIN LoaiPhong lp ON p.MaLoaiPhong = lp.MaLoaiPhong " +
+                            "WHERE p.TenPhong = @TenPhong", conn))
                         {
-                            DataTable dt = new DataTable();
-                            adapter.Fill(dt);
-
-                            // Lưu lại tên phòng hiện tại
-                            string currentRoom = tenPhongHienTai;
-
-                            cbRoom.DataSource = dt;
-                            cbRoom.DisplayMember = "TenPhong";
-                            cbRoom.ValueMember = "MaPhong";
-
-                            // Enable/disable cbRoom based on available rooms
-                            cbRoom.Enabled = dt.Rows.Count > 0;
-
-                            // Chỉ hiển thị thông báo khi không phải đang khởi tạo form
-                            if (dt.Rows.Count == 0 && !isInitializing)
+                            cmdGetRoom.Parameters.AddWithValue("@TenPhong", currentRoom);
+                            using (SqlDataAdapter adapterRoom = new SqlDataAdapter(cmdGetRoom))
                             {
-                                MessageBox.Show("Không có phòng trống thuộc loại phòng này! Vui lòng chọn loại phòng khác.",
-                                    "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            }
-                            // Nếu đang xem thông tin đặt phòng, cố gắng chọn lại phòng hiện tại
-                            else if (!btnBook.Enabled && !string.IsNullOrEmpty(currentRoom))
-                            {
-                                // Tìm và chọn phòng hiện tại trong danh sách
-                                for (int i = 0; i < cbRoom.Items.Count; i++)
+                                DataTable dtRoom = new DataTable();
+                                adapterRoom.Fill(dtRoom);
+                                if (dtRoom.Rows.Count > 0)
                                 {
-                                    DataRowView drv = (DataRowView)cbRoom.Items[i];
-                                    if (drv["TenPhong"].ToString() == currentRoom)
+                                    dt.ImportRow(dtRoom.Rows[0]);
+                                    cbRoom.DataSource = dt;
+                                    for (int i = 0; i < cbRoom.Items.Count; i++)
                                     {
-                                        cbRoom.SelectedIndex = i;
-                                        break;
-                                    }
-                                }
-
-                                // Nếu không tìm thấy phòng hiện tại trong danh sách, nhưng đang xem thông tin đặt phòng
-                                // thì vẫn hiển thị tên phòng hiện tại (có thể phòng đã được đặt)
-                                if (cbRoom.SelectedIndex < 0 || cbRoom.Text != currentRoom)
-                                {
-                                    // Thêm phòng hiện tại vào DataTable
-                                    using (SqlCommand cmdGetRoom = new SqlCommand(
-                                        "SELECT p.MaPhong, p.TenPhong, p.MaLoaiPhong, lp.TenLoaiPhong, p.TrangThai " +
-                                        "FROM Phong p " +
-                                        "INNER JOIN LoaiPhong lp ON p.MaLoaiPhong = lp.MaLoaiPhong " +
-                                        "WHERE p.TenPhong = @TenPhong", conn))
-                                    {
-                                        cmdGetRoom.Parameters.AddWithValue("@TenPhong", currentRoom);
-                                        using (SqlDataAdapter adapterRoom = new SqlDataAdapter(cmdGetRoom))
+                                        DataRowView drv = (DataRowView)cbRoom.Items[i];
+                                        if (drv["TenPhong"].ToString() == currentRoom)
                                         {
-                                            DataTable dtRoom = new DataTable();
-                                            adapterRoom.Fill(dtRoom);
-
-                                            if (dtRoom.Rows.Count > 0)
-                                            {
-                                                // Thêm phòng hiện tại vào DataTable
-                                                dt.ImportRow(dtRoom.Rows[0]);
-
-                                                // Cập nhật lại DataSource
-                                                cbRoom.DataSource = dt;
-
-                                                // Chọn phòng hiện tại
-                                                for (int i = 0; i < cbRoom.Items.Count; i++)
-                                                {
-                                                    DataRowView drv = (DataRowView)cbRoom.Items[i];
-                                                    if (drv["TenPhong"].ToString() == currentRoom)
-                                                    {
-                                                        cbRoom.SelectedIndex = i;
-                                                        break;
-                                                    }
-                                                }
-                                            }
+                                            cbRoom.SelectedIndex = i;
+                                            break;
                                         }
                                     }
                                 }
                             }
                         }
                     }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Lỗi khi tải danh sách phòng: " + ex.Message,
-                        "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
