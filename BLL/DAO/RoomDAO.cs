@@ -61,7 +61,7 @@ namespace BLL.DAO
         public DataTable LoadAllEmptyRoom(int id)
         {
             string query = "sp_LoadAvailableRoom @id";
-            return DataProvider.Instance.ExecuteQuery(query, new object[] {  id });
+            return DataProvider.Instance.ExecuteQuery(query, new object[] { id });
         }
 
         public bool DeleteRoom(int id)
@@ -108,6 +108,18 @@ namespace BLL.DAO
         {
             string query = "USP_UpdateStatusRoom @idRoom";
             return DataProvider.Instance.ExecuteNonQuery(query, new object[] { idRoom }) > 0;
+        }
+
+        public DataTable GetAvailableRoomsByType(string maLoaiPhong)
+        {
+            string query = "sp_GetAvailableRooms @MaLoaiPhong";
+            return DataProvider.Instance.ExecuteQuery(query, new object[] { maLoaiPhong });
+        }
+
+        public DataTable GetAllRoomsByType(string maLoaiPhong)
+        {
+            string query = "sp_GetAllRoomsByType @MaLoaiPhong";
+            return DataProvider.Instance.ExecuteQuery(query, new object[] { maLoaiPhong });
         }
         #endregion
 
