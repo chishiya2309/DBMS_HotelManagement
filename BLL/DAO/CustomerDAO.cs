@@ -84,11 +84,11 @@ namespace BLL.DAO
                     conn.Open();
                     if (cmd.ExecuteNonQuery() > 0)
                     {
-                        MessageBox.Show("Cập nhật thông tin cơ bản thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Cập nhật thông tin khách hàng thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
-                        MessageBox.Show("Cập nhật thông tin thất bại");
+                        MessageBox.Show("Cập nhật thông tin khách hàng thất bại");
                     }
                 }
                 catch (SqlException ex)
@@ -98,17 +98,27 @@ namespace BLL.DAO
             }
         }
 
-
-        public DataTable LoadFullCustomer()
+        public bool DeleteCustomer(int maKhachHang)
         {
-            string query = "sp_LoadFullCustomer";
-            return DataProvider.Instance.ExecuteQuery(query);
-        }
-
-        public bool DeleteCustomer(int idCustomer)
-        {
-            string query = "sp_DeteleCustomer @id";
-            return DataProvider.Instance.ExecuteNonQuery(query, new object[] { idCustomer }) > 0;
+            using (SqlConnection conn = DBConnection.GetConnection())
+            {
+                try
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand("sp_DeleteCustomer", conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@MaKhachHang", maKhachHang);
+                        cmd.ExecuteNonQuery();
+                        return true;
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show("Lỗi khi xóa khách hàng: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+            }
         }
 
 
@@ -145,13 +155,27 @@ namespace BLL.DAO
             }
             return dt;
         }
-        public int GetIDCustomerFromBookRoom(int idBookRoom)
+
+        public DataTable GetAllCustomers()
         {
-            string query = "sp_GetIdCustomerFromBookRoom @idBookRoom";
-            return (int)DataProvider.Instance.ExecuteScalar(query, new object[] { idBookRoom });
+            DataTable dt = new DataTable();
+            using (SqlConnection conn = DBConnection.GetConnection())
+            {
+                try
+                {
+                    conn.Open();
+                    string query = "SELECT * FROM KhachHang";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    dt.Load(reader);
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show("Lỗi khi lấy danh sách khách hàng: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            return dt;
         }
-
-
 
         public static CustomerDAO Instance
         {

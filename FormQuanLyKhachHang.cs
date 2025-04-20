@@ -18,7 +18,6 @@ namespace QLKS
 {
     public partial class FormQuanLyKhachHang: Form
     {
-        private string connectionString = "Data Source=(local)\\SQLExpress;Initial Catalog=Hotel2025;Integrated Security=True";
         public FormQuanLyKhachHang()
         {
             InitializeComponent();
@@ -27,31 +26,17 @@ namespace QLKS
 
         private void LoadCusData()
         {
-            string query = @"SELECT * FROM KhachHang";
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            try
             {
-                try
-                {
-                    conn.Open();
-                    using (SqlDataAdapter adapter = new SqlDataAdapter(query, conn))
-                    {
-                        DataTable dt = new DataTable();
-                        adapter.Fill(dt);
-                        dgvCustomer.DataSource = dt; // Gán dữ liệu vào DataGridView
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Lỗi lấy dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                DataTable dt = CustomerDAO.Instance.GetAllCustomers();
+                dgvCustomer.DataSource = dt;
             }
-
-            // Refresh the DataGridView
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi lấy dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             dgvCustomer.Refresh();
         }
-
-        
 
         private void guna2CircleButton5_Click(object sender, EventArgs e)
         {
@@ -67,9 +52,7 @@ namespace QLKS
         {
 
         }
-
         
-
         private void dgvCustomer_SelectionChanged(object sender, EventArgs e)
         {
             if (dgvCustomer.SelectedRows.Count > 0)
@@ -105,17 +88,17 @@ namespace QLKS
 
         private void UpdateCustomer()
         {
-                try
+            try
+            {
+                // Lấy mã khách hàng của khách hàng được chọn
+                if (dgvCustomer.SelectedRows.Count == 0)
                 {
-                    // Lấy mã khách hàng của khách hàng được chọn
-                    if (dgvCustomer.SelectedRows.Count == 0)
-                    {
-                        MessageBox.Show("Vui lòng chọn khách hàng cần cập nhật", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
-                    }
+                    MessageBox.Show("Vui lòng chọn khách hàng cần cập nhật", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
 
-                    int maKhachHang = Convert.ToInt32(dgvCustomer.SelectedRows[0].Cells["MaKhachHang"].Value);
-                    CustomerDAO.Instance.UpdateCustomer(maKhachHang, txtTenKhachHang.Text.Trim(), cbSex.Text, dtpDoB.Value, txtCCCD.Text.Trim(), txtDiaChi.Text.Trim(),
+                int maKhachHang = Convert.ToInt32(dgvCustomer.SelectedRows[0].Cells["MaKhachHang"].Value);
+                CustomerDAO.Instance.UpdateCustomer(maKhachHang, txtTenKhachHang.Text.Trim(), cbSex.Text, dtpDoB.Value, txtCCCD.Text.Trim(), txtDiaChi.Text.Trim(),
                         txtPhone.Text.Trim(), txtEmail.Text.Trim(), cbType.Text, cmbTrangThai.Text);
 
                 // Tải lại dữ liệu
@@ -125,7 +108,7 @@ namespace QLKS
                 {
                     MessageBox.Show("Lỗi cập nhật: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-            }
+        }
         
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -144,8 +127,6 @@ namespace QLKS
             new AddCustomer().ShowDialog();
             LoadCusData();
         }
-
-       
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
@@ -176,24 +157,7 @@ namespace QLKS
 
         public bool DeleteCus(int maKhachHang)
         {
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                try
-                {
-                    conn.Open();
-                    using (SqlCommand cmd = new SqlCommand("sp_DeleteCustomer", conn))
-                    {
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@MaKhachHang", maKhachHang);
-                        cmd.ExecuteNonQuery();
-                        return true;
-                    }
-                }
-                catch (SqlException)
-                {
-                    return false;
-                }
-            }
+            return CustomerDAO.Instance.DeleteCustomer(maKhachHang);
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -208,8 +172,6 @@ namespace QLKS
             }
             dgvCustomer.DataSource = CustomerDAO.Instance.Search(searchString, searchMode);
         }
-
-        
 
         private void FormQuanLyKhachHang_Load(object sender, EventArgs e)
         {
