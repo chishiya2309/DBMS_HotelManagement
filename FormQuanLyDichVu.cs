@@ -133,11 +133,6 @@ namespace QLKS
             {
                 try
                 {
-                    //int idStaff = Convert.ToInt32(dgvService.SelectedRows[0].Cells["dgvIdservice"].Value);
-                    //int index = cbType.SelectedIndex;
-                    //bool check1 = ServiceDAO.Instance.UpdateService(int.Parse(txtId.Text),txtName.Text, (int)((DataTable)cbType.DataSource).Rows[index]["id"],
-                    //double.Parse(txtPrice.Text),cbStatus.Text);
-
                     ServiceDAO.Instance.UpdateDichVu(
                         txtId.Text, txtName.Text, cbType.Text, cbStatus.Text, double.Parse(txtPrice.Text),txtDescription.Text);
 
@@ -155,12 +150,16 @@ namespace QLKS
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
+            if (UserSession.Role == "Lễ tân")
+            {
+                MessageBox.Show("Lễ tân không có quyền sửa dịch vụ!", "Phân quyền", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             DialogResult result = MessageBox.Show("Bạn có muốn cập nhật dịch vụ này không?", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
             if (result == DialogResult.OK)
             {
 
                 UpdateService();
-
             }
         }
 

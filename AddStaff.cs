@@ -43,7 +43,7 @@ namespace QLKS
         private void InsertStaff()
         {
             bool isFill = FormNhanVien.CheckFillInText(new string[] { txtName.Text, txtAddress.Text, txtEmail.Text,
-                txtIDNum.Text, txtPhone.Text, txtUser.Text, cbSex.Text });
+        txtIDNum.Text, txtPhone.Text, txtUser.Text, cbSex.Text });
             if (!isFill)
             {
                 MessageBox.Show("Không được để trống", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -59,7 +59,6 @@ namespace QLKS
 
                         // Bắt đầu transaction
                         //SqlTransaction transaction = connection.BeginTransaction();
-
                         try
                         {
 
@@ -90,11 +89,8 @@ namespace QLKS
                             if (OldStaffId != NewstaffId)
                             {
                                 InsertAccount(NewstaffId, txtUser.Text.Trim(), "123456");
+                                ClearForm();
                             }
-                            
-
-                            
-                            ClearForm();
                         }
                         catch (SqlException ex)
                         {
@@ -121,8 +117,6 @@ namespace QLKS
             {
                 InsertStaff();
             }
-
-
         }
 
         private void ClearForm()
