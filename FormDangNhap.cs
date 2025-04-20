@@ -49,7 +49,7 @@ namespace QLKS
             }
 
             // SỬA LẠI DÒNG NÀY
-            string query = "SELECT * FROM dbo.DangNhap(@username, @password)";
+            string query = "sp_DangNhap";
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -58,6 +58,8 @@ namespace QLKS
                     conn.Open();
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
+                        cmd.CommandType = CommandType.StoredProcedure;
+
                         cmd.Parameters.AddWithValue("@username", txtTaiKhoan.Text.Trim());
                         cmd.Parameters.AddWithValue("@password", txtMatKhau.Text.Trim());
 
@@ -66,8 +68,8 @@ namespace QLKS
                         adapter.Fill(dt);
                         if (dt.Rows.Count > 0 && dt.Rows[0][0] != DBNull.Value)
                         {
-                            DBConnection.ConnectionString = dt.Rows[0]["ConnectionString"].ToString();
-                            UserSession.Id = int.Parse(dt.Rows[0]["MaNhanVien"].ToString());
+                            DBConnection.ConnectionString = dt.Rows[0]["connectionString"].ToString();
+                            UserSession.Id = int.Parse(dt.Rows[0]["maNhanVien"].ToString());
                             UserSession.Role = dt.Rows[0]["VaiTro"].ToString();
 
                             FormChinh form2 = new FormChinh(UserSession.Id);
