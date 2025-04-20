@@ -121,6 +121,12 @@ namespace BLL.DAO
             return DataProvider.Instance.ExecuteQuery("sp_GetBookRoomList");
         }
 
+        public DataTable GetParticipantsByBookingId(int maHoSoDatPhong)
+        {
+            string query = "sp_GetParticipantsByBookingId @MaHoSoDatPhong";
+            return DataProvider.Instance.ExecuteQuery(query, new object[] { maHoSoDatPhong });
+        }
+
         public static BookRoomDAO Instance
         {
             get { if (instance == null) instance = new BookRoomDAO(); return instance; }

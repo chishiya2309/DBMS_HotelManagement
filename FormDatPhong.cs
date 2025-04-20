@@ -378,58 +378,34 @@ namespace QLKS
         // Thêm phương thức mới để tải danh sách thành viên tham gia đặt phòng
         private void LoadParticipantsForBooking(int maHoSoDatPhong)
         {
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            try
             {
-                try
+                // Lấy danh sách thành viên tham gia từ cơ sở dữ liệu
+                DataTable dt = BookRoomDAO.Instance.GetParticipantsByBookingId(maHoSoDatPhong);
+                // Tạm thởi tắt sự kiện CellValueChanged để tránh xung đột
+                guna2DataGridView1.CellValueChanged -= guna2DataGridView1_CellValueChanged;
+
+                // Xóa dữ liệu hiện tại và tạo dữ liệu mới
+                guna2DataGridView1.Rows.Clear();
+
+                // Thêm dữ liệu từ DataTable vào DataGridView theo cách thủ công
+                foreach (DataRow dataRow in dt.Rows)
                 {
-                    conn.Open();
-                    string query = @"
-                    SELECT 
-                        kh.MaKhachHang AS dgvMaKH, 
-                        kh.HoTen AS dgvTenKhachHang, 
-                        CASE 
-                            WHEN kh.MaKhachHang = hs.MaKhachHang THEN 1 
-                            ELSE 0 
-                        END AS dgvDaiDien
-                    FROM ThamGia tg
-                    JOIN KhachHang kh ON kh.MaKhachHang = tg.MaKhachHang
-                    JOIN HoSoDatPhong hs ON hs.MaHoSoDatPhong = tg.MaHoSoDatPhong
-                    WHERE tg.MaHoSoDatPhong = @MaHoSoDatPhong";
+                    int rowIndex = guna2DataGridView1.Rows.Add();
+                    DataGridViewRow row = guna2DataGridView1.Rows[rowIndex];
 
-                    using (SqlCommand cmd = new SqlCommand(query, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@MaHoSoDatPhong", maHoSoDatPhong);
-
-                        SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                        DataTable dt = new DataTable();
-                        adapter.Fill(dt);
-
-                        // Tạm thởi tắt sự kiện CellValueChanged để tránh xung đột
-                        guna2DataGridView1.CellValueChanged -= guna2DataGridView1_CellValueChanged;
-
-                        // Xóa dữ liệu hiện tại và tạo dữ liệu mới
-                        guna2DataGridView1.Rows.Clear();
-
-                        // Thêm dữ liệu từ DataTable vào DataGridView theo cách thủ công
-                        foreach (DataRow dataRow in dt.Rows)
-                        {
-                            int rowIndex = guna2DataGridView1.Rows.Add();
-                            DataGridViewRow row = guna2DataGridView1.Rows[rowIndex];
-
-                            row.Cells["dgvMaKH"].Value = dataRow["dgvMaKH"];
-                            row.Cells["dgvTenKhachHang"].Value = dataRow["dgvTenKhachHang"];
-                            row.Cells["dgvDaiDien"].Value = Convert.ToBoolean(dataRow["dgvDaiDien"]);
-                        }
-
-                        // Đăng ký lại sự kiện
-                        guna2DataGridView1.CellValueChanged += guna2DataGridView1_CellValueChanged;
-                    }
+                    row.Cells["dgvMaKH"].Value = dataRow["dgvMaKH"];
+                    row.Cells["dgvTenKhachHang"].Value = dataRow["dgvTenKhachHang"];
+                    row.Cells["dgvDaiDien"].Value = Convert.ToBoolean(dataRow["dgvDaiDien"]);
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Lỗi khi tải danh sách khách hàng tham gia: " + ex.Message,
-                        "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+
+                // Đăng ký lại sự kiện
+                guna2DataGridView1.CellValueChanged += guna2DataGridView1_CellValueChanged;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi tải danh sách khách hàng tham gia: " + ex.Message,
+                    "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
