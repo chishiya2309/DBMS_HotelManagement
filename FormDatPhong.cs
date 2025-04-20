@@ -21,6 +21,7 @@ namespace QLKS
         private string connectionString = "Data Source=(local)\\SQLExpress;Initial Catalog=Hotel2025;Integrated Security=True";
         private bool isInitializing = true;
         private bool isLoadingFromGrid = false;
+        private bool isSelectingFromGrid = false;
         public FormDatPhong()
         {
             InitializeComponent();
@@ -274,63 +275,45 @@ namespace QLKS
                 MessageBox.Show("Không có phòng trống thuộc loại phòng này! Vui lòng chọn loại phòng khác.",
                     "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            // Nếu đang xem thông tin đặt phòng, cố gắng chọn lại phòng hiện tại
-            else if (!btnBook.Enabled && !string.IsNullOrEmpty(currentRoom))
+            if (!btnBook.Enabled)
             {
-                // Tìm và chọn phòng hiện tại trong danh sách
-                for (int i = 0; i < cbRoom.Items.Count; i++)
+                if (isSelectingFromGrid)
                 {
-                    DataRowView drv = (DataRowView)cbRoom.Items[i];
-                    if (drv["TenPhong"].ToString() == currentRoom)
+                    // Chọn lại tên phòng hiện tại nếu có trong danh sách
+                    for (int i = 0; i < cbRoom.Items.Count; i++)
                     {
-                        cbRoom.SelectedIndex = i;
-                        break;
-                    }
-                }
-                // Nếu không tìm thấy phòng hiện tại trong danh sách, nhưng đang xem thông tin đặt phòng
-                // thì vẫn hiển thị tên phòng hiện tại (có thể phòng đã được đặt)
-                if (cbRoom.SelectedIndex < 0 || cbRoom.Text != currentRoom)
-                {
-                    using (SqlConnection conn = new SqlConnection(connectionString))
-                    {
-                        conn.Open();
-                        //Đoạn truy vấn lấy lại phòng hiện tại (nếu không có trong danh sách) vẫn dùng truy vấn SQL trực tiếp vì đây là trường hợp đặc biệt
-                        //nó chỉ phục vụ cho một trường hợp rất cụ thể (lấy lại đúng 1 phòng theo tên/mã, không quan tâm trạng thái), nên thường được giữ lại ở code giao diện cho linh động, hoặc tái sử dụng ít.
-                        //đảm bảo giao diện luôn hiển thị đúng phòng đang thao tác, kể cả khi phòng đó không còn trong danh sách phòng trống hoặc danh sách phòng của loại phòng hiện tại.
-                        using (SqlCommand cmdGetRoom = new SqlCommand(
-                            "SELECT p.MaPhong, p.TenPhong, p.MaLoaiPhong, lp.TenLoaiPhong, p.TrangThai " +
-                            "FROM Phong p " +
-                            "INNER JOIN LoaiPhong lp ON p.MaLoaiPhong = lp.MaLoaiPhong " +
-                            "WHERE p.TenPhong = @TenPhong", conn))
+                        DataRowView drv = (DataRowView)cbRoom.Items[i];
+                        if (drv["TenPhong"].ToString() == currentRoom)
                         {
-                            cmdGetRoom.Parameters.AddWithValue("@TenPhong", currentRoom);
-                            using (SqlDataAdapter adapterRoom = new SqlDataAdapter(cmdGetRoom))
-                            {
-                                DataTable dtRoom = new DataTable();
-                                adapterRoom.Fill(dtRoom);
-                                if (dtRoom.Rows.Count > 0)
-                                {
-                                    dt.ImportRow(dtRoom.Rows[0]);
-                                    cbRoom.DataSource = dt;
-                                    for (int i = 0; i < cbRoom.Items.Count; i++)
-                                    {
-                                        DataRowView drv = (DataRowView)cbRoom.Items[i];
-                                        if (drv["TenPhong"].ToString() == currentRoom)
-                                        {
-                                            cbRoom.SelectedIndex = i;
-                                            break;
-                                        }
-                                    }
-                                }
-                            }
+                            cbRoom.SelectedIndex = i;
+                            break;
                         }
                     }
+                    // Nếu không tìm thấy thì clear
+                    if (cbRoom.SelectedIndex < 0 || cbRoom.Text != currentRoom)
+                    {
+                        cbRoom.SelectedIndex = -1;
+                        cbRoom.Text = "";
+                    }
+                }
+                else
+                {
+                    // Đổi loại phòng, phải clear selection
+                    cbRoom.SelectedIndex = -1;
+                    cbRoom.Text = "";
                 }
             }
         }
 
         private void cbRoomType_SelectedIndexChanged(object sender, EventArgs e)
         {
+            isSelectingFromGrid = false;
+            LoadAvailableRooms();
+        }
+
+        private void dgvRoom_SelectionChanged(object sender, EventArgs e)
+        {
+            isSelectingFromGrid = true;
             LoadAvailableRooms();
         }
 
@@ -375,12 +358,12 @@ namespace QLKS
             btnBook.Enabled = false;
         }
 
-        // Thêm phương thức mới để tải danh sách thành viên tham gia đặt phòng
+        // Tải danh sách thành viên tham gia đặt phòng
         private void LoadParticipantsForBooking(int maHoSoDatPhong)
         {
             try
             {
-                // Lấy danh sách thành viên tham gia từ cơ sở dữ liệu
+                // Sử dụng DAO để lấy danh sách khách hàng tham gia
                 DataTable dt = BookRoomDAO.Instance.GetParticipantsByBookingId(maHoSoDatPhong);
                 // Tạm thởi tắt sự kiện CellValueChanged để tránh xung đột
                 guna2DataGridView1.CellValueChanged -= guna2DataGridView1_CellValueChanged;
@@ -428,14 +411,6 @@ namespace QLKS
                 dgvBookRoom.Rows[0].Selected = true;
                 ChangeText(dgvBookRoom.Rows[0]);
             }
-        }
-
-        public void LoadDate()
-        {
-
-            dtpCheckIn.Value = DateTime.Now;
-            dtpCheckOut.Value = DateTime.Now.AddDays(1);
-            txtDays.Text = "1";
         }
 
         private bool isUpdatingDates = false;
@@ -488,33 +463,6 @@ namespace QLKS
                 // Cập nhật số đêm
                 int days = (dtpCheckOut.Value.Date - dtpCheckIn.Value.Date).Days;
                 txtDays.Text = days.ToString();
-            }
-            finally
-            {
-                isUpdatingDates = false;
-            }
-        }
-
-        // Thêm phương thức mới để cập nhật ngày check-out dựa trên số đêm
-        private void txtDays_TextChanged(object sender, EventArgs e)
-        {
-            if (isLoadingFromGrid || isUpdatingDates) return;
-
-            isUpdatingDates = true;
-            try
-            {
-                // Kiểm tra xem giá trị nhập vào có phải là số nguyên hợp lệ không
-                if (int.TryParse(txtDays.Text, out int days) && days > 0)
-                {
-                    // Cập nhật ngày check-out dựa trên số đêm
-                    dtpCheckOut.Value = dtpCheckIn.Value.AddDays(days);
-                }
-                else if (!string.IsNullOrEmpty(txtDays.Text))
-                {
-                    // Nếu giá trị không hợp lệ, đặt lại thành 1
-                    txtDays.Text = "1";
-                    MessageBox.Show("Số đêm phải là số nguyên dương.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
             }
             finally
             {
@@ -960,50 +908,19 @@ namespace QLKS
 
             if (result == DialogResult.Yes)
             {
-                // Thực hiện check-in
-                using (SqlConnection conn = new SqlConnection(connectionString))
+                // Gọi DAO thực hiện check-in
+                bool success = BookRoomDAO.Instance.CheckInBooking(maHoSoDatPhong, DateTime.Now);
+                if (success)
                 {
-                    try
-                    {
-                        conn.Open();
-
-                        // Cập nhật trạng thái và thởi gian check-in thực tế
-                        string query = @"
-                            UPDATE HoSoDatPhong 
-                            SET TrangThaiDatPhong = N'Đã xác nhận', 
-                                ThoiGianCheckinThucTe = @ThoiGianCheckinThucTe
-                            WHERE MaHoSoDatPhong = @MaHoSoDatPhong";
-
-                        using (SqlCommand cmd = new SqlCommand(query, conn))
-                        {
-                            cmd.Parameters.AddWithValue("@MaHoSoDatPhong", maHoSoDatPhong);
-                            cmd.Parameters.AddWithValue("@ThoiGianCheckinThucTe", DateTime.Now);
-
-                            int rowsAffected = cmd.ExecuteNonQuery();
-
-                            if (rowsAffected > 0)
-                            {
-                                MessageBox.Show("Check-in thành công!\nThời gian check-in: " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"),
-                                    "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                                // Cập nhật trạng thái hiển thị
-                                cbStatus.Text = "Đã xác nhận";
-
-                                // Tải lại dữ liệu
-                                LoadData();
-                            }
-                            else
-                            {
-                                MessageBox.Show("Không thể check-in. Vui lòng kiểm tra lại thông tin!",
-                                    "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Lỗi khi thực hiện check-in: " + ex.Message,
-                            "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    MessageBox.Show("Check-in thành công!\nThời gian check-in: " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"),
+                        "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    cbStatus.Text = "Đã xác nhận";
+                    LoadData();
+                }
+                else
+                {
+                    MessageBox.Show("Không thể check-in. Vui lòng kiểm tra lại thông tin!",
+                        "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -1024,60 +941,27 @@ namespace QLKS
                     {
                         int maHoSoDatPhong = Convert.ToInt32(dgvBookRoom.SelectedRows[0].Cells["MaHoSoDatPhong"].Value);
 
-                        // Tải danh sách khách hàng tham gia đặt phòng này
-                        using (SqlConnection conn = new SqlConnection(connectionString))
+                        // Sử dụng DAO để lấy danh sách khách hàng tham gia
+                        DataTable dt = BookRoomDAO.Instance.GetParticipantsByBookingId(maHoSoDatPhong);
+                        // Tạm thởi tắt sự kiện CellValueChanged để tránh xung đột
+                        guna2DataGridView1.CellValueChanged -= guna2DataGridView1_CellValueChanged;
+
+                        // Xóa dữ liệu hiện tại và tạo dữ liệu mới
+                        guna2DataGridView1.Rows.Clear();
+
+                        // Thêm dữ liệu từ DataTable vào DataGridView theo cách thủ công
+                        foreach (DataRow dataRow in dt.Rows)
                         {
-                            try
-                            {
-                                conn.Open();
-                                string query = @"
-                                SELECT 
-                                    kh.MaKhachHang AS dgvMaKH, 
-                                    kh.HoTen AS dgvTenKhachHang, 
-                                    CASE 
-                                        WHEN kh.MaKhachHang = hs.MaKhachHang THEN 1 
-                                        ELSE 0 
-                                    END AS dgvDaiDien
-                                FROM ThamGia tg
-                                JOIN KhachHang kh ON kh.MaKhachHang = tg.MaKhachHang
-                                JOIN HoSoDatPhong hs ON hs.MaHoSoDatPhong = tg.MaHoSoDatPhong
-                                WHERE tg.MaHoSoDatPhong = @MaHoSoDatPhong";
+                            int rowIndex = guna2DataGridView1.Rows.Add();
+                            DataGridViewRow row = guna2DataGridView1.Rows[rowIndex];
 
-                                using (SqlCommand cmd = new SqlCommand(query, conn))
-                                {
-                                    cmd.Parameters.AddWithValue("@MaHoSoDatPhong", maHoSoDatPhong);
-
-                                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                                    DataTable dt = new DataTable();
-                                    adapter.Fill(dt);
-
-                                    // Tạm thởi tắt sự kiện CellValueChanged để tránh xung đột
-                                    guna2DataGridView1.CellValueChanged -= guna2DataGridView1_CellValueChanged;
-
-                                    // Xóa dữ liệu hiện tại và tạo dữ liệu mới
-                                    guna2DataGridView1.Rows.Clear();
-
-                                    // Thêm dữ liệu từ DataTable vào DataGridView theo cách thủ công
-                                    foreach (DataRow dataRow in dt.Rows)
-                                    {
-                                        int rowIndex = guna2DataGridView1.Rows.Add();
-                                        DataGridViewRow row = guna2DataGridView1.Rows[rowIndex];
-
-                                        row.Cells["dgvMaKH"].Value = dataRow["dgvMaKH"];
-                                        row.Cells["dgvTenKhachHang"].Value = dataRow["dgvTenKhachHang"];
-                                        row.Cells["dgvDaiDien"].Value = Convert.ToBoolean(dataRow["dgvDaiDien"]);
-                                    }
-
-                                    // Đăng ký lại sự kiện
-                                    guna2DataGridView1.CellValueChanged += guna2DataGridView1_CellValueChanged;
-                                }
-                            }
-                            catch (Exception ex)
-                            {
-                                MessageBox.Show("Lỗi khi tải danh sách khách hàng tham gia: " + ex.Message,
-                                    "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
+                            row.Cells["dgvMaKH"].Value = dataRow["dgvMaKH"];
+                            row.Cells["dgvTenKhachHang"].Value = dataRow["dgvTenKhachHang"];
+                            row.Cells["dgvDaiDien"].Value = Convert.ToBoolean(dataRow["dgvDaiDien"]);
                         }
+
+                        // Đăng ký lại sự kiện
+                        guna2DataGridView1.CellValueChanged += guna2DataGridView1_CellValueChanged;
                     }
                 }
             }
