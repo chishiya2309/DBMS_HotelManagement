@@ -74,175 +74,172 @@ namespace QLKS
             }
         }
 
+        private bool ValidateBookingInputs(out int maKhachHangDaiDien, out List<int> danhSachThanhVien)
+        {
+            maKhachHangDaiDien = 0;
+            danhSachThanhVien = new List<int>();
+            if (string.IsNullOrEmpty(txtCustomerName.Text) || cbRoom.SelectedIndex < 0 || cbStatus.SelectedIndex < 0)
+            {
+                MessageBox.Show("Vui lòng điền đầy đủ thông tin bắt buộc!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            bool hasRepresentative = false;
+            foreach (DataGridViewRow row in guna2DataGridView1.Rows)
+            {
+                if (row.Cells["dgvMaKH"].Value != null)
+                {
+                    int maKH = Convert.ToInt32(row.Cells["dgvMaKH"].Value);
+                    danhSachThanhVien.Add(maKH);
+                    if (row.Cells["dgvDaiDien"].Value != null && Convert.ToBoolean(row.Cells["dgvDaiDien"].Value))
+                    {
+                        hasRepresentative = true;
+                        maKhachHangDaiDien = maKH;
+                    }
+                }
+            }
+            if (!hasRepresentative)
+            {
+                MessageBox.Show("Vui lòng chọn khách hàng đại diện!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            if (danhSachThanhVien.Count == 0)
+            {
+                MessageBox.Show("Vui lòng thêm ít nhất một khách hàng tham gia!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            return true;
+        }
+
+        private bool ValidateRoomCapacity(int maPhong, int soThanhVien)
+        {
+            string maLoaiPhong = ((DataTable)cbRoom.DataSource).Rows[cbRoom.SelectedIndex]["MaLoaiPhong"].ToString();
+            var roomType = BLL.DAO.RoomTypeDAO.Instance.GetRoomTypeById(maLoaiPhong);
+            if (roomType == null)
+            {
+                MessageBox.Show("Không tìm thấy thông tin loại phòng!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            int tongSucChua = roomType.SucChua + (roomType.KhaNangKeThemGiuong ? 1 : 0);
+            if (soThanhVien > tongSucChua)
+            {
+                MessageBox.Show($"Số lượng thành viên vượt quá sức chứa cho phép của loại phòng này! (Tối đa: {tongSucChua})", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            return true;
+        }
+
+        private int InsertBooking(SqlConnection conn, SqlTransaction transaction, int maPhong, int maKhachHangDaiDien, string soTheTinDung, string ghiChu, int soDem, decimal tienDatCoc, string trangThaiDatPhong, DateTime thoiGianCheckinDuKien, DateTime thoiGianCheckoutDuKien)
+        {
+            using (SqlCommand cmd = new SqlCommand("sp_ThemHoSoDatPhong", conn, transaction))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@MaPhong", maPhong);
+                cmd.Parameters.AddWithValue("@MaKhachHang", maKhachHangDaiDien);
+                cmd.Parameters.AddWithValue("@SoTheTinDung", soTheTinDung);
+                cmd.Parameters.AddWithValue("@GhiChu", ghiChu);
+                cmd.Parameters.AddWithValue("@SoDem", soDem);
+                cmd.Parameters.AddWithValue("@TienDatCoc", tienDatCoc);
+                cmd.Parameters.AddWithValue("@TrangThaiDatPhong", trangThaiDatPhong);
+                cmd.Parameters.AddWithValue("@ThoiGianCheckinDuKien", thoiGianCheckinDuKien);
+                cmd.Parameters.AddWithValue("@ThoiGianCheckoutDuKien", thoiGianCheckoutDuKien);
+                cmd.ExecuteNonQuery();
+            }
+            using (SqlCommand cmdGetId = new SqlCommand("SELECT IDENT_CURRENT('HoSoDatPhong')", conn, transaction))
+            {
+                object queryResult = cmdGetId.ExecuteScalar();
+                int maHoSoDatPhong = Convert.ToInt32(queryResult);
+                if (maHoSoDatPhong == 0)
+                    throw new Exception("Không thể lấy mã hồ sơ đặt phòng!");
+                return maHoSoDatPhong;
+            }
+        }
+
+        private void InsertParticipants(SqlConnection conn, SqlTransaction transaction, int maHoSoDatPhong, List<int> danhSachThanhVien)
+        {
+            foreach (int maKH in danhSachThanhVien)
+            {
+                using (SqlCommand cmdInsert = new SqlCommand(
+                    "INSERT INTO ThamGia (MaKhachHang, MaHoSoDatPhong) VALUES (@MaKhachHang, @MaHoSoDatPhong)",
+                    conn, transaction))
+                {
+                    cmdInsert.Parameters.AddWithValue("@MaKhachHang", maKH);
+                    cmdInsert.Parameters.AddWithValue("@MaHoSoDatPhong", maHoSoDatPhong);
+                    cmdInsert.ExecuteNonQuery();
+                }
+            }
+        }
+
+        private void SelectNewBookingRow(int maHoSoDatPhong)
+        {
+            foreach (DataGridViewRow row in dgvBookRoom.Rows)
+            {
+                if (row.Cells["MaHoSoDatPhong"].Value.ToString() == maHoSoDatPhong.ToString())
+                {
+                    dgvBookRoom.ClearSelection();
+                    row.Selected = true;
+                    ChangeText(row);
+                    LoadParticipantsForBooking(maHoSoDatPhong);
+                    break;
+                }
+            }
+        }
+
         private void btnBook_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Bạn có muốn đặt phòng không?", "Thông báo",
                 MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+            if (result != DialogResult.OK) return;
 
-            if (result == DialogResult.OK)
+            int maKhachHangDaiDien;
+            List<int> danhSachThanhVien;
+
+            //Kiểm tra danh sách thành viên đã được chọn chưa
+            if (!ValidateBookingInputs(out maKhachHangDaiDien, out danhSachThanhVien)) return;
+
+            int maPhong = Convert.ToInt32(((DataTable)cbRoom.DataSource).Rows[cbRoom.SelectedIndex]["MaPhong"]);
+            int soDem;
+            if (!int.TryParse(txtDays.Text, out soDem) || soDem <= 0)
             {
-                // Kiểm tra các trường bắt buộc
-                if (string.IsNullOrEmpty(txtCustomerName.Text) ||
-                    cbRoom.SelectedIndex < 0 ||
-                    cbStatus.SelectedIndex < 0)
-                {
-                    MessageBox.Show("Vui lòng điền đầy đủ thông tin bắt buộc!", "Lỗi",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+                MessageBox.Show("Số đêm phải là số nguyên dương!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            decimal tienDatCoc;
+            if (!decimal.TryParse(txtDeposit.Text, out tienDatCoc) || tienDatCoc < 0)
+            {
+                MessageBox.Show("Tiền đặt cọc không hợp lệ!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            string soTheTinDung = txtCreditCard.Text;
+            string ghiChu = txtNotes.Text;
+            string trangThaiDatPhong = cbStatus.Text;
+            DateTime thoiGianCheckinDuKien = dtpCheckIn.Value;
+            DateTime thoiGianCheckoutDuKien = dtpCheckOut.Value;
 
-                // Kiểm tra xem có người đại diện không
-                bool hasRepresentative = false;
-                int maKhachHangDaiDien = 0;
-                List<int> danhSachThanhVien = new List<int>();
+            //Kiểm tra sức chứa của loại phòng có đáp ứng được số lượng thành viên không
+            if (!ValidateRoomCapacity(maPhong, danhSachThanhVien.Count)) return;
 
-                foreach (DataGridViewRow row in guna2DataGridView1.Rows)
-                {
-                    if (row.Cells["dgvMaKH"].Value != null)
-                    {
-                        int maKH = Convert.ToInt32(row.Cells["dgvMaKH"].Value);
-                        danhSachThanhVien.Add(maKH);
-
-                        if (row.Cells["dgvDaiDien"].Value != null && Convert.ToBoolean(row.Cells["dgvDaiDien"].Value))
-                        {
-                            hasRepresentative = true;
-                            maKhachHangDaiDien = maKH;
-                        }
-                    }
-                }
-
-                if (!hasRepresentative)
-                {
-                    MessageBox.Show("Vui lòng chọn khách hàng đại diện!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                if (danhSachThanhVien.Count == 0)
-                {
-                    MessageBox.Show("Vui lòng thêm ít nhất một khách hàng tham gia!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                SqlTransaction transaction = conn.BeginTransaction();
                 try
                 {
-                    // Lấy mã phòng từ ComboBox
-                    int maPhong = Convert.ToInt32(((DataTable)cbRoom.DataSource).Rows[cbRoom.SelectedIndex]["MaPhong"]);
-
-                    // Lấy số đêm
-                    int soDem;
-                    if (!int.TryParse(txtDays.Text, out soDem) || soDem <= 0)
-                    {
-                        MessageBox.Show("Số đêm phải là số nguyên dương!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-
-                    // Lấy tiền đặt cọc
-                    decimal tienDatCoc;
-                    if (!decimal.TryParse(txtDeposit.Text, out tienDatCoc) || tienDatCoc < 0)
-                    {
-                        MessageBox.Show("Tiền đặt cọc không hợp lệ!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-
-                    // Lấy các thông tin khác
-                    string soTheTinDung = txtCreditCard.Text; //
-                    string ghiChu = txtNotes.Text;
-                    string trangThaiDatPhong = cbStatus.Text;
-                    DateTime thoiGianCheckinDuKien = dtpCheckIn.Value;
-                    DateTime thoiGianCheckoutDuKien = dtpCheckOut.Value;
-
-                    // Sử dụng transaction để thêm cả hồ sơ đặt phòng và danh sách thành viên
-                    using (SqlConnection conn = new SqlConnection(connectionString))
-                    {
-                        conn.Open();
-                        SqlTransaction transaction = conn.BeginTransaction();
-
-                        try
-                        {
-                            // 1. Thêm hồ sơ đặt phòng bằng stored procedure
-                            int maHoSoDatPhong;
-                            using (SqlCommand cmd = new SqlCommand("sp_ThemHoSoDatPhong", conn, transaction))
-                            {
-                                cmd.CommandType = CommandType.StoredProcedure;
-
-                                // Thêm các tham số
-                                cmd.Parameters.AddWithValue("@MaPhong", maPhong);
-                                cmd.Parameters.AddWithValue("@MaKhachHang", maKhachHangDaiDien);
-                                cmd.Parameters.AddWithValue("@SoTheTinDung", soTheTinDung);
-                                cmd.Parameters.AddWithValue("@GhiChu", ghiChu);
-                                cmd.Parameters.AddWithValue("@SoDem", soDem);
-                                cmd.Parameters.AddWithValue("@TienDatCoc", tienDatCoc);
-                                cmd.Parameters.AddWithValue("@TrangThaiDatPhong", trangThaiDatPhong);
-                                cmd.Parameters.AddWithValue("@ThoiGianCheckinDuKien", thoiGianCheckinDuKien);
-                                cmd.Parameters.AddWithValue("@ThoiGianCheckoutDuKien", thoiGianCheckoutDuKien);
-
-                                cmd.ExecuteNonQuery();
-                            }
-
-                            // Lấy mã hồ sơ đặt phòng vừa tạo sử dụng IDENT_CURRENT
-                            using (SqlCommand cmdGetId = new SqlCommand("SELECT IDENT_CURRENT('HoSoDatPhong')", conn, transaction))
-                            {
-                                object queryResult = cmdGetId.ExecuteScalar();
-                                maHoSoDatPhong = Convert.ToInt32(queryResult);
-
-                                if (maHoSoDatPhong == 0)
-                                {
-                                    throw new Exception("Không thể lấy mã hồ sơ đặt phòng!");
-                                }
-                            }
-
-                            // 2. Thêm các thành viên tham gia vào bảng ThamGia
-                            foreach (int maKH in danhSachThanhVien)
-                            {
-                                using (SqlCommand cmdInsert = new SqlCommand(
-                                    "INSERT INTO ThamGia (MaKhachHang, MaHoSoDatPhong) VALUES (@MaKhachHang, @MaHoSoDatPhong)",
-                                    conn, transaction))
-                                {
-                                    cmdInsert.Parameters.AddWithValue("@MaKhachHang", maKH);
-                                    cmdInsert.Parameters.AddWithValue("@MaHoSoDatPhong", maHoSoDatPhong);
-                                    cmdInsert.ExecuteNonQuery();
-                                }
-                            }
-
-                            // Commit transaction nếu tất cả các thao tác thành công
-                            transaction.Commit();
-                            MessageBox.Show("Đặt phòng và thêm thành viên tham gia thành công!",
-                                "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                            // Cập nhật danh sách đặt phòng
-                            LoadData();
-
-                            // Chọn hồ sơ đặt phòng vừa tạo
-                            foreach (DataGridViewRow row in dgvBookRoom.Rows)
-                            {
-                                if (row.Cells["MaHoSoDatPhong"].Value.ToString() == maHoSoDatPhong.ToString())
-                                {
-                                    dgvBookRoom.ClearSelection();
-                                    row.Selected = true;
-                                    ChangeText(row);
-
-                                    // Tải danh sách thành viên cho hồ sơ đặt phòng vừa tạo
-                                    LoadParticipantsForBooking(maHoSoDatPhong);
-                                    break;
-                                }
-                            }
-
-                            // Khóa nút đặt phòng sau khi đặt phòng thành công
-                            btnBook.Enabled = false;
-                        }
-                        catch (Exception ex)
-                        {
-                            // Rollback transaction nếu có lỗi
-                            transaction.Rollback();
-                            MessageBox.Show("Lỗi khi đặt phòng: " + ex.Message,
-                                "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
+                    // Đặt phòng
+                    int maHoSoDatPhong = InsertBooking(conn, transaction, maPhong, maKhachHangDaiDien, soTheTinDung, ghiChu, soDem, tienDatCoc, trangThaiDatPhong, thoiGianCheckinDuKien, thoiGianCheckoutDuKien);
+                    // Thêm thành viên tham gia
+                    InsertParticipants(conn, transaction, maHoSoDatPhong, danhSachThanhVien);
+                    transaction.Commit();
+                    MessageBox.Show("Đặt phòng và thêm thành viên tham gia thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    // Tải lại dữ liệu
+                    LoadData();
+                    // Chọn hồ sơ đặt phòng mới và load data cần thiết lên các dgv
+                    SelectNewBookingRow(maHoSoDatPhong);
+                    btnBook.Enabled = false;
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Lỗi: " + ex.Message, "Lỗi",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    transaction.Rollback();
+                    MessageBox.Show("Lỗi khi đặt phòng: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
