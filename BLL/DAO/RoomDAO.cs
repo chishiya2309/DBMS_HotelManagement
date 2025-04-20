@@ -15,10 +15,6 @@ namespace BLL.DAO
         private static RoomDAO instance;
         #region Method
 
-        public DataTable LoadFullRoom()
-        {
-            return DataProvider.Instance.ExecuteQuery("sp_LoadFullRoom");
-        }
         internal bool InsertRoom(Room roomNow)
         {
             return InsertRoom(roomNow.Name, roomNow.IdRoomType, roomNow.IdStatusRoom);
@@ -28,10 +24,31 @@ namespace BLL.DAO
             string query = "sp_InsertRoom @nameRoom , @idType , @idStatus";
             return DataProvider.Instance.ExecuteNonQuery(query, new object[] { roomName, idRoomType, idStatusRoom }) > 0;
         }
-        public bool UpdateRoom(Room roomNow)
+        public bool UpdateRoom(int idRoom, string name, int beds, string bedType, int floor, string status, string idRoomType)
         {
-            string query = "sp_UpdateRoom  @id , @name , @idType , @idStatus";
-            return DataProvider.Instance.ExecuteNonQuery(query, new object[] { roomNow.Id, roomNow.Name, roomNow.IdRoomType, roomNow.IdStatusRoom }) > 0;
+            using (SqlConnection connection = DBConnection.GetConnection())
+            {
+                try
+                {
+                    connection.Open();
+                    SqlCommand cmdRoom = new SqlCommand("sp_UpdateRoom", connection);
+                    cmdRoom.CommandType = CommandType.StoredProcedure;
+                    cmdRoom.Parameters.AddWithValue("@idRoom", idRoom);
+                    cmdRoom.Parameters.AddWithValue("@name", name);
+                    cmdRoom.Parameters.AddWithValue("@Beds", beds);
+                    cmdRoom.Parameters.AddWithValue("@BedType", bedType);
+                    cmdRoom.Parameters.AddWithValue("@Floor", floor);
+                    cmdRoom.Parameters.AddWithValue("@Status", status);
+                    cmdRoom.Parameters.AddWithValue("@idRoomType", idRoomType);
+                    cmdRoom.ExecuteNonQuery();
+                    return true;
+                }
+                catch (SqlException ex)
+                {
+                    Console.WriteLine($"Lỗi khi cập nhật phòng: {ex.Message}");
+                    return false;
+                }
+            }
         }
         public DataTable SearchRoom(string Hoten)
         {
@@ -57,69 +74,93 @@ namespace BLL.DAO
             return dt;
         }
 
-
-        public DataTable LoadAllEmptyRoom(int id)
-        {
-            string query = "sp_LoadAvailableRoom @id";
-            return DataProvider.Instance.ExecuteQuery(query, new object[] { id });
-        }
-
         public bool DeleteRoom(int id)
         {
-            string query = "sp_DeteleRoom @id";
-            return DataProvider.Instance.ExecuteNonQuery(query, new object[] { id }) > 0;
-        }
-
-        public List<Room> LoadEmptyRoom(int idRoomType)
-        {
-            List<Room> rooms = new List<Room>();
-            string query = "USP_LoadEmptyRoom @idRoomType";
-            DataTable data = DataProvider.Instance.ExecuteQuery(query, new object[] { idRoomType });
-            foreach (DataRow item in data.Rows)
+            using (SqlConnection conn = DBConnection.GetConnection())
             {
-                Room room = new Room(item);
-                rooms.Add(room);
+                try
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand("sp_DeleteRoom", conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@idRoom", id);
+                        cmd.ExecuteNonQuery();
+                        return true;
+                    }
+                }
+                catch (SqlException)
+                {
+                    return false;
+                }
             }
-            return rooms;
-        }
-        public List<Room> LoadListFullRoom()
-        {
-            string query = "USP_LoadListFullRoom @getToday";
-            List<Room> rooms = new List<Room>();
-            DataTable data = DataProvider.Instance.ExecuteQuery(query, new object[] { DateTime.Now.Date });
-            foreach (DataRow item in data.Rows)
-            {
-                Room room = new Room(item);
-                rooms.Add(room);
-            }
-            return rooms;
-        }
-        public int GetPeoples(int idBill)
-        {
-            string query = "USP_GetPeoples @idBill";
-            return (int)DataProvider.Instance.ExecuteScalar(query, new object[] { idBill }) + 1;
-        }
-        public int GetIdRoomFromReceiveRoom(int idReceiveRoom)
-        {
-            string query = "USP_GetIDRoomFromReceiveRoom @idReceiveRoom";
-            return (int)DataProvider.Instance.ExecuteScalar(query, new object[] { idReceiveRoom });
-        }
-        public bool UpdateStatusRoom(int idRoom)
-        {
-            string query = "USP_UpdateStatusRoom @idRoom";
-            return DataProvider.Instance.ExecuteNonQuery(query, new object[] { idRoom }) > 0;
         }
 
         public DataTable GetAvailableRoomsByType(string maLoaiPhong)
         {
-            string query = "sp_GetAvailableRooms @MaLoaiPhong";
-            return DataProvider.Instance.ExecuteQuery(query, new object[] { maLoaiPhong });
+            DataTable dt = new DataTable();
+            using (SqlConnection connection = DBConnection.GetConnection())
+            {
+                connection.Open();
+                string query = "sp_GetAvailableRooms";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@MaLoaiPhong", maLoaiPhong);
+                try
+                {
+                    SqlDataReader reader = command.ExecuteReader();
+                    dt.Load(reader);
+                }
+                catch (SqlException ex)
+                {
+                    Console.WriteLine($"Lỗi khi lấy phòng trống theo loại phòng: {ex.Message}");
+                }
+            }
+            return dt;
         }
 
         public DataTable GetAllRoomsByType(string maLoaiPhong)
         {
-            string query = "sp_GetAllRoomsByType @MaLoaiPhong";
-            return DataProvider.Instance.ExecuteQuery(query, new object[] { maLoaiPhong });
+            DataTable dt = new DataTable();
+            using (SqlConnection connection = DBConnection.GetConnection())
+            {
+                connection.Open();
+                string query = "sp_GetAllRoomsByType";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@MaLoaiPhong", maLoaiPhong);
+                try
+                {
+                    SqlDataReader reader = command.ExecuteReader();
+                    dt.Load(reader);
+                }
+                catch (SqlException ex)
+                {
+                    Console.WriteLine($"Lỗi khi lấy tất cả phòng theo loại phòng: {ex.Message}");
+                }
+            }
+            return dt;
+        }
+
+        public DataTable GetAllRooms()
+        {
+            DataTable dt = new DataTable();
+            using (SqlConnection connection = DBConnection.GetConnection())
+            {
+                try
+                {
+                    connection.Open();
+                    string query = "SELECT * FROM Phong";
+                    SqlCommand cmd = new SqlCommand(query, connection);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    dt.Load(reader);
+                }
+                catch (SqlException ex)
+                {
+                    Console.WriteLine($"Lỗi khi lấy danh sách phòng: {ex.Message}");
+                }
+            }
+            return dt;
         }
         #endregion
 

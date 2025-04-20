@@ -1,4 +1,7 @@
-﻿using System;
+﻿using BLL;
+using BLL.DAO;
+using DAL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,7 +17,6 @@ namespace QLKS
 {
     public partial class UpdateRoomType: Form
     {
-        private static readonly string connectionString = "Data Source=(local)\\SQLExpress;Initial Catalog=Hotel2025;Integrated Security=True";
         private byte[] _currentImageBytes = null;
         private string _currentImagePath = null;
         public UpdateRoomType()
@@ -35,25 +37,18 @@ namespace QLKS
 
         private void LoadMaPhong()
         {
-            string query = "SELECT * FROM LoaiPhong";
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
-                using (SqlDataAdapter adapter = new SqlDataAdapter(query, connection))
+                DataTable table = RoomTypeDAO.Instance.GetAllRoomTypes();
+                if (table.Rows.Count > 0)
                 {
-                    DataTable table = new DataTable();
-                    adapter.Fill(table);
-
-                    if (table.Rows.Count > 0)
-                    {
-                        cmbMaLoaiPhong.DataSource = table;
-                        cmbMaLoaiPhong.ValueMember = "MaLoaiPhong";
-                        cmbMaLoaiPhong.DisplayMember = "MaLoaiPhong";
-                    }
-                    else
-                    {
-                        MessageBox.Show("Không có dữ liệu loại phòng.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
+                    cmbMaLoaiPhong.DataSource = table;
+                    cmbMaLoaiPhong.ValueMember = "MaLoaiPhong";
+                    cmbMaLoaiPhong.DisplayMember = "MaLoaiPhong";
+                }
+                else
+                {
+                    MessageBox.Show("Không có dữ liệu loại phòng.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
@@ -67,55 +62,31 @@ namespace QLKS
             if (cmbMaLoaiPhong.SelectedValue == null)
                 return;
 
-            string query = "SELECT * FROM LoaiPhong WHERE MaLoaiPhong = @MaLoaiPhong";
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                string maLoaiPhong = cmbMaLoaiPhong.SelectedValue.ToString();
+                RoomType roomType = RoomTypeDAO.Instance.GetRoomTypeById(maLoaiPhong);
+                if (roomType != null)
                 {
-                    connection.Open();
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    txtTenLoaiPhong.Text = roomType.TenLoaiPhong;
+                    txtDonGia.Text = roomType.DonGia.ToString();
+                    txtTienNghi.Text = roomType.TienNghi;
+                    nudSucChua.Value = Convert.ToDecimal(roomType.SucChua);
+                    ckbKhaNang.Checked = Convert.ToInt32(roomType.KhaNangKeThemGiuong) == 1;
+                    txtMoTa.Text = roomType.MoTa;
+
+                    // Xử lý hình ảnh từ VARBINARY
+                    if (roomType.HinhAnh != null && roomType.HinhAnh.Length > 0)
                     {
-                        string maLoaiPhong = cmbMaLoaiPhong.SelectedValue.ToString();
-                        command.Parameters.AddWithValue("@MaLoaiPhong", maLoaiPhong);
-
-                        using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                        using (MemoryStream ms = new MemoryStream(roomType.HinhAnh))
                         {
-                            DataTable table = new DataTable();
-                            adapter.Fill(table);
-
-                            if (table.Rows.Count > 0)
-                            {
-                                DataRow dataRow = table.Rows[0];
-                                txtTenLoaiPhong.Text = dataRow["TenLoaiPhong"].ToString();
-                                txtDonGia.Text = dataRow["DonGia"].ToString();
-                                txtTienNghi.Text = dataRow["Tiennghi"].ToString();
-                                nudSucChua.Value = Convert.ToDecimal(dataRow["SucChua"]);
-                                ckbKhaNang.Checked = Convert.ToInt32(dataRow["KhaNangKeThemGiuong"]) == 1;
-                                txtMoTa.Text = dataRow["MoTa"].ToString();
-
-                                // Xử lý hình ảnh từ VARBINARY
-                                if (dataRow["HinhAnh"] != DBNull.Value)
-                                {
-                                    byte[] imageData = (byte[])dataRow["HinhAnh"];
-                                    if (imageData.Length > 0)
-                                    {
-                                        using (MemoryStream ms = new MemoryStream(imageData))
-                                        {
-                                            pictureBoxRoomType.Image = Image.FromStream(ms);
-                                            pictureBoxRoomType.SizeMode = PictureBoxSizeMode.Zoom;
-                                        }
-                                    }
-                                    else
-                                    {
-                                        pictureBoxRoomType.Image = null;
-                                    }
-                                }
-                                else
-                                {
-                                    pictureBoxRoomType.Image = null;
-                                }
-                            }
+                            pictureBoxRoomType.Image = Image.FromStream(ms);
+                            pictureBoxRoomType.SizeMode = PictureBoxSizeMode.Zoom;
                         }
+                    }
+                    else
+                    {
+                        pictureBoxRoomType.Image = null;
                     }
                 }
             }
@@ -151,7 +122,7 @@ namespace QLKS
                 string moTa = txtMoTa.Text;
                 byte[] hinhAnh = _currentImageBytes;
 
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = DBConnection.GetConnection())
                 {
                     connection.Open();
 
