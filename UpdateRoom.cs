@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BLL.DAO;
+using DAL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,7 +16,6 @@ namespace QLKS
 {
     public partial class UpdateRoom: Form
     {
-        private string connectionString = "Data Source=(local)\\SQLExpress;Database=Hotel2025;Integrated Security=True";
         private string maPhong;
         private DataRow phongData;
         public UpdateRoom(string maPhong)
@@ -29,46 +30,34 @@ namespace QLKS
         {
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                DataTable dtPhong = RoomDAO.Instance.GetAllRooms();
+                DataRow phongData = null;
+                foreach (DataRow r in dtPhong.Rows)
                 {
-                    connection.Open();
-
-                    // Lấy tất cả phòng
-                    string query = "SELECT * FROM Phong";
-                    SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
-                    DataSet ds = new DataSet();
-                    adapter.Fill(ds, "Phong");
-
-                    DataTable dtPhong = ds.Tables["Phong"];
-
-                    // Tìm phòng cần chỉnh sửa
-                    foreach (DataRow r in dtPhong.Rows)
+                    if (r["MaPhong"].ToString() == maPhong)
                     {
-                        if (r["MaPhong"].ToString() == maPhong)
-                        {
-                            phongData = r;
-                            break;
-                        }
+                        phongData = r;
+                        break;
                     }
-
-                    if (phongData == null)
-                    {
-                        MessageBox.Show("Không tìm thấy phòng cần chỉnh sửa!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        this.DialogResult = DialogResult.Cancel;
-                        this.Close();
-                        return;
-                    }
-
-                    // Điền dữ liệu vào các control
-                    txtMaPhong.Text = phongData["MaPhong"].ToString();
-                    txtMaPhong.ReadOnly = true; // Không cho phép sửa mã phòng
-                    txtTenPhong.Text = phongData["TenPhong"].ToString();
-                    nudSoGiuong.Value = Convert.ToDecimal(phongData["SoGiuong"]);
-                    cmbLoaiGiuong.Text = phongData["LoaiGiuong"].ToString();
-                    txtKhuVuc.Text = phongData["KhuVuc"].ToString();
-                    cmbTrangThai.Text = phongData["TrangThai"].ToString();
-                    cmbLoaiPhong.SelectedValue = phongData["MaLoaiPhong"].ToString();
                 }
+
+                if (phongData == null)
+                {
+                    MessageBox.Show("Không tìm thấy phòng cần chỉnh sửa!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    this.DialogResult = DialogResult.Cancel;
+                    this.Close();
+                    return;
+                }
+
+                // Điền dữ liệu vào các control
+                txtMaPhong.Text = phongData["MaPhong"].ToString();
+                txtMaPhong.ReadOnly = true; // Không cho phép sửa mã phòng
+                txtTenPhong.Text = phongData["TenPhong"].ToString();
+                nudSoGiuong.Value = Convert.ToDecimal(phongData["SoGiuong"]);
+                cmbLoaiGiuong.Text = phongData["LoaiGiuong"].ToString();
+                txtKhuVuc.Text = phongData["KhuVuc"].ToString();
+                cmbTrangThai.Text = phongData["TrangThai"].ToString();
+                cmbLoaiPhong.SelectedValue = phongData["MaLoaiPhong"].ToString();
             }
             catch (Exception ex)
             {
@@ -80,25 +69,16 @@ namespace QLKS
 
         private void LoadRoomType()
         {
-            string query = @"SELECT MaLoaiPhong, TenLoaiPhong FROM LoaiPhong";
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            try
             {
-                try
-                {
-                    conn.Open();
-                    using (SqlDataAdapter adapter = new SqlDataAdapter(query, conn))
-                    {
-                        DataTable dt = new DataTable();
-                        adapter.Fill(dt);
-                        cmbLoaiPhong.DisplayMember = "TenLoaiPhong";
-                        cmbLoaiPhong.ValueMember = "MaLoaiPhong";
-                        cmbLoaiPhong.DataSource = dt; // Gán dữ liệu vào DataGridView
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Lỗi lấy dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                DataTable dt = RoomTypeDAO.Instance.LoadFullRoomType();
+                cmbLoaiPhong.DisplayMember = "TenLoaiPhong";
+                cmbLoaiPhong.ValueMember = "MaLoaiPhong";
+                cmbLoaiPhong.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi lấy dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -115,7 +95,7 @@ namespace QLKS
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if(!ValidateInputs())
+            if (!ValidateInputs())
             {
                 return;
             }
@@ -130,30 +110,17 @@ namespace QLKS
                 string trangThai = cmbTrangThai.Text;
                 string maLoaiPhong = (string)cmbLoaiPhong.SelectedValue;
 
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                bool result = RoomDAO.Instance.UpdateRoom(maPhong, tenPhong, soGiuong, loaiGiuong, khuVuc, trangThai, maLoaiPhong);
+                if (result)
                 {
-                    connection.Open();
-
-                    
-                    SqlCommand cmdRoom = new SqlCommand("sp_UpdateRoom", connection);
-                    cmdRoom.CommandType = CommandType.StoredProcedure;
-                    cmdRoom.Parameters.AddWithValue("@idRoom", maPhong);
-                    cmdRoom.Parameters.AddWithValue("@name", tenPhong);
-                    cmdRoom.Parameters.AddWithValue("@Beds", soGiuong);
-                    cmdRoom.Parameters.AddWithValue("@BedType", loaiGiuong);
-                    cmdRoom.Parameters.AddWithValue("@Floor", khuVuc);
-                    cmdRoom.Parameters.AddWithValue("@Status", trangThai);
-                    cmdRoom.Parameters.AddWithValue("@idRoomType", maLoaiPhong);
-                    cmdRoom.ExecuteNonQuery();
-
                     MessageBox.Show($"Chỉnh sửa phòng {maPhong} thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     DialogResult = DialogResult.OK;
                     this.Close();
                 }
-            }
-            catch (SqlException ex)
-            {
-                MessageBox.Show("Lỗi khi sửa phòng: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else
+                {
+                    MessageBox.Show("Lỗi khi sửa phòng!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             catch (Exception ex)
             {

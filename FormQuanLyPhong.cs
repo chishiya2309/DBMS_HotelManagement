@@ -90,27 +90,16 @@ namespace QLKS
 
         private void LoadRoomType()
         {
-            string query = @"SELECT p.*, lp.TenLoaiPhong, lp.SucChua, lp.DonGia, lp.HinhAnh
-                             FROM Phong p INNER JOIN LoaiPhong lp ON p.MaLoaiPhong = lp.MaLoaiPhong";
-            using (SqlConnection conn = DBConnection.GetConnection())
+            try
             {
-                try
-                {
-                    conn.Open();
-                    using (SqlDataAdapter adapter = new SqlDataAdapter(query, conn))
-                    {
-                        DataTable dt = new DataTable();
-                        adapter.Fill(dt);
-                        cbType.DisplayMember = "TenLoaiPhong";
-                        cbType.ValueMember = "MaLoaiPhong";
-                        cbType.DataSource = dt; // Gán dữ liệu vào DataGridView
-                       
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Lỗi lấy dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                DataTable dt = RoomTypeDAO.Instance.LoadFullRoomType();
+                cbType.DisplayMember = "TenLoaiPhong";
+                cbType.ValueMember = "MaLoaiPhong";
+                cbType.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi lấy dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -127,8 +116,6 @@ namespace QLKS
                         txtLimit.Text = string.Empty;
                         txtTenPhong.Text = string.Empty;
                         txtPrice.Text = string.Empty;
-
-
                     }
                     else
                     {
@@ -147,16 +134,6 @@ namespace QLKS
                     MessageBox.Show("Lỗi hiển thị thông tin: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-        }
-
-        public static bool CheckFillInText(Control[] controls)
-        {
-            foreach (var control in controls)
-            {
-                if (control.Text == string.Empty)
-                    return false;
-            }
-            return true;
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
