@@ -235,9 +235,7 @@ namespace QLKS
             {
                 Color.FromArgb(54, 162, 235),  // Xanh dương
                 Color.FromArgb(255, 206, 86), // Vàng
-                Color.FromArgb(75, 192, 192),  // Xanh mòng két (Teal)
-                Color.FromArgb(255, 99, 132),  // Hồng/Đỏ
-                Color.FromArgb(153, 102, 255), // Tím
+                Color.FromArgb(0, 255, 127),  // Xanh lá
                 Color.FromArgb(255, 159, 64)  // Cam
             };
 

@@ -49,8 +49,6 @@ namespace QLKS
                 return;
             }
 
-           
-            //string query = "SELECT MaNhanVien FROM TaiKhoan WHERE TenDangNhap = @username AND MatKhau = @password";
             string query = "SELECT * FROM dbo.DangNhap(@username, @password)";
 
             using (SqlConnection conn = new SqlConnection(connectionString))
@@ -82,16 +80,6 @@ namespace QLKS
                             MessageBox.Show("Tên tài khoản hoặc mật khẩu không đúng! Vui lòng nhập lại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             txtTaiKhoan.Focus();
                         }
-                        //SqlDataReader reader = cmd.ExecuteReader();
-                        //if (reader.Read()) // Nếu tìm thấy tài khoản
-                        //{
-                        //    int maNhanVien = reader.GetInt32(0); // Lấy giá trị cột id
-                        //    reader.Close(); // Đóng reader trước khi mở form mới
-
-                            //    FormChinh form2 = new FormChinh(maNhanVien); // Truyền id vào FormChinh
-                            //    form2.Show();
-                            //    this.Hide();
-                            //}
                     }
                 }
                 catch (Exception ex)
