@@ -57,8 +57,7 @@ namespace QLKS
                     {
                         connection.Open();
 
-                        // Bắt đầu transaction
-                        //SqlTransaction transaction = connection.BeginTransaction();
+                        
                         try
                         {
 
@@ -75,22 +74,13 @@ namespace QLKS
                                 }
                             }
 
-                            // lấy id của nhân viên cũ để xem có tạo được nhân viên chưa
-                            FormNhanVien formNhanVien = new FormNhanVien();
-                            int OldStaffId = int.Parse(formNhanVien.dgvStaff.Rows[formNhanVien.dgvStaff.Rows.Count - 1].Cells[0].Value.ToString());
+                           
+                            bool check = StaffDAO.Instance.InsertStaff(txtName.Text.Trim(), cbSex.Text, dtpDOB.Value, txtIDNum.Text.Trim(),
+                                    txtAddress.Text.Trim(), txtEmail.Text.Trim(), txtPhone.Text.Trim(), dtpNgayVaoLam.Value, cbRole.Text, imageData
+                                    , txtUser.Text, "123456");
 
-                            // Thêm nhân viên và lấy MaNhanVien vừa thêm
-                            StaffDAO.Instance.InsertStaff(txtName.Text.Trim(), cbSex.Text, dtpDOB.Value, txtIDNum.Text.Trim(),
-                                    txtAddress.Text.Trim(), txtEmail.Text.Trim(), txtPhone.Text.Trim(), dtpNgayVaoLam.Value, cbRole.Text, imageData);
-
-                            formNhanVien.LoadData(); // nếu chưa tạo được nhân viên thì không thể tạo tài khoản
-                            int NewstaffId = int.Parse(formNhanVien.dgvStaff.Rows[formNhanVien.dgvStaff.Rows.Count - 1].Cells[0].Value.ToString());
-
-                            if (OldStaffId != NewstaffId)
-                            {
-                                InsertAccount(NewstaffId, txtUser.Text.Trim(), "123456");
-                                ClearForm();
-                            }
+                            
+                            if (check) ClearForm();
                         }
                         catch (SqlException ex)
                         {
