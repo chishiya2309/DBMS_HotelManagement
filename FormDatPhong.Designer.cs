@@ -652,7 +652,6 @@
             this.cbRoom.ShadowDecoration.Parent = this.cbRoom;
             this.cbRoom.Size = new System.Drawing.Size(200, 36);
             this.cbRoom.TabIndex = 49;
-            //this.cbRoom.SelectedIndexChanged += new System.EventHandler(this.cbRoom_SelectedIndexChanged);
             // 
             // label14
             // 
@@ -683,7 +682,7 @@
             this.cbStatus.Items.AddRange(new object[] {
             "Chờ xác nhận",
             "Đã xác nhận",
-            "Đã hủy",
+            "Đã huỷ",
             "Đã hoàn tất"});
             this.cbStatus.ItemsAppearance.Parent = this.cbStatus;
             this.cbStatus.Location = new System.Drawing.Point(6, 154);

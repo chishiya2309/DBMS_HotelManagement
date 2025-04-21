@@ -177,6 +177,40 @@ namespace BLL.DAO
             return dt;
         }
 
+        public DataTable GetCustomerById(string customerId)
+        {
+            DataTable dt = new DataTable();
+
+            using (SqlConnection conn = DBConnection.GetConnection())
+            {
+                try
+                {
+                    conn.Open();
+                    string query = "SELECT * FROM KhachHang WHERE MaKhachHang = @id";
+
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@id", customerId);
+
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                        {
+                            adapter.Fill(dt);
+                        }
+                    }
+
+                    if (dt.Rows.Count == 0)
+                    {
+                        Console.WriteLine($"Không tìm thấy khách hàng với mã {customerId}");
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    Console.WriteLine("Lỗi truy vấn khách hàng: " + ex.Message);
+                }
+            }
+            return dt;
+        }
+
         public static CustomerDAO Instance
         {
             get { if (instance == null) instance = new CustomerDAO(); return instance; }
