@@ -139,29 +139,6 @@ namespace BLL.DAO
             return dt;
         }
 
-        public DataTable GetAllRoomsByType(string maLoaiPhong)
-        {
-            DataTable dt = new DataTable();
-            using (SqlConnection connection = DBConnection.GetConnection())
-            {
-                connection.Open();
-                string query = "sp_GetAllRoomsByType";
-                SqlCommand command = new SqlCommand(query, connection);
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@MaLoaiPhong", maLoaiPhong);
-                try
-                {
-                    SqlDataReader reader = command.ExecuteReader();
-                    dt.Load(reader);
-                }
-                catch (SqlException ex)
-                {
-                    Console.WriteLine($"Lỗi khi lấy tất cả phòng theo loại phòng: {ex.Message}");
-                }
-            }
-            return dt;
-        }
-
         public DataTable GetAllRooms()
         {
             DataTable dt = new DataTable();
@@ -204,6 +181,43 @@ namespace BLL.DAO
                 }
             }
             return dt;
+        }
+
+        public DataTable MergeRoomTables(string maLoaiPhong, int maPhongHoSo)
+        {
+            DataTable dtResult = new DataTable();
+            using (SqlConnection connection = DBConnection.GetConnection())
+            {
+                try
+                {
+                    connection.Open();
+
+                    // Tạo câu lệnh SQL để lấy phòng của hồ sơ và các phòng trống cùng loại
+                    string query = @"
+                    SELECT p.MaPhong, p.TenPhong, p.MaLoaiPhong, lp.TenLoaiPhong, p.TrangThai
+                    FROM Phong p
+                    INNER JOIN LoaiPhong lp ON p.MaLoaiPhong = lp.MaLoaiPhong
+                    WHERE p.MaLoaiPhong = @MaLoaiPhong AND 
+                         (p.TrangThai = N'Trống' OR p.MaPhong = @MaPhong)
+                    ORDER BY 
+                        CASE WHEN p.MaPhong = @MaPhong THEN 0 ELSE 1 END,
+                        p.TenPhong";
+
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@MaLoaiPhong", maLoaiPhong);
+                    command.Parameters.AddWithValue("@MaPhong", maPhongHoSo);
+
+                    SqlDataReader reader = command.ExecuteReader();
+                    dtResult.Load(reader);
+                }
+                catch (SqlException ex)
+                {
+                    Console.WriteLine($"Lỗi khi kết hợp bảng phòng: {ex.Message}");
+                    // Trong trường hợp lỗi, trả về bảng phòng trống
+                    dtResult = GetAvailableRoomsByType(maLoaiPhong);
+                }
+            }
+            return dtResult;
         }
         #endregion
 
