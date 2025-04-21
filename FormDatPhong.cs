@@ -13,12 +13,12 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using DAL;
 
 namespace QLKS
 {
     public partial class FormDatPhong : Form
     {
-        private string connectionString = "Data Source=(local)\\SQLExpress;Initial Catalog=Hotel2025;Integrated Security=True";
         private bool isInitializing = true;
         private bool isLoadingFromGrid = false;
         private bool isSelectingFromGrid = false;
@@ -129,47 +129,6 @@ namespace QLKS
             return true;
         }
 
-        private int InsertBooking(SqlConnection conn, SqlTransaction transaction, int maPhong, int maKhachHangDaiDien, string soTheTinDung, string ghiChu, int soDem, decimal tienDatCoc, string trangThaiDatPhong, DateTime thoiGianCheckinDuKien, DateTime thoiGianCheckoutDuKien)
-        {
-            using (SqlCommand cmd = new SqlCommand("sp_ThemHoSoDatPhong", conn, transaction))
-            {
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@MaPhong", maPhong);
-                cmd.Parameters.AddWithValue("@MaKhachHang", maKhachHangDaiDien);
-                cmd.Parameters.AddWithValue("@SoTheTinDung", soTheTinDung);
-                cmd.Parameters.AddWithValue("@GhiChu", ghiChu);
-                cmd.Parameters.AddWithValue("@SoDem", soDem);
-                cmd.Parameters.AddWithValue("@TienDatCoc", tienDatCoc);
-                cmd.Parameters.AddWithValue("@TrangThaiDatPhong", trangThaiDatPhong);
-                cmd.Parameters.AddWithValue("@ThoiGianCheckinDuKien", thoiGianCheckinDuKien);
-                cmd.Parameters.AddWithValue("@ThoiGianCheckoutDuKien", thoiGianCheckoutDuKien);
-                cmd.ExecuteNonQuery();
-            }
-            using (SqlCommand cmdGetId = new SqlCommand("SELECT IDENT_CURRENT('HoSoDatPhong')", conn, transaction))
-            {
-                object queryResult = cmdGetId.ExecuteScalar();
-                int maHoSoDatPhong = Convert.ToInt32(queryResult);
-                if (maHoSoDatPhong == 0)
-                    throw new Exception("Không thể lấy mã hồ sơ đặt phòng!");
-                return maHoSoDatPhong;
-            }
-        }
-
-        private void InsertParticipants(SqlConnection conn, SqlTransaction transaction, int maHoSoDatPhong, List<int> danhSachThanhVien)
-        {
-            foreach (int maKH in danhSachThanhVien)
-            {
-                using (SqlCommand cmdInsert = new SqlCommand(
-                    "INSERT INTO ThamGia (MaKhachHang, MaHoSoDatPhong) VALUES (@MaKhachHang, @MaHoSoDatPhong)",
-                    conn, transaction))
-                {
-                    cmdInsert.Parameters.AddWithValue("@MaKhachHang", maKH);
-                    cmdInsert.Parameters.AddWithValue("@MaHoSoDatPhong", maHoSoDatPhong);
-                    cmdInsert.ExecuteNonQuery();
-                }
-            }
-        }
-
         private void SelectNewBookingRow(int maHoSoDatPhong)
         {
             foreach (DataGridViewRow row in dgvBookRoom.Rows)
@@ -187,7 +146,7 @@ namespace QLKS
 
         private void btnBook_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Bạn có muốn đặt phòng không?", "Thông báo",
+             DialogResult result = MessageBox.Show("Bạn có muốn đặt phòng không?", "Thông báo",
                 MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
             if (result != DialogResult.OK) return;
 
@@ -219,16 +178,16 @@ namespace QLKS
             //Kiểm tra sức chứa của loại phòng có đáp ứng được số lượng thành viên không
             if (!ValidateRoomCapacity(maPhong, danhSachThanhVien.Count)) return;
 
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlConnection conn = DBConnection.GetConnection())
             {
                 conn.Open();
                 SqlTransaction transaction = conn.BeginTransaction();
                 try
                 {
                     // Đặt phòng
-                    int maHoSoDatPhong = InsertBooking(conn, transaction, maPhong, maKhachHangDaiDien, soTheTinDung, ghiChu, soDem, tienDatCoc, trangThaiDatPhong, thoiGianCheckinDuKien, thoiGianCheckoutDuKien);
+                    int maHoSoDatPhong = BookRoomDAO.Instance.InsertBooking(conn, transaction, maPhong, maKhachHangDaiDien, soTheTinDung, ghiChu, soDem, tienDatCoc, trangThaiDatPhong, thoiGianCheckinDuKien, thoiGianCheckoutDuKien);
                     // Thêm thành viên tham gia
-                    InsertParticipants(conn, transaction, maHoSoDatPhong, danhSachThanhVien);
+                    BookRoomDAO.Instance.InsertParticipants(conn, transaction, maHoSoDatPhong, danhSachThanhVien);
                     transaction.Commit();
                     MessageBox.Show("Đặt phòng và thêm thành viên tham gia thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     // Tải lại dữ liệu
@@ -307,13 +266,7 @@ namespace QLKS
 
         private void cbRoomType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            isSelectingFromGrid = false;
-            LoadAvailableRooms();
-        }
-
-        private void dgvRoom_SelectionChanged(object sender, EventArgs e)
-        {
-            isSelectingFromGrid = true;
+            //isSelectingFromGrid = false;
             LoadAvailableRooms();
         }
 
@@ -526,8 +479,8 @@ namespace QLKS
                 // Lấy mã phòng từ ComboBox
                 int maPhong = Convert.ToInt32(((DataTable)cbRoom.DataSource).Rows[cbRoom.SelectedIndex]["MaPhong"]);
 
-                // Lấy mã khách hàng đại diện
-                string maKhachHang = string.Empty;
+                // Lấy mã khách hàng đại diện và danh sách thành viên
+                string maKhachHangDaiDienStr = string.Empty;
                 List<int> danhSachThanhVien = new List<int>();
 
                 foreach (DataGridViewRow row in guna2DataGridView1.Rows)
@@ -539,16 +492,17 @@ namespace QLKS
 
                         if (row.Cells["dgvDaiDien"].Value != null && Convert.ToBoolean(row.Cells["dgvDaiDien"].Value))
                         {
-                            maKhachHang = maKH.ToString();
+                            maKhachHangDaiDienStr = maKH.ToString();
                         }
                     }
                 }
 
-                if (string.IsNullOrEmpty(maKhachHang))
+                if (string.IsNullOrEmpty(maKhachHangDaiDienStr))
                 {
                     MessageBox.Show("Vui lòng chọn khách hàng đại diện!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
+                int maKhachHangDaiDien = int.Parse(maKhachHangDaiDienStr);
 
                 if (danhSachThanhVien.Count == 0)
                 {
@@ -564,66 +518,27 @@ namespace QLKS
                 string trangThaiDatPhong = cbStatus.Text;
                 DateTime thoiGianCheckinDuKien = dtpCheckIn.Value;
                 DateTime thoiGianCheckoutDuKien = dtpCheckOut.Value;
+                DateTime? thoiGianCheckinThucTe = null; // Lấy từ control nếu có
+                DateTime? thoiGianCheckoutThucTe = null; // Lấy từ control nếu có
 
                 // Sử dụng transaction để cập nhật cả hồ sơ đặt phòng và danh sách thành viên
-                using (SqlConnection conn = new SqlConnection(connectionString))
+                using (SqlConnection conn = DBConnection.GetConnection())
                 {
                     conn.Open();
                     SqlTransaction transaction = conn.BeginTransaction();
 
                     try
                     {
+                        BookRoomDAO bookRoomDAO = BookRoomDAO.Instance;
+
                         // 1. Cập nhật hồ sơ đặt phòng
-                        using (SqlCommand cmd = new SqlCommand("sp_SuaHoSoDatPhong", conn, transaction))
-                        {
-                            cmd.CommandType = CommandType.StoredProcedure;
-
-                            // Thêm các tham số
-                            cmd.Parameters.AddWithValue("@MaHoSoDatPhong", maHoSoDatPhong);
-                            cmd.Parameters.AddWithValue("@MaPhong", maPhong);
-                            cmd.Parameters.AddWithValue("@MaKhachHang", int.Parse(maKhachHang));
-                            cmd.Parameters.AddWithValue("@SoTheTinDung", soTheTinDung);
-                            cmd.Parameters.AddWithValue("@GhiChu", ghiChu);
-                            cmd.Parameters.AddWithValue("@SoDem", soDem);
-                            cmd.Parameters.AddWithValue("@TienDatCoc", tienDatCoc);
-                            cmd.Parameters.AddWithValue("@TrangThaiDatPhong", trangThaiDatPhong);
-                            cmd.Parameters.AddWithValue("@ThoiGianCheckinDuKien", thoiGianCheckinDuKien);
-                            cmd.Parameters.AddWithValue("@ThoiGianCheckoutDuKien", thoiGianCheckoutDuKien);
-
-                            // Tham số tùy chọn - có thể là null
-                            SqlParameter paramCheckinThucTe = new SqlParameter("@ThoiGianCheckinThucTe", SqlDbType.DateTime);
-                            paramCheckinThucTe.IsNullable = true;
-                            paramCheckinThucTe.Value = DBNull.Value;
-                            cmd.Parameters.Add(paramCheckinThucTe);
-
-                            SqlParameter paramCheckoutThucTe = new SqlParameter("@ThoiGianCheckoutThucTe", SqlDbType.DateTime);
-                            paramCheckoutThucTe.IsNullable = true;
-                            paramCheckoutThucTe.Value = DBNull.Value;
-                            cmd.Parameters.Add(paramCheckoutThucTe);
-
-                            cmd.ExecuteNonQuery();
-                        }
+                        bookRoomDAO.UpdateBooking(conn, transaction, maHoSoDatPhong, maPhong, maKhachHangDaiDien, soTheTinDung, ghiChu, soDem, tienDatCoc, trangThaiDatPhong, thoiGianCheckinDuKien, thoiGianCheckoutDuKien, thoiGianCheckinThucTe, thoiGianCheckoutThucTe);
 
                         // 2. Xóa tất cả các thành viên tham gia cũ
-                        using (SqlCommand cmdDelete = new SqlCommand(
-                            "DELETE FROM ThamGia WHERE MaHoSoDatPhong = @MaHoSoDatPhong", conn, transaction))
-                        {
-                            cmdDelete.Parameters.AddWithValue("@MaHoSoDatPhong", maHoSoDatPhong);
-                            cmdDelete.ExecuteNonQuery();
-                        }
+                        bookRoomDAO.DeleteParticipantsByBookingId(conn, transaction, maHoSoDatPhong);
 
                         // 3. Thêm lại các thành viên tham gia mới
-                        foreach (int maKH in danhSachThanhVien)
-                        {
-                            using (SqlCommand cmdInsert = new SqlCommand(
-                                "INSERT INTO ThamGia (MaHoSoDatPhong, MaKhachHang) VALUES (@MaHoSoDatPhong, @MaKhachHang)",
-                                conn, transaction))
-                            {
-                                cmdInsert.Parameters.AddWithValue("@MaHoSoDatPhong", maHoSoDatPhong);
-                                cmdInsert.Parameters.AddWithValue("@MaKhachHang", maKH);
-                                cmdInsert.ExecuteNonQuery();
-                            }
-                        }
+                        bookRoomDAO.InsertParticipants(conn, transaction, maHoSoDatPhong, danhSachThanhVien);
 
                         // Commit transaction nếu tất cả các thao tác thành công
                         transaction.Commit();
@@ -685,7 +600,9 @@ namespace QLKS
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            isSelectingFromGrid = false;
             cbRoomType.SelectedIndex = 0;
+            LoadAvailableRooms();
             dtpCheckIn.Value = DateTime.Now;
             dtpCheckOut.Value = DateTime.Now.AddDays(1);
             txtCustomerName.Clear();
@@ -698,6 +615,9 @@ namespace QLKS
             cbRoom.SelectedIndex = 0;
             txtCreditCard.Clear();
             txtNotes.Clear();
+
+            // Gọi trực tiếp sự kiện cbRoomType_SelectedIndexChanged
+            cbRoomType_SelectedIndexChanged(this, EventArgs.Empty);
 
             if (!string.IsNullOrEmpty(txtSearch.Text))
             {
@@ -927,6 +847,8 @@ namespace QLKS
 
         private void dgvBookRoom_SelectionChanged(object sender, EventArgs e)
         {
+            isSelectingFromGrid = true;
+            LoadAvailableRooms();
             btnBook.Enabled = false;
             // Gọi phương thức ChangeText để cập nhật thông tin từ hàng được chọn
             if (dgvBookRoom.Focused && dgvBookRoom.Rows.Count > 0)
@@ -1034,7 +956,7 @@ namespace QLKS
         {
             string query = "SELECT * FROM KhachHang WHERE MaKhachHang = @id";
 
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlConnection conn = DBConnection.GetConnection())
             {
                 try
                 {

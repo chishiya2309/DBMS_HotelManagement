@@ -26,8 +26,6 @@ namespace DAL
             
         }
 
-        
-
         public DataTable ExecuteQuery(string query)
         {
             DataTable data = new DataTable();
