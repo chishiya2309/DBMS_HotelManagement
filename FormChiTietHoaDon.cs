@@ -82,7 +82,7 @@ namespace QLKS
 
             double TongtienPhong = double.Parse(dt2.Rows[0]["TienThuePhong"].ToString());
             lbTotalPriceRoom.Text = TongtienPhong.ToString() + " VND";
-            double TongtienDichVu = double.Parse(dt.Rows[0]["TienDichVu"].ToString());
+            double TongtienDichVu = double.Parse(dt2.Rows[0]["TienDichVu"].ToString());
             
             lbServicePrice.Text = TongtienDichVu.ToString() + " VND";
             lbTotal.Text = dt.Rows[0]["ThanhTien"].ToString() + " VND";

@@ -133,6 +133,16 @@ namespace QLKS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap fbc52262225969_5a89af053bacd {
+            get {
+                object obj = ResourceManager.GetObject("fbc52262225969.5a89af053bacd", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap location_icon_png_4231 {
             get {
                 object obj = ResourceManager.GetObject("location-icon-png-4231", resourceCulture);
