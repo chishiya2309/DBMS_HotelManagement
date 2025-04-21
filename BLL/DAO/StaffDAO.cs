@@ -18,8 +18,8 @@ namespace BLL.DAO
 
         private static StaffDAO instance;
 
-        public void InsertStaff(string Hoten, string gioitinh, DateTime ngaysinh, string CCCD, string diachi, string email, string sdt,
-                 DateTime ngayvaolam, string vaitro, byte[] chandung)
+        public bool InsertStaff(string Hoten, string gioitinh, DateTime ngaysinh, string CCCD, string diachi, string email, string sdt,
+                 DateTime ngayvaolam, string vaitro, byte[] chandung, string TenDangNhap, string matkhau)
         {
             using (SqlConnection conn = DBConnection.GetConnection())
             {
@@ -41,13 +41,17 @@ namespace BLL.DAO
                 cmd.Parameters.AddWithValue("@Vaitro", vaitro);
                 cmd.Parameters.AddWithValue("@Chandung", chandung);
 
+                cmd.Parameters.AddWithValue("@TenDangNhap", TenDangNhap);
+                cmd.Parameters.AddWithValue("@MatKhau", matkhau);
+
+
                 try
                 {
                     conn.Open();
                     if (cmd.ExecuteNonQuery() > 0)
                     {
-                        //Thêm nhân viên thành công. Tiến hành thêm tài khoản tương ứng
-
+                        MessageBox.Show("Thêm nhân viên thành công, Mật khẩu mặc định là 123456", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return true;
                     }
                     else
                     {
@@ -58,6 +62,7 @@ namespace BLL.DAO
                 {
                     MessageBox.Show("Lỗi khi thêm nhân viên: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+                return false;
             }
         }
 
