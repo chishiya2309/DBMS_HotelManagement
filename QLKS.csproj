@@ -352,5 +352,14 @@
   <ItemGroup>
     <None Include="Resources\fbc52262225969.5a89af053bacd.gif" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Hotel-Lobby-sm.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\intercontinental-doha-beach-spa-hero-image-exterior2023.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Blue_Minimalist_simple_real_estate___architecture_Logo-removebg-preview.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
