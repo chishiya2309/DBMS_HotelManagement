@@ -78,18 +78,6 @@ namespace BLL.DAO
             }
         }
 
-        public bool InsertUsedService(int idService, int count, double totalPrice, int idBookRoom)
-        {
-            string query = "sp_InsertUsedService @idService , @count , @totalPrice , @idBookRoom";
-            return DataProvider.Instance.ExecuteNonQuery(query, new object[] { idService, count, totalPrice, idBookRoom }) > 0;
-        }
-
-        public bool UpdateUsedService(int idService, int count, double totalPrice, int idBookRoom)
-        {
-            string query = "sp_UpdateUsedService @idService , @count , @totalPrice , @idBookRoom";
-            return DataProvider.Instance.ExecuteNonQuery(query, new object[] { idService, count, totalPrice, idBookRoom }) > 0;
-        }
-
         public static UsedServiceInfoDAO Instance
         {
             get

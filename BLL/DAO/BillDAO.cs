@@ -51,23 +51,6 @@ namespace BLL.DAO
             
         }
 
-        public DataTable LoadBill()
-        {
-            return DataProvider.Instance.ExecuteQuery("sp_LoadBill");
-        }
-
-        //public DataTable FindBill(string info)
-        //{
-        //    string query = "sp_FindBillbyBookRoom @id";
-        //    return DataProvider.Instance.ExecuteQuery(query, new object[] { info });
-        //}
-
-        //public DataTable FindRoomByBill(int id)
-        //{
-        //    string query = "sp_FindRoomByBill @id";
-        //    return DataProvider.Instance.ExecuteQuery(query, new object[] { id });
-        //}
-
         public DataTable FindBill(string info)
         {
             DataTable dt = new DataTable();
@@ -93,12 +76,6 @@ namespace BLL.DAO
 
             return dt;
         }
-
-        //public bool UpdateStatusBill(int id, string status)
-        //{
-        //    string query = "sp_UpdateStatusBill @id , @Status";
-        //    return DataProvider.Instance.ExecuteNonQuery(query, new object[] { id, status }) > 0;
-        //}
 
         public void UpdateStatusBill(int id, string status)
         {
@@ -132,12 +109,6 @@ namespace BLL.DAO
                 }
             }
         }
-
-        //public bool InsertBill(Bill b)
-        //{
-        //    string query = "sp_InsertBill @PhuThu , @NoiDungPhuThu , @GiamGia , @ThanhTien , @TinhTrangThanhToan , @MaHoSoDatPhong , @MaNhanVien";
-        //    return DataProvider.Instance.ExecuteNonQuery(query, new object[] { b.Surchange, b.SurchangeInfo, b.Discount, b.TotalPrice, b.Status, b.IdBookRoom, b.StaffSetUp }) > 0;
-        //}
 
         public void InsertBill(double phuThu, string noiDungPhuThu, double giamGia, double thanhTien, string tinhTrangThanhToan, string phuongThucThanhToan, int maHoSoDatPhong, int maNhanVien )
         {

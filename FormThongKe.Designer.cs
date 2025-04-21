@@ -245,7 +245,7 @@
             title2.Font = new System.Drawing.Font("Segoe UI", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             title2.ForeColor = System.Drawing.Color.White;
             title2.Name = "DoanhThu";
-            title2.Text = "Doanh Thu 3 loại phòng cao nhất";
+            title2.Text = "Top 5 loại phòng đặt nhiều nhất";
             this.chartLoaiPhong.Titles.Add(title2);
             this.chartLoaiPhong.Click += new System.EventHandler(this.chartLoaiPhong_Click);
             // 
@@ -320,7 +320,7 @@
             this.txtTiLe.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(45)))), ((int)(((byte)(86)))));
             this.txtTiLe.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTiLe.ForeColor = System.Drawing.Color.White;
-            this.txtTiLe.Location = new System.Drawing.Point(7, 19);
+            this.txtTiLe.Location = new System.Drawing.Point(7, 22);
             this.txtTiLe.Name = "txtTiLe";
             this.txtTiLe.Size = new System.Drawing.Size(239, 26);
             this.txtTiLe.TabIndex = 63;
@@ -328,11 +328,11 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(141)))), ((int)(((byte)(181)))));
-            this.label3.Location = new System.Drawing.Point(3, -4);
+            this.label3.Location = new System.Drawing.Point(3, 3);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(159, 20);
+            this.label3.Size = new System.Drawing.Size(141, 16);
             this.label3.TabIndex = 62;
             this.label3.Text = "Tỉ lệ lấp đầy phòng";
             // 

@@ -17,19 +17,6 @@ namespace DAL
 
         private static AccountDAO instance;
 
-        public bool Login(string userName, string passWord)
-        {
-            string query = "sp_Login @userName , @passWord";
-            DataTable data = DataProvider.Instance.ExecuteQuery(query, new object[] { userName, passWord });
-            return data.Rows.Count > 0;
-        }
-
-        //public bool UpdatePassword(string username, string password)
-        //{
-        //    string query = "sp_UpdatePassword @username , @password";
-        //    return DataProvider.Instance.ExecuteNonQuery(query, new object[] { username, password }) > 0;
-        //}
-
         public void UpdatePassword(string username, string password)
         {
             using (SqlConnection conn = DBConnection.GetConnection())
@@ -59,13 +46,6 @@ namespace DAL
                     Console.WriteLine("Lỗi khi cập nhật thông tin: " + ex.Message);
                 }
             }
-        }
-
-
-        public bool UpdateUsername(string username, int id)
-        {
-            string query = "sp_UpdateUsername @username , @idStaff";
-            return DataProvider.Instance.ExecuteNonQuery(query, new object[] { username, id }) > 0;
         }
 
         public void InsertAccount(int id, string user, string pass)
@@ -99,14 +79,6 @@ namespace DAL
                 }
             }
         }
-
-
-        public DataTable GetAccountById(int id)
-        {
-            string query = "sp_GetAccountById @id";
-            return DataProvider.Instance.ExecuteQuery(query, new object[] { id });
-        }
-
 
         public static AccountDAO Instance
         {

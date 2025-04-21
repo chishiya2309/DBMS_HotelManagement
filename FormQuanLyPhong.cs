@@ -183,20 +183,14 @@ namespace QLKS
 
         private void ConfigureDataGridView()
         {
-            // Make sure all columns are visible
             dgvRoom.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvRoom.AutoGenerateColumns = true; 
 
-            // Ensure all columns from your data source are displayed
-            dgvRoom.AutoGenerateColumns = true; // If you want to automatically generate columns from data source
-
-            // Make sure all columns are visible
             foreach (DataGridViewColumn col in dgvRoom.Columns)
             {
                 col.Visible = true;
             }
         }
-
-        // When binding data to the DataGridView, make sure all properties are included
         private void LoadRoomData()
         {
             try
