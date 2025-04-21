@@ -18,16 +18,6 @@ namespace BLL.DAO
 
         private static StaffDAO instance;
 
-        public Staff LoadStaffInforById(int id)
-        {
-            
-            string query = "select * from Staff where idStaff=" + id.ToString() + "";
-            DataTable dataTable = DBConnection.Instance.ExecuteQuery(query);
-
-            Staff s = new Staff(dataTable.Rows[0]);
-            return s;
-        }
-
         public void InsertStaff(string Hoten, string gioitinh, DateTime ngaysinh, string CCCD, string diachi, string email, string sdt,
                  DateTime ngayvaolam, string vaitro, byte[] chandung)
         {
@@ -69,11 +59,6 @@ namespace BLL.DAO
                     MessageBox.Show("Lỗi khi thêm nhân viên: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-        }
-        public DataTable LoadFullStaff()
-        {
-            string query = "sp_LoadFullStaff";
-            return DataProvider.Instance.ExecuteQuery(query);
         }
 
         public DataTable SearchProfileStaffByID(int id)
@@ -169,18 +154,6 @@ namespace BLL.DAO
                     Console.WriteLine("Lỗi khi cập nhật thông tin: " + ex.Message);
                 }
             }
-        }
-
-        public bool DeleteStaff(int idStaff)
-        {
-            string query = "sp_DeteleStaff @id";
-            return DataProvider.Instance.ExecuteNonQuery(query, new object[] { idStaff }) > 0;
-        }
-
-        public DataTable Search(string FullName)
-        {
-            string query = "SELECT * FROM dbo.fn_SearchStaff(@FullName)";
-            return DataProvider.Instance.ExecuteQuery(query, new object[] { FullName});
         }
 
         public DataTable SearchStaffByName(string Hoten)

@@ -50,13 +50,6 @@ namespace BLL.DAO
             }
         }
 
-
-        //public bool UpdateService(int id, string name, int idServiceType, double price, string status)
-        //{
-        //    string query = "sp_UpdateService @id , @name , @idServiceType , @price , @status";
-        //    return DataProvider.Instance.ExecuteNonQuery(query, new object[] { id, name, idServiceType, price , status}) > 0;
-        //}
-
         public void UpdateDichVu(string maDichVu, string tenDichVu, string loaiDichVu, string trangThai, double donGia, string moTa)
         {
             using (SqlConnection conn = DBConnection.GetConnection()) {
@@ -125,18 +118,6 @@ namespace BLL.DAO
                     Console.WriteLine("Lỗi khi xoá dịch vụ: " + ex.Message);
                 }
             }
-        }
-
-        public DataTable LoadFullService()
-        {
-            string query = "sp_LoadFullService";
-            return DataProvider.Instance.ExecuteQuery(query);
-        }
-
-        public DataTable LoadFullAvailableService()
-        {
-            string query = "sp_LoadFullAvailableService";
-            return DataProvider.Instance.ExecuteQuery(query);
         }
 
         public DataTable Search(string name)

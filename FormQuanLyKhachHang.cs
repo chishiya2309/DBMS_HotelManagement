@@ -74,7 +74,7 @@ namespace QLKS
                     }
                     else
                     {
-                        dtpDoB.Value = DateTime.Now; // Giá trị mặc định nếu không hợp lệ
+                        dtpDoB.Value = DateTime.Now; 
                     }
                     cbType.Text = row.Cells["LoaiKhachHang"].Value?.ToString() ?? "";
                     cmbTrangThai.Text = row.Cells["TinhTrangDatPhong"].Value?.ToString() ?? "";
@@ -175,7 +175,7 @@ namespace QLKS
 
         private void FormQuanLyKhachHang_Load(object sender, EventArgs e)
         {
-            cbSearchType.SelectedIndex = 0; // Đặt giá trị mặc định cho ComboBox
+            cbSearchType.SelectedIndex = 0; 
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)

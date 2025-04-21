@@ -91,26 +91,6 @@ namespace QLKS
                 ChangeText(row);
             }
         }
-
-        //private Service GetServiceNow()
-        //{
-        //    Service account = new Service();
-
-        //    // Xoá các khoảng trắng thừa
-        //    //Trim(new System.Windows.Forms.TextBox[] { txtName, txtAddress });
-
-
-
-        //    int index = cbType.SelectedIndex;
-        //    account.Id = Convert.ToInt32(txtId.Text);
-        //    account.IdServiceType = (int)((DataTable)cbType.DataSource).Rows[index]["id"];
-        //    account.Name = txtName.Text;
-        //    account.Price = Convert.ToDouble(txtPrice.Text);
-        //    account.Status = cbStatus.Text;
-            
-        //    return account;
-        //}
-
         public static bool CheckFillInText(string[] controls)
         {
             foreach (string control in controls)

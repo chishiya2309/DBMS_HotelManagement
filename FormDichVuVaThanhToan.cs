@@ -161,12 +161,6 @@ namespace QLKS
             }
         }
 
-        public DataTable FindRoomTypeNow()
-        {
-            int id = int.Parse(dgvBookRoom.Rows[0].Cells["dgvIdBookRoom"].Value.ToString());
-            return BookRoomDAO.Instance.FindRoomTypeByBookRoom(id);
-        }
-
         public double LoadTotal()
         {
             double totalBill = 0;
@@ -243,16 +237,6 @@ namespace QLKS
         {
             
         }
-
-        //public static bool CheckFillInText(Control[] controls)
-        //{
-        //    foreach (var control in controls)
-        //    {
-        //        if (control.Text == string.Empty)
-        //            return false;
-        //    }
-        //    return true;
-        //}
 
         private void btnPay_Click(object sender, EventArgs e)
         {

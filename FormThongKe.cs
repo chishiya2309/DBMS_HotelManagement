@@ -1,5 +1,6 @@
 ﻿using BLL;
 using BLL.DAO;
+using DAL;
 using Guna.UI2.WinForms.Suite;
 using System;
 using System.Collections.Generic;
@@ -143,7 +144,7 @@ namespace QLKS
 
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = DBConnection.GetConnection())
                 {
                     using (SqlCommand command = new SqlCommand("sp_DoanhThuNgay", connection))
                     {
@@ -227,7 +228,7 @@ namespace QLKS
         private bool top3(DateTime startDate, DateTime endDate)
         {
             bool hasData = false;
-            var dataPoints = new List<Tuple<string, decimal>>();
+            var dataPoints = new List<Tuple<string, int>>();
 
             string designerSeriesName = "Series1"; // Tên series đã thiết kế
 
@@ -236,14 +237,15 @@ namespace QLKS
                 Color.FromArgb(54, 162, 235),  // Xanh dương
                 Color.FromArgb(255, 206, 86), // Vàng
                 Color.FromArgb(0, 255, 127),  // Xanh lá
-                Color.FromArgb(255, 159, 64)  // Cam
+                Color.FromArgb(240, 128, 128), // Hồng cam
+                Color.FromArgb(230, 230, 250)
             };
 
             try
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    using (SqlCommand command = new SqlCommand("sp_top3", connection))
+                    using (SqlCommand command = new SqlCommand("sp_top5", connection))
                     {
                         command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.Add(new SqlParameter("@StartDate", SqlDbType.DateTime) { Value = startDate });
@@ -256,10 +258,10 @@ namespace QLKS
 
                             while (reader.Read())
                             {
-                                hasData = true; // Data exists
+                                hasData = true; 
                                 string roomType = reader.GetString(0);
-                                decimal revenue = reader.GetDecimal(1);
-                                dataPoints.Add(Tuple.Create(roomType, revenue));
+                                int count = reader.GetInt32(1);
+                                dataPoints.Add(Tuple.Create(roomType, count));
                             }
 
                             
@@ -285,14 +287,16 @@ namespace QLKS
                                     foreach (var point in dataPoints)
                                     {
                                         string roomType = point.Item1;
-                                        decimal revenueValue = point.Item2;
-                                        int pointIndex = targetSeries.Points.AddXY(roomType, revenueValue);
+                                        decimal countValue = point.Item2;
+                                        int pointIndex = targetSeries.Points.AddXY(roomType, countValue);
 
                                         DataPoint addedPoint = targetSeries.Points[pointIndex];
 
                                         addedPoint.Color = customSliceColors[colorIndex];
-                                        
-                                        addedPoint.Label = roomType;
+
+                                        addedPoint.Label = countValue.ToString();
+
+                                        addedPoint.LegendText = roomType;
 
                                         colorIndex++;
                                     }
@@ -409,7 +413,7 @@ namespace QLKS
 
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = DBConnection.GetConnection())
                 {
                     using (SqlCommand command = new SqlCommand("sp_TongThuNhap", connection))
                     {
@@ -477,7 +481,7 @@ namespace QLKS
 
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = DBConnection.GetConnection())
                 {
                     using (SqlCommand command = new SqlCommand("sp_TongKhach", connection))
                     {
@@ -508,7 +512,7 @@ namespace QLKS
 
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = DBConnection.GetConnection())
                 {
                     using (SqlCommand command = new SqlCommand("sp_TongPhongDat", connection))
                     {
@@ -524,8 +528,7 @@ namespace QLKS
                         }
                     }
                 }
-                this.dateStart.ValueChanged += new System.EventHandler(this.DateTimePicker_ValueChanged);
-                this.dateEnd.ValueChanged += new System.EventHandler(this.DateTimePicker_ValueChanged);
+                
             }
             catch (Exception ex)
             {
@@ -540,7 +543,7 @@ namespace QLKS
 
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = DBConnection.GetConnection())
                 {
                     using (SqlCommand command = new SqlCommand("sp_TongDichVu", connection))
                     {

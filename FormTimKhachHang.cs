@@ -34,31 +34,21 @@ namespace QLKS
 
         private void FormTimKhachHang_Load(object sender, EventArgs e)
         {
-            // Thiết lập giá trị mặc định cho combobox loại tìm kiếm
             if (cbSearchType.Items.Count > 0)
             {
                 cbSearchType.SelectedIndex = 0;
             }
 
-            // Thiết lập các thuộc tính cho DataGridView
             ConfigureDataGridView();
-
-            // Load tất cả khách hàng lên DataGridView khi form được mở
             LoadAllCustomers();
-
-            // Đặt focus vào ô tìm kiếm
             txtSearch.Focus();
-
-            // Cập nhật text của nút chọn để phản ánh chức năng mới
             btnSelect.Text = "Thêm đã chọn";
         }
 
         private void ConfigureDataGridView()
         {
-            // Đảm bảo DataGridView hiển thị đúng dữ liệu từ database
             dgvCustomers.AutoGenerateColumns = false;
 
-            // Thiết lập các cột
             if (dgvCustomers.Columns["MaKhachHang"] != null)
                 dgvCustomers.Columns["MaKhachHang"].DataPropertyName = "MaKhachHang";
 
@@ -96,7 +86,6 @@ namespace QLKS
                         searchResults = dt;
                         dgvCustomers.DataSource = dt;
 
-                        // Cập nhật trạng thái nút Chọn dựa trên kết quả
                         btnSelect.Enabled = dt.Rows.Count > 0;
                     }
                 }
@@ -127,7 +116,6 @@ namespace QLKS
 
         private void SearchCustomers()
         {
-            // Xác định loại tìm kiếm dựa trên combobox
             string searchType = cbSearchType.SelectedItem.ToString();
             string searchColumn;
             string searchValue = txtSearch.Text.Trim();
@@ -139,7 +127,6 @@ namespace QLKS
                     break;
                 case "Số điện thoại":
                     searchColumn = "SoDienThoai";
-                    // Kiểm tra số điện thoại hợp lệ - sử dụng pattern linh hoạt hơn
                     string phonePattern = @"^(\+?\d{1,4}[\s\-]?)?\(?\d{3,4}\)?[\s\-]?\d{3,4}[\s\-]?\d{3,4}$";
                     if (!string.IsNullOrEmpty(searchValue) && !Regex.IsMatch(searchValue, phonePattern))
                     {
@@ -158,7 +145,6 @@ namespace QLKS
 
             string query;
 
-            // Nếu tìm theo tên sẽ tìm kiếm gần đúng, còn lại tìm chính xác
             if (searchColumn == "HoTen")
             {
                 query = $@"
@@ -205,7 +191,6 @@ namespace QLKS
                                 btnSelect.Enabled = true;
                             }
 
-                            // Cập nhật trạng thái checkbox cho các khách hàng đã chọn trước đó
                             UpdateCheckboxStatus();
                         }
                     }
@@ -218,15 +203,12 @@ namespace QLKS
             }
         }
 
-        // Phương thức mới để cập nhật trạng thái checkbox cho các khách hàng đã chọn
         private void UpdateCheckboxStatus()
         {
-            // Duyệt qua tất cả các dòng trong DataGridView
             foreach (DataGridViewRow row in dgvCustomers.Rows)
             {
                 int maKH = Convert.ToInt32(row.Cells["MaKhachHang"].Value);
 
-                // Kiểm tra xem khách hàng đã được chọn trước đó chưa
                 bool isSelected = false;
                 foreach (DataRow selectedRow in SelectedCustomers.Rows)
                 {
@@ -237,7 +219,6 @@ namespace QLKS
                     }
                 }
 
-                // Cập nhật trạng thái checkbox
                 row.Cells["Select"].Value = isSelected;
             }
         }
@@ -247,13 +228,13 @@ namespace QLKS
             if (e.KeyCode == Keys.Enter)
             {
                 btnSearch.PerformClick();
-                e.SuppressKeyPress = true; // Ngăn chặn âm thanh "ding" khi nhấn Enter
+                e.SuppressKeyPress = true; 
             }
         }
 
         private void btnSelect_Click(object sender, EventArgs e)
         {
-            // Kiểm tra xem có khách hàng nào được chọn không
+           
             if (SelectedCustomers.Rows.Count == 0)
             {
                 MessageBox.Show("Vui lòng chọn ít nhất một khách hàng!",
@@ -267,38 +248,33 @@ namespace QLKS
 
         private void dgvCustomers_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0 && e.ColumnIndex != 0) // Đảm bảo không phải là phần header và không phải cột checkbox
+            if (e.RowIndex >= 0 && e.ColumnIndex != 0)
             {
-                // Lấy dòng được double-click
+                
                 DataGridViewRow row = dgvCustomers.Rows[e.RowIndex];
 
-                // Đảo ngược trạng thái checkbox
                 bool currentValue = row.Cells["Select"].Value != null && (bool)row.Cells["Select"].Value;
                 row.Cells["Select"].Value = !currentValue;
 
-                // Cập nhật danh sách khách hàng đã chọn
+               
                 UpdateSelectedCustomers(e.RowIndex, !currentValue);
             }
         }
 
-        // Xử lý sự kiện khi người dùng click vào checkbox
+        
         private void dgvCustomers_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0 && e.ColumnIndex == 0) // Cột checkbox
+            if (e.RowIndex >= 0 && e.ColumnIndex == 0) 
             {
-                // Lấy dòng được click
                 DataGridViewRow row = dgvCustomers.Rows[e.RowIndex];
 
-                // Đảo ngược trạng thái checkbox
                 bool currentValue = row.Cells["Select"].Value != null && (bool)row.Cells["Select"].Value;
                 row.Cells["Select"].Value = !currentValue;
 
-                // Cập nhật danh sách khách hàng đã chọn
                 UpdateSelectedCustomers(e.RowIndex, !currentValue);
             }
         }
 
-        // Phương thức mới để cập nhật danh sách khách hàng đã chọn
         private void UpdateSelectedCustomers(int rowIndex, bool isSelected)
         {
             if (rowIndex < 0 || rowIndex >= searchResults.Rows.Count)
@@ -308,7 +284,6 @@ namespace QLKS
 
             if (isSelected)
             {
-                // Kiểm tra xem khách hàng đã tồn tại trong danh sách chưa
                 bool exists = false;
                 foreach (DataRow row in SelectedCustomers.Rows)
                 {

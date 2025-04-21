@@ -59,7 +59,6 @@ namespace QLKS
 
             }
 
-            // Refresh the DataGridView
             dgvStaff.Refresh();
         }     
 
