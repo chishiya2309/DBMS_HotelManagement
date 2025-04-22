@@ -92,29 +92,21 @@
     <Compile Include="BLL\Bill.cs" />
     <Compile Include="BLL\BookingRecord.cs" />
     <Compile Include="BLL\Customer.cs" />
-    <Compile Include="BLL\CustomerType.cs" />
     <Compile Include="BLL\DAO\AccountDAO.cs" />
     <Compile Include="BLL\DAO\BillDAO.cs" />
     <Compile Include="BLL\DAO\BookRoomDAO.cs" />
     <Compile Include="BLL\DAO\CustomerDAO.cs" />
-    <Compile Include="BLL\DAO\CustomerTypeDAO.cs" />
-    <Compile Include="DAL\DBConnection.cs" />
-    <Compile Include="BLL\DAO\RolesDAO.cs" />
-    <Compile Include="BLL\DAO\RoomDAO.cs" />
     <Compile Include="BLL\DAO\RoomTypeDAO.cs" />
+    <Compile Include="DAL\DBConnection.cs" />
+    <Compile Include="BLL\DAO\RoomDAO.cs" />
     <Compile Include="BLL\DAO\ServiceDAO.cs" />
     <Compile Include="BLL\DAO\StaffDAO.cs" />
-    <Compile Include="BLL\DAO\StatusRoomDAO.cs" />
     <Compile Include="BLL\DAO\UsedServiceInfoDAO.cs" />
-    <Compile Include="BLL\Roles.cs" />
     <Compile Include="BLL\Room.cs" />
     <Compile Include="BLL\RoomType.cs" />
     <Compile Include="BLL\Service.cs" />
-    <Compile Include="BLL\ServiceType.cs" />
     <Compile Include="BLL\Staff.cs" />
-    <Compile Include="BLL\StatusRoom.cs" />
     <Compile Include="BLL\UsedServiceDetail.cs" />
-    <Compile Include="DAL\DataProvider.cs" />
     <Compile Include="FormChiTietHoaDon.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -351,6 +343,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\fbc52262225969.5a89af053bacd.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Hotel-Lobby-sm.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\intercontinental-doha-beach-spa-hero-image-exterior2023.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Blue_Minimalist_simple_real_estate___architecture_Logo-removebg-preview.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

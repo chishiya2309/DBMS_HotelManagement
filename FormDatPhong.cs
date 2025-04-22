@@ -1245,5 +1245,11 @@ namespace QLKS
                 guna2DataGridView1.Rows.Clear();
             }
         }
+
+        // Exit
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
     }
 }
