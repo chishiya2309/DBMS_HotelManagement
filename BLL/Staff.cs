@@ -19,11 +19,11 @@ namespace BLL
         private int idRole;
         private string Phonenumber;
         private DateTime startDay;
-        //private string img; // filePath
+        private byte[] img; // filePath
 
         public Staff() { }
 
-        public Staff(int idStaff, string fullName, string sex, DateTime dateofBirth, string address, string CCCD, string email, int idRole, string phonenumber, DateTime startDay)
+        public Staff(int idStaff, string fullName, string sex, DateTime dateofBirth, string address, string CCCD, string email, int idRole, string phonenumber, DateTime startDay, byte[] img)
         {
             this.idStaff = idStaff;
             this.fullName = fullName;
@@ -35,6 +35,7 @@ namespace BLL
             this.idRole = idRole;
             this.Phonenumber = phonenumber;
             this.startDay = startDay;
+            this.img = img;
             //this.img = img;
         }
 
@@ -50,7 +51,7 @@ namespace BLL
             IdRole = (int)row["idRole"];
             Phone = row["Phonenumber"].ToString();
             StartDay = (DateTime)row["startDay"];
-            //ImgPath = row["img"].ToString();
+            
 
         }
 
@@ -68,6 +69,6 @@ namespace BLL
         public int IdRole { get => idRole; set => idRole = value; }
         public string Phone { get => Phonenumber; set => Phonenumber = value; }
         public DateTime StartDay { get => startDay; set => startDay = value; }
-        //public string ImgPath { get => img; set => img = value; }
+        
     }
 }

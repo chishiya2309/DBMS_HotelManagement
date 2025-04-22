@@ -11,27 +11,33 @@ namespace BLL
     {
         private int idRoom;
         private string roomname;
-        private int idRoomType;
-        private int idStatusRoom;
+        private string idRoomType;
+        private int beds;
+        private int area;
+        private string status;
+        private string typebed;
+
         public Room() { }
-        public Room(int id, string name, int idRoomType, int idStatusRoom)
+        public Room(int id, string name, string idRoomType, int beds, int area, string status, string typebed)
         {
             this.idRoom = id;
             this.roomname = name;
             this.idRoomType = idRoomType;
-            this.idStatusRoom = idStatusRoom;
-        }
-        public Room(DataRow row)
-        {
-            this.Id = (int)row["ID"];
-            this.Name = row["Name"].ToString();
-            this.IdRoomType = (int)row["idRoomType"];
-            this.IdStatusRoom = (int)row["idStatusRoom"];
+            this.beds = beds;
+            this.area = area;
+            this.status = status;
+            this.typebed = typebed;
         }
 
         public int Id { get => idRoom; set => idRoom = value; }
         public string Name { get => roomname; set => roomname = value; }
-        public int IdRoomType { get => idRoomType; set => idRoomType = value; }
-        public int IdStatusRoom { get => idStatusRoom; set => idStatusRoom = value; }
+        public string IdRoomType { get => idRoomType; set => idRoomType = value; }
+        public int Beds { get => beds; set => beds = value; }
+
+        public string TypeBed { get => typebed; set => typebed = value; }
+        public string Status { get => status; set => status = value; }
+
+
+        public int Area { get => area; set => area = value; }
     }
 }
