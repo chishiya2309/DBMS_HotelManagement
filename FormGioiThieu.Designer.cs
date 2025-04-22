@@ -112,7 +112,7 @@
             this.label1.TabIndex = 23;
             this.label1.Text = "▶   Giao diện phần mềm dễ sử dụng\r\n▶   Hỗ trợ tính năng quản lý cho nhân viên\r\n▶ " +
     "  Phần mềm hoạt động trơn tru, mượt mà\r\n▶   Được hướng dẫn bởi TS. Nguyễn Thành " +
-    "Sơn\r\nvà AI của Ths. Nguyễn Minh Đạo\r\n";
+    "Sơn\r\n\r\n";
             // 
             // FormGioiThieu
             // 
@@ -129,7 +129,8 @@
             this.Controls.Add(this.label2);
             this.Name = "FormGioiThieu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FormGioiThieu";
+            this.Text = "Trang giới thiệu";
+            this.Load += new System.EventHandler(this.FormGioiThieu_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
