@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Guna.UI2.AnimatorNS.Animation animation9 = new Guna.UI2.AnimatorNS.Animation();
+            Guna.UI2.AnimatorNS.Animation animation2 = new Guna.UI2.AnimatorNS.Animation();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormThongTin));
             this.guna2AnimateWindow1 = new Guna.UI2.WinForms.Guna2AnimateWindow(this.components);
             this.guna2DragControl1 = new Guna.UI2.WinForms.Guna2DragControl(this.components);
@@ -92,22 +92,22 @@
             // guna2Transition1
             // 
             this.guna2Transition1.Cursor = null;
-            animation9.AnimateOnlyDifferences = true;
-            animation9.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation9.BlindCoeff")));
-            animation9.LeafCoeff = 0F;
-            animation9.MaxTime = 1F;
-            animation9.MinTime = 0F;
-            animation9.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation9.MosaicCoeff")));
-            animation9.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation9.MosaicShift")));
-            animation9.MosaicSize = 0;
-            animation9.Padding = new System.Windows.Forms.Padding(0);
-            animation9.RotateCoeff = 0F;
-            animation9.RotateLimit = 0F;
-            animation9.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation9.ScaleCoeff")));
-            animation9.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation9.SlideCoeff")));
-            animation9.TimeCoeff = 0F;
-            animation9.TransparencyCoeff = 0F;
-            this.guna2Transition1.DefaultAnimation = animation9;
+            animation2.AnimateOnlyDifferences = true;
+            animation2.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.BlindCoeff")));
+            animation2.LeafCoeff = 0F;
+            animation2.MaxTime = 1F;
+            animation2.MinTime = 0F;
+            animation2.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.MosaicCoeff")));
+            animation2.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation2.MosaicShift")));
+            animation2.MosaicSize = 0;
+            animation2.Padding = new System.Windows.Forms.Padding(0);
+            animation2.RotateCoeff = 0F;
+            animation2.RotateLimit = 0F;
+            animation2.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.ScaleCoeff")));
+            animation2.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.SlideCoeff")));
+            animation2.TimeCoeff = 0F;
+            animation2.TransparencyCoeff = 0F;
+            this.guna2Transition1.DefaultAnimation = animation2;
             // 
             // panelProfile
             // 
@@ -354,7 +354,6 @@
             this.panelSecurity.Controls.Add(this.txtPassnew);
             this.panelSecurity.Controls.Add(this.lblConfirmPass);
             this.panelSecurity.Controls.Add(this.txtPasscon);
-            this.panelSecurity.Controls.Add(this.SavePassbtn);
             this.guna2Transition1.SetDecoration(this.panelSecurity, Guna.UI2.AnimatorNS.DecorationType.None);
             this.panelSecurity.FillColor = System.Drawing.Color.White;
             this.panelSecurity.Location = new System.Drawing.Point(540, 20);
@@ -519,6 +518,7 @@
             this.SavePassbtn.BackColor = System.Drawing.Color.Transparent;
             this.SavePassbtn.BorderRadius = 20;
             this.SavePassbtn.CheckedState.Parent = this.SavePassbtn;
+            this.SavePassbtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.SavePassbtn.CustomImages.Parent = this.SavePassbtn;
             this.guna2Transition1.SetDecoration(this.SavePassbtn, Guna.UI2.AnimatorNS.DecorationType.None);
             this.SavePassbtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -526,10 +526,10 @@
             this.SavePassbtn.ForeColor = System.Drawing.Color.White;
             this.SavePassbtn.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.SavePassbtn.HoverState.Parent = this.SavePassbtn;
-            this.SavePassbtn.Location = new System.Drawing.Point(150, 235);
+            this.SavePassbtn.Location = new System.Drawing.Point(4, 37);
             this.SavePassbtn.Name = "SavePassbtn";
             this.SavePassbtn.ShadowDecoration.Parent = this.SavePassbtn;
-            this.SavePassbtn.Size = new System.Drawing.Size(115, 40);
+            this.SavePassbtn.Size = new System.Drawing.Size(100, 40);
             this.SavePassbtn.TabIndex = 36;
             this.SavePassbtn.Text = "Thay đổi";
             this.SavePassbtn.Click += new System.EventHandler(this.SavePassbtn_Click);
@@ -824,6 +824,7 @@
             this.panelButtons.BackColor = System.Drawing.Color.Transparent;
             this.panelButtons.Controls.Add(this.SaveInfobtn);
             this.panelButtons.Controls.Add(this.Closebtn);
+            this.panelButtons.Controls.Add(this.SavePassbtn);
             this.guna2Transition1.SetDecoration(this.panelButtons, Guna.UI2.AnimatorNS.DecorationType.None);
             this.panelButtons.Location = new System.Drawing.Point(710, 310);
             this.panelButtons.Name = "panelButtons";
@@ -844,7 +845,7 @@
             this.SaveInfobtn.ForeColor = System.Drawing.Color.White;
             this.SaveInfobtn.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(90)))), ((int)(((byte)(115)))));
             this.SaveInfobtn.HoverState.Parent = this.SaveInfobtn;
-            this.SaveInfobtn.Location = new System.Drawing.Point(5, 75);
+            this.SaveInfobtn.Location = new System.Drawing.Point(5, 95);
             this.SaveInfobtn.Name = "SaveInfobtn";
             this.SaveInfobtn.ShadowDecoration.Parent = this.SaveInfobtn;
             this.SaveInfobtn.Size = new System.Drawing.Size(100, 40);
@@ -865,7 +866,7 @@
             this.Closebtn.ForeColor = System.Drawing.Color.White;
             this.Closebtn.HoverState.FillColor = System.Drawing.Color.Silver;
             this.Closebtn.HoverState.Parent = this.Closebtn;
-            this.Closebtn.Location = new System.Drawing.Point(5, 130);
+            this.Closebtn.Location = new System.Drawing.Point(5, 153);
             this.Closebtn.Name = "Closebtn";
             this.Closebtn.ShadowDecoration.Parent = this.Closebtn;
             this.Closebtn.Size = new System.Drawing.Size(100, 40);
