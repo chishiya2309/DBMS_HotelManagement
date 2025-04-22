@@ -130,7 +130,6 @@
             this.Name = "FormGioiThieu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Trang giới thiệu";
-            this.Load += new System.EventHandler(this.FormGioiThieu_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
