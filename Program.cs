@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DAL;
+using System;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 
@@ -21,7 +22,7 @@ namespace QLKS
         {
             try
             {
-                string connectionString = "Server=(local)\\SQLEXPRESS;Database=master;Integrated Security=True;"; // Kết nối bằng Windows Authentication
+                string connectionString = "Server="+ DBConnection.GetSqlServerName() + ";Database=master;Integrated Security=True;"; // Kết nối bằng Windows Authentication
 
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {

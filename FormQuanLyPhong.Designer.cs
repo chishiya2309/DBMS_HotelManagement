@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.headerPanel = new Guna.UI2.WinForms.Guna2Panel();
             this.lblTitle = new System.Windows.Forms.Label();
             this.searchPanel = new Guna.UI2.WinForms.Guna2Panel();
@@ -69,6 +69,7 @@
             this.TrangThai = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TenLoaiPhong = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SucChua = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvMaLoaiPhong1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DonGia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HinhAnh = new System.Windows.Forms.DataGridViewImageColumn();
             this.headerPanel.SuspendLayout();
@@ -88,7 +89,7 @@
             this.headerPanel.Location = new System.Drawing.Point(0, 0);
             this.headerPanel.Name = "headerPanel";
             this.headerPanel.ShadowDecoration.Parent = this.headerPanel;
-            this.headerPanel.Size = new System.Drawing.Size(861, 60);
+            this.headerPanel.Size = new System.Drawing.Size(1097, 60);
             this.headerPanel.TabIndex = 0;
             // 
             // lblTitle
@@ -192,7 +193,7 @@
             this.roomInfoPanel.Location = new System.Drawing.Point(12, 160);
             this.roomInfoPanel.Name = "roomInfoPanel";
             this.roomInfoPanel.ShadowDecoration.Parent = this.roomInfoPanel;
-            this.roomInfoPanel.Size = new System.Drawing.Size(200, 240);
+            this.roomInfoPanel.Size = new System.Drawing.Size(200, 289);
             this.roomInfoPanel.TabIndex = 2;
             // 
             // lblRoomInfo
@@ -251,7 +252,7 @@
             this.txtTenPhong.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(64)))), ((int)(((byte)(86)))));
             this.txtTenPhong.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(90)))), ((int)(((byte)(120)))));
             this.txtTenPhong.HoverState.Parent = this.txtTenPhong;
-            this.txtTenPhong.Location = new System.Drawing.Point(16, 120);
+            this.txtTenPhong.Location = new System.Drawing.Point(16, 134);
             this.txtTenPhong.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtTenPhong.Name = "txtTenPhong";
             this.txtTenPhong.PasswordChar = '\0';
@@ -267,7 +268,7 @@
             this.lblRoomName.AutoSize = true;
             this.lblRoomName.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRoomName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(64)))), ((int)(((byte)(86)))));
-            this.lblRoomName.Location = new System.Drawing.Point(12, 100);
+            this.lblRoomName.Location = new System.Drawing.Point(12, 114);
             this.lblRoomName.Name = "lblRoomName";
             this.lblRoomName.Size = new System.Drawing.Size(83, 19);
             this.lblRoomName.TabIndex = 55;
@@ -278,7 +279,7 @@
             this.lblRoomStatus.AutoSize = true;
             this.lblRoomStatus.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRoomStatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(64)))), ((int)(((byte)(86)))));
-            this.lblRoomStatus.Location = new System.Drawing.Point(12, 160);
+            this.lblRoomStatus.Location = new System.Drawing.Point(12, 198);
             this.lblRoomStatus.Name = "lblRoomStatus";
             this.lblRoomStatus.Size = new System.Drawing.Size(80, 19);
             this.lblRoomStatus.TabIndex = 53;
@@ -305,7 +306,7 @@
             "Đang cho thuê",
             "Đang sửa"});
             this.cbStatus.ItemsAppearance.Parent = this.cbStatus;
-            this.cbStatus.Location = new System.Drawing.Point(16, 180);
+            this.cbStatus.Location = new System.Drawing.Point(16, 218);
             this.cbStatus.Name = "cbStatus";
             this.cbStatus.ShadowDecoration.Parent = this.cbStatus;
             this.cbStatus.Size = new System.Drawing.Size(170, 36);
@@ -328,7 +329,6 @@
             this.roomTypePanel.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(64)))), ((int)(((byte)(86)))));
             this.roomTypePanel.BorderRadius = 10;
             this.roomTypePanel.BorderThickness = 1;
-            this.roomTypePanel.Controls.Add(this.lblRoomTypeInfo);
             this.roomTypePanel.Controls.Add(this.txtPrice);
             this.roomTypePanel.Controls.Add(this.txtLimit);
             this.roomTypePanel.Controls.Add(this.lblCapacity);
@@ -338,17 +338,18 @@
             this.roomTypePanel.Location = new System.Drawing.Point(220, 160);
             this.roomTypePanel.Name = "roomTypePanel";
             this.roomTypePanel.ShadowDecoration.Parent = this.roomTypePanel;
-            this.roomTypePanel.Size = new System.Drawing.Size(200, 240);
+            this.roomTypePanel.Size = new System.Drawing.Size(200, 289);
             this.roomTypePanel.TabIndex = 3;
             // 
             // lblRoomTypeInfo
             // 
             this.lblRoomTypeInfo.AutoSize = true;
-            this.lblRoomTypeInfo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRoomTypeInfo.BackColor = System.Drawing.Color.White;
+            this.lblRoomTypeInfo.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRoomTypeInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(64)))), ((int)(((byte)(86)))));
-            this.lblRoomTypeInfo.Location = new System.Drawing.Point(0, 10);
+            this.lblRoomTypeInfo.Location = new System.Drawing.Point(226, 170);
             this.lblRoomTypeInfo.Name = "lblRoomTypeInfo";
-            this.lblRoomTypeInfo.Size = new System.Drawing.Size(200, 21);
+            this.lblRoomTypeInfo.Size = new System.Drawing.Size(190, 20);
             this.lblRoomTypeInfo.TabIndex = 59;
             this.lblRoomTypeInfo.Text = "THÔNG TIN LOẠI PHÒNG";
             // 
@@ -369,7 +370,7 @@
             this.txtPrice.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(64)))), ((int)(((byte)(86)))));
             this.txtPrice.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(90)))), ((int)(((byte)(120)))));
             this.txtPrice.HoverState.Parent = this.txtPrice;
-            this.txtPrice.Location = new System.Drawing.Point(16, 180);
+            this.txtPrice.Location = new System.Drawing.Point(16, 218);
             this.txtPrice.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.PasswordChar = '\0';
@@ -397,7 +398,7 @@
             this.txtLimit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(64)))), ((int)(((byte)(86)))));
             this.txtLimit.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(90)))), ((int)(((byte)(120)))));
             this.txtLimit.HoverState.Parent = this.txtLimit;
-            this.txtLimit.Location = new System.Drawing.Point(16, 120);
+            this.txtLimit.Location = new System.Drawing.Point(16, 134);
             this.txtLimit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtLimit.Name = "txtLimit";
             this.txtLimit.PasswordChar = '\0';
@@ -413,7 +414,7 @@
             this.lblCapacity.AutoSize = true;
             this.lblCapacity.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCapacity.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(64)))), ((int)(((byte)(86)))));
-            this.lblCapacity.Location = new System.Drawing.Point(12, 100);
+            this.lblCapacity.Location = new System.Drawing.Point(12, 114);
             this.lblCapacity.Name = "lblCapacity";
             this.lblCapacity.Size = new System.Drawing.Size(73, 19);
             this.lblCapacity.TabIndex = 55;
@@ -424,7 +425,7 @@
             this.lblPrice.AutoSize = true;
             this.lblPrice.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPrice.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(64)))), ((int)(((byte)(86)))));
-            this.lblPrice.Location = new System.Drawing.Point(12, 160);
+            this.lblPrice.Location = new System.Drawing.Point(12, 198);
             this.lblPrice.Name = "lblPrice";
             this.lblPrice.Size = new System.Drawing.Size(35, 19);
             this.lblPrice.TabIndex = 53;
@@ -475,7 +476,7 @@
             this.functionsPanel.Controls.Add(this.btnDelete);
             this.functionsPanel.Controls.Add(this.btnUpdate);
             this.functionsPanel.Controls.Add(this.btnInsert);
-            this.functionsPanel.Location = new System.Drawing.Point(12, 410);
+            this.functionsPanel.Location = new System.Drawing.Point(12, 455);
             this.functionsPanel.Name = "functionsPanel";
             this.functionsPanel.ShadowDecoration.Parent = this.functionsPanel;
             this.functionsPanel.Size = new System.Drawing.Size(408, 90);
@@ -567,7 +568,7 @@
             this.dataPanel.Location = new System.Drawing.Point(430, 70);
             this.dataPanel.Name = "dataPanel";
             this.dataPanel.ShadowDecoration.Parent = this.dataPanel;
-            this.dataPanel.Size = new System.Drawing.Size(422, 430);
+            this.dataPanel.Size = new System.Drawing.Size(655, 475);
             this.dataPanel.TabIndex = 5;
             // 
             // dgvRoom
@@ -576,24 +577,24 @@
             this.dgvRoom.AllowUserToDeleteRows = false;
             this.dgvRoom.AllowUserToResizeColumns = false;
             this.dgvRoom.AllowUserToResizeRows = false;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
-            this.dgvRoom.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
+            this.dgvRoom.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             this.dgvRoom.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvRoom.BackgroundColor = System.Drawing.Color.White;
             this.dgvRoom.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvRoom.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgvRoom.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(64)))), ((int)(((byte)(86)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(90)))), ((int)(((byte)(120)))));
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvRoom.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
-            this.dgvRoom.ColumnHeadersHeight = 30;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(64)))), ((int)(((byte)(86)))));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(90)))), ((int)(((byte)(120)))));
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvRoom.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            this.dgvRoom.ColumnHeadersHeight = 50;
             this.dgvRoom.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvRoom.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.MaPhong,
@@ -605,17 +606,18 @@
             this.TrangThai,
             this.TenLoaiPhong,
             this.SucChua,
+            this.dgvMaLoaiPhong1,
             this.DonGia,
             this.HinhAnh});
             this.dgvRoom.Cursor = System.Windows.Forms.Cursors.Hand;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 10F);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvRoom.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 10F);
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvRoom.DefaultCellStyle = dataGridViewCellStyle9;
             this.dgvRoom.EnableHeadersVisualStyles = false;
             this.dgvRoom.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.dgvRoom.Location = new System.Drawing.Point(10, 10);
@@ -624,9 +626,9 @@
             this.dgvRoom.RowHeadersVisible = false;
             this.dgvRoom.RowHeadersWidth = 123;
             this.dgvRoom.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.dgvRoom.RowTemplate.Height = 25;
+            this.dgvRoom.RowTemplate.Height = 60;
             this.dgvRoom.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvRoom.Size = new System.Drawing.Size(402, 410);
+            this.dgvRoom.Size = new System.Drawing.Size(642, 410);
             this.dgvRoom.TabIndex = 31;
             this.dgvRoom.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.Default;
             this.dgvRoom.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
@@ -641,13 +643,13 @@
             this.dgvRoom.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.dgvRoom.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
             this.dgvRoom.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.dgvRoom.ThemeStyle.HeaderStyle.Height = 30;
+            this.dgvRoom.ThemeStyle.HeaderStyle.Height = 50;
             this.dgvRoom.ThemeStyle.ReadOnly = true;
             this.dgvRoom.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White;
             this.dgvRoom.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgvRoom.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.dgvRoom.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.dgvRoom.ThemeStyle.RowsStyle.Height = 25;
+            this.dgvRoom.ThemeStyle.RowsStyle.Height = 60;
             this.dgvRoom.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(255)))));
             this.dgvRoom.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.dgvRoom.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRoom_CellContentClick);
@@ -655,60 +657,63 @@
             // 
             // MaPhong
             // 
-            this.MaPhong.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.MaPhong.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.MaPhong.DataPropertyName = "MaPhong";
             this.MaPhong.FillWeight = 123F;
-            this.MaPhong.HeaderText = "Mã phòng";
+            this.MaPhong.HeaderText = "Mã";
             this.MaPhong.MinimumWidth = 45;
             this.MaPhong.Name = "MaPhong";
             this.MaPhong.ReadOnly = true;
+            this.MaPhong.Width = 50;
             // 
             // dgvMaLoaiPhong
             // 
+            this.dgvMaLoaiPhong.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.dgvMaLoaiPhong.DataPropertyName = "MaLoaiPhong";
             this.dgvMaLoaiPhong.HeaderText = "Mã loại phòng";
             this.dgvMaLoaiPhong.Name = "dgvMaLoaiPhong";
             this.dgvMaLoaiPhong.ReadOnly = true;
             this.dgvMaLoaiPhong.Visible = false;
+            this.dgvMaLoaiPhong.Width = 80;
             // 
             // TenPhong
             // 
-            this.TenPhong.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.TenPhong.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.TenPhong.DataPropertyName = "TenPhong";
             this.TenPhong.HeaderText = "Tên phòng";
             this.TenPhong.MinimumWidth = 6;
             this.TenPhong.Name = "TenPhong";
             this.TenPhong.ReadOnly = true;
-            this.TenPhong.Width = 102;
+            this.TenPhong.Width = 80;
             // 
             // SoGiuong
             // 
-            this.SoGiuong.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.SoGiuong.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.SoGiuong.DataPropertyName = "SoGiuong";
             this.SoGiuong.HeaderText = "Số giường";
             this.SoGiuong.MinimumWidth = 10;
             this.SoGiuong.Name = "SoGiuong";
             this.SoGiuong.ReadOnly = true;
-            this.SoGiuong.Width = 101;
+            this.SoGiuong.Width = 80;
             // 
             // LoaiGiuong
             // 
-            this.LoaiGiuong.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.LoaiGiuong.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.LoaiGiuong.DataPropertyName = "LoaiGiuong";
             this.LoaiGiuong.HeaderText = "Loại giường";
             this.LoaiGiuong.MinimumWidth = 10;
             this.LoaiGiuong.Name = "LoaiGiuong";
             this.LoaiGiuong.ReadOnly = true;
-            this.LoaiGiuong.Width = 112;
+            this.LoaiGiuong.Width = 80;
             // 
             // KhuVuc
             // 
-            this.KhuVuc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.KhuVuc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.KhuVuc.DataPropertyName = "KhuVuc";
             this.KhuVuc.HeaderText = "Khu vực";
             this.KhuVuc.Name = "KhuVuc";
             this.KhuVuc.ReadOnly = true;
-            this.KhuVuc.Width = 85;
+            this.KhuVuc.Width = 50;
             // 
             // TrangThai
             // 
@@ -718,7 +723,7 @@
             this.TrangThai.MinimumWidth = 10;
             this.TrangThai.Name = "TrangThai";
             this.TrangThai.ReadOnly = true;
-            this.TrangThai.Width = 99;
+            this.TrangThai.Width = 91;
             // 
             // TenLoaiPhong
             // 
@@ -727,7 +732,8 @@
             this.TenLoaiPhong.HeaderText = "Loại phòng";
             this.TenLoaiPhong.Name = "TenLoaiPhong";
             this.TenLoaiPhong.ReadOnly = true;
-            this.TenLoaiPhong.Width = 107;
+            this.TenLoaiPhong.Visible = false;
+            this.TenLoaiPhong.Width = 98;
             // 
             // SucChua
             // 
@@ -736,7 +742,16 @@
             this.SucChua.HeaderText = "Sức chứa";
             this.SucChua.Name = "SucChua";
             this.SucChua.ReadOnly = true;
-            this.SucChua.Width = 92;
+            this.SucChua.Visible = false;
+            this.SucChua.Width = 85;
+            // 
+            // dgvMaLoaiPhong1
+            // 
+            this.dgvMaLoaiPhong1.DataPropertyName = "MaLoaiPhong";
+            this.dgvMaLoaiPhong1.HeaderText = "MaLoaiPhong";
+            this.dgvMaLoaiPhong1.Name = "dgvMaLoaiPhong1";
+            this.dgvMaLoaiPhong1.ReadOnly = true;
+            this.dgvMaLoaiPhong1.Visible = false;
             // 
             // DonGia
             // 
@@ -745,24 +760,26 @@
             this.DonGia.HeaderText = "Đơn giá";
             this.DonGia.Name = "DonGia";
             this.DonGia.ReadOnly = true;
-            this.DonGia.Width = 84;
+            this.DonGia.Visible = false;
+            this.DonGia.Width = 59;
             // 
             // HinhAnh
             // 
-            this.HinhAnh.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.HinhAnh.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.HinhAnh.DataPropertyName = "HinhAnh";
             this.HinhAnh.HeaderText = "Hình ảnh";
             this.HinhAnh.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.HinhAnh.Name = "HinhAnh";
             this.HinhAnh.ReadOnly = true;
-            this.HinhAnh.Width = 72;
+            this.HinhAnh.Width = 200;
             // 
             // FormQuanLyPhong
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
-            this.ClientSize = new System.Drawing.Size(861, 519);
+            this.ClientSize = new System.Drawing.Size(1097, 555);
+            this.Controls.Add(this.lblRoomTypeInfo);
             this.Controls.Add(this.dataPanel);
             this.Controls.Add(this.functionsPanel);
             this.Controls.Add(this.roomTypePanel);
@@ -788,6 +805,7 @@
             this.dataPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvRoom)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -831,6 +849,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn TrangThai;
         private System.Windows.Forms.DataGridViewTextBoxColumn TenLoaiPhong;
         private System.Windows.Forms.DataGridViewTextBoxColumn SucChua;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvMaLoaiPhong1;
         private System.Windows.Forms.DataGridViewTextBoxColumn DonGia;
         private System.Windows.Forms.DataGridViewImageColumn HinhAnh;
     }

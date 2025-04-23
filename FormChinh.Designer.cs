@@ -129,11 +129,12 @@
             // 
             // guna2PictureBox1
             // 
-            this.guna2PictureBox1.Image = global::QLKS.Properties.Resources.z6468297548958_02e5175ebb6c1e1ba356672ea08f4228;
-            this.guna2PictureBox1.Location = new System.Drawing.Point(6, 60);
+            this.guna2PictureBox1.BackColor = System.Drawing.SystemColors.Highlight;
+            this.guna2PictureBox1.Image = global::QLKS.Properties.Resources.Blue_Minimalist_simple_real_estate___architecture_Logo_removebg_preview;
+            this.guna2PictureBox1.Location = new System.Drawing.Point(0, 60);
             this.guna2PictureBox1.Name = "guna2PictureBox1";
             this.guna2PictureBox1.ShadowDecoration.Parent = this.guna2PictureBox1;
-            this.guna2PictureBox1.Size = new System.Drawing.Size(208, 193);
+            this.guna2PictureBox1.Size = new System.Drawing.Size(220, 193);
             this.guna2PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.guna2PictureBox1.TabIndex = 5;
             this.guna2PictureBox1.TabStop = false;

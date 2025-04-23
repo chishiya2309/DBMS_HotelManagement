@@ -243,7 +243,7 @@ namespace QLKS
 
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = DBConnection.GetConnection())
                 {
                     using (SqlCommand command = new SqlCommand("sp_top5", connection))
                     {
@@ -449,7 +449,7 @@ namespace QLKS
 
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = DBConnection.GetConnection())
                 {
                     using (SqlCommand command = new SqlCommand("sp_TiLeLap", connection))
                     {

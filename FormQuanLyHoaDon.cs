@@ -116,7 +116,7 @@ namespace QLKS
                         int idBookRoom = int.Parse(dgvBill.Rows[index].Cells["dgvMaHoSoDatPhong"].Value.ToString());
                         string emailCustomer = BillDAO.Instance.SearchEmailByIdBookRoom(DBConnection.GetConnection(),idBookRoom);
                         BillDAO.Instance.SendBillToEmail(emailCustomer,
-                            $"✅ Xác nhận thanh toán thành công tại Hotel2025 - Mã {idBookRoom}", EmailBody(index),"HTML");
+                            $"✅ Xác nhận thanh toán thành công tại khách sạn BHDV - Mã đặt phòng: {idBookRoom}", EmailBody(index),"HTML");
                     }
                     LoadFullBill(GetFullBill());
                     isMouseDown = false;

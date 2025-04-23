@@ -82,7 +82,7 @@ namespace QLKS
 
         public DataTable SearchBookRoom()
         {
-            return BookRoomDAO.Instance.Search(int.Parse(txtSearch.Text));
+            return BookRoomDAO.Instance.CommitCheckinBookRoom(int.Parse(txtSearch.Text));
         }
 
         public void LoadFullBookRoom(DataTable dt)

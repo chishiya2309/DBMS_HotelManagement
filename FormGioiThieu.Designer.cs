@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormGioiThieu));
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.guna2CircleButton3 = new Guna.UI2.WinForms.Guna2CircleButton();
@@ -108,11 +109,9 @@
             this.label1.Location = new System.Drawing.Point(10, 220);
             this.label1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(342, 105);
+            this.label1.Size = new System.Drawing.Size(317, 147);
             this.label1.TabIndex = 23;
-            this.label1.Text = "▶   Giao diện phần mềm dễ sử dụng\r\n▶   Hỗ trợ tính năng quản lý cho nhân viên\r\n▶ " +
-    "  Phần mềm hoạt động trơn tru, mượt mà\r\n▶   Được hướng dẫn bởi TS. Nguyễn Thành " +
-    "Sơn\r\n\r\n";
+            this.label1.Text = resources.GetString("label1.Text");
             // 
             // FormGioiThieu
             // 
