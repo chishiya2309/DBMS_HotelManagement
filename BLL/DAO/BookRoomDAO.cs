@@ -67,6 +67,29 @@ namespace BLL.DAO
             return dt;
         }
 
+        public DataTable CommitCheckinBookRoom(int maHoSoDatPhong)
+        {
+            DataTable dt = new DataTable();
+            using (SqlConnection connection = DBConnection.GetConnection())
+            {
+                connection.Open();
+                string query = "sp_CommitCheckinBookRoom";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@MaHoSoDatPhong", maHoSoDatPhong);
+                try
+                {
+                    SqlDataReader reader = command.ExecuteReader();
+                    dt.Load(reader);
+                }
+                catch (SqlException ex)
+                {
+                    Console.WriteLine($"Lỗi khi tìm kiếm hồ sơ đặt phòng: {ex.Message}");
+                }
+            }
+            return dt;
+        }
+
         public DataTable FindRoomTypeByBookRoom(int maHoSoDatPhong)
         {
             DataTable dt = new DataTable();

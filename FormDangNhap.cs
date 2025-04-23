@@ -15,7 +15,7 @@ namespace QLKS
 {
     public partial class FormDangNhap : Form
     {
-        string connectionString = "Data Source=(local)\\SQLExpress;Initial Catalog=Hotel2025;Integrated Security=True";
+       
         public FormDangNhap()
         {
             InitializeComponent();
@@ -51,8 +51,8 @@ namespace QLKS
             // SỬA LẠI DÒNG NÀY
             string query = "sp_DangNhap";
 
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
+            using (SqlConnection conn = DBConnection.GetConnection())
+            {   
                 try
                 {
                     conn.Open();

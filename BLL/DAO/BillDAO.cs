@@ -116,7 +116,7 @@ namespace BLL.DAO
         public void SendBillToEmail(string emailCustomer, string emailSubject, string emailBody, string emailFormat)
         {
             string connectionString1 = DBConnection.ConnectionString;
-            DBConnection.ConnectionString = "Data Source=(local)\\SQLExpress;Initial Catalog=Hotel2025;Integrated Security=True";
+            DBConnection.ConnectionString += "Integrated Security=True";
            
             using (SqlConnection conn = DBConnection.GetConnection())
             {

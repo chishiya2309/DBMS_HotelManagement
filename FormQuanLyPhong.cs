@@ -188,7 +188,7 @@ namespace QLKS
 
             foreach (DataGridViewColumn col in dgvRoom.Columns)
             {
-                col.Visible = true;
+                //col.Visible = true;
             }
         }
         private void LoadRoomData()

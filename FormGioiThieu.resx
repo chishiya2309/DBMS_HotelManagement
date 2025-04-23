@@ -117,4 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="label1.Text" xml:space="preserve">
+    <value>▶   Giao diện phần mềm dễ sử dụng
+▶   Hỗ trợ tính năng quản lý cho nhân viên
+▶   Phần mềm hoạt động trơn tru, mượt mà
+▶   Sơ đồ thống kê chi tiết, chính xác giúp 
+nắm bắt tình hình kinh doanh nhanh chóng, 
+hiệu quả
+
+</value>
+  </data>
 </root>

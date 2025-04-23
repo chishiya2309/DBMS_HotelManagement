@@ -74,7 +74,7 @@ namespace QLKS
 
         public bool DeleteStaff(int id)
         {
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlConnection conn = DBConnection.GetConnection())
             {
                 try
                 {
@@ -203,7 +203,7 @@ namespace QLKS
                     // Lấy tên đăng nhập của nhân viên
                     if (int.TryParse(row.Cells["MaNhanVien"].Value?.ToString(), out int idStaff))
                     {
-                        using (SqlConnection conn = new SqlConnection(connectionString))
+                        using (SqlConnection conn = DBConnection.GetConnection())
                         {
                             conn.Open();
                             string query = "SELECT TenDangNhap FROM TaiKhoan WHERE MaNhanVien = @MaNV";
