@@ -112,6 +112,30 @@ namespace BLL.DAO
             return dt;
         }
 
+        public DataTable FindBookRoomByStatus(string status)
+        {
+            DataTable dt = new DataTable();
+            using (SqlConnection connection = DBConnection.GetConnection())
+            {
+                connection.Open();
+                string query = "sp_FindBookRoomByStatus";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.CommandType = CommandType.StoredProcedure;
+
+                command.Parameters.AddWithValue("@string", status);
+                try
+                {
+                    SqlDataReader reader = command.ExecuteReader();
+                    dt.Load(reader);
+                }
+                catch (SqlException ex)
+                {
+                    Console.WriteLine($"Lỗi khi lấy danh sách hồ sơ đặt phòng: {ex.Message}");
+                }
+            }
+            return dt;
+        }
+
         public DataTable GetParticipantsByBookingId(int maHoSoDatPhong)
         {
             DataTable dt = new DataTable();
