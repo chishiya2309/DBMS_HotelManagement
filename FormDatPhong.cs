@@ -1251,5 +1251,34 @@ namespace QLKS
         {
             this.Hide();
         }
+
+        private void cbSearchBookRoom_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                DataTable dt = BookRoomDAO.Instance.FindBookRoomByStatus(cbSearchBookRoom.Text);
+                dgvBookRoom.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi truy vấn: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            // Sau khi tải dữ liệu xong, tự động chọn dòng đầu tiên
+            if (dgvBookRoom.Rows.Count > 0 && !isInitializing)
+            {
+                dgvBookRoom.ClearSelection();
+                dgvBookRoom.Rows[0].Selected = true;
+                ChangeText(dgvBookRoom.Rows[0]);
+                if (cbStatus.Text == "Đã xác nhận")
+                {
+                    dtpCheckIn.Enabled = false;
+                }
+                else
+                {
+                    btnCheckIn.Enabled = true;
+                }
+            }
+        }
     }
 }

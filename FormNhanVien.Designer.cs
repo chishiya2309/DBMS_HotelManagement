@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.btnSeach = new Guna.UI2.WinForms.Guna2Button();
             this.label3 = new System.Windows.Forms.Label();
@@ -72,6 +72,7 @@
             this.CCCD = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Diachi = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.email = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvChandung = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Sodienthoai = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Ngayvaolam = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Vaitro = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -608,23 +609,23 @@
             this.dgvStaff.AllowUserToDeleteRows = false;
             this.dgvStaff.AllowUserToResizeColumns = false;
             this.dgvStaff.AllowUserToResizeRows = false;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(90)))), ((int)(((byte)(115)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
-            this.dgvStaff.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(90)))), ((int)(((byte)(115)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            this.dgvStaff.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvStaff.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvStaff.BackgroundColor = System.Drawing.Color.White;
             this.dgvStaff.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvStaff.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgvStaff.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(64)))), ((int)(((byte)(86)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(64)))), ((int)(((byte)(86)))));
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvStaff.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(64)))), ((int)(((byte)(86)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(64)))), ((int)(((byte)(86)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvStaff.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvStaff.ColumnHeadersHeight = 29;
             this.dgvStaff.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvStaff.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -635,17 +636,18 @@
             this.CCCD,
             this.Diachi,
             this.email,
+            this.dgvChandung,
             this.Sodienthoai,
             this.Ngayvaolam,
             this.Vaitro});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(90)))), ((int)(((byte)(115)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvStaff.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(90)))), ((int)(((byte)(115)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvStaff.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvStaff.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvStaff.EnableHeadersVisualStyles = false;
             this.dgvStaff.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(90)))), ((int)(((byte)(115)))));
@@ -784,11 +786,11 @@
             // 
             this.MaNhanVien.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.MaNhanVien.DataPropertyName = "MaNhanVien";
-            this.MaNhanVien.HeaderText = "Mã nhân viên";
+            this.MaNhanVien.HeaderText = "Mã";
             this.MaNhanVien.MinimumWidth = 10;
             this.MaNhanVien.Name = "MaNhanVien";
             this.MaNhanVien.ReadOnly = true;
-            this.MaNhanVien.Width = 116;
+            this.MaNhanVien.Width = 52;
             // 
             // Hoten
             // 
@@ -829,27 +831,36 @@
             this.CCCD.MinimumWidth = 10;
             this.CCCD.Name = "CCCD";
             this.CCCD.ReadOnly = true;
+            this.CCCD.Visible = false;
             this.CCCD.Width = 69;
             // 
             // Diachi
             // 
-            this.Diachi.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Diachi.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.Diachi.DataPropertyName = "Diachi";
             this.Diachi.HeaderText = "Địa chỉ";
             this.Diachi.MinimumWidth = 10;
             this.Diachi.Name = "Diachi";
             this.Diachi.ReadOnly = true;
-            this.Diachi.Width = 73;
+            this.Diachi.Width = 150;
             // 
             // email
             // 
-            this.email.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.email.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.email.DataPropertyName = "email";
             this.email.HeaderText = "Email";
             this.email.MinimumWidth = 10;
             this.email.Name = "email";
             this.email.ReadOnly = true;
-            this.email.Width = 64;
+            this.email.Width = 150;
+            // 
+            // dgvChandung
+            // 
+            this.dgvChandung.DataPropertyName = "Chandung";
+            this.dgvChandung.HeaderText = "Chân dung";
+            this.dgvChandung.Name = "dgvChandung";
+            this.dgvChandung.ReadOnly = true;
+            this.dgvChandung.Visible = false;
             // 
             // Sodienthoai
             // 
@@ -962,6 +973,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CCCD;
         private System.Windows.Forms.DataGridViewTextBoxColumn Diachi;
         private System.Windows.Forms.DataGridViewTextBoxColumn email;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvChandung;
         private System.Windows.Forms.DataGridViewTextBoxColumn Sodienthoai;
         private System.Windows.Forms.DataGridViewTextBoxColumn Ngayvaolam;
         private System.Windows.Forms.DataGridViewTextBoxColumn Vaitro;

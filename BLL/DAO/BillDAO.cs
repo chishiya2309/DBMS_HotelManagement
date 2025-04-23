@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Security.Authentication.ExtendedProtection;
 using System.Text;
@@ -77,7 +78,7 @@ namespace BLL.DAO
             return dt;
         }
 
-        public void UpdateStatusBill(int id, string status)
+        public bool UpdateStatusBill(int id, string status)
         {
             using (SqlConnection conn = DBConnection.GetConnection())
             {
@@ -96,6 +97,7 @@ namespace BLL.DAO
                     if (cmd.ExecuteNonQuery() > 0)
                     {
                         MessageBox.Show("Cập nhật hoá đơn thành công");
+                        return true;
                     }
                     else
                     {
@@ -108,6 +110,46 @@ namespace BLL.DAO
                     Console.WriteLine("Lỗi khi đặt dịch vụ: " + ex.Message);
                 }
             }
+            return false;
+        }
+
+        public void SendBillToEmail(string emailCustomer, string emailSubject, string emailBody, string emailFormat)
+        {
+            string connectionString1 = DBConnection.ConnectionString;
+            DBConnection.ConnectionString = "Data Source=(local)\\SQLExpress;Initial Catalog=Hotel2025;Integrated Security=True";
+           
+            using (SqlConnection conn = DBConnection.GetConnection())
+            {
+
+                string query = "usp_SendConfirmEmail";
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@RecipientEmail", emailCustomer);
+                cmd.Parameters.AddWithValue("@EmailSubject", emailSubject);
+                cmd.Parameters.AddWithValue("@EmailBody", emailBody);
+                cmd.Parameters.AddWithValue("@BodyFormat", emailFormat);
+
+                try
+                {
+                    conn.Open();
+                    if (cmd.ExecuteNonQuery() != 0)
+                    {
+                        MessageBox.Show("Đã gửi email xác nhận hoàn tất thanh toán đến khách hàng");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Gửi email xác nhận hoàn tất thanh toán thất bại");
+                    }
+
+                }
+                catch (SqlException ex)
+                {
+                    Console.WriteLine("Lỗi khi gửi hoá đơn: " + ex.Message);
+                }
+            }
+            DBConnection.ConnectionString = connectionString1;
         }
 
         public void InsertBill(double phuThu, string noiDungPhuThu, double giamGia, double thanhTien, string tinhTrangThanhToan, string phuongThucThanhToan, int maHoSoDatPhong, int maNhanVien )
@@ -173,6 +215,32 @@ namespace BLL.DAO
             return dt;
         }
 
+        public string SearchEmailByIdBookRoom(SqlConnection conn, int maHoSoDatPhong)
+        {
+            string email = null;
+
+            using (SqlCommand cmd = new SqlCommand(
+                "SELECT email FROM KhachHang a INNER JOIN HoSoDatPhong b ON b.MaKhachHang = a.MaKhachHang WHERE b.MaHoSoDatPhong = @MaHoSoDatPhong", conn))
+            {
+                cmd.Parameters.AddWithValue("@MaHoSoDatPhong", maHoSoDatPhong);
+
+                // Đảm bảo kết nối đã mở
+                if (conn.State != System.Data.ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        email = reader["email"].ToString();
+                    }
+                }
+            }
+
+            return email;
+        }
         public static BillDAO Instance
         {
             get { if (instance == null) instance = new BillDAO(); return instance; }
