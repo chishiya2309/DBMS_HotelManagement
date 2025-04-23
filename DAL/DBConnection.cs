@@ -39,7 +39,37 @@ namespace DAL
             }
             return data;
         }
-        public static DBConnection Instance
+
+        public static string GetSqlServerName()
+        {
+            string query = "SELECT @@SERVERNAME;";
+            string serverName = null;
+
+            try
+            {
+                using (SqlConnection connection = DBConnection.GetConnection())
+                {
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        connection.Open();
+                        object result = command.ExecuteScalar();
+                        if (result != null && result != DBNull.Value)
+                        {
+                            serverName = result.ToString();
+                        }
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine($"Lỗi SQL khi lấy tên server: {ex.Message}");
+            }
+
+            return serverName;
+        }
+
+
+            public static DBConnection Instance
         {
             get { if (instance == null) instance = new DBConnection(); return instance; }
             private set => instance = value;
