@@ -1,60 +1,68 @@
-# Hệ Thống Quản Lý Khách Sạn (QLKS)
+# 🏨 Hệ Thống Quản Lý Khách Sạn (QLKS)
 
-Hệ thống quản lý khách sạn được phát triển bằng C# .NET với mô hình 3 lớp, hỗ trợ các tính năng quản lý toàn diện cho hoạt động kinh doanh khách sạn.
+![Platform](https://img.shields.io/badge/platform-Windows-blue)
+![.NET](https://img.shields.io/badge/.NET-Framework%204.5+-blue)
+![License: MIT](https://img.shields.io/badge/license-MIT-green)
 
-## Tổng Quan
+Hệ thống quản lý khách sạn được phát triển bằng **C# .NET** theo mô hình **3 lớp**, hỗ trợ các tính năng quản lý toàn diện cho hoạt động kinh doanh khách sạn hiện đại.
 
-QLKS là một phần mềm quản lý khách sạn chuyên nghiệp được thiết kế để đáp ứng nhu cầu quản lý thông tin, dịch vụ và các hoạt động nghiệp vụ tại khách sạn. Hệ thống cung cấp giao diện người dùng thân thiện, trực quan với đầy đủ chức năng quản lý từ đặt phòng, quản lý khách hàng đến thanh toán và báo cáo thống kê.
+---
 
-## Kiến Trúc Hệ Thống
+## 🧭 Tổng Quan
 
-Dự án được xây dựng theo mô hình 3 lớp:
+**QLKS** là phần mềm quản lý khách sạn chuyên nghiệp, thân thiện với người dùng, tích hợp đầy đủ chức năng từ quản lý phòng, khách hàng, dịch vụ đến thanh toán và báo cáo.
 
-- **Presentation Layer**: Các form giao diện người dùng (UI)
-- **Business Logic Layer (BLL)**: Xử lý logic nghiệp vụ
-- **Data Access Layer (DAL)**: Kết nối và tương tác với cơ sở dữ liệu
+---
 
-### Công Nghệ Sử Dụng
+## 🏗️ Kiến Trúc Hệ Thống
 
-- **Ngôn ngữ lập trình**: C# .NET Framework
-- **Cơ sở dữ liệu**: Microsoft SQL Server
-- **Giao diện người dùng**: Windows Forms với Guna.UI2
-- **Mô hình kết nối**: ADO.NET
+Dự án được xây dựng theo mô hình **3 lớp**:
 
-## Tính Năng Chính
+- **🔵 Presentation Layer**: Giao diện người dùng (Windows Forms)
+- **🟢 Business Logic Layer (BLL)**: Xử lý logic nghiệp vụ
+- **🟡 Data Access Layer (DAL)**: Tương tác với cơ sở dữ liệu (SQL Server)
 
-### 1. Quản Lý Phòng
+---
+
+## 🔧 Công Nghệ Sử Dụng
+
+- 🖥️ Ngôn ngữ lập trình: **C# (.NET Framework)**
+- 🗄️ Cơ sở dữ liệu: **Microsoft SQL Server**
+- 🎨 Giao diện người dùng: **WinForms + Guna.UI2**
+- 🔌 Mô hình kết nối: **ADO.NET**
+
+---
+
+## ✨ Tính Năng Chính
+
+### 🛏️ 1. Quản Lý Phòng
 - Thêm, sửa, xóa thông tin phòng
 - Quản lý loại phòng và giá phòng
 - Theo dõi trạng thái phòng (Trống, Đã đặt, Đang sử dụng)
 
-### 2. Đặt Phòng và Check-in
-- Đặt phòng cho khách hàng
-- Quản lý thông tin check-in, check-out
-- Xác nhận đặt phòng
-- Hỗ trợ đặt phòng cho nhóm khách
+### 📅 2. Đặt Phòng và Check-in
+- Đặt phòng cá nhân hoặc theo nhóm
+- Quản lý check-in, check-out, xác nhận đặt phòng
 
-### 3. Quản Lý Khách Hàng
+### 🙍‍♂️ 3. Quản Lý Khách Hàng
 - Thêm, sửa, xóa thông tin khách hàng
-- Tìm kiếm thông tin khách hàng
-- Lưu trữ lịch sử sử dụng dịch vụ của khách
+- Tìm kiếm khách hàng, lưu lịch sử sử dụng dịch vụ
 
-### 4. Dịch Vụ và Thanh Toán
-- Quản lý các dịch vụ của khách sạn
-- Tính toán và xuất hóa đơn
-- Quản lý dịch vụ sử dụng cho từng phòng
+### 🍽️ 4. Dịch Vụ và Thanh Toán
+- Quản lý các dịch vụ kèm theo
+- Tính hóa đơn, xuất hóa đơn nhanh chóng
 
-### 5. Quản Lý Nhân Viên
-- Thêm, sửa, xóa thông tin nhân viên
-- Phân quyền người dùng
-- Quản lý tài khoản đăng nhập
+### 👥 5. Quản Lý Nhân Viên
+- Thêm, sửa, xóa nhân viên
+- Quản lý tài khoản đăng nhập, phân quyền người dùng
 
-### 6. Báo Cáo và Thống Kê
-- Thống kê doanh thu theo thời gian
-- Báo cáo tình trạng phòng
-- Thống kê sử dụng dịch vụ
+### 📊 6. Báo Cáo và Thống Kê
+- Thống kê doanh thu theo ngày/tháng/năm
+- Báo cáo tình trạng phòng và dịch vụ sử dụng
 
-## Cấu Trúc Dự Án
+---
+
+## 📁 Cấu Trúc Dự Án
 
 ```
 QLKS/
@@ -67,46 +75,47 @@ QLKS/
 └── SQL/                 # SQL Scripts
 ```
 
-## Cài Đặt và Sử Dụng
+--- 
 
-### Yêu Cầu Hệ Thống
-- Windows 7/8/10/11
-- .NET Framework 4.5 trở lên
-- Microsoft SQL Server 2014 trở lên
+## ⚙️ Cài Đặt và Sử Dụng
 
-### Cài Đặt
+### 🖥️ Yêu Cầu Hệ Thống
+- Hệ điều hành: Windows 7/8/10/11
+- .NET Framework: 4.5 trở lên
+- Microsoft SQL Server: 2014 trở lên
 
+### 🧪 Cài Đặt
 1. **Cài đặt cơ sở dữ liệu**:
-   - Chạy script khởi tạo database từ thư mục SQL
-   - Cấu hình chuỗi kết nối trong file `DAL/DBConnection.cs`
+   - Chạy script khởi tạo từ thư mục `SQL/`
+   - Cập nhật chuỗi kết nối trong file `DAL/DBConnection.cs`
 
-2. **Biên dịch và chạy ứng dụng**:
-   - Mở dự án bằng Visual Studio
-   - Cài đặt các gói NuGet cần thiết (Guna.UI2)
+2. **Chạy ứng dụng**:
+   - Mở bằng Visual Studio
+   - Cài đặt các gói NuGet (ví dụ: `Guna.UI2`)
    - Build và chạy ứng dụng
 
-### Tài Khoản Mặc Định
-- **Tên đăng nhập**: quanghung
-- **Mật khẩu**: 123456
+### 🔐 Tài Khoản Mặc Định
+- **Tên đăng nhập**: `quanghung`
+- **Mật khẩu**: `123456`
 
-## Phát Triển
+---
 
-### Cấu Trúc Mã Nguồn
-- **Form Files**: Chứa giao diện và xử lý sự kiện
-- **DAO Files**: Chứa các phương thức truy xuất dữ liệu
-- **Model Files**: Định nghĩa cấu trúc đối tượng dữ liệu
+## 👨‍💻 Nhóm Phát Triển
 
-### Quy Ước Đặt Tên
-- **Class**: PascalCase (ví dụ: RoomDAO)
-- **Method**: PascalCase (ví dụ: GetRoomList)
-- **Variable**: camelCase (ví dụ: roomType)
-- **Control**: Prefix tương ứng với loại control (ví dụ: btnSave, txtName)
+Dự án được phát triển bởi sinh viên trường **Đại học Sư Phạm Kỹ Thuật TP.HCM** trong khuôn khổ môn học **Hệ quản trị cơ sở dữ liệu (Database Management System)**:
 
-## Đóng Góp
+- 🧑‍💼 Nguyễn Thành Vinh  
+- 🧑‍💼 Lê Quang Hưng  
+- 🧑‍💼 Nguyễn Thái Bảo  
+- 🧑‍💼 Dương Minh Duy
 
-Dự án được phát triển và duy trì bởi nhóm sinh viên thuộc **trường đại học Sư Phạm Kỹ Thuật thành phố Hồ Chí Minh** phục vụ cho môn học **Hệ quản trị cơ sở dữ liệu (Database Management System)**
-Danh sách thành viên đóng góp cho dự án (Nguyễn Thành Vinh, Lê Quang Hưng, Nguyễn Thái Bảo, Dương Minh Duy)
+---
 
-## Giấy Phép
+## 📜 Giấy Phép
 
-Phần mềm được phát hành dưới giấy phép MIT.
+Phần mềm được phát hành theo giấy phép [MIT](https://opensource.org/licenses/MIT) – sử dụng miễn phí, chỉnh sửa thoải mái.
+
+---
+
+> 💡 *Nếu bạn thấy dự án hữu ích, hãy ⭐ để ủng hộ nhóm nhé!*
+
