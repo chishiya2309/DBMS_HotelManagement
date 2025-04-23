@@ -630,8 +630,7 @@ namespace QLKS
                 {
                     // Sử dụng giá trị từ database
                     thoiGianCheckinDuKien = Convert.ToDateTime(originalData.Rows[0]["ThoiGianCheckinDuKien"]);
-                    thoiGianCheckoutDuKien = Convert.ToDateTime(originalData.Rows[0]["ThoiGianCheckinDuKien"]);
-
+                    thoiGianCheckoutDuKien = Convert.ToDateTime(originalData.Rows[0]["ThoiGianCheckoutDuKien"]);
                 }
                 else
                 {
